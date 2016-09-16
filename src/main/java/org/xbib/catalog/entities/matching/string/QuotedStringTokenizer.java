@@ -33,6 +33,8 @@ public class QuotedStringTokenizer extends StringTokenizer implements Iterator<S
     /**
      * Constructs a string tokenizer for the specified string.
      * "\"\'" are used as quotes, and '\\' is used as the escape character.
+     * @param str str
+     * @param delim delim
      */
     public QuotedStringTokenizer(String str, String delim) {
         this(str, delim, "\"\'", '\\', false);

@@ -1,18 +1,17 @@
 package org.xbib.marc.json;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.xbib.helper.StreamTester;
 import org.xbib.marc.MarcField;
 import org.xbib.marc.MarcListener;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.zip.GZIPInputStream;
+import java.nio.charset.StandardCharsets;
 
 public class MarcXchangeJSONLinesReaderTest extends StreamTester {
 
     @Test
-    @Ignore
     public void testZDBJSONLines() throws Exception {
         final StringBuilder sb = new StringBuilder();
         MarcListener marcListener = new MarcListener() {
@@ -50,10 +49,8 @@ public class MarcXchangeJSONLinesReaderTest extends StreamTester {
         try (MarcXchangeJSONLinesReader reader = new MarcXchangeJSONLinesReader(in, marcListener)) {
             reader.parse();
         }
-        //System.err.println(sb.toString());
-        //assertStream(getClass().getResource("zdb-marc-json.txt").openStream(),
-        //        new ByteArrayInputStream(sb.toString().getBytes("UTF-8")));
-
+        assertStream(getClass().getResource("zdb-marc.json.txt").openStream(),
+                new ByteArrayInputStream(sb.toString().getBytes(StandardCharsets.UTF_8)));
     }
 
     @Test
@@ -93,11 +90,12 @@ public class MarcXchangeJSONLinesReaderTest extends StreamTester {
             }
         };
 
-        InputStream in = new GZIPInputStream(getClass().getResource("aleph-marcxchange-sample.jsonl.gz").openStream());
+        InputStream in = getClass().getResource("aleph-marcxchange-sample.jsonl").openStream();
         try (MarcXchangeJSONLinesReader reader = new MarcXchangeJSONLinesReader(in, handler)) {
             reader.parse();
         }
-        //System.err.println(sb.toString());
+        assertStream(getClass().getResource("aleph-marcxchange-sample.jsonl.txt").openStream(),
+                new ByteArrayInputStream(sb.toString().getBytes(StandardCharsets.UTF_8)));
     }
 
 }
