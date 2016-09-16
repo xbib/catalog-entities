@@ -12,7 +12,6 @@ import org.xbib.rdf.Resource;
 import org.xbib.rdf.content.RdfXContentParams;
 
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +20,6 @@ import java.text.MessageFormat;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.zip.GZIPInputStream;
 
 public class JsonLinesTest extends Assert {
 
@@ -30,7 +28,7 @@ public class JsonLinesTest extends Assert {
     @Test
     public void testJsonLines() throws Exception {
         MyBuilder mabCatalogEntityBuilder = new MyBuilder(getClass().getResource("/org/xbib/catalog/entities/mab/titel.json"));
-        InputStream in = new GZIPInputStream(getClass().getResource("aleph-marcxchange-sample.jsonl.gz").openStream());
+        InputStream in = getClass().getResource("aleph-marcxchange-sample.jsonl").openStream();
         //InputStream in = new GZIPInputStream(new FileInputStream("/Users/joerg/DE-605-aleph-baseline-marcxchange-20160911.jsonl.gz"));
         try (MarcXchangeJSONLinesReader reader = new MarcXchangeJSONLinesReader(in, mabCatalogEntityBuilder)) {
             reader.parse();
