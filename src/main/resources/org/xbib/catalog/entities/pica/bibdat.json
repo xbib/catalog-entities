@@ -1,0 +1,430 @@
+{
+  "RecordFormat": {
+    "tags": [
+      "__FORMAT"
+    ]
+  },
+  "RecordType": {
+    "tags": [
+      "__TYPE"
+    ]
+  },
+  "RecordSpec": {
+    "indicators": {
+      "A": "RecordCreationDate",
+      "B": "RecordModficationDate",
+      "D": "RecordSubmissionDate",
+      "U": "RecordEncoding",
+      "X": "OwnerMainExtension"
+    },
+    "tags": [
+      "001"
+    ],
+    "subfields": {
+      "0": "value",
+      "t": "value"
+    }
+  },
+  "RecordIdentifier": {
+    "tags": [
+      "003"
+    ],
+    "subfields": {
+      "0": "identifierForTheRecord"
+    }
+  },
+  "Identifier": {
+    "tags": [
+      "008"
+    ],
+    "subfields": {
+      "a": "identifierAuthorityBIK",
+      "b": "identifierAuthorityDBS",
+      "c": "identifierAuthorityLocal",
+      "d": "identifierAuthoritySigel",
+      "e": "identifierAuthorityISIL",
+      "f": "identifierAuthorityEZB",
+      "g": "identifierAuthorityOCLC",
+      "h": "identifierAuthorityISILOther"
+    }
+  },
+  "ServiceLocator": {
+    "tags": [
+      "009"
+    ],
+    "_predicate": "ResourceLocatorType",
+    "subfields": {
+      "u": "resourceLocator",
+      "x": "customURLType",
+      "z": "ResourceLocatorType"
+    },
+    "ResourceLocatorType": {
+      "A": "HomepageURL",
+      "B": "OnlinePublicAccessCatalogURL",
+      "C": "InterLibraryLoanURL",
+      "D": "FormURL",
+      "E": "WifiURL",
+      "W": "CustomURL"
+    }
+  },
+  "Name": {
+    "tags": [
+      "029"
+    ],
+    "_predicate": "code",
+    "subfields": {
+      "4": "code",
+      "a": "name"
+    },
+    "code": {
+      "a": "name",
+      "b": "AbbreviatedName",
+      "c": "ShortName",
+      "d": "DisplayName"
+    }
+  },
+  "Location": {
+    "tags" : [ "032" ],
+    "indicators": {
+      "032" : {
+        "S": "LocationTypeResidence",
+        "P": "LocationTypePostal",
+        "R": "LocationTypeBilling",
+        "W": "LocationTypeOther"
+      }
+    },
+    "subfields": {
+      "a": "locationStreet",
+      "b": "locationPlace",
+      "d": "locationCountryCode",
+      "e": "locationZipCode",
+      "f": "locationState",
+      "g": "locationPostBox",
+      "h": "locationBuilding",
+      "i": "openingHours",
+      "j": "openingHoursComments",
+      "k": "lon",
+      "l": "lat",
+      "n": "locationStatisticalCategory",
+      "o": "locationAccessibility",
+      "p": "isPublic",
+      "z": "locationDescription",
+      "2": "LocationTypeResidence",
+      "3": "locationTypeCustom"
+    },
+    "isPublic": {
+      "j": "true",
+      "n": "false"
+    }
+  },
+  "LibraryService": {
+    "tags" : [ "035" ],
+    "indicators" : {
+      "035": {
+        "B" : "Connection",
+        "D" : "FormerOrganization",
+        "E" : "Organization",
+        "G" : "Collection",
+        "H" : "Collection",
+        "I" : "LibraryService",
+        "J" : "LibraryServiceDescription",
+        "K" : "DeliverySystem",
+        "L" : "LibraryServiceExtension",
+        "M" : "LibraryServiceOrganization",
+        "N" : "LibraryServiceTemplate",
+        "O" : "MediaTransport",
+        "P" : "Product"
+      }
+    },
+    "subfields": {
+      "a": "libraryServiceRegion",
+      "b": "libraryServiceName",
+      "c": "libraryServiceOrganization",
+      "d": "libraryServiceOtherOrganization",
+      "e": "libraryServiceMode",
+      "f": "libraryServiceInternational",
+      "g": "libraryServiceScope"
+    },
+    "libraryServiceRegion": {
+      "BAW" : "BAW",
+      "BAY" : "BAY",
+      "BER" : "BER",
+      "HES" : "HES",
+      "NIE" : "GBV",
+      "NRW" : "NRW",
+      "THU" : "GBV",
+      "SAA" : "GBV",
+      "HAM" : "GBV",
+      "SAX" : "SAX"
+    },
+    "libraryServiceMode": {
+      "l": "Fernleihe",
+      "n": "keine Fernleihe",
+      "a": "Fernleihe, nur Ausleihe",
+      "k": "Fernleihe, nur Kopie",
+      "e": "Fernleihe, elektronischer Kopienversand an Endnutzer"
+    },
+    "libraryServiceInternational": {
+      "x": "keine Lieferung"
+    },
+    "libraryServiceScope": {
+      "V": "verbundübergreifend",
+      "R": "regional"
+    },
+    "LibraryServiceDescription": {
+      "a": "libraryServiceDescription"
+    },
+    "LibraryServiceExtension": {
+      "a": "libraryServiceExtensionCode",
+      "b": "libraryServiceExtensionEnabled",
+      "c": "libraryServiceExtensionTerm",
+      "d": "libraryServiceExtensionEmail"
+    },
+    "libraryServiceExtensionCode": {
+      "a": "renewal",
+      "b": "reservation",
+      "c": "voucher",
+      "d": "reminder",
+      "e": "passive",
+      "f": "active"
+    },
+    "libraryServiceExtensionEnabled": {
+      "j": "true",
+      "n": "false"
+    },
+    "LibraryServiceOrganization": {
+      "a": "libraryServiceTerm",
+      "b": "libraryServiceDelivery",
+      "c": "libraryServiceCopyFee",
+      "d": "libraryServiceISIL",
+      "e": "libraryServiceAgencyISIL",
+      "f": "libraryServiceCatalog"
+    },
+    "LibraryServiceTemplate": {
+      "a": "code",
+      "b": "libraryServiceUrlTemplate"
+    },
+    "code": {
+      "a": "Titelanzeige",
+      "b": "Bestandsanzeige",
+      "c": "Lizenzinformationen",
+      "d": "Verfügbarkeitsanfrage",
+      "e": "Verfügbarkeitsfrist",
+      "f": "Tagesobergrenze",
+      "g": "Schließzeiten",
+      "h": "Ausleihcodes",
+      "i": "Bestellverfolgung",
+      "j": "Verbundkennzeichenleitweg"
+    },
+    "DeliverySystem": {
+      "a": "deliverySystem",
+      "b": "deliveryCertificate",
+      "c": "deliveryLimit",
+      "d": "deliveryURL",
+      "e": "librarySystem",
+      "f": "hasOnlineLibraryLoan",
+      "g": "gapInStock",
+      "h": "material"
+    },
+    "deliverySystem": {
+      "S": "Subito"
+    },
+    "deliveryCertificate": {
+      "A": "Altbestand"
+    },
+    "hasOnlineLibraryLoan": {
+      "j": "true",
+      "n": "false"
+    },
+    "MediaTransport": {
+      "a": "mediaTransportType",
+      "b": "mediaType",
+      "c": "mediaTransportDescription",
+      "d": "mediaTransportEmail"
+    },
+    "Connection": {
+      "a": "connectionCode",
+      "b": "connectionTypeName",
+      "c": "isPublic",
+      "d": "phoneCountryPrefix",
+      "e": "phoneLocationPrefix",
+      "f": "phoneNumber",
+      "g": "faxCountryPrefix",
+      "h": "faxLocationPrefix",
+      "i": "faxNumber",
+      "j": "telexNumber",
+      "k": "email",
+      "l": "connectionComment"
+    },
+    "connectionCode": {
+      "S": "ResidenceConnection",
+      "P": "PostalConnection",
+      "R": "BillingConnection",
+      "W": "OtherConnection"
+    },
+    "isPublic": {
+      "j": "true",
+      "n": "false"
+    },
+    "FormerOrganization": {
+      "a": "formerIdentifierAuthoritySigel",
+      "b": "formerIdentifierAuthorityISIL"
+    },
+    "Organization": {
+      "a": "organizationState",
+      "b": "organizationSelector",
+      "c": "organizationInternalNumber",
+      "d": "organizationCategory",
+      "e": "organizationImportSelector",
+      "f": "organizationType",
+      "g": "fundingType",
+      "h": "organizationSize",
+      "i": "serviceRestrictions",
+      "k": "formerSigel",
+      "l": "licenseInformation"
+    },
+    "organizationState": {
+      "H": "Adresse",
+      "N": "Standort",
+      "I": "Information",
+      "P": "Produkt"
+    },
+    "organizationType": {
+      "11": "Nationalbibliothek",
+      "15": "Zentrale Fachbibliothek",
+      "21": "Regionalbibliothek",
+      "33": "Öffentliche Bibliothek",
+      "34": "Mediathek",
+      "36": "Öffentliche Bibliothek für besondere Benutzergruppen",
+      "39": "Fahrbibliothek",
+      "51": "Archiv (staatlich)",
+      "52": "Archiv (kommunal)",
+      "53": "Archiv (kirchlich)",
+      "54": "Archiv (Herrschafts-/Familienarchiv)",
+      "55": "Archiv (Wirtschaft)",
+      "56": "Archiv (Parlament, Partei, Stiftung oder Verband)",
+      "57": "Archiv (Medienarchiv)",
+      "58": "Archiv (Hochschule, Wissenschaft)",
+      "59": "Archiv (Sonstiges)",
+      "60": "Zentrale Universitätsbibliothek",
+      "65": "Abteilungsbibliothek, Institutsbibliothek, Fachbereichsbibliothek (Universität)",
+      "70": "Zentrale Hochschulbibliothek, nicht Universität",
+      "73": "Abteilungsbibliothek, Fachbereichsbibliothek (Hochschule, nicht Universität)",
+      "81": "Wissenschaftliche Spezialbibliothek",
+      "85": "Archiv (nicht Archivbibliothek)",
+      "86": "Museum (nicht Museumsbibliothek)",
+      "87": "Verlag",
+      "88": "Sonstige Einrichtung",
+      "89": "Paket elektronischer Ressourcen",
+      "91": "Fachstelle für Bibliotheken",
+      "94": "Regionaler Zentralkatalog / Leihverkehrszentrale",
+      "95": "Virtuelle Bibliothek / Portal",
+      "96": "Verbundsystem/ -katalog",
+      "98": "Serviceeinrichtung"
+    },
+    "fundingType": {
+      "01": "Bundesrepublik Deutschland",
+      "02": "Land",
+      "03": "Kreis",
+      "04": "Gemeinde",
+      "05": "Sonstige Gebietskörperschaft",
+      "06": "Sonstige öffentliche Trägerschaft",
+      "07": "Körperschaft oder Stiftung des öffentlichen Rechts",
+      "08": "Körperschaft oder Stiftung des privaten Rechts",
+      "09": "Ev. Kirche",
+      "10": "Kath. Kirche",
+      "11": "Sonstige Religionsgemeinschaften",
+      "12": "Private Trägerschaft",
+      "13": "Ausländische Trägerschaft"
+    },
+    "organizationSize": {
+      "01": "bis 1.000",
+      "02": "1.001 - 2.000",
+      "03": "2.001 - 3.000",
+      "04": "3.001 - 5.000",
+      "05": "5.001 - 10.000",
+      "06": "10.001 - 30.000",
+      "07": "30.001 - 100.000",
+      "08": "100.001 - 300.000",
+      "09": "300.001 - 1.000.000",
+      "10": "1.000.001 und mehr",
+      "11": "Einrichtung ohne Bestand"
+    },
+    "serviceRestrictions": {
+      "P": "Präsenzbibliothek"
+    },
+    "Product": {
+      "a": "productContent",
+      "b": "productStyle",
+      "c": "productNegotiation",
+      "d": "productHasSerials",
+      "e": "productTitleSupplier",
+      "f": "productTitle",
+      "g": "productSupplier",
+      "h": "productURL",
+      "i": "productType"
+    },
+    "productHasSerials": {
+      "j": "true",
+      "n": "false"
+    },
+    "Collection": {
+      "a": "collectionName"
+    }
+  },
+  "Description": {
+    "tags": [
+      "047"
+      /*"050$D$a","050$C$5a","050$C$a" */
+      /* intern */
+    ],
+    "subfields": {
+      "a": "comment"
+    }
+  },
+  "Ignore": {
+    "values": [
+      "002",
+      /* Pica Recordtype */
+      "007",
+      "020",
+      "021",
+      "022",
+      "023",
+      "024",
+      "025",
+      "026",
+      "027",
+      "029",
+      "100",
+      "101",
+      "102",
+      "103",
+      "975",
+      "976",
+      "977",
+      "978",
+      "979",
+      "980",
+      "981",
+      "982",
+      "983",
+      "984",
+      "985",
+      "986",
+      "987",
+      "988",
+      "989",
+      "990",
+      "991",
+      "992",
+      "993",
+      "994",
+      "995",
+      "996",
+      "997",
+      "998",
+      "999"
+    ]
+  }
+}

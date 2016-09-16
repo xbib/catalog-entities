@@ -1,0 +1,72 @@
+package org.xbib.catalog.entities.mab;
+
+import org.xbib.catalog.entities.CatalogEntity;
+import org.xbib.catalog.entities.CatalogEntityWorker;
+import org.xbib.catalog.entities.CatalogEntityWorkerState;
+import org.xbib.catalog.entities.Classifier;
+import org.xbib.catalog.entities.ClassifierEntry;
+import org.xbib.catalog.entities.TermFacet;
+import org.xbib.iri.IRI;
+import org.xbib.marc.MarcField;
+import org.xbib.rdf.Literal;
+import org.xbib.rdf.Resource;
+
+import java.io.IOException;
+import java.util.Map;
+
+/**
+ *
+ */
+public class OnlineAccessScopedLink extends OnlineAccess {
+
+    private static final String taxonomyFacet = "xbib.taxonomy";
+
+    private String catalogid = "";
+
+    public OnlineAccessScopedLink(Map<String, Object> params) {
+        super(params);
+        // override by "catalogid"
+        if (params.containsKey("catalogid")) {
+            this.catalogid = params.get("catalogid").toString();
+        }
+    }
+
+    @Override
+    public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
+        worker.append(worker.getWorkerState().getNextItemResource(), field, this);
+        return null;
+    }
+
+    @Override
+    public String transform(CatalogEntityWorker worker,
+                            String predicate, Resource resource, String property, String value) {
+        if (value == null) {
+            return null;
+        }
+        CatalogEntityWorkerState state = worker.getWorkerState();
+        if ("url".equals(property)) {
+            // create synthetic local record identifier
+            state.setUID(IRI.builder().curie("uid:" + state.getRecordIdentifier() + "/" + state.getISIL() + "/" + value).build());
+        } else if ("scope".equals(property) && catalogid != null && !catalogid.isEmpty()) {
+            String isil = catalogid;
+            resource.add("identifier", isil);
+            Classifier classifier = worker.classifier();
+            if (classifier != null) {
+                String key = isil + "." + state.getRecordIdentifier() + ".";
+                java.util.Collection<ClassifierEntry> entries = classifier.lookup(key);
+                if (entries != null) {
+                    for (ClassifierEntry classifierEntry : entries) {
+                        String facet = taxonomyFacet + "." + isil + ".notation";
+                        state.getFacets().putIfAbsent(facet, new TermFacet().setName(facet).setType(Literal.STRING));
+                        state.getFacets().get(facet).addValue(classifierEntry.getCode());
+                        facet = taxonomyFacet + "." + isil + ".text";
+                        state.getFacets().putIfAbsent(facet, new TermFacet().setName(facet).setType(Literal.STRING));
+                        state.getFacets().get(facet).addValue(classifierEntry.getText());
+                    }
+                }
+            }
+            return isil;
+        }
+        return value;
+    }
+}

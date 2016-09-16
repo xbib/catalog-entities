@@ -1,0 +1,78 @@
+{
+    "0" : {
+        "a" : "print"
+    },
+    "1" : {
+        "a" : "manuscript"
+    },
+    "2" : {
+        "a" : "paper",
+        "b" : "paper",
+        "c" : "paper",
+        "d" : "paper",
+        "e" : "pergament"
+    },
+    "3" : {
+        "a" : "microform",
+        "b" : "microform",
+        "c" : "microform"
+    },
+    "4" : {
+        "a" : "braille"
+    },
+    "5" : {
+        "aa" : "cd",
+        "ab" : "opticaldisk",
+        "ac" : "tape",
+        "ad" : "cassette",
+        "ae" : "minicassette",
+        "af" : "dat",
+        "ag" : "dcc",
+        "ah" : "reeltape",
+        "ai" : "wire",
+        "aj" : "vinyl",
+        "ak" : "cylinder",
+        "al" : "pianoroll",
+        "am" : "soundtrack",
+        "an" : "dia",
+        "ba" : "film",
+        "bb" : "film",
+        "bc" : "film",
+        "bd" : "film",
+        "be" : "film",
+        "bf" : "film",
+        "bg" : "film",
+        "bh" : "film",
+        "bi" : "film",
+        "bj" : "film",
+        "ca" : "video",
+        "cb" : "video",
+        "cc" : "video",
+        "cd" : "video",
+        "ce" : "video",
+        "cf" : "video",
+        "cg" : "video",
+        "ch" : "video",
+        "ci" : "video",
+        "cj" : "video"
+    },
+    "7" : {
+        "a" : "multimedia"  
+    },
+    "8" : {
+        "a" : "electronic",
+        "b" : "electronic",
+        "c" : "electronic",
+        "d" : "electronic",
+        "e" : "electronic",
+        "f" : "electronic",
+        "g" : "electronic",
+        "z" : "electronic"
+    },
+    "9" : {
+        "a" : "game"
+    },
+    "10" : {
+        "a" : "map"
+    }
+}		

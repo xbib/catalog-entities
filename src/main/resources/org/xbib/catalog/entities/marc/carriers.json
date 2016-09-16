@@ -1,0 +1,107 @@
+{
+    "carrier" : {
+        "audio" : [
+            "Tonträger"
+        ],
+        "audio-image" : [
+            "Bildtonträger",
+            "Tonbildreihe"
+        ],
+        "audio-cd" : [
+            "Audio-CD",
+            "CD-Audio"
+        ],
+        "audio-cd-mp3" : [
+            "MP3-Audio-CD",
+            "MP3-CD"
+        ],
+        "audio-tape" : [
+            "Tonkassette"
+        ],
+        "cartridge" : [
+            "Einsteckmodul"
+        ],
+        "disc-magnetic" : [
+            "Diskette" 
+        ],
+        "disc-optical" : [
+            "Optische Speicherplatte",
+            "Optischer Datenträger",
+            "Optischer Datentraeger"
+        ],
+        "disc-cd" : [
+            "CD-ROM",
+            "Compact-Disc"
+        ],
+        "disc-dvd" : [
+            "DVD"
+        ],
+        "electronic": [
+            "Elektronische Ressource",
+            "Elektron. Ressource",
+            "E-Books"
+        ],
+        "file" : [
+            "Computerdatei"
+        ],
+        "game" : [
+            "Spiel"
+        ],
+        "image" : [
+            "Bildliche Darstellung"        
+        ],
+        "multimedia" : [
+            "Medienkombination"
+        ],
+        "microform" : [
+            "Mikroform",
+            "Mikrofiche",
+            "Mikrofilm"
+        ],
+        "online" : [
+            "Elektronische Ressource im Fernzugriff",
+            "Online-Ressource",
+            "Online-Ressourcen",
+            "Online Ressource"
+        ],
+        "online-archived" : [
+            "Archivierte Online-Ressource" 
+        ],
+        "sheetmusic" : [
+            "Musikdruck"
+        ],
+        "transparency" : [
+            "Arbeitstransparent"
+        ],
+        "video-tape" : [
+            "Videokassette",
+            "Video-Kassette"
+        ],
+        "vinyl" : [
+            "Schallplatte" 
+        ]
+    },
+    "carrierpattern" : {
+        "audio-tape" : [
+            ".*?Tonkassette"        
+        ],
+        "disc-cd" : [
+            ".*?CD-ROM.*?"
+        ],
+        "disc-dvd" : [
+            ".*?DVD.*?"
+        ],
+        "disc-magnetic" : [
+            ".*?Diskette.*?" 
+        ],
+        "disc-optical" : [
+            ".*?Optische Speicherplatte.*?"  
+        ],
+        "file" : [
+            ".*?Computerdatei.*?"
+        ],
+        "video-tape" : [
+            ".*?Videokassette.*?"
+        ]
+    }
+}

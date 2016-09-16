@@ -1,0 +1,511 @@
+{
+    "RecordFormat" : {
+        "values" : [
+        "_FORMAT"
+        ]  
+    },
+    "RecordType" : {
+        "values" : [
+        "_TYPE"
+        ]  
+    },
+    "RecordLabel" : {
+        "values" : [
+        "_LEADER"
+        ],
+        "codes" : {
+            /* 0-4 record length */
+            "5" : {
+                "c" : "corrected record",
+                "d" : "deleted record",
+                "n" : "new record",
+                "o" : "previously issued higher level record",
+                "p" : "previously issued as an incomplete, pre-publication record"
+            },
+            "6" : {
+                "a" : "language materials, except manuscript",
+                "b" : "language materials, manuscript",
+                "c" : "notated music, except manuscript",
+                "d" : "notated music, manuscript",
+                "e" : "cartographic materials, except manuscript",
+                "f" : "cartographic materials, manuscript",
+                "g" : "projected and video material",
+                "i" : "sound recording, non-musical",
+                "j" : "sound recording, musical",
+                "k" : "two-dimensional graphics",
+                "l" : "electronic resource",
+                "m" : "multimedia",
+                "r" : "three-dimensional artefacts and realia"
+            },
+            "7" : {
+                "a" : "analytic",
+                "i" : "integrating resource",
+                "m" : "monograph",
+                "s" : "serial",
+                "c" : "collection"
+            },
+            "8" : {
+                "0" : "no hierarchical relationship",
+                "1" : "highest level record",
+                "2" : "record below highest level"
+            },
+            /* 9 = undefined */
+            /* 10 = indicator length */
+            /* 11 = subfield id length */
+            /* 12-16 = base address of data */
+            "17" : {
+                " " : "full level",
+                "1" : "sublevel 1",
+                "2" : "sublevel 2",
+                "3" : "sublevel 3"
+            },
+            "18" : {
+                " " : "full ISBD",
+                "i" : "partial incomplete ISBD",
+                "n" : "non-ISBD"
+            }
+            /* 19 undefined */
+            /* 20-23 directory map */
+        }
+    },
+    "RecordIdentifier" : {
+        "values" : [
+        "001"
+        ],
+        "tags" : {
+            "001" : "identifierForTheRecord"
+        }
+    },
+    "PersistentRecordIdentifier" : {
+        "values" : [
+        "003"
+        ],
+        "tags" : {
+            "003" : "identifierForTheRecord"
+        }
+    },
+    "VersionIdentifier" : {
+        "values" : [
+        "005"
+        ],
+        "tags" : {
+            "005" : "versionForTheRecord"
+        }
+    },
+    "Identifier" : {
+        "values" : [
+            "010", /* ISBN */
+            "011", /* ISSN */
+            "012", /* fingerprint */
+            "013", /* ISMN */
+            "014", /* article ID */
+            "015", /* ISRN */
+            "016", /* ISRC */
+            "017", /* other */
+            "020", /* national bibliography number */
+            "021", /* legal deposit number */
+            "022", /* government publication number */
+            "035", /* other system control numbers */
+            "036", /* music incipit */
+            "040", /* CODEN */
+            "071", /* publisher's number */
+            "072", /* UPC */
+            "073"  /* EAN */
+        ],
+        "tags" : {
+            "010" : "IdentifierISBN",
+            "011" : "IdentifierISSN",
+            "012" : "Fingerprint",
+            "013" : "IdentifierISMN",
+            "014" : "IdentifierArticle",
+            "015" : "IdentifierISRN",
+            "016" : "IdentifierISRC",
+            "017" : "OtherIdentifier",
+            "020" : "NationalBibliographyNumber",
+            "021" : "LegalDepositNumber",
+            "022" : "GovernmentPublicationNumber",
+            "035" : "OtherSystemControlNumber",
+            "036" : "MusicInplicit",
+            "040" : "IdentifierCODEN",
+            "071" : "PublisherNumber",
+            "072" : "IdentifierUPC",
+            "073" : "IdentifierEAN"
+        },
+        "subfields" : {
+        },
+        "IdentifierISBN" : {
+        },
+        "IdentifierISSN" : {
+        },
+        "Fingerprint" : {
+        },
+        "IdentifierISMN" : {
+        },
+        "IdentifierArticle" : {
+        },
+        "IdentifierISRN" : {
+        },
+        "IdentifierISRC" : {
+        },
+        "OtherIdentifier" : {
+        },
+        "NationalBibliographyNumber" : {
+        },
+        "LegalDepositNumber" : {
+        },
+        "GovernmentPublicationNumber" : {
+        },
+        "OtherSystemControlNumber" : {
+        },
+        "MusicInplicit" : {
+        },
+        "IdentifierCODEN" : {
+        },
+        "PublisherNumber" : {
+        },
+        "IdentifierUPC" : {
+        },
+        "IdentifierEAN" : {
+        }
+    },
+    "Code" : {
+        "values" : [
+            "100",
+            "101",
+            "102",
+            "106",
+            "110",
+            "111",
+            "115",
+            "116",
+            "117",
+            "120",
+            "121",
+            "122",
+            "123",
+            "124",
+            "125",
+            "126",
+            "127",
+            "128",
+            "130",
+            "131",
+            "135",
+            "140",
+            "145"
+        ],
+        "tags" : {
+            "100" : "GeneralProcessingData",
+            "101" : "Language",
+            "102" : "Country",
+            "106" : "Form",
+            "110" : "ContinuingResources",
+            "111" : "Serials",
+            "115" : "VisualProjections",
+            "116" : "Graphics",
+            "117" : "Artefacts",
+            "120" : "Cartographics",
+            "121" : "CartographicsPhysical",
+            "122" : "TimePeriod",
+            "123" : "CartographicsScale",
+            "124" : "CartographicsSpecific",
+            "125" : "SoundRecordingsPrintedMusic",
+            "126" : "SoundRecordingsPrintedMusicPhysical",
+            "127" : "SoundRecordingsPrintedMusicDuration",
+            "128" : "FormMusicalWork",
+            "130" : "MicroformPhysical",
+            "131" : "CartographicsGeodetic",
+            "135" : "ElectronicResource",
+            "140" : "Antiquarian",
+            "145" : "MediumOfPerformance"
+        },
+        "GeneralProcessingData" : {
+
+        },
+        "Language" : {
+
+        },
+        "Country" : {
+
+        },
+        "TextualMaterial" : {
+
+        },
+        "Form" : {
+
+        },
+        "ContinuingResources" : {
+
+        },
+        "Serials" : {
+
+        },
+        "VisualProjections" : {
+
+        },
+        "Graphics" : {
+
+        },
+        "Artefacts" : {
+
+        },
+        "Cartographics" : {
+
+        },
+        "CartographicsPhysical" : {
+
+        },
+        "TimePeriod" : {
+
+        },
+        "CartographicsScale" : {
+
+        },
+        "CartographicsSpecific" : {
+
+        },
+        "SoundRecordingsPrintedMusic" : {
+        },
+        "SoundRecordingsPrintedMusicPhysical" : {
+        },
+        "SoundRecordingsPrintedMusicDuration" : {
+        },
+        "FormMusicalWork" : {
+        },
+        "MicroformPhysical" : {
+        },
+        "CartographicsGeodetic" : {
+        },
+        "ElectronicResource" : {
+        },
+        "Antiquarian" : {
+        },
+        "MediumOfPerformance" : {
+        }
+    },
+    "Title" : {
+       "values" : [
+           "200"
+       ]
+    },
+    "GeneralMaterialDesignation" : {
+       "values" : [
+           "204"
+       ]
+    },
+    "EditionStatement" : {
+       "values" : [
+           "205"
+       ]
+    },
+    "TextualLanguageMaterial" : {
+        "values" : [
+        "105"
+        ],
+        "tags" : {
+            "105" : "monographicMaterial"
+        },
+        "codes" : {
+            "0" : {
+                "a" : { /*  */
+                    "_predicate" : "monographicMaterial",
+                    "0" : {
+                        "a" : "illustrations",
+                        "b" : "maps",
+                        "c" : "portraits",
+                        "d" : "charts",
+                        "e" : "plans",
+                        "f" : "plates",
+                        "g" : "music",
+                        "h" : "facsimiles",
+                        "i" : "coats fo arms",
+                        "j" : "genealogical tables",
+                        "k" : "forms",
+                        "l" : "samples",
+                        "m" : "sound recordings",
+                        "n" : "transparencies",
+                        "o" : "illuminations",
+                        "y" : "no illustrations"
+                    },
+                    "1" : {
+                        "a" : "illustrations",
+                        "b" : "maps",
+                        "c" : "portraits",
+                        "d" : "charts",
+                        "e" : "plans",
+                        "f" : "plates",
+                        "g" : "music",
+                        "h" : "facsimiles",
+                        "i" : "coats fo arms",
+                        "j" : "genealogical tables",
+                        "k" : "forms",
+                        "l" : "samples",
+                        "m" : "sound recordings",
+                        "n" : "transparencies",
+                        "o" : "illuminations",
+                        "y" : "no illustrations"
+                    },
+                    "2" : {
+                        "a" : "illustrations",
+                        "b" : "maps",
+                        "c" : "portraits",
+                        "d" : "charts",
+                        "e" : "plans",
+                        "f" : "plates",
+                        "g" : "music",
+                        "h" : "facsimiles",
+                        "i" : "coats fo arms",
+                        "j" : "genealogical tables",
+                        "k" : "forms",
+                        "l" : "samples",
+                        "m" : "sound recordings",
+                        "n" : "transparencies",
+                        "o" : "illuminations",
+                        "y" : "no illustrations"
+                    },
+                    "3" : {
+                        "a" : "illustrations",
+                        "b" : "maps",
+                        "c" : "portraits",
+                        "d" : "charts",
+                        "e" : "plans",
+                        "f" : "plates",
+                        "g" : "music",
+                        "h" : "facsimiles",
+                        "i" : "coats fo arms",
+                        "j" : "genealogical tables",
+                        "k" : "forms",
+                        "l" : "samples",
+                        "m" : "sound recordings",
+                        "n" : "transparencies",
+                        "o" : "illuminations",
+                        "y" : "no illustrations"
+                    },
+                    "4" : { /* form of content codes */
+                        "a" : "bibliography",
+                        "b" : "catalogue",
+                        "c" : "index",
+                        "d" : "abstract or summary",
+                        "e" : "dictionary",
+                        "f" : "encyclopedia",
+                        "g" : "directory",
+                        "i" : "statistics",
+                        "j" : "programmed text book",
+                        "k" : "patent",
+                        "l" : "standard",
+                        "m" : "dissertation or thesis",
+                        "n" : "laws and legislation",
+                        "o" : "numeric table",
+                        "p" : "technical report",
+                        "q" : "examination paper",
+                        "r" : "literature surveys, reviews",
+                        "s" : "treaties",
+                        "t" : "cartoons, comic strips",
+                        "v" : "dissertation or thesis (revised)",
+                        "w" : "religious text",
+                        "z" : "other"
+                    },
+                    "5" : { /* form of content codes */
+                        "a" : "bibliography",
+                        "b" : "catalogue",
+                        "c" : "index",
+                        "d" : "abstract or summary",
+                        "e" : "dictionary",
+                        "f" : "encyclopedia",
+                        "g" : "directory",
+                        "i" : "statistics",
+                        "j" : "programmed text book",
+                        "k" : "patent",
+                        "l" : "standard",
+                        "m" : "dissertation or thesis",
+                        "n" : "laws and legislation",
+                        "o" : "numeric table",
+                        "p" : "technical report",
+                        "q" : "examination paper",
+                        "r" : "literature surveys, reviews",
+                        "s" : "treaties",
+                        "t" : "cartoons, comic strips",
+                        "v" : "dissertation or thesis (revised)",
+                        "w" : "religious text",
+                        "z" : "other"
+                    },
+                    "6" : { /* form of content codes */
+                        "a" : "bibliography",
+                        "b" : "catalogue",
+                        "c" : "index",
+                        "d" : "abstract or summary",
+                        "e" : "dictionary",
+                        "f" : "encyclopedia",
+                        "g" : "directory",
+                        "i" : "statistics",
+                        "j" : "programmed text book",
+                        "k" : "patent",
+                        "l" : "standard",
+                        "m" : "dissertation or thesis",
+                        "n" : "laws and legislation",
+                        "o" : "numeric table",
+                        "p" : "technical report",
+                        "q" : "examination paper",
+                        "r" : "literature surveys, reviews",
+                        "s" : "treaties",
+                        "t" : "cartoons, comic strips",
+                        "v" : "dissertation or thesis (revised)",
+                        "w" : "religious text",
+                        "z" : "other"
+                    },
+                    "7" : { /* form of content codes */
+                        "a" : "bibliography",
+                        "b" : "catalogue",
+                        "c" : "index",
+                        "d" : "abstract or summary",
+                        "e" : "dictionary",
+                        "f" : "encyclopedia",
+                        "g" : "directory",
+                        "i" : "statistics",
+                        "j" : "programmed text book",
+                        "k" : "patent",
+                        "l" : "standard",
+                        "m" : "dissertation or thesis",
+                        "n" : "laws and legislation",
+                        "o" : "numeric table",
+                        "p" : "technical report",
+                        "q" : "examination paper",
+                        "r" : "literature surveys, reviews",
+                        "s" : "treaties",
+                        "t" : "cartoons, comic strips",
+                        "v" : "dissertation or thesis (revised)",
+                        "w" : "religious text",
+                        "z" : "other"
+                    },
+                    "8" : {
+                        "1" : "conference publication"
+                    },
+                    "9" : {
+                        "1" : "festschrift"
+                    },
+                    "10" : {
+                        "1" : "index"
+                    },
+                    "11" : {
+                        "a" : "fiction",
+                        "b" : "drama",
+                        "c" : "essays",
+                        "d" : "humour, satire",
+                        "e" : "letters",
+                        "f" : "short stories",
+                        "g" : "poetry",
+                        "h" : "speeches, oratory",
+                        "i" : "libretto",
+                        "z" : "other"
+                    },
+                    "12" : {
+                        "a" : "autobiography",
+                        "b" : "individual biography",
+                        "c" : "collective biography",
+                        "d" : "contains biographical information"
+                    }
+                }
+            }
+        }
+    }
+}

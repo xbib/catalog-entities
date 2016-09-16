@@ -1,0 +1,36 @@
+{
+  "RecordFormat": {
+    "tags": [
+      "__FORMAT"
+    ]
+  },
+  "RecordType": {
+    "tags": [
+      "__TYPE"
+    ]
+  },
+  "RecordSpec": {
+    "indicators": {
+      "A": "RecordCreationDate",
+      "B": "RecordModficationDate",
+      "D": "RecordSubmissionDate",
+      "U": "RecordEncoding",
+      "X": "OwnerMainExtension"
+    },
+    "tags": [
+      "001"
+    ],
+    "subfields": {
+      "0": "value",
+      "t": "value"
+    }
+  },
+  "RecordIdentifier": {
+    "tags": [
+      "003"
+    ],
+    "subfields": {
+      "0": "identifierForTheRecord"
+    }
+  }
+}

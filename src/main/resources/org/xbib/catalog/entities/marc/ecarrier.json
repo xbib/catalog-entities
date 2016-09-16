@@ -1,0 +1,18 @@
+{
+    "0" : {
+        "c" : "electronic"
+    },
+    "1" : {
+        "a" : "tape",
+        "b" : "cartridge",
+        "c" : "opticaldisc",
+        "f" : "tape",
+        "h" : "tape",
+        "j" : "diskette",
+        "m" : "opticaldisc",
+        "n" : "opticaldisc",
+        "r" : "online",
+        "u" : "",
+        "z" : ""
+    }
+}

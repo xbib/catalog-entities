@@ -1,0 +1,1155 @@
+{
+  "ILL Ausleihe": [
+    "loan",
+    "copy"
+  ],
+  "keine ILL": [
+    "none"
+  ],
+  "Keine Angabe": [
+    "loan",
+    "copy"
+  ],
+  "Normalausleihe": [
+    "loan",
+    "copy"
+  ],
+  "Ausleihbar": [
+    "loan",
+    "copy"
+  ],
+  "Ausleihbestand": [
+    "loan",
+    "copy"
+  ],
+  "ILL Kopie+Ausl.": [
+    "loan",
+    "copy"
+  ],
+  "ausleihbar": [
+    "loan",
+    "copy"
+  ],
+  "Nicht ausleihbar": [
+    "copy"
+  ],
+  "Magazinausleihe": [
+    "loan",
+    "copy"
+  ],
+  "Präsenzbestand": [
+    "copy"
+  ],
+  "ausleihbar/M": [
+    "loan",
+    "copy"
+  ],
+  "Praesenz": [
+    "copy"
+  ],
+  "ausleihbar 4 Wo": [
+    "loan",
+    "copy"
+  ],
+  "keine Fernleihe": [
+    "none"
+  ],
+  "2 Wo ausleihbar BB": [
+    "loan",
+    "copy"
+  ],
+  "Keine Ausleihe": [
+    "loan",
+    "copy"
+  ],
+  "Kurzausleihe": [
+    "loan",
+    "copy"
+  ],
+  "10": [
+    "loan",
+    "copy"
+  ],
+  "Magazin FBZ, ausleihbar": [
+    "loan",
+    "copy"
+  ],
+  "12": [
+    "loan",
+    "copy"
+  ],
+  "4 Wo ausleihbar MAG": [
+    "loan",
+    "copy"
+  ],
+  "2 Wo ausleihbar ZB": [
+    "loan",
+    "copy"
+  ],
+  "bestellbar": [
+    "none"
+  ],
+  "Ausgesondert": [
+    "none"
+  ],
+  "Sonderlesesaal": [
+    "none"
+  ],
+  "Monographie": [
+    "loan",
+    "copy"
+  ],
+  "keine Angabe ggf. s. Bände": [
+    "loan",
+    "copy"
+  ],
+  "Mono. Magazin": [
+    "loan",
+    "copy"
+  ],
+  "Nicht ausleihb./FL": [
+    "none"
+  ],
+  "Mono. Freihand": [
+    "loan",
+    "copy"
+  ],
+  "Löschen": [
+    "none"
+  ],
+  "p/nur FL/M": [
+    "loan",
+    "copy"
+  ],
+  "ausleihbar/F": [
+    "loan",
+    "copy"
+  ],
+  "Ausleihe/Freih": [
+    "loan",
+    "copy"
+  ],
+  "Nicht benutzbar": [
+    "none"
+  ],
+  "Zsn-Stücktitel, Präsenz": [
+    "loan",
+    "copy"
+  ],
+  "Ausgeschieden": [
+    "none"
+  ],
+  "ausleihbar 2 Wo": [
+    "loan",
+    "copy"
+  ],
+  "kA": [
+    "loan",
+    "copy"
+  ],
+  "Handapparat": [
+    "copy"
+  ],
+  "Dauerleihgabe": [
+    "loan",
+    "copy"
+  ],
+  "Ext. Bestände": [
+    "loan",
+    "copy"
+  ],
+  "NichtAusleihbar": [
+    "copy"
+  ],
+  "Präsenz, keine Kurzausleihe": [
+    "copy"
+  ],
+  "ILL nur Kopie": [
+    "copy"
+  ],
+  "Magazin, Präsenz": [
+    "copy"
+  ],
+  "temporär im Magazin, Ausleihe": [
+    "loan",
+    "copy"
+  ],
+  "nicht ausleihbar Mono": [
+    "copy"
+  ],
+  "Semesterapparat": [
+    "none"
+  ],
+  "Externer Bestand": [
+    "loan",
+    "copy"
+  ],
+  "Dauerausleihe": [
+    "loan",
+    "copy"
+  ],
+  "unselbst. Werk": [
+    "loan",
+    "copy"
+  ],
+  "Ausleihe/8 W/V": [
+    "loan",
+    "copy"
+  ],
+  "Verlust": [
+    "none"
+  ],
+  "Magazin, nur LS": [
+    "copy"
+  ],
+  "Lehrbuchsammlung": [
+    "none"
+  ],
+  "Präsenz/F": [
+    "copy"
+  ],
+  "Bedingt ausleihbar": [
+    "loan",
+    "copy"
+  ],
+  "Mikroform, Präsenz": [
+    "copy"
+  ],
+  "Raraausleihe": [
+    "loan",
+    "copy"
+  ],
+  "Vermisst": [
+    "none"
+  ],
+  "Rara, Präsenzbestand": [
+    "copy"
+  ],
+  "Magazin BZ, Präsenzbestand": [
+    "copy"
+  ],
+  "Broschüre": [
+    "loan",
+    "copy"
+  ],
+  "44": [
+    "loan",
+    "copy"
+  ],
+  "Dienstgebrauch": [
+    "loan",
+    "copy"
+  ],
+  "p/nur FL/F": [
+    "loan",
+    "copy"
+  ],
+  "Mag.,Präsenz": [
+    "copy"
+  ],
+  "In Bearbeitung": [
+    "none"
+  ],
+  "Im Arbeitsgang": [
+    "none"
+  ],
+  "Bestellt": [
+    "none"
+  ],
+  "Magazin FBZ, Präsenzbestand": [
+    "copy"
+  ],
+  "11": [
+    "loan",
+    "copy"
+  ],
+  "Präsenz/Mag": [
+    "copy"
+  ],
+  "Ausleihe/4 W/V": [
+    "loan",
+    "copy"
+  ],
+  "Praesenzbestand": [
+    "copy"
+  ],
+  "Zsn-Heft/Band": [
+    "copy"
+  ],
+  "Überordnung": [
+    "loan",
+    "copy"
+  ],
+  "pr": [
+    "loan",
+    "copy"
+  ],
+  "Nicht ausleihb.": [
+    "copy"
+  ],
+  "Semesterapp.": [
+    "none"
+  ],
+  "Rara": [
+    "loan",
+    "copy"
+  ],
+  "Arbeitsapparat": [
+    "none"
+  ],
+  "Ausleihe/2 W/kV": [
+    "loan",
+    "copy"
+  ],
+  "55": [
+    "loan",
+    "copy"
+  ],
+  "DVD/Video": [
+    "loan",
+    "copy"
+  ],
+  "Ausl.(RP,Buch)": [
+    "loan",
+    "copy"
+  ],
+  "91": [
+    "loan",
+    "copy"
+  ],
+  "Zs. Magazin": [
+    "loan",
+    "copy"
+  ],
+  "4 Wo ausleihbar LBS": [
+    "loan",
+    "copy"
+  ],
+  "14": [
+    "loan",
+    "copy"
+  ],
+  "Projekt, Staffelex.": [
+    "loan",
+    "copy"
+  ],
+  "mehrf. Barcode": [
+    "loan",
+    "copy"
+  ],
+  "Zsnbände": [
+    "loan",
+    "copy"
+  ],
+  "Lehrbuchsammlung, ausleihbar": [
+    "loan",
+    "copy"
+  ],
+  "Ausl.(RP,Med.)": [
+    "loan",
+    "copy"
+  ],
+  "p/nurKop.FL/F,I": [
+    "copy"
+  ],
+  "Präsenz/LS": [
+    "copy"
+  ],
+  "Präsenz/M": [
+    "copy"
+  ],
+  "Rara/bestellbar": [
+    "loan",
+    "copy"
+  ],
+  "Grundsignatur": [
+    "loan",
+    "copy"
+  ],
+  "48": [
+    "loan",
+    "copy"
+  ],
+  "Zeitschriften": [
+    "copy"
+  ],
+  "Aussenmagazin, nicht ausleihb.": [
+    "copy"
+  ],
+  "Gelöscht": [
+    "none"
+  ],
+  "Benutzung gesp.": [
+    "none"
+  ],
+  "Magazin BZ, ausleihbar": [
+    "loan",
+    "copy"
+  ],
+  "Präsenz/Freih": [
+    "copy"
+  ],
+  "Beim Buchbinder": [
+    "none"
+  ],
+  "Arbeitsapparat (Handapparat)": [
+    "none"
+  ],
+  "Geschaeftsgang": [
+    "none"
+  ],
+  "Projektausleihe": [
+    "none"
+  ],
+  "vermisst Inst.": [
+    "none"
+  ],
+  "Präsenz/M/zA": [
+    "copy"
+  ],
+  "Zs. Freihand": [
+    "copy"
+  ],
+  "Buchbinder": [
+    "none"
+  ],
+  "Vergriffen": [
+    "none"
+  ],
+  "Ausleihe/Medien": [
+    "loan",
+    "copy"
+  ],
+  "Storniert": [
+    "none"
+  ],
+  "p/nurKop.FL/M": [
+    "copy"
+  ],
+  "Lesesaal": [
+    "copy"
+  ],
+  "Ausleihe/Mag": [
+    "loan",
+    "copy"
+  ],
+  "34": [
+    "loan",
+    "copy"
+  ],
+  "Verm. (Bibl.)": [
+    "none"
+  ],
+  "00": [
+    "loan",
+    "copy"
+  ],
+  "ausleihb./Video": [
+    "loan",
+    "copy"
+  ],
+  "Interne Umarbeitung": [
+    "none"
+  ],
+  "30": [
+    "loan",
+    "copy"
+  ],
+  "47": [
+    "loan",
+    "copy"
+  ],
+  "Zss.-Verwaltung": [
+    "copy"
+  ],
+  "LBS": [
+    "loan",
+    "copy"
+  ],
+  "Staffelex. gelöscht": [
+    "none"
+  ],
+  "Präsenz/F/PB": [
+    "copy"
+  ],
+  "nur für HLS": [
+    "none"
+  ],
+  "ka": [
+    "loan",
+    "copy"
+  ],
+  "2 Wo ausleihb. nicht Fernleihe": [
+    "none"
+  ],
+  "Karte": [
+    "none"
+  ],
+  "ig": [
+    "loan",
+    "copy"
+  ],
+  "Mikroform, Ausleihe": [
+    "loan",
+    "copy"
+  ],
+  "15": [
+    "loan",
+    "copy"
+  ],
+  "31": [
+    "loan",
+    "copy"
+  ],
+  "Bestandspflege": [
+    "none"
+  ],
+  "keine Angabe": [
+    "loan",
+    "copy"
+  ],
+  "uwov": [
+    "loan",
+    "copy"
+  ],
+  "Inventarisiert": [
+    "none"
+  ],
+  "Zsn-Bd, Magazin": [
+    "copy"
+  ],
+  "Makulatur": [
+    "none"
+  ],
+  "Präsenz/F/KJA": [
+    "copy"
+  ],
+  "Projekt": [
+    "none"
+  ],
+  "Mahnfall, Staffelex.": [
+    "none"
+  ],
+  "nicht ausleihbar ZV": [
+    "copy"
+  ],
+  "Internet": [
+    "copy"
+  ],
+  "Intern entl.": [
+    "none"
+  ],
+  "Tresor": [
+    "loan",
+    "copy"
+  ],
+  "Sonderstandort": [
+    "loan",
+    "copy"
+  ],
+  "ausgeschieden": [
+    "none"
+  ],
+  "Tontr./1 T/kV": [
+    "loan",
+    "copy"
+  ],
+  "ZS / Loseblatt": [
+    "copy"
+  ],
+  "Neuerwerbungen": [
+    "none"
+  ],
+  "Verl. Leser": [
+    "none"
+  ],
+  "Rarität": [
+    "loan",
+    "copy"
+  ],
+  "z.Zt. nicht verfgbar": [
+    "none"
+  ],
+  "Neuerwerbung": [
+    "none"
+  ],
+  "im Ausnahmefall einsehbar": [
+    "copy"
+  ],
+  "Notenbibliothek": [
+    "copy"
+  ],
+  "Präsenz/Rara": [
+    "copy"
+  ],
+  "Zeitschrift": [
+    "copy"
+  ],
+  "Umarbeitung, intern": [
+    "none"
+  ],
+  "nicht ausleihbar ZsBd/ZsR": [
+    "copy"
+  ],
+  "Bestellauftrag": [
+    "none"
+  ],
+  "Campusnetz": [
+    "none"
+  ],
+  "0B": [
+    "loan",
+    "copy"
+  ],
+  "CD": [
+    "loan",
+    "copy"
+  ],
+  "Verwaltung": [
+    "loan",
+    "copy"
+  ],
+  "13": [
+    "loan",
+    "copy"
+  ],
+  "Staffelex. storniert": [
+    "none"
+  ],
+  "Nicht publiz.": [
+    "loan",
+    "copy"
+  ],
+  "HB (Ausl./1.OG)": [
+    "loan",
+    "copy"
+  ],
+  "Tagespräsenz": [
+    "copy"
+  ],
+  "Zsn-Heft": [
+    "copy"
+  ],
+  "Elektronische Publikation": [
+    "copy"
+  ],
+  "Zeitschr/2 W/kV": [
+    "loan",
+    "copy"
+  ],
+  "vm": [
+    "loan",
+    "copy"
+  ],
+  "N. ausleihbar": [
+    "copy"
+  ],
+  "Microfilm": [
+    "loan",
+    "copy"
+  ],
+  "Beschriftung": [
+    "loan",
+    "copy"
+  ],
+  "63": [
+    "loan",
+    "copy"
+  ],
+  "temporär im Magazin, Präsenz": [
+    "copy"
+  ],
+  "66": [
+    "loan",
+    "copy"
+  ],
+  "CD-ROM": [
+    "loan",
+    "copy"
+  ],
+  "In Reparatur": [
+    "none"
+  ],
+  "Ausl. beschr.": [
+    "loan",
+    "copy"
+  ],
+  "Sonst. Beschr.": [
+    "loan",
+    "copy"
+  ],
+  "Ausleihe/1 T/kV": [
+    "loan",
+    "copy"
+  ],
+  "Präsenz/Medien": [
+    "copy"
+  ],
+  "DVD": [
+    "loan",
+    "copy"
+  ],
+  "Zs/nurKopFL/M": [
+    "copy"
+  ],
+  "Microfiche": [
+    "loan",
+    "copy"
+  ],
+  "16": [
+    "loan",
+    "copy"
+  ],
+  "39": [
+    "loan",
+    "copy"
+  ],
+  "Ausgetragen": [
+    "none"
+  ],
+  "Ausleihe/GF": [
+    "loan",
+    "copy"
+  ],
+  "Verlust OL": [
+    "none"
+  ],
+  "Best. vorges.": [
+    "none"
+  ],
+  "Wird zurzeit digitalisiert": [
+    "none"
+  ],
+  "Altmahnfall, Staffelex.": [
+    "none"
+  ],
+  "Zeitschriftenheft": [
+    "copy"
+  ],
+  "AuslThek/1 T/kV": [
+    "loan",
+    "copy"
+  ],
+  "Video": [
+    "loan",
+    "copy"
+  ],
+  "Projekt, Einzelex.": [
+    "loan",
+    "copy"
+  ],
+  "Storniert UB": [
+    "none"
+  ],
+  "Ex. unsichtbar": [
+    "none"
+  ],
+  "Internes": [
+    "none"
+  ],
+  "Desiderat": [
+    "none"
+  ],
+  "Ausleihe/4 W/kV": [
+    "loan",
+    "copy"
+  ],
+  "ge": [
+    "loan",
+    "copy"
+  ],
+  "Ausstellung": [
+    "none"
+  ],
+  "in Gebrauch": [
+    "none"
+  ],
+  "ls": [
+    "copy"
+  ],
+  "ma": [
+    "loan",
+    "copy"
+  ],
+  "24": [
+    "loan",
+    "copy"
+  ],
+  "p/nurFilm,FL/M": [
+    "loan",
+    "copy"
+  ],
+  "Fl.Kat.(Ausl.)": [
+    "loan",
+    "copy"
+  ],
+  "Nicht publiziert": [
+    "loan",
+    "copy"
+  ],
+  "Verwaltungsliteratur": [
+    "loan",
+    "copy"
+  ],
+  "Zs/nurKopFL/F,I": [
+    "copy"
+  ],
+  "Best. storniert": [
+    "none"
+  ],
+  "25": [
+    "loan",
+    "copy"
+  ],
+  "46": [
+    "loan",
+    "copy"
+  ],
+  "Gesamttitel": [
+    "loan",
+    "copy"
+  ],
+  "Laborapparat": [
+    "loan",
+    "copy"
+  ],
+  "Video-Kassette": [
+    "loan",
+    "copy"
+  ],
+  "56": [
+    "loan",
+    "copy"
+  ],
+  "Sem-app(LS)": [
+    "none"
+  ],
+  "41": [
+    "loan",
+    "copy"
+  ],
+  "E-Book": [
+    "copy"
+  ],
+  "Karten": [
+    "copy"
+  ],
+  "Indiziert": [
+    "none"
+  ],
+  "51": [
+    "loan",
+    "copy"
+  ],
+  "Bestellwunsch": [
+    "none"
+  ],
+  "bb": [
+    "loan",
+    "copy"
+  ],
+  "Dissertation": [
+    "loan",
+    "copy"
+  ],
+  "Nur LS/k.Kopie": [
+    "none"
+  ],
+  "Zsn-Heft erwartet": [
+    "none"
+  ],
+  "61": [
+    "loan",
+    "copy"
+  ],
+  "Online": [
+    "copy"
+  ],
+  "Zsn-Katalogisierung": [
+    "none"
+  ],
+  "Einzelex. gelöscht": [
+    "none"
+  ],
+  "Wochenendausleihe": [
+    "loan",
+    "copy"
+  ],
+  "42": [
+    "loan",
+    "copy"
+  ],
+  "Bearb. Ausleihe": [
+    "loan",
+    "copy"
+  ],
+  "Verlust, Staffelex.": [
+    "none"
+  ],
+  "05": [
+    "loan",
+    "copy"
+  ],
+  "Zs.Speichermag.": [
+    "copy"
+  ],
+  "s3": [
+    "loan",
+    "copy"
+  ],
+  "lo": [
+    "loan",
+    "copy"
+  ],
+  "52": [
+    "loan",
+    "copy"
+  ],
+  "Plakat": [
+    "copy"
+  ],
+  "Verbrauchsmaterial": [
+    "none"
+  ],
+  "vermisst": [
+    "none"
+  ],
+  "20": [
+    "loan",
+    "copy"
+  ],
+  "da": [
+    "loan",
+    "copy"
+  ],
+  "nicht ausleihbar ZsH": [
+    "copy"
+  ],
+  "Erscheint nicht": [
+    "none"
+  ],
+  "keine Ausleihe": [
+    "copy"
+  ],
+  "Abgang": [
+    "none"
+  ],
+  "intern, Zsn, nicht ausleihbar": [
+    "copy"
+  ],
+  "Nicht benutzbar - Buchbinder": [
+    "none"
+  ],
+  "Zs-heft": [
+    "copy"
+  ],
+  "36": [
+    "loan",
+    "copy"
+  ],
+  "70": [
+    "loan",
+    "copy"
+  ],
+  "75": [
+    "loan",
+    "copy"
+  ],
+  "85": [
+    "loan",
+    "copy"
+  ],
+  "Kurztitel": [
+    "loan",
+    "copy"
+  ],
+  "Reklamiert": [
+    "none"
+  ],
+  "50": [
+    "loan",
+    "copy"
+  ],
+  "90": [
+    "loan",
+    "copy"
+  ],
+  "Erwartet": [
+    "none"
+  ],
+  "Mahnfall, Einzelex.": [
+    "none"
+  ],
+  "Zsn-Bd, HRZ (Sto,34)": [
+    "copy"
+  ],
+  "57": [
+    "loan",
+    "copy"
+  ],
+  "98": [
+    "loan",
+    "copy"
+  ],
+  "Best. Zsn-H.": [
+    "none"
+  ],
+  "Diskette": [
+    "loan",
+    "copy"
+  ],
+  "Präsenz/GF": [
+    "copy"
+  ],
+  "Sprachkurs": [
+    "loan",
+    "copy"
+  ],
+  "Vorm. f. Kat.": [
+    "none"
+  ],
+  "Zeitung": [
+    "copy"
+  ],
+  "Zss Band": [
+    "copy"
+  ],
+  "intern, Zsn, Mag.-Ausleihex.": [
+    "loan",
+    "copy"
+  ],
+  "0": [
+    "loan",
+    "copy"
+  ],
+  "01": [
+    "loan",
+    "copy"
+  ],
+  "03": [
+    "loan",
+    "copy"
+  ],
+  "04": [
+    "loan",
+    "copy"
+  ],
+  "35": [
+    "loan",
+    "copy"
+  ],
+  "43": [
+    "loan",
+    "copy"
+  ],
+  "79": [
+    "loan",
+    "copy"
+  ],
+  "CD-ROM Präsenz=verkürzte Fri": [
+    "copy"
+  ],
+  "Diplomarbeit": [
+    "loan",
+    "copy"
+  ],
+  "ILL-Status unb.": [
+    "loan",
+    "copy"
+  ],
+  "Interne Titelaufnahmen": [
+    "none"
+  ],
+  "Passive Fernleihe": [
+    "loan",
+    "copy"
+  ],
+  "Sprachkassette": [
+    "loan",
+    "copy"
+  ],
+  "Vermißt": [
+    "none"
+  ],
+  "Werkstatt": [
+    "none"
+  ],
+  "Zsn-Heft, HRZ (Sto,34)": [
+    "loan",
+    "copy"
+  ],
+  "sa": [
+    "loan",
+    "copy"
+  ],
+  "z.Zt. nicht verfügbar": [
+    "none"
+  ],
+  "06": [
+    "loan",
+    "copy"
+  ],
+  "22": [
+    "loan",
+    "copy"
+  ],
+  "74": [
+    "loan",
+    "copy"
+  ],
+  "Ausleihe/Freih Kettwig": [
+    "loan",
+    "copy"
+  ],
+  "Bearb. zentral": [
+    "loan",
+    "copy"
+  ],
+  "Datenträger nicht ausleihbar": [
+    "copy"
+  ],
+  "Hausarbeitsapp.": [
+    "copy"
+  ],
+  "Interne Umarb.": [
+    "none"
+  ],
+  "K": [
+    "loan",
+    "copy"
+  ],
+  "Kopierauftrag": [
+    "copy"
+  ],
+  "Lückenergänzung": [
+    "loan",
+    "copy"
+  ],
+  "Mitglieder": [
+    "loan",
+    "copy"
+  ],
+  "Nicht im OPAC (Zsnstelle!)": [
+    "loan",
+    "copy"
+  ],
+  "Tischapparat": [
+    "copy"
+  ],
+  "ak": [
+    "loan",
+    "copy"
+  ],
+  "tc": [
+    "loan",
+    "copy"
+  ],
+  "vl": [
+    "loan",
+    "copy"
+  ],
+  "wo": [
+    "loan",
+    "copy"
+  ]
+}

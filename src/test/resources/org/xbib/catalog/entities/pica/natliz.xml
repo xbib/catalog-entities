@@ -1,0 +1,133 @@
+<record xmlns="info:srw/schema/5/picaXML-v1.0">
+    <datafield tag="001@">
+        <subfield code="a">U</subfield>
+    </datafield>
+    <datafield tag="001A">
+        <subfield code="0">2030:05-06-14</subfield>
+    </datafield>
+    <datafield tag="001B">
+        <subfield code="0">1999:05-06-14</subfield>
+        <subfield code="t">15:29:17.000</subfield>
+    </datafield>
+    <datafield tag="001D">
+        <subfield code="0">2030:05-06-14</subfield>
+    </datafield>
+    <datafield tag="001U">
+        <subfield code="0">utf8</subfield>
+    </datafield>
+    <datafield tag="001X">
+        <subfield code="0">0</subfield>
+    </datafield>
+    <datafield tag="002@">
+        <subfield code="0">Osxkf</subfield>
+    </datafield>
+    <datafield tag="003@">
+        <subfield code="0">01027698X</subfield>
+    </datafield>
+    <datafield tag="006Y">
+        <subfield code="0">uscNB00000325495</subfield>
+    </datafield>
+    <datafield tag="008E">
+        <subfield code="a">ZDB-1-USC</subfield>
+    </datafield>
+    <datafield tag="009@">
+        <subfield code="a">NLM</subfield>
+    </datafield>
+    <datafield tag="009P" occurrence="05">
+        <subfield code="a">http://docs.newsbank.com/select/aspa/10A0F14010BDA500.html</subfield>
+        <subfield code="3">34</subfield>
+        <subfield code="5">0</subfield>
+        <subfield code="B">1</subfield>
+        <subfield code="q">text/html</subfield>
+        <subfield code="4">NL</subfield>
+    </datafield>
+    <datafield tag="010@">
+        <subfield code="a">eng</subfield>
+    </datafield>
+    <datafield tag="011@">
+        <subfield code="a">1837</subfield>
+    </datafield>
+    <datafield tag="011B">
+        <subfield code="a">2005</subfield>
+    </datafield>
+    <datafield tag="013@">
+        <subfield code="0">o3</subfield>
+    </datafield>
+    <datafield tag="016D">
+        <subfield code="0">cr</subfield>
+    </datafield>
+    <datafield tag="016H">
+        <subfield code="0">Elektronische Ressource</subfield>
+    </datafield>
+    <datafield tag="019@">
+        <subfield code="a">XD-US</subfield>
+    </datafield>
+    <datafield tag="021A">
+        <subfield code="a">Additional explanatory estimates for the service of the Ordnance Department during the year 1837. Communicated to the House of Representatives, January 28, 1837</subfield>
+    </datafield>
+    <datafield tag="027D">
+        <subfield code="a">American State papers</subfield>
+        <subfield code="p">New York, NY</subfield>
+        <subfield code="z">26563058</subfield>
+    </datafield>
+    <datafield tag="029A">
+        <subfield code="a">United States</subfield>
+        <subfield code="b">Congress</subfield>
+        <subfield code="b">House</subfield>
+    </datafield>
+    <datafield tag="029F">
+        <subfield code="a">United States</subfield>
+        <subfield code="b">Congress</subfield>
+        <subfield code="n">24th, 2nd session</subfield>
+        <subfield code="d">1836-1837</subfield>
+    </datafield>
+    <datafield tag="029F" occurrence="01">
+        <subfield code="a">United States</subfield>
+        <subfield code="b">War Dept</subfield>
+    </datafield>
+    <datafield tag="029F" occurrence="02">
+        <subfield code="a">United States</subfield>
+        <subfield code="b">War Dept</subfield>
+        <subfield code="b">Ordnance Dept</subfield>
+    </datafield>
+    <datafield tag="031A">
+        <subfield code="d">6</subfield>
+        <subfield code="j">1837</subfield>
+        <subfield code="h">1024-1025</subfield>
+        <subfield code="y">Class 5, 1837, v.6, p. 1024-1025</subfield>
+    </datafield>
+    <datafield tag="033N">
+        <subfield code="p">Chester, Vt</subfield>
+        <subfield code="n">NewsBank, inc</subfield>
+    </datafield>
+    <datafield tag="034D">
+        <subfield code="a">Online-Ressource (2 p)</subfield>
+    </datafield>
+    <datafield tag="036L">
+        <subfield code="a">U.S. Congressional Serial Set, 1817-1980</subfield>
+        <subfield code="z">041151-6</subfield>
+    </datafield>
+    <datafield tag="037A">
+        <subfield code="a">At head of title: 24th Congress, 2nd session, no. 720</subfield>
+    </datafield>
+    <datafield tag="037A">
+        <subfield code="a">Title from TIFF caption title (American state papers,  Readex Infoweb site, 2005)</subfield>
+    </datafield>
+    <datafield tag="037A">
+        <subfield code="a">© 2005 by NewsBank, Inc. All rights reserved</subfield>
+    </datafield>
+    <datafield tag="039B">
+        <subfield code="c">In</subfield>
+        <subfield code="9">010214445</subfield>
+        <subfield code="a">American State papers</subfield>
+        <subfield code="0">26563058</subfield>
+        <subfield code="p">New York, NY</subfield>
+        <subfield code="x">183700000060000976</subfield>
+    </datafield>
+    <datafield tag="045W">
+        <subfield code="a">usc</subfield>
+    </datafield>
+    <datafield tag="047A">
+        <subfield code="a">Metadaten: NEW_American_State_Papers_-_unselbststandiges_6354.utf</subfield>
+    </datafield>
+</record>
