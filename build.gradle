@@ -42,7 +42,7 @@ configurations {
 }
 
 dependencies {
-    compile 'org.xbib:marc:1.0.0'
+    compile 'org.xbib:marc:1.0.1'
     compile "org.xbib:rdf:2+"
     testCompile 'junit:junit:4.12'
     testCompile 'org.apache.logging.log4j:log4j-jul:2.5'

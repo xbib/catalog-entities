@@ -10,6 +10,9 @@ import org.xbib.rdf.Literal;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ *
+ */
 public class FormatCarrierSimplified extends CatalogEntity {
 
     public static final String FACET = "dc.format";

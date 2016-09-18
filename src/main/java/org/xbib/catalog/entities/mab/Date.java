@@ -9,6 +9,9 @@ import org.xbib.rdf.Literal;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class Date extends CatalogEntity {
 
     private static final String FACET_NAME = "dc.date";

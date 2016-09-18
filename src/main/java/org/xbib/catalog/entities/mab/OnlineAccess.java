@@ -15,6 +15,9 @@ import org.xbib.rdf.Resource;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ *
+ */
 public class OnlineAccess extends CatalogEntity {
 
     private static final String taxonomyFacet = "xbib.taxonomy";

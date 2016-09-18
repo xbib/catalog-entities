@@ -7,6 +7,9 @@ import org.xbib.rdf.Literal;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class Collection extends CatalogEntity {
 
     public static final String FACET = "collection";

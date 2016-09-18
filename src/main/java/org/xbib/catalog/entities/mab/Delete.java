@@ -7,6 +7,9 @@ import org.xbib.marc.MarcField;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ *
+ */
 public class Delete extends CatalogEntity {
 
     public Delete(Map<String, Object> params) {

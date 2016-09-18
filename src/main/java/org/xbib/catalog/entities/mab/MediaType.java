@@ -7,6 +7,9 @@ import org.xbib.marc.MarcField;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ *
+ */
 public class MediaType extends CatalogEntity {
 
     private static final String FACET_NAME = "rda.media";

@@ -29,8 +29,8 @@ public class PicaTest extends Assert {
 
     @Test
     public void testPicaSetup() throws Exception {
-        File file = new File("pica-entities.json"); //File.createTempFile("marc-bib-entities.", ".json");
-        //file.deleteOnExit();
+        File file = File.createTempFile("marc-bib-entities.", ".json");
+        file.deleteOnExit();
         try (MyBuilder builder = new MyBuilder("org.xbib.catalog.entities.pica.zdb.bibdat", getClass().getResource("bibdat.json"))) {
             FileWriter writer = new FileWriter(file);
             builder.getEntitySpecification().dump(writer);

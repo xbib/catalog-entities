@@ -16,39 +16,6 @@ public class AlternateGraphicRepresentation extends CatalogEntity {
         super(params);
     }
 
-    /*
-               "OtherScript": [
-              {
-                 "6": "245-01/Cyrl",
-                 "a": "Офiцiйний вiсник України",
-                 "b": "щотижневий збiник актiв законодавства офiцiйне видання  = Официальный вестник Украины",
-                 "c": "Мiнicтерство  Юстицiї України, Головне Державне Обьʹєднання Правової Iнформацiї та Пропаганди Правових Знань Мiнicтерства Юстицiї  України"
-              },
-              {
-                 "0": [
-                    "(DE-588)4061496-7",
-                    "(DE-101)040614964"
-                 ],
-                 "4": "aut",
-                 "6": "110-02/Cyrl",
-                 "a": "Украïна"
-              },
-              {
-                 "0": [
-                    "(DE-588)5099225-9",
-                    "(DE-101)940438542"
-                 ],
-                 "6": "710-03/Cyrl",
-                 "a": "Уkpaїнa",
-                 "b": "Мiнiстерство Юстицiї"
-              },
-              {
-                 "6": "260-04/Cyrl",
-                 "a": "Київ",
-                 "b": "Голос"
-              }
-           ],
-    */
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         // http://www.loc.gov/marc/bibliographic/ecbdcntf.html

@@ -6,6 +6,9 @@ import org.xbib.rdf.Resource;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class CorporateBody extends CatalogEntity {
 
     public CorporateBody(Map<String, Object> params) {
@@ -13,6 +16,7 @@ public class CorporateBody extends CatalogEntity {
     }
 
     /**
+     * Documentation.
      * <code>
      * e = Name Konferenz
      * 9 = GND-ID (neu) / Norm-ID (alt)

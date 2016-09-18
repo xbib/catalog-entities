@@ -38,7 +38,9 @@ public class Shelfmark extends CatalogEntity {
         if ("Shelfmark".equals(predicate) && prefix != null && !prefix.isEmpty()) {
             resource.add("identifier", prefix);
             // create synthetic local record identifier
-            state.setUID(IRI.builder().curie("uid:" + state.getRecordIdentifier() + "/" + state.getISIL() + "/" + value).build());
+            state.setUID(IRI.builder()
+                    .curie("uid:" + state.getRecordIdentifier() + "/" + state.getISIL() + "/" + value)
+                    .build());
         }
         return value;
     }

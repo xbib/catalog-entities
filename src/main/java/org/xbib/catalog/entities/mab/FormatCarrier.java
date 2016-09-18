@@ -7,6 +7,9 @@ import org.xbib.marc.MarcField;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ *
+ */
 public class FormatCarrier extends CatalogEntity {
 
     private static final String FACET_NAME = "dc.format";

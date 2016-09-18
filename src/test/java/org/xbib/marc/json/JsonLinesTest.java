@@ -37,7 +37,7 @@ public class JsonLinesTest extends Assert {
                     mabCatalogEntityBuilder.getCounter()));
             logger.log(Level.INFO, MessageFormat.format("checksum = {0}",
                     mabCatalogEntityBuilder.getChecksum()));
-            BufferedWriter writer = new BufferedWriter(new FileWriter("mapped.txt"));
+            /*BufferedWriter writer = new BufferedWriter(new FileWriter("mapped.txt"));
             writer.write(mabCatalogEntityBuilder.getMapped().toString());
             writer.close();
             writer = new BufferedWriter(new FileWriter("unmapped.txt"));
@@ -45,7 +45,7 @@ public class JsonLinesTest extends Assert {
             writer.close();
             writer = new BufferedWriter(new FileWriter("invalid.txt"));
             writer.write(mabCatalogEntityBuilder.getInvalid().toString());
-            writer.close();
+            writer.close();*/
 
             //logger.log(Level.INFO, MessageFormat.format("mapped = {0}",
             //        myBuilder.getMapped()));

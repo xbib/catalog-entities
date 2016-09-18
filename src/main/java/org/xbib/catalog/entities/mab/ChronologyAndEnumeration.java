@@ -4,6 +4,9 @@ import org.xbib.catalog.entities.CatalogEntity;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class ChronologyAndEnumeration extends CatalogEntity {
 
     public ChronologyAndEnumeration(Map<String, Object> params) {
