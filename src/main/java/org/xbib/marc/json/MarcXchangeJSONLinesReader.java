@@ -7,7 +7,6 @@ import static com.fasterxml.jackson.core.JsonToken.START_ARRAY;
 import static com.fasterxml.jackson.core.JsonToken.START_OBJECT;
 
 import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import org.xbib.marc.MarcField;
@@ -50,12 +49,6 @@ public class MarcXchangeJSONLinesReader implements Closeable {
     private String type;
 
     private String leader;
-
-    private String tag;
-
-    private String indicator;
-
-    private String subfieldId;
 
     public MarcXchangeJSONLinesReader(InputStream in) throws IOException {
         this(new InputStreamReader(in, StandardCharsets.UTF_8), DEFAULT_BUFFER_SIZE, null);
@@ -101,104 +94,96 @@ public class MarcXchangeJSONLinesReader implements Closeable {
 
     private void parseLine(String line) throws IOException {
         jsonParser = factory.createParser(line);
-        marcFieldBuilder = MarcField.builder();
         jsonParser.nextToken();
-        parseObject(0);
+        marcFieldBuilder = MarcField.builder();
+        parseRecord();
     }
 
-    private void parseObject(int level) throws IOException {
-        while (jsonParser.nextToken() != null && jsonParser.getCurrentToken() != END_OBJECT) {
-            if (FIELD_NAME.equals(jsonParser.getCurrentToken())) {
-                jsonParser.nextToken();
-                parseInner(jsonParser.getCurrentName(), level);
-            } else {
-                throw new JsonParseException(jsonParser, "expected field name, but got " + jsonParser.getCurrentToken(),
-                        jsonParser.getCurrentLocation());
-            }
-        }
-        emitFields();
-    }
-
-    private void parseArray(String subfieldId) throws IOException {
-        while (jsonParser.nextToken() != null && jsonParser.getCurrentToken() != END_ARRAY) {
-            marcFieldBuilder.subfield(subfieldId, jsonParser.getText());
-        }
-    }
-
-    private void parseInner(String name, int level) throws IOException {
+    private void parseRecord() throws IOException {
         JsonToken currentToken = jsonParser.getCurrentToken();
-        if (START_OBJECT.equals(currentToken)) {
-            switch (level) {
-                case 0: {
-                    tag = name;
-                    break;
+        String tag = null;
+        while (currentToken != null && currentToken != END_OBJECT) {
+            if (FIELD_NAME.equals(currentToken)) {
+                tag = jsonParser.getCurrentName();
+                marcFieldBuilder.tag(tag);
+            } else if (START_ARRAY.equals(currentToken)) {
+                parseTag();
+            } else if (tag != null && currentToken.isScalarValue()) {
+                // format, type, leader
+                String value = jsonParser.getText();
+                switch (tag) {
+                    case MarcJsonWriter.FORMAT_TAG:
+                        format = value;
+                        break;
+                    case MarcJsonWriter.TYPE_TAG:
+                        type = value;
+                        break;
+                    case MarcJsonWriter.LEADER_TAG:
+                        leader = value;
+                        break;
                 }
-                case 1: {
-                    indicator = name.replace('_', ' ');
-                    break;
-                }
-                default:
-                    break;
+                marcFieldBuilder.value(value);
+                emit();
             }
-            parseObject(level + 1);
-        } else if (START_ARRAY.equals(currentToken)) {
-            parseArray(name);
-        } else if (currentToken.isScalarValue()) {
-            if (MarcJsonWriter.FORMAT_TAG.equals(name) || "__FORMAT".equals(name)) {
-                format = jsonParser.getText();
-            } else if (MarcJsonWriter.TYPE_TAG.equals(name) || "__TYPE".equals(name)) {
-                type = jsonParser.getText();
-            } else if (MarcJsonWriter.LEADER_TAG.equals(name) || "__LEADER".equals(name)) {
-                leader = jsonParser.getText();
-            } else {
-                switch (level) {
-                    case 0: {
-                        tag = name;
-                        break;
-                    }
-                    case 1: {
-                        indicator = name.replace('_', ' ');
-                        break;
-                    }
-                    case 2: {
-                        subfieldId = name;
-                        break;
-                    }
-                    default:
-                        break;
-                }
-                marcFieldBuilder.tag(tag).indicator(indicator);
-                if (subfieldId != null) {
-                    marcFieldBuilder.subfield(subfieldId, jsonParser.getText());
-                } else {
-                    marcFieldBuilder.value(jsonParser.getText());
-                    if (marcFieldBuilder.isControl()) {
-                        logger.log(Level.FINE, "control field: emit " + marcFieldBuilder.build());
-                    }
-                    emitFields();
-                }
-            }
+            currentToken = jsonParser.nextToken();
         }
     }
 
-    private void emitFields() {
-        if (format != null && type != null) {
-            listener.beginRecord(format, type);
-            format = null;
-            type = null;
+    private void parseTag() throws IOException {
+        JsonToken currentToken = jsonParser.getCurrentToken();
+        while (currentToken != null && currentToken != END_ARRAY) {
+            if (START_OBJECT.equals(currentToken)) {
+                parseIndicator();
+                emit();
+            } else if (currentToken.isScalarValue()) {
+                marcFieldBuilder.value(jsonParser.getText());
+                emit();
+            }
+            currentToken = jsonParser.nextToken();
         }
-        if (leader != null) {
+    }
+
+    private void parseIndicator() throws IOException {
+        JsonToken currentToken = jsonParser.getCurrentToken();
+        while (currentToken != null && currentToken != END_OBJECT) {
+            if (FIELD_NAME.equals(currentToken)) {
+                String indicator = jsonParser.getCurrentName().replace('_', ' ');
+                marcFieldBuilder.indicator(indicator);
+            } else if (START_ARRAY.equals(currentToken)) {
+                parseSubfields();
+            }
+            currentToken = jsonParser.nextToken();
+        }
+    }
+
+    private void parseSubfields() throws IOException {
+        JsonToken currentToken = jsonParser.getCurrentToken();
+        while (currentToken != null && currentToken != END_ARRAY) {
+            if (FIELD_NAME.equals(currentToken)) {
+                marcFieldBuilder.subfield(jsonParser.getCurrentName());
+            } else if (currentToken.isScalarValue()) {
+                marcFieldBuilder.subfieldValue(jsonParser.getText());
+            }
+            currentToken = jsonParser.nextToken();
+        }
+    }
+
+    private void emit() {
+        if (format != null || type != null) {
+            if (format != null && type != null) {
+                listener.beginRecord(format, type);
+                format = null;
+                type = null;
+            }
+        } else if (leader != null) {
             listener.leader(leader);
             leader = null;
-        }
-        MarcField marcField = marcFieldBuilder.build();
-        if (!marcField.isEmpty()) {
+        } else {
+            MarcField marcField = marcFieldBuilder.build();
+            String tag = marcField.getTag();
             listener.field(marcField);
+            marcFieldBuilder = MarcField.builder().tag(tag);
         }
-        marcFieldBuilder = MarcField.builder();
-        tag = null;
-        indicator = null;
-        subfieldId = null;
     }
 
     @Override

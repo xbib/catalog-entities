@@ -109,11 +109,13 @@ public abstract class WorkerPool<R> implements Closeable {
         }
         lock.lock();
         try {
-            if (!activeWorkers.isEmpty() && !request.equals(getPoison())) {
-                queue.put(request);
-            } else {
+            if (activeWorkers.isEmpty()) {
                 throw new UncheckedIOException(new IOException("no worker available"));
             }
+            if (request.equals(getPoison())) {
+                throw new UncheckedIOException(new IOException("ignoring poison"));
+            }
+            queue.put(request);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new UncheckedIOException(new IOException(e));

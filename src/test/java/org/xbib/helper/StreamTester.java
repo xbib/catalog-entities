@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 public class StreamTester extends Assert {
 
-    protected static void assertStream(InputStream expected, InputStream actual) {
+    public static void assertStream(InputStream expected, InputStream actual) {
         int offset = 0;
         try {
             while(true) {
