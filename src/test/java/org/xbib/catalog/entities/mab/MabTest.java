@@ -1,12 +1,15 @@
 package org.xbib.catalog.entities.mab;
 
+import static org.junit.Assert.assertEquals;
+import static org.xbib.content.rdf.RdfXContentFactory.rdfXContentBuilder;
+
 import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
-import org.xbib.content.resource.IRI;
-import org.xbib.marc.Marc;
 import org.xbib.content.rdf.RdfContentBuilder;
 import org.xbib.content.rdf.RdfXContentParams;
+import org.xbib.content.resource.IRI;
+import org.xbib.marc.Marc;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,9 +18,9 @@ import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static org.junit.Assert.assertEquals;
-import static org.xbib.content.rdf.RdfXContentFactory.rdfXContentBuilder;
-
+/**
+ *
+ */
 public class MabTest {
 
     private static final Logger logger = Logger.getLogger(MabTest.class.getName());
@@ -56,7 +59,7 @@ public class MabTest {
 
     private class MyBuilder extends CatalogEntityBuilder {
 
-        MyBuilder(URL url) throws Exception{
+        MyBuilder(URL url) throws Exception {
             super("org.xbib.catalog.entities.mab", url);
         }
 

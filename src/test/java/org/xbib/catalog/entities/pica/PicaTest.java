@@ -1,14 +1,5 @@
 package org.xbib.catalog.entities.pica;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.text.MessageFormat;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
@@ -18,17 +9,27 @@ import org.xbib.marc.Marc;
 import org.xbib.marc.MarcField;
 import org.xbib.marc.dialects.pica.PicaXMLContentHandler;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
+import java.text.MessageFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ */
 public class PicaTest extends Assert {
 
     private static final Logger logger = Logger.getLogger(PicaTest.class.getName());
-
-    private final AtomicInteger counter = new AtomicInteger();
 
     @Test
     public void testPicaSetup() throws Exception {
         File file = File.createTempFile("marc-bib-entities.", ".json");
         file.deleteOnExit();
-        try (MyBuilder builder = new MyBuilder("org.xbib.catalog.entities.pica.zdb.bibdat", getClass().getResource("bibdat.json"))) {
+        try (MyBuilder builder = new MyBuilder("org.xbib.catalog.entities.pica.zdb.bibdat",
+                getClass().getResource("bibdat.json"))) {
             FileWriter writer = new FileWriter(file);
             builder.getEntitySpecification().dump(writer);
             writer.close();
@@ -37,7 +38,8 @@ public class PicaTest extends Assert {
 
     @Test
     public void testPica() throws Exception {
-        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.pica.zdb.bibdat", getClass().getResource("bibdat.json"))) {
+        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.pica.zdb.bibdat",
+                getClass().getResource("bibdat.json"))) {
             Marc.builder()
                     .setInputStream(getClass().getResourceAsStream("zdb-oai-bib.xml"))
                     .setMarcRecordListener(myBuilder)
@@ -50,7 +52,8 @@ public class PicaTest extends Assert {
 
     @Test
     public void testNatLizPica() throws Exception {
-        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.pica.natliz.bib", getClass().getResource("bib.json"))) {
+        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.pica.natliz.bib",
+                getClass().getResource("bib.json"))) {
             PicaXMLContentHandler contentHandler = new PicaXMLContentHandler();
             contentHandler.setFormat("Pica");
             contentHandler.setType("XML");

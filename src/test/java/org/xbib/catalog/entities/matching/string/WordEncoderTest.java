@@ -7,14 +7,16 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
+/**
+ *
+ */
 public class WordEncoderTest {
 
     @Test
     public void testParseQuotedString() throws Exception {
         // does not split "geht's", "Film?"
-        String msg =  "Heute spielen wir den Boß - Wo geht's denn hier zum Film?";
+        String msg = "Heute spielen wir den Boß - Wo geht's denn hier zum Film?";
         List<String> l = parseQuot(msg);
-        //logger.info("token msg = " + msg + " l = " + l.size());
         for (String s : l) {
             //System.err.println("token = '" + s + "'");
         }
@@ -29,7 +31,7 @@ public class WordEncoderTest {
             //System.err.println("split word = '" + s + "'");
         }
     }
-    
+
     private List<String> parseQuot(String string) {
         List<String> l = new LinkedList<String>();
         Pattern word = Pattern.compile("[\\P{IsWord}]");
@@ -48,7 +50,7 @@ public class WordEncoderTest {
         }
         return l;
     }
-    
+
     private List<String> parseQuotedString(String value) {
         List<String> result = new LinkedList<String>();
         QuotedStringTokenizer tokenizer = new QuotedStringTokenizer(value);

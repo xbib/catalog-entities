@@ -3,8 +3,8 @@ package org.xbib.catalog.entities.marc;
 import static org.xbib.content.rdf.RdfXContentFactory.rdfXContentBuilder;
 
 import org.junit.Test;
-import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
+import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.content.rdf.RdfContentBuilder;
 import org.xbib.content.rdf.RdfXContentParams;
 import org.xbib.content.resource.IRI;
@@ -17,11 +17,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ */
 public class HolTest {
 
     private static final Logger logger = Logger.getLogger(BibTest.class.getName());
-
-    private final AtomicInteger counter = new AtomicInteger();
 
     @Test
     public void testHol() throws Exception {

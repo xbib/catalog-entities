@@ -3,6 +3,9 @@ package org.xbib.catalog.entities.matching.endeavor;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ *
+ */
 public class WorkAuthorTest extends Assert {
 
     @Test
@@ -12,26 +15,30 @@ public class WorkAuthorTest extends Assert {
 
     @Test
     public void testAuthor() throws Exception {
-        String workAuthor = new AuthoredWork().authorName("Jörg Prante").workName("Hello World").createIdentifier();
+        String workAuthor = new AuthoredWork().authorName("Jörg Prante")
+                .workName("Hello World").createIdentifier();
         assertEquals(workAuthor, "wHeoWrD.aPranteJ");
     }
 
     @Test
     public void testAuthorForeName() throws Exception {
-        String workAuthor = new AuthoredWork().authorNameWithForeNames("Prante", "Jörg").workName("Hello World").createIdentifier();
+        String workAuthor = new AuthoredWork().authorNameWithForeNames("Prante", "Jörg")
+                .workName("Hello World").createIdentifier();
         assertEquals(workAuthor, "wHeoWrD.aPranteJ");
     }
 
     @Test
     public void testAuthorInitials() throws Exception {
-        String workAuthor = new AuthoredWork().authorNameWithInitials("Prante", "J").workName("Hello World").createIdentifier();
+        String workAuthor = new AuthoredWork().authorNameWithInitials("Prante", "J")
+                .workName("Hello World").createIdentifier();
         assertEquals(workAuthor, "wHeoWrD.aPranteJ");
     }
 
     @Test
     public void testMedline() throws Exception {
         String workAuthor = new AuthoredWork()
-                .workName("Critical involvement of macrophage infiltration in the development of sjögren's syndrome-associated dry eye")
+                .workName("Critical involvement of macrophage infiltration in the "
+                        + "development of sjögren's syndrome-associated dry eye")
                 .authorNameWithForeNames("Zhou", "Delou")
                 .authorNameWithForeNames("Chen", "Ying-Ting")
                 .authorNameWithForeNames("Chen", "Feeling")

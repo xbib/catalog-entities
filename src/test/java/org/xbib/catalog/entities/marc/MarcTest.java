@@ -17,6 +17,9 @@ import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ */
 public class MarcTest extends Assert {
 
     private static final Logger logger = Logger.getLogger(MarcTest.class.getName());

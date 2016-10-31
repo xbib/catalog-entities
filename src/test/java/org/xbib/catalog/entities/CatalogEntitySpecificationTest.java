@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.xbib.marc.MarcField;
 
+/**
+ *
+ */
 public class CatalogEntitySpecificationTest extends Assert {
 
     @Test
