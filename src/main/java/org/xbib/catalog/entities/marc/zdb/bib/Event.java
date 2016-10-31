@@ -6,6 +6,9 @@ import org.xbib.marc.MarcField;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class Event extends CatalogEntity {
 
     public Event(Map<String, Object> params) {

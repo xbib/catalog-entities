@@ -1,9 +1,9 @@
 package org.xbib.catalog.entities;
 
+import org.xbib.content.rdf.Resource;
+import org.xbib.content.rdf.internal.DefaultAnonymousResource;
 import org.xbib.marc.MarcField;
 import org.xbib.marc.MarcRecord;
-import org.xbib.rdf.Resource;
-import org.xbib.rdf.memory.BlankMemoryResource;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ public class CatalogUnmappedEntityWorker extends CatalogEntityWorker {
     @Override
     public void build(MarcRecord marcRecord) throws IOException {
         for (MarcField field : marcRecord.getFields()) {
-            Resource resource = new BlankMemoryResource();
+            Resource resource = new DefaultAnonymousResource();
             if (field.isControl()) {
                 if ("001".equals(field.getTag())) {
                     getWorkerState().setRecordIdentifier(field.getValue());

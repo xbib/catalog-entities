@@ -3,8 +3,8 @@ package org.xbib.catalog.entities.mab;
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.catalog.entities.Sequence;
+import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
-import org.xbib.rdf.Resource;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

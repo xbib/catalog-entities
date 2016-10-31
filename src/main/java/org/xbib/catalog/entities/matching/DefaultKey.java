@@ -3,7 +3,7 @@ package org.xbib.catalog.entities.matching;
 import java.util.LinkedList;
 
 /**
- * Simple component
+ * Simple component.
  */
 public class DefaultKey extends LinkedList<String> implements Key<String> {
 
@@ -20,22 +20,27 @@ public class DefaultKey extends LinkedList<String> implements Key<String> {
         this.domain = domain;
     }
 
+    @Override
     public Domain getDomain() {
         return domain;
     }
 
+    @Override
     public void setDelimiter(char delimiter) {
         this.delimiter = delimiter;
     }
 
+    @Override
     public char getDelimiter() {
         return delimiter;
     }
 
+    @Override
     public boolean isUsable() {
         return !isEmpty();
     }
 
+    @Override
     public String encode() {
         StringBuilder sb = new StringBuilder();
         for (String s : this) {
@@ -46,6 +51,16 @@ public class DefaultKey extends LinkedList<String> implements Key<String> {
             sb.deleteCharAt(len - 1);
         }
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return this == object || (object instanceof DefaultKey && hashCode() == object.hashCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override

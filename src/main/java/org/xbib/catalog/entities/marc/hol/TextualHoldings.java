@@ -3,8 +3,8 @@ package org.xbib.catalog.entities.marc.hol;
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.catalog.entities.EnumerationAndChronologyHelper;
+import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
-import org.xbib.rdf.Resource;
 
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -16,6 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+/**
+ *
+ */
 public class TextualHoldings extends CatalogEntity {
 
     private static final Logger logger = Logger.getLogger(TextualHoldings.class.getName());
@@ -45,15 +48,15 @@ public class TextualHoldings extends CatalogEntity {
 
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
-        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper();
+        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(getMovingwallPatterns());
         for (MarcField.Subfield subfield : field.getSubfields()) {
             String value = subfield.getValue();
             worker.getWorkerState().getResource().add("textualholdings", value);
-            if (subfield.getId().equals("a")) {
+            if ("a".equals(subfield.getId())) {
                 Resource r = worker.getWorkerState().getResource().newResource("holdings");
-                Resource parsedHoldings = eac.parse(value, r, getMovingwallPatterns());
+                Resource parsedHoldings = eac.parseToResource(value, r);
                 if (!parsedHoldings.isEmpty()) {
-                    Set<Integer> dates = eac.dates(worker.getWorkerState().getResource().id(), parsedHoldings);
+                    Set<Integer> dates = eac.dates(parsedHoldings, worker.getWorkerState().getResource().id().toString());
                     for (Integer date : dates) {
                         worker.getWorkerState().getResource().add("dates", date);
                     }

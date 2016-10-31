@@ -1,21 +1,22 @@
 package org.xbib.catalog.entities;
 
-import org.xbib.catalog.entities.matching.endeavor.WorkAuthor;
-import org.xbib.iri.IRI;
-import org.xbib.rdf.Literal;
-import org.xbib.rdf.RdfContentBuilderProvider;
-import org.xbib.rdf.RdfGraph;
-import org.xbib.rdf.RdfGraphParams;
-import org.xbib.rdf.Resource;
-import org.xbib.rdf.memory.BlankMemoryResource;
-import org.xbib.rdf.memory.MemoryLiteral;
-import org.xbib.rdf.memory.MemoryRdfGraph;
-import org.xbib.rdf.memory.MemoryResource;
+import org.xbib.catalog.entities.matching.endeavor.AuthoredWork;
+import org.xbib.content.rdf.Literal;
+import org.xbib.content.rdf.RdfContentBuilderProvider;
+import org.xbib.content.rdf.RdfGraph;
+import org.xbib.content.rdf.RdfGraphParams;
+import org.xbib.content.rdf.Resource;
+import org.xbib.content.rdf.internal.DefaultAnonymousResource;
+import org.xbib.content.rdf.internal.DefaultLiteral;
+import org.xbib.content.rdf.internal.DefaultRdfGraph;
+import org.xbib.content.rdf.internal.DefaultResource;
+import org.xbib.content.resource.IRI;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -39,7 +40,7 @@ public class CatalogEntityWorkerState {
 
     private final RdfGraph<RdfGraphParams> graph;
 
-    private final Map<IRI, RdfContentBuilderProvider> builders;
+    private final Map<IRI, RdfContentBuilderProvider<?>> builders;
 
     private final Map<String, Facet<String>> facets;
 
@@ -47,7 +48,7 @@ public class CatalogEntityWorkerState {
 
     private final String packageName;
 
-    private final WorkAuthor workAuthorKey;
+    private final AuthoredWork authoredWorkKey;
     private String systemIdentifier;
     private String recordIdentifier;
     private String format;
@@ -59,16 +60,16 @@ public class CatalogEntityWorkerState {
 
     public CatalogEntityWorkerState(CatalogEntityBuilder builder) {
         this.builder = builder;
-        this.graph = new MemoryRdfGraph();
+        this.graph = new DefaultRdfGraph();
         this.builders = builder.contentBuilderProviders();
         this.packageName = builder.getPackageName();
         this.facets = new HashMap<>();
         this.sequences = new HashMap<>();
-        this.workAuthorKey = new WorkAuthor();
+        this.authoredWorkKey = new AuthoredWork();
     }
 
-    public WorkAuthor getWorkAuthorKey() {
-        return workAuthorKey;
+    public AuthoredWork getAuthoredWorkKey() {
+        return authoredWorkKey;
     }
 
     public Map<String, Resource> getSerialsMap() {
@@ -99,7 +100,7 @@ public class CatalogEntityWorkerState {
 
     public Resource getResource() throws IOException {
         if (!graph.getResources().hasNext()) {
-            resource = new BlankMemoryResource();
+            resource = new DefaultAnonymousResource();
             graph.receive(resource);
         }
         return resource;
@@ -107,7 +108,7 @@ public class CatalogEntityWorkerState {
 
     public Resource getResource(IRI predicate) throws IOException {
         if (!graph.hasResource(predicate)) {
-            MemoryResource resource = new BlankMemoryResource();
+            DefaultResource resource = new DefaultAnonymousResource();
             graph.putResource(predicate, resource);
         }
         return graph.getResource(predicate);
@@ -120,7 +121,7 @@ public class CatalogEntityWorkerState {
             graph.putResource(resource.id(), resource);
         }
         uid = null;
-        MemoryResource item = new BlankMemoryResource();
+        DefaultResource item = new DefaultAnonymousResource();
         graph.putResource(itemIRI, item);
         return item;
     }
@@ -285,12 +286,12 @@ public class CatalogEntityWorkerState {
             facetName = facetPath[facetPath.length - 1];
             IRI predicate = IRI.builder().path(facetName).build();
             for (Object value : facet.getValues()) {
-                Literal literal = new MemoryLiteral(value).type(facet.getType());
+                Literal literal = new DefaultLiteral(value).type(facet.getType());
                 try {
-                    literal.object(); // provoke NumberFormatException for numerical values
+                    literal.object(); // provoke NumberFormatException to ensure numerical values
                     resource.add(predicate, literal);
-                } catch (Exception e) {
-                    // if not valid, ignore value
+                } catch (NumberFormatException e) {
+                    logger.log(Level.FINEST, e.getMessage(), e);
                 }
             }
         }
@@ -301,7 +302,7 @@ public class CatalogEntityWorkerState {
             while (it.hasNext()) {
                 Resource resource = it.next();
                 if (builders != null) {
-                    for (RdfContentBuilderProvider provider : builders.values()) {
+                    for (RdfContentBuilderProvider<?> provider : builders.values()) {
                         provider.newContentBuilder().receive(resource);
                     }
                 }

@@ -28,12 +28,6 @@ public class GeneralInformation extends CatalogEntity {
         this.continuingresource = (Map<String, Object>) params.get("continuingresource");
     }
 
-    /**
-     * Example
-     * "991118d19612006xx z||p|r ||| 0||||0ger c"
-     *
-     * "091130||||||||||||||||ger|||||||"
-     */
     @Override
     @SuppressWarnings("unchecked")
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
@@ -56,7 +50,7 @@ public class GeneralInformation extends CatalogEntity {
                         String code = (String) q.get(ch);
                         if (code == null) {
                             logger.log(Level.WARNING,
-                                    MessageFormat.format("unmapped code {0} in field {2} predicate {3}",
+                                    MessageFormat.format("unmapped code {0} in field {1} predicate {2}",
                                             ch, field, predicate));
                         }
                         worker.getWorkerState().getResource().add(predicate, code);
@@ -95,6 +89,7 @@ public class GeneralInformation extends CatalogEntity {
             }
             return d;
         } catch (Exception e) {
+            logger.log(Level.FINEST, e.getMessage(), e);
             return null;
         }
     }

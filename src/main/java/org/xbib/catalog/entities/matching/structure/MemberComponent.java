@@ -2,6 +2,7 @@ package org.xbib.catalog.entities.matching.structure;
 
 import org.xbib.catalog.entities.matching.Domain;
 import org.xbib.catalog.entities.matching.Key;
+import org.xbib.catalog.entities.matching.name.NameKey;
 
 import java.util.LinkedHashSet;
 
@@ -26,24 +27,28 @@ public class MemberComponent extends LinkedHashSet<String>
     private static final long serialVersionUID = -7488832334746656547L;
     private char delimiter = '/';
 
+    @Override
     public Domain getDomain() {
         return Domain.GENERIC;
     }
 
+    @Override
     public void setDelimiter(char delimiter) {
         this.delimiter = delimiter;
     }
 
+    @Override
     public char getDelimiter() {
         return delimiter;
     }
 
+    @Override
     public boolean isUsable() {
         return !isEmpty();
     }
 
     /**
-     * Add generic member component
+     * Add generic member component.
      *
      * @param value value
      */
@@ -62,6 +67,7 @@ public class MemberComponent extends LinkedHashSet<String>
         return s.length() > 0 && super.add(domain + s);
     }
 
+    @Override
     public String encode() {
         StringBuilder sb = new StringBuilder();
         for (String s : this) {
@@ -72,5 +78,15 @@ public class MemberComponent extends LinkedHashSet<String>
             sb.deleteCharAt(len - 1);
         }
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return this == object || (object instanceof MemberComponent && hashCode() == object.hashCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

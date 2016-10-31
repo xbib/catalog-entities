@@ -17,11 +17,13 @@ import java.util.logging.Logger;
 /**
  *
  */
-public class CatalogEntitySpecification extends HashMap<String, CatalogEntity> {
+public class CatalogEntitySpecification {
 
     private static final Logger logger = Logger.getLogger(CatalogEntitySpecification.class.getName());
 
     private static final long serialVersionUID = 905552856037880666L;
+
+    private final Map<String, CatalogEntity> map;
 
     private final Map<String, CatalogEntity> entities;
 
@@ -39,6 +41,7 @@ public class CatalogEntitySpecification extends HashMap<String, CatalogEntity> {
         this.entities = entities;
         this.params = params;
         this.packageName = packageName;
+        this.map = new HashMap<>();
         InputStream inputStream = url != null ? url.openStream() : null;
         Map<String, Map<String, Object>> defs = new HashMap<>();
         if (inputStream != null) {
@@ -47,6 +50,10 @@ public class CatalogEntitySpecification extends HashMap<String, CatalogEntity> {
         }
 
         init(defs, packageName);
+    }
+
+    public Map<String, CatalogEntity> getMap() {
+        return map;
     }
 
     public String getPackageName() {
@@ -79,11 +86,12 @@ public class CatalogEntitySpecification extends HashMap<String, CatalogEntity> {
             if (clazz != null) {
                 try {
                     entity = clazz.getDeclaredConstructor(Map.class).newInstance(struct);
-                } catch (Throwable t1) {
+                } catch (Exception e1) {
+                    logger.log(Level.FINE, "can't get declared constructor of class " + clazz.getName(), e1);
                     try {
                         entity = clazz.newInstance();
-                    } catch (Throwable t2) {
-                        logger.log(Level.SEVERE, "can't instantiate class " + clazz.getName());
+                    } catch (Exception e2) {
+                        logger.log(Level.SEVERE, "can't instantiate class " + clazz.getName(), e2);
                     }
                 }
                 if (entity != null) {
@@ -107,21 +115,16 @@ public class CatalogEntitySpecification extends HashMap<String, CatalogEntity> {
     }
 
     public CatalogEntitySpecification associate(MarcField marcField, CatalogEntity entity) {
-        if (containsKey(marcField.toTagKey())) {
-            logger.log(Level.WARNING, "key already exist: " + marcField.toTagKey());
-            return this;
-        }
-        put(marcField.toTagKey(), entity);
-        return this;
+        return associate(marcField.toTagKey(), entity);
     }
 
     public CatalogEntitySpecification associate(String key, CatalogEntity entity) {
         String k = clean(key);
-        if (containsKey(k)) {
+        if (map.containsKey(k)) {
             logger.log(Level.WARNING, "key " + k + " already exist: " + key);
             return this;
         }
-        put(k, entity);
+        map.put(k, entity);
         return this;
     }
 
@@ -130,7 +133,7 @@ public class CatalogEntitySpecification extends HashMap<String, CatalogEntity> {
     }
 
     public CatalogEntity retrieve(String key) {
-        return super.get(clean(key));
+        return map.get(clean(key));
     }
 
     @SuppressWarnings("unchecked")
@@ -153,10 +156,12 @@ public class CatalogEntitySpecification extends HashMap<String, CatalogEntity> {
             try {
                 clazz = Class.forName(className);
             } catch (ClassNotFoundException e1) {
+                logger.log(Level.FINER, "Class.forName() failed: " + e1.getMessage(), e1);
                 // last resort: load from system class loader
                 try {
                     clazz = ClassLoader.getSystemClassLoader().loadClass(className);
                 } catch (ClassNotFoundException e2) {
+                    logger.log(Level.FINER, "ClassLoader.getSystemClassLoader() failed: " + e2.getMessage(), e2);
                     logger.log(Level.SEVERE, "class not found: " + e.getMessage(), e);
                 }
             }

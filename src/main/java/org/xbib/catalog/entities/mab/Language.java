@@ -5,11 +5,14 @@ import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.catalog.entities.Facet;
 import org.xbib.catalog.entities.TermFacet;
+import org.xbib.content.rdf.Literal;
 import org.xbib.marc.MarcField;
-import org.xbib.rdf.Literal;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class Language extends CatalogEntity {
 
     private static final String FACET_NAME = "dc.language";

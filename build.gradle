@@ -1,21 +1,24 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath 'org.ajoberstar:gradle-git:1.2.0'
-    }
-}
-
 plugins {
-    id "org.sonarqube" version "2.1-rc1"
+    id "org.sonarqube" version "2.2"
+    id 'org.ajoberstar.github-pages' version '1.6.0-rc.1'
     id "org.xbib.gradle.plugin.jbake" version "1.1.0"
 }
 
-println "Host: " + java.net.InetAddress.getLocalHost()
-println "Gradle: " + gradle.gradleVersion + " JVM: " + org.gradle.internal.jvm.Jvm.current() + " Groovy: " + GroovySystem.getVersion()
-println "Build: group: '${project.group}', name: '${project.name}', version: '${project.version}'"
+group = 'org.xbib'
+version = '1.0.0'
+
+printf "Host: %s\nOS: %s %s %s\nJVM: %s %s %s %s\nGroovy: %s\nGradle: %s\n" +
+        "Build: group: ${project.group} name: ${project.name} version: ${project.version}\n",
+        InetAddress.getLocalHost(),
+        System.getProperty("os.name"),
+        System.getProperty("os.arch"),
+        System.getProperty("os.version"),
+        System.getProperty("java.version"),
+        System.getProperty("java.vm.version"),
+        System.getProperty("java.vm.vendor"),
+        System.getProperty("java.vm.name"),
+        GroovySystem.getVersion(),
+        gradle.gradleVersion
 
 apply plugin: 'java'
 apply plugin: 'maven'
@@ -26,15 +29,6 @@ apply plugin: 'checkstyle'
 apply plugin: "jacoco"
 apply plugin: 'org.ajoberstar.github-pages'
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    jcenter()
-    maven {
-        url "http://xbib.org/repository"
-    }
-}
-
 configurations {
     wagon
     provided
@@ -42,9 +36,10 @@ configurations {
 }
 
 dependencies {
-    compile 'org.xbib:marc:1.0.3'
-    compile "org.xbib:rdf:2+"
+    compile 'org.xbib:marc:1.0.4'
+    compile "org.xbib:content-rdf:1.0.1"
     testCompile 'junit:junit:4.12'
+    testCompile 'org.apache.logging.log4j:log4j-core:2.5'
     testCompile 'org.apache.logging.log4j:log4j-jul:2.5'
     provided "org.xbib:bibliographic-character-sets:1.0.0"
     wagon 'org.apache.maven.wagon:wagon-ssh-external:2.10'
@@ -55,56 +50,16 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
-    options.compilerArgs << "-Xlint:all"
+    options.compilerArgs << "-Xlint:all" << "-profile" << "compact2"
 }
+
 test {
     classpath += configurations.provided
     testLogging {
-        showStandardStreams = true
+        showStandardStreams = false
         exceptionFormat = 'full'
     }
     systemProperty 'java.util.logging.manager', 'org.apache.logging.log4j.jul.LogManager'
-}
-tasks.withType(FindBugs) {
-    ignoreFailures = true
-    reports {
-        xml.enabled = true
-        html.enabled = false
-    }
-}
-tasks.withType(Pmd) {
-    ignoreFailures = true
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-}
-tasks.withType(Checkstyle) {
-    ignoreFailures = true
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        csv.enabled false
-        xml.destination "${buildDir}/reports/jacoco-xml"
-        html.destination "${buildDir}/reports/jacoco-html"
-    }
-}
-
-sonarqube {
-    properties {
-        property "sonar.projectName", "xbib Catalog Entities"
-        property "sonar.sourceEncoding", "UTF-8"
-        property "sonar.tests", "src/test/java"
-        property "sonar.scm.provider", "git"
-        property "sonar.java.coveragePlugin", "jacoco"
-        property "sonar.junit.reportsPath", "build/test-results/test/"
-    }
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -122,27 +77,7 @@ if (project.hasProperty('signing.keyId')) {
         sign configurations.archives
     }
 }
-task xbibUpload(type: Upload) {
-    configuration = configurations.archives
-    uploadDescriptor = true
-    repositories {
-        if (project.hasProperty("xbibUsername")) {
-            mavenDeployer {
-                configuration = configurations.wagon
-                repository(url: uri('scpexe://xbib.org/repository')) {
-                    authentication(userName: xbibUsername, privateKey: xbibPrivateKey)
-                }
-            }
-        }
-    }
-}
 
-githubPages {
-    repoUri = 'git@github.com:xbib/catalog-entities.git'
-    targetBranch = "gh-pages"
-    pages {
-        from(file('build/jbake')) {
-            into '.'
-        }
-    }
-}
+apply from: 'gradle/ext.gradle'
+apply from: 'gradle/publish.gradle'
+apply from: 'gradle/sonarqube.gradle'

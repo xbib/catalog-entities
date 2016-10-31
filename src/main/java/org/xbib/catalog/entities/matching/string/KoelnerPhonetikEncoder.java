@@ -79,6 +79,7 @@ public class KoelnerPhonetikEncoder implements StringEncoder {
         return 0;
     }*/
 
+    @Override
     public String encode(String str) throws EncoderException {
         StringBuilder sb = new StringBuilder();
         String[] s = code(str);
@@ -112,7 +113,7 @@ public class KoelnerPhonetikEncoder implements StringEncoder {
             List<String> tmpParts = new ArrayList<>();
             tmpParts.addAll((Arrays.asList(str.split("[\\p{Z}\\p{C}\\p{P}]"))));
             int numberOfParts = tmpParts.size();
-            while (tmpParts.size() > 0) {
+            while (!tmpParts.isEmpty()) {
                 StringBuilder part = new StringBuilder();
                 for (int i = 0; i < tmpParts.size(); i++) {
                     part.append(tmpParts.get(i));

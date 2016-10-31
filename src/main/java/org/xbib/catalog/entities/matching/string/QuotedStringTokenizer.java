@@ -125,8 +125,7 @@ public class QuotedStringTokenizer extends StringTokenizer implements Iterator<S
                 quote = curr;
                 continue;
             }
-            if (delim.indexOf(str.charAt(p)) >= 0) // unquoted delimiter
-            {
+            if (delim.indexOf(str.charAt(p)) >= 0) {  // unquoted delimiter
                 break;
             }
             if (collect) {
@@ -148,7 +147,7 @@ public class QuotedStringTokenizer extends StringTokenizer implements Iterator<S
         if (!returnDelims) {
             pos = skipDelim(pos);
         }
-        return (pos < len);
+        return pos < len;
     }
 
     /**
@@ -226,6 +225,9 @@ public class QuotedStringTokenizer extends StringTokenizer implements Iterator<S
 
     @Override
     public String next() {
+        if (pos >= len) {
+            throw new NoSuchElementException();
+        }
         return nextToken();
     }
 

@@ -7,6 +7,9 @@ import org.xbib.marc.MarcField;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ *
+ */
 public class PhysicalDescriptionCode extends CatalogEntity {
 
     public PhysicalDescriptionCode(Map<String, Object> params) {

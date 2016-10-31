@@ -1,7 +1,7 @@
 package org.xbib.catalog.entities.matching.string;
 
 /**
- * Interface for string encoding
+ * Interface for string encoding.
  *
  */
 public interface StringEncoder {

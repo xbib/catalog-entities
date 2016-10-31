@@ -2,13 +2,15 @@ package org.xbib.catalog.entities.marc.nlz;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.common.Strings;
-import org.xbib.iri.IRI;
-import org.xbib.rdf.Resource;
+import org.xbib.content.rdf.Resource;
+import org.xbib.content.resource.IRI;
 
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ *
+ */
 public class PersonalName extends CatalogEntity {
 
     private static final IRI FOAF_AGENT = IRI.create("foaf:agent");
@@ -28,14 +30,14 @@ public class PersonalName extends CatalogEntity {
             r.newResource(DC_CREATOR)
                     .a(FOAF_AGENT)
                     .add(FOAF_NAME, name);
-            worker.getWorkerState().getWorkAuthorKey().authorName(name);
+            worker.getWorkerState().getAuthoredWorkKey().authorName(name);
         }
         return value;
     }
 
     private String capitalize(final String str, String delimiters) {
         final int delimLen = delimiters == null ? -1 : delimiters.length();
-        if (Strings.isEmpty(str) || delimLen == 0) {
+        if (str == null || str.isEmpty() || delimLen == 0) {
             return str;
         }
         final char[] buffer = str.toCharArray();

@@ -13,11 +13,12 @@ import java.util.Collection;
  * The order of the keys is maintained as the order of adding keys.
  * A key can be updated or removed.
  *
+ * @param <T> type parameter
  */
 public interface CompositeKey<T> extends Collection<Key<T>> {
 
     /**
-     * Encode cluster key as string or null
+     * Encode cluster key as string or null.
      *
      * @return the encoded cluster key or null
      * @throws EncoderException if encoding fails
@@ -25,7 +26,7 @@ public interface CompositeKey<T> extends Collection<Key<T>> {
     String encodeToString() throws EncoderException;
 
     /**
-     * Encode cluster key as a Uniform Resource Identifier
+     * Encode cluster key as a Uniform Resource Identifier.
      *
      * @param prefix the URI prefix
      * @return the uri
@@ -35,7 +36,7 @@ public interface CompositeKey<T> extends Collection<Key<T>> {
     URI encodeToURI(String prefix) throws URISyntaxException, EncoderException;
 
     /**
-     * Get component for a given domain
+     * Get component for a given domain.
      *
      * @param domain the domain
      * @return the cluster key component
@@ -43,7 +44,7 @@ public interface CompositeKey<T> extends Collection<Key<T>> {
     Key<T> getComponent(Domain domain);
 
     /**
-     * Update component
+     * Update component.
      *
      * @param component component
      */

@@ -6,10 +6,10 @@ import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.catalog.entities.Classifier;
 import org.xbib.catalog.entities.ClassifierEntry;
 import org.xbib.catalog.entities.TermFacet;
-import org.xbib.iri.IRI;
+import org.xbib.content.rdf.Literal;
+import org.xbib.content.rdf.Resource;
+import org.xbib.content.resource.IRI;
 import org.xbib.marc.MarcField;
-import org.xbib.rdf.Literal;
-import org.xbib.rdf.Resource;
 
 import java.io.IOException;
 import java.util.Map;
@@ -46,7 +46,8 @@ public class OnlineAccessScopedLink extends OnlineAccess {
         CatalogEntityWorkerState state = worker.getWorkerState();
         if ("url".equals(property)) {
             // create synthetic local record identifier
-            state.setUID(IRI.builder().curie("uid:" + state.getRecordIdentifier() + "/" + state.getISIL() + "/" + value).build());
+            state.setUID(IRI.builder().curie("uid:" +
+                    state.getRecordIdentifier() + "/" + state.getISIL() + "/" + value).build());
         } else if ("scope".equals(property) && catalogid != null && !catalogid.isEmpty()) {
             String isil = catalogid;
             resource.add("identifier", isil);

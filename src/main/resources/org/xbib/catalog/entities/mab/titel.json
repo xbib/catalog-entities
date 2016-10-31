@@ -1174,7 +1174,7 @@
       }
     },
     "CarrierInformation" : {
-      /* MARC 655 */
+      /* MARC 655 -> MAB 064 */
       "tags" : [ "064" ],
       "subfields" : {
          "a" : "carrierName",
@@ -1187,10 +1187,18 @@
         "3" : null
       }
     },
+    "UpdateAndAccess" : {
+      "subfields" : {
+        "a" : "value"
+      },
+      "tags" : [
+        "080"
+      ]
+    },
     "Identifier": {
         "Identifier": {
-            " ": "identifierGeneric",
-            "a": "identifierGeneric",
+            " ": "identifier",
+            "a": "identifier",
             "z": "identifierZDB"
         },
         "IdentifierBNB": {
@@ -1233,6 +1241,11 @@
           " " : "identifierVD",
           "a" : "identifierVD"
         },
+        "IdentifierOfInstitution" : {
+          " " : "identifierOfCatalogingInstitution",
+          "a" : "identifierOfSupplyingInstitution",
+          "b" : "identifierOfCorrectingInstitution"
+        },
         "indicators": {
             "025": {
                 " ": "Identifier",
@@ -1258,16 +1271,21 @@
                 "z": "IdentifierZDB",
                 "z1": "IdentifierZDB"
             },
+            "070" : {
+              " 1" : "IdentifierOfProcessingInstitution"
+            },
             "077" : {
               "v1" : "IdentiferVD"
             }
         },
         "subfields": {
-            "a": "identifierGeneric",
+            "a": "identifier",
             "z": "identifierZDB"
         },
         "tags": [
-            "025"
+          "025",
+          "070",
+          "077"
         ]
     },
     "IdentifierISBN": {

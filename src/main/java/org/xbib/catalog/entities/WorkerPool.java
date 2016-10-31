@@ -18,12 +18,12 @@ import java.util.logging.Logger;
 
 /**
  * A worker pool for processing request by a number of worker threads.
- * If worker threads exit early, they are removed. If no worker is left,
- * the pool closes.
+ * If worker threads exit early, they are removed and finished, not reused.
+ * If no worker is left, the pool closes.
  *
  * @param <R> the request type
  */
-public abstract class WorkerPool<R> implements Closeable {
+abstract class WorkerPool<R> implements Closeable {
 
     private static final int DEFAULT_WAIT_SECONDS = 30;
 

@@ -2,12 +2,15 @@ package org.xbib.catalog.entities.marc.zdb.bib;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.rdf.Resource;
+import org.xbib.content.rdf.Resource;
 
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ */
 public class Identifier extends CatalogEntity {
 
     private static final Logger logger = Logger.getLogger(Identifier.class.getName());

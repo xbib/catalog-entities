@@ -2,7 +2,7 @@ package org.xbib.catalog.entities.mab;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.rdf.Resource;
+import org.xbib.content.rdf.Resource;
 
 import java.util.Map;
 

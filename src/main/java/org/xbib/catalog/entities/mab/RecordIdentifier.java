@@ -6,8 +6,8 @@ import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.catalog.entities.Classifier;
 import org.xbib.catalog.entities.ClassifierEntry;
 import org.xbib.catalog.entities.TermFacet;
+import org.xbib.content.rdf.Literal;
 import org.xbib.marc.MarcField;
-import org.xbib.rdf.Literal;
 
 import java.io.IOException;
 import java.util.Map;
@@ -39,9 +39,9 @@ public class RecordIdentifier extends CatalogEntity {
         String value = getValue(field);
         CatalogEntityWorkerState state = worker.getWorkerState();
         String v = prefix + value.trim();
-        worker.getWorkerState().setIdentifier(v);
-        worker.getWorkerState().setRecordIdentifier(v);
-        worker.getWorkerState().getResource().newResource("xbib").add("uid", v);
+        state.setIdentifier(v);
+        state.setRecordIdentifier(v);
+        state.getResource().newResource("xbib").add("uid", v);
         // check for classifier
         Classifier classifier = worker.classifier();
         if (classifier != null) {

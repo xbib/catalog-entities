@@ -1,8 +1,8 @@
 package org.xbib.catalog.entities;
 
+import org.xbib.content.rdf.Literal;
+import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
-import org.xbib.rdf.Literal;
-import org.xbib.rdf.Resource;
 
 import java.io.IOException;
 import java.util.Map;

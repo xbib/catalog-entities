@@ -6,6 +6,9 @@ import java.util.Locale;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
+/**
+ *
+ */
 public class Abbrevations {
 
     private static ResourceBundle forBibliographicRules(String ruleName) {

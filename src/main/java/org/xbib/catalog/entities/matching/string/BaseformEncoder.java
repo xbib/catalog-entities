@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.regex.Pattern;
 
 /**
- * A base form encoder
+ * A base form encoder.
  */
 public class BaseformEncoder {
 

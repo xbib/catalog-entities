@@ -1,7 +1,0 @@
-----------------
-
-The JSON parser is a derived veriosn of nanojson
-
-https://github.com/mmastrac/nanojson
-
-by Matt Mastracci (The Apache Software License, Version 2.0)

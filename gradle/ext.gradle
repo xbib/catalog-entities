@@ -1,0 +1,8 @@
+ext {
+    user = 'xbib'
+    projectName = 'catalog-entities'
+    projectDescription = 'Processing catalog entities using RDF with MARC semantics for Java'
+    scmUrl = 'https://github.com/xbib/catalog-entities'
+    scmConnection = 'scm:git:git://github.com/xbib/catalog-entities.git'
+    scmDeveloperConnection = 'scm:git:git://github.com/xbib/catalog-entities.git'
+}

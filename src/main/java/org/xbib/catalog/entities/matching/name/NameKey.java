@@ -10,7 +10,7 @@ import java.text.Normalizer;
 import java.util.TreeSet;
 
 /**
- * Name cluster key component
+ * Name key.
  *
  */
 public class NameKey extends TreeSet<String> implements Key<String> {
@@ -77,4 +77,15 @@ public class NameKey extends TreeSet<String> implements Key<String> {
         String s = value.replaceAll("[^\\p{L}\\p{N}]", "");
         return Normalizer.normalize(s, Normalizer.Form.NFD);
     }
+
+    @Override
+    public boolean equals(Object object) {
+        return this == object || (object instanceof NameKey && hashCode() == object.hashCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
 }

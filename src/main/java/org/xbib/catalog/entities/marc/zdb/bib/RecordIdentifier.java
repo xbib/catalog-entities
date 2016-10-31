@@ -2,11 +2,14 @@ package org.xbib.catalog.entities.marc.zdb.bib;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.rdf.Resource;
+import org.xbib.marc.MarcField;
 
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ *
+ */
 public class RecordIdentifier extends CatalogEntity {
 
     private String prefix = "";
@@ -22,18 +25,11 @@ public class RecordIdentifier extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) throws IOException {
-        if (value == null || value.isEmpty()) {
-            return value;
-        }
-        String v = prefix + value.trim();
-        worker.getWorkerState().setRecordIdentifier(v);
-        try {
-            worker.getWorkerState().getResource().newResource("xbib").add("uid", v);
-        } catch (IOException e) {
-            // ignore
-        }
-        return v;
+    public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
+        String value = prefix + getValue(field);
+        worker.getWorkerState().setIdentifier(value);
+        worker.getWorkerState().setRecordIdentifier(value);
+        worker.getWorkerState().getResource().newResource("xbib").add("uid", value);
+        return super.transform(worker, field);
     }
 }

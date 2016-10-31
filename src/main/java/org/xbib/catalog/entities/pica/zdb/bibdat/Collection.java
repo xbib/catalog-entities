@@ -4,6 +4,9 @@ import org.xbib.catalog.entities.CatalogEntity;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class Collection extends CatalogEntity {
 
     public Collection(Map<String, Object> params) {

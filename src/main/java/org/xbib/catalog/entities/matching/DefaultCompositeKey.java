@@ -8,29 +8,34 @@ import java.util.AbstractCollection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * A segmented key
+ * A composite key.
+ * @param <T> type parameter
  */
 public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
         implements CompositeKey<T> {
 
+    private static final Logger logger = Logger.getLogger(DefaultCompositeKey.class.getName());
+
     private final List<Key<T>> list = new LinkedList<>();
 
     /**
-     * delimiter
+     * A delimiter.
      */
     private char delimiter;
     /**
-     * component delimiter
+     * A component delimiter.
      */
     private char componentDelimiter;
     /**
-     * the key code
+     * The key code.
      */
     private String key;
     /**
-     * usable flag
+     * The usable flag.
      */
     private boolean usable;
 
@@ -66,6 +71,7 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
      * @throws URISyntaxException if URI syntax is invalid
      * @throws EncoderException if encoding fails
      */
+    @Override
     public URI encodeToURI(String prefix) throws URISyntaxException, EncoderException {
         if (key == null) {
             key = encodeKey(new StringBuilder(prefix));
@@ -73,6 +79,7 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
         return URI.create(key);
     }
 
+    @Override
     public String encodeToString() throws EncoderException {
         if (key == null) {
             key = encodeKey(new StringBuilder());
@@ -80,6 +87,7 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
         return key;
     }
 
+    @Override
     public void update(Key<T> component) {
         for (int i = 0; i < size(); i++) {
             Key<T> segment = list.get(i);
@@ -93,6 +101,7 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
         super.remove(component);
     }
 
+    @Override
     public Key<T> getComponent(Domain domain) {
         for (Key<T> segment : this) {
             if (domain.equals(segment.getDomain())) {
@@ -110,10 +119,12 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
         return anyusable;
     }
 
+    @Override
     public void setUsable(boolean usable) {
         this.usable = usable;
     }
 
+    @Override
     public boolean getUsable() {
         return usable;
     }
@@ -127,6 +138,7 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
                 try {
                     k.add(new DefaultKey(Domain.getDomain(domain), value));
                 } catch (InvalidDomainException e) {
+                    logger.log(Level.FINE, e.getMessage(), e);
                     // silently ignore invalid cluster domains
                 }
             }
@@ -139,6 +151,7 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
         try {
             return encodeToString();
         } catch (EncoderException e) {
+            logger.log(Level.FINE, e.getMessage(), e);
             return "EncoderException: " + e.getMessage();
         }
     }

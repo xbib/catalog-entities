@@ -9,10 +9,10 @@ import org.xbib.catalog.entities.Facet;
 import org.xbib.catalog.entities.IdentifierMapper;
 import org.xbib.catalog.entities.StatusCodeMapper;
 import org.xbib.catalog.entities.TermFacet;
-import org.xbib.iri.IRI;
+import org.xbib.content.rdf.Literal;
+import org.xbib.content.rdf.Resource;
+import org.xbib.content.resource.IRI;
 import org.xbib.marc.MarcField;
-import org.xbib.rdf.Literal;
-import org.xbib.rdf.Resource;
 
 import java.io.IOException;
 import java.util.List;
@@ -61,12 +61,13 @@ public class Item extends CatalogEntity {
                     resource.add("identifier", isil);
                     state.setUID(IRI.builder().curie(isil).build());
                     state.setISIL(isil);
-                    state.getFacets().putIfAbsent(identifierFacet, new TermFacet().setName(identifierFacet).setType(Literal.STRING));
+                    state.getFacets().putIfAbsent(identifierFacet,
+                            new TermFacet().setName(identifierFacet).setType(Literal.STRING));
                     Facet<String> holderFacet = state.getFacets().get(identifierFacet);
                     holderFacet.addValue(isil);
                     // add "main ISIL" if not main ISIL (=two hyphens)
-                    int pos = isil.lastIndexOf("-");
-                    if (isil.indexOf("-") < pos) {
+                    int pos = isil.lastIndexOf('-');
+                    if (isil.indexOf('-') < pos) {
                         holderFacet.addValue(isil.substring(0, pos));
                     }
                     Classifier classifier = worker.classifier();

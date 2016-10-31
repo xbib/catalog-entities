@@ -3,8 +3,8 @@ package org.xbib.catalog.entities.marc.zdb.hol;
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.catalog.entities.EnumerationAndChronologyHelper;
+import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
-import org.xbib.rdf.Resource;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -43,14 +43,14 @@ public class TextualHoldings extends CatalogEntity {
 
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
-        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper();
+        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(getMovingwallPatterns());
         for (MarcField.Subfield subfield : field.getSubfields()) {
             worker.getWorkerState().getResource().add("textualholdings", subfield.getValue());
             if ("a".equals(subfield.getId())) {
                 Resource r = worker.getWorkerState().getResource().newResource("holdings");
-                Resource parsedHoldings = eac.parse(subfield.getValue(), r, getMovingwallPatterns());
+                Resource parsedHoldings = eac.parseToResource(subfield.getValue(), r);
                 if (!parsedHoldings.isEmpty()) {
-                    Set<Integer> dates = eac.dates(r.id(), parsedHoldings);
+                    Set<Integer> dates = eac.dates(parsedHoldings, r.id().toString());
                     for (Integer date : dates) {
                         worker.getWorkerState().getResource().add("dates", date);
                     }

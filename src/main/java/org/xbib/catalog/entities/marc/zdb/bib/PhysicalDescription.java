@@ -2,10 +2,13 @@ package org.xbib.catalog.entities.marc.zdb.bib;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.rdf.Resource;
+import org.xbib.content.rdf.Resource;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class PhysicalDescription extends CatalogEntity {
 
     public PhysicalDescription(Map<String, Object> params) {

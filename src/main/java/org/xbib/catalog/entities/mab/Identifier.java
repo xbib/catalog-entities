@@ -2,10 +2,13 @@ package org.xbib.catalog.entities.mab;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.rdf.Resource;
+import org.xbib.content.rdf.Resource;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class Identifier extends CatalogEntity {
 
     public Identifier(Map<String, Object> params) {
@@ -14,7 +17,8 @@ public class Identifier extends CatalogEntity {
 
     @Override
     public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
+                            String predicate, Resource resource, String property, String string) {
+        String value = string;
         if ("IdentifierZDB".equals(predicate)) {
             if ("identifierZDB".equals(property)) {
                 if (value.startsWith("(DE-599)")) {

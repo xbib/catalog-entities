@@ -2,10 +2,10 @@ package org.xbib.catalog.entities.marc.nlz;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.iri.IRI;
+import org.xbib.content.rdf.Literal;
+import org.xbib.content.rdf.internal.DefaultLiteral;
+import org.xbib.content.resource.IRI;
 import org.xbib.marc.MarcField;
-import org.xbib.rdf.Literal;
-import org.xbib.rdf.memory.MemoryLiteral;
 
 import java.io.IOException;
 import java.util.Map;
@@ -26,7 +26,7 @@ public class GeneralInformation extends CatalogEntity {
     }
 
     /**
-     * Example "991118d19612006xx z||p|r ||| 0||||0ger c"
+     * Example "991118d19612006xx z||p|r ||| 0||||0ger c".
      */
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
@@ -36,7 +36,7 @@ public class GeneralInformation extends CatalogEntity {
         }
         String date1 = value.length() > 11 ? value.substring(7, 11) : "0000";
         Integer date = check(date1);
-        worker.getWorkerState().getResource().add(DC_DATE, new MemoryLiteral(date).type(Literal.GYEAR));
+        worker.getWorkerState().getResource().add(DC_DATE, new DefaultLiteral(date).type(Literal.GYEAR));
         return super.transform(worker, field);
     }
 
@@ -49,6 +49,7 @@ public class GeneralInformation extends CatalogEntity {
             }
             return d;
         } catch (Exception e) {
+            logger.log(Level.FINEST, e.getMessage(), e);
             return null;
         }
     }

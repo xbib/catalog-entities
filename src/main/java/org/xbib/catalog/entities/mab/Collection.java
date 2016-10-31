@@ -3,7 +3,7 @@ package org.xbib.catalog.entities.mab;
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.Facet;
 import org.xbib.catalog.entities.TermFacet;
-import org.xbib.rdf.Literal;
+import org.xbib.content.rdf.Literal;
 
 import java.util.Map;
 
@@ -23,6 +23,7 @@ public class Collection extends CatalogEntity {
         }
     }
 
+    @Override
     public Facet<String> getDefaultFacet() {
         return prefix != null ? new TermFacet().setName(FACET).setType(Literal.STRING).addValue(prefix) : null;
     }

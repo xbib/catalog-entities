@@ -4,7 +4,15 @@ import org.xbib.catalog.entities.matching.string.BaseformEncoder;
 import org.xbib.catalog.entities.matching.string.EncoderException;
 import org.xbib.catalog.entities.matching.string.WordBoundaryEntropyEncoder;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ */
 public class PublishedJournal implements Identifiable {
+
+    private static final Logger logger = Logger.getLogger(PublishedJournal.class.getName());
 
     private String journalName;
 
@@ -23,12 +31,13 @@ public class PublishedJournal implements Identifiable {
         return this;
     }
 
+    @Override
     public String createIdentifier() {
         if (journalName == null) {
             return null;
         }
         // remove punctuation
-        journalName = journalName.replaceAll("\\p{P}","");
+        journalName = journalName.replaceAll("\\p{P}", "");
         // remove "... series"
         journalName = journalName.replaceAll(" [sS]eries$", "");
         WordBoundaryEntropyEncoder encoder = new WordBoundaryEntropyEncoder();
@@ -42,10 +51,10 @@ public class PublishedJournal implements Identifiable {
             try {
                 shortJournalName = encoder.encode(shortJournalName);
             } catch (EncoderException e) {
-                // ignore
+                logger.log(Level.FINEST, e.getMessage(), e);
             }
         }
-        shortJournalName = shortJournalName.replaceAll("\\s","");
+        shortJournalName = shortJournalName.replaceAll("\\s", "");
         sb.append(shortJournalName);
         if (publisherName != null) {
             publisherName = publisherName.replaceAll("\\p{P}", "");
@@ -57,7 +66,7 @@ public class PublishedJournal implements Identifiable {
                 try {
                     shortPublisherName = encoder.encode(shortPublisherName);
                 } catch (EncoderException e) {
-                    // ignore
+                    logger.log(Level.FINEST, e.getMessage(), e);
                 }
             }
             shortPublisherName = shortPublisherName.replaceAll("\\s", "");

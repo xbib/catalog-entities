@@ -5,7 +5,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
-import org.xbib.iri.IRI;
+import org.xbib.content.resource.IRI;
 import org.xbib.marc.Marc;
 
 import java.io.IOException;
@@ -19,8 +19,6 @@ import java.util.logging.Logger;
 public class UnimarcTest extends Assert {
 
     private static final Logger logger = Logger.getLogger(UnimarcTest.class.getName());
-
-    private final AtomicInteger counter = new AtomicInteger();
 
     @Test
     public void testUnimarcSetup() throws Exception {

@@ -4,6 +4,9 @@ import java.text.NumberFormat;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *
+ */
 public class RunLengthEncoder {
 
     private final List<Number> members = new LinkedList<>();
@@ -19,7 +22,7 @@ public class RunLengthEncoder {
         StringBuilder sb = new StringBuilder();
         for (Object o : members) {
             if (o instanceof Number) {
-                Number number = (Number)o;
+                Number number = (Number) o;
                 String s = format.format(number);
                 if (s.length() <= 9) {
                     sb.append(Integer.toString(s.length())).append(s);

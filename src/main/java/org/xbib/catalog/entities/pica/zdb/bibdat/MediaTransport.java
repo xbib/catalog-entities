@@ -4,6 +4,9 @@ import org.xbib.catalog.entities.CatalogEntity;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class MediaTransport extends CatalogEntity {
 
     public MediaTransport(Map<String, Object> params) {

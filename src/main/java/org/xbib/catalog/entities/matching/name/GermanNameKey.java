@@ -9,7 +9,7 @@ import java.text.Normalizer;
 import java.util.TreeSet;
 
 /**
- * German name
+ * German name.
  *
  */
 public class GermanNameKey extends TreeSet<String> implements Key<String> {
@@ -17,18 +17,22 @@ public class GermanNameKey extends TreeSet<String> implements Key<String> {
     private static final long serialVersionUID = 740094768192592666L;
     private char delimiter = '/';
 
+    @Override
     public Domain getDomain() {
         return Domain.CREATOR;
     }
 
+    @Override
     public void setDelimiter(char delimiter) {
         this.delimiter = delimiter;
     }
 
+    @Override
     public char getDelimiter() {
         return delimiter;
     }
 
+    @Override
     public boolean isUsable() {
         return !isEmpty();
     }
@@ -55,6 +59,7 @@ public class GermanNameKey extends TreeSet<String> implements Key<String> {
         return true;
     }
 
+    @Override
     public String encode() throws EncoderException {
         HaasePhonetikEncoder enc = new HaasePhonetikEncoder();
         StringBuilder sb = new StringBuilder();
@@ -74,5 +79,15 @@ public class GermanNameKey extends TreeSet<String> implements Key<String> {
     protected String normalize(String value) {
         String s = value.replaceAll("[^\\p{L}\\p{N}]", "");
         return Normalizer.normalize(s, Normalizer.Form.NFD);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return this == object || (object instanceof GermanNameKey && hashCode() == object.hashCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

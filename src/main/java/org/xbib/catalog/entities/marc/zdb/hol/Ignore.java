@@ -6,6 +6,9 @@ import org.xbib.marc.MarcField;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class Ignore extends CatalogEntity {
 
     public Ignore(Map<String, Object> params) {

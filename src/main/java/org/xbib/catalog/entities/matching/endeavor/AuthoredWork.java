@@ -8,16 +8,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
- * A work created by an author
+ * A work created by an author.
  */
-public class WorkAuthor implements Identifiable {
+public class AuthoredWork implements Identifiable {
+
+    private static final Logger logger = Logger.getLogger(AuthoredWork.class.getName());
+
+    private static final Pattern p1 = Pattern.compile(".*Cover and Back matter.*", Pattern.CASE_INSENSITIVE);
 
     private StringBuilder workName;
 
@@ -28,31 +34,30 @@ public class WorkAuthor implements Identifiable {
     private final WordBoundaryEntropyEncoder encoder = new WordBoundaryEntropyEncoder();
 
     /* These work titles can not be work titles and are blacklisted */
-    private final static Set<String> blacklist = readResource("work-blacklist.txt");
+    private static final Set<String> blacklist = readResource("work-blacklist.txt");
 
-    public WorkAuthor() {
+    public AuthoredWork() {
     }
 
-    public WorkAuthor workName(CharSequence workName) {
+    public AuthoredWork workName(CharSequence workName) {
         if (workName != null) {
             this.workName = new StringBuilder(workName);
         }
         return this;
     }
 
-
-    public WorkAuthor authorName(Collection<String> authorNames) {
+    public AuthoredWork authorName(Collection<String> authorNames) {
         authorNames.forEach(this::authorName);
         return this;
     }
 
     /**
-     * "Forename Givenname" or "Givenname, Forname"
+     * "Forename Givenname" or "Givenname, Forname".
      *
      * @param authorName author name
      * @return this
      */
-    public WorkAuthor authorName(String authorName) {
+    public AuthoredWork authorName(String authorName) {
         if (authorName == null) {
             return this;
         }
@@ -66,7 +71,7 @@ public class WorkAuthor implements Identifiable {
         String[] s = authorName.split("\\s+");
         if (s.length > 0) {
             // check if there is a comma, then it's "Givenname, Forname"
-            if (s[0].indexOf(',') > 0) {
+            if (s[0].indexOf(',') >= 0) {
                 String lastname = s[0];
                 this.authorName.append(lastname);
                 if (s.length > 1) {
@@ -94,7 +99,7 @@ public class WorkAuthor implements Identifiable {
         return this;
     }
 
-    public WorkAuthor authorNameWithForeNames(String lastName, String foreName) {
+    public AuthoredWork authorNameWithForeNames(String lastName, String foreName) {
         if (foreName == null) {
             return authorName(lastName);
         }
@@ -121,32 +126,35 @@ public class WorkAuthor implements Identifiable {
     }
 
     /**
-     * "Smith J"
+     * "Smith J".
+     *
      * @param lastName last name
      * @param initials initials
      * @return work author key
      */
-    public WorkAuthor authorNameWithInitials(String lastName, String initials) {
-        if (initials != null) {
-            initials = initials.replaceAll("\\s+", "");
+    public AuthoredWork authorNameWithInitials(String lastName, String initials) {
+        String s = initials;
+        if (s != null) {
+            s = s.replaceAll("\\s+", "");
         }
+        boolean b = s != null && s.length() > 0;
         if (lastName != null) {
             if (this.authorName == null) {
                 this.authorName = new StringBuilder(lastName);
-                if (initials != null && initials.length() > 0) {
-                    this.authorName.append(' ').append(initials);
+                if (b) {
+                    this.authorName.append(' ').append(s);
                 }
             } else {
                 this.authorName.append(lastName);
-                if (initials != null && initials.length() > 0) {
-                    this.authorName.append(' ').append(initials);
+                if (b) {
+                    this.authorName.append(' ').append(s);
                 }
             }
         }
         return this;
     }
 
-    public WorkAuthor chronology(String chronology) {
+    public AuthoredWork chronology(String chronology) {
         if (chronology != null) {
             if (this.chronology == null) {
                 this.chronology = new StringBuilder();
@@ -156,6 +164,7 @@ public class WorkAuthor implements Identifiable {
         return this;
     }
 
+    @Override
     public String createIdentifier() {
         if (workName == null || workName.length() == 0) {
             return null;
@@ -164,11 +173,11 @@ public class WorkAuthor implements Identifiable {
             return null;
         }
         String wName = BaseformEncoder.normalizedFromUTF8(workName.toString())
-                .replaceAll("aeiou", ""); // TODO Unicode vocal category?
+                .replaceAll("aeiou", "");
         try {
             wName = encoder.encode(wName);
         } catch (EncoderException e) {
-            // ignore
+            logger.log(Level.FINE, e.getMessage(), e);
         }
         if (isBlacklisted(workName)) {
             return null;
@@ -177,11 +186,11 @@ public class WorkAuthor implements Identifiable {
         sb.append("w").append(wName);
         if (authorName != null) {
             String aName = BaseformEncoder.normalizedFromUTF8(authorName.toString())
-                    .replaceAll("aeiou", ""); // TODO Unicode vocal category?
+                    .replaceAll("aeiou", "");
             try {
                 aName = encoder.encode(aName);
             } catch (EncoderException e) {
-                //ignore
+                logger.log(Level.FINE, e.getMessage(), e);
             }
             sb.append(".a").append(aName);
         }
@@ -205,8 +214,6 @@ public class WorkAuthor implements Identifiable {
         return true;
     }
 
-    private final static Pattern p1 = Pattern.compile(".*Cover and Back matter.*", Pattern.CASE_INSENSITIVE);
-
     public Set<String> blacklist() {
         return blacklist;
     }
@@ -216,13 +223,14 @@ public class WorkAuthor implements Identifiable {
     }
 
     private static Set<String> readResource(String resource) {
-        URL url = WorkAuthor.class.getResource(resource);
-        Set<String> set = new HashSet<>();
+        URL url = AuthoredWork.class.getResource(resource);
+        Set<String> set = new LinkedHashSet<>();
         if (url != null) {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), Charset.forName("UTF-8")))) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(),
+                    StandardCharsets.UTF_8))) {
                 reader.lines().filter(line -> !line.startsWith("#")).forEach(set::add);
             } catch (IOException e) {
-                // do nothing
+                logger.log(Level.FINE, e.getMessage(), e);
             }
         }
         return set;

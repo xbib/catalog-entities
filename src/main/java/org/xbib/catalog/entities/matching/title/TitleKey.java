@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- * Title key
+ * Title key.
  *
  */
 public class TitleKey extends AbstractCollection<String>
@@ -20,7 +20,7 @@ public class TitleKey extends AbstractCollection<String>
     private final LinkedList<String> list = new LinkedList<>();
 
     /**
-     * We use an entropy-based encoder for titles in cluster keys
+     * We use an entropy-based encoder for titles in cluster keys.
      */
     private final SimpleEntropyEncoder enc = new SimpleEntropyEncoder();
 
@@ -31,18 +31,22 @@ public class TitleKey extends AbstractCollection<String>
      *
      * @return the name
      */
+    @Override
     public Domain getDomain() {
         return Domain.TITLE;
     }
 
+    @Override
     public void setDelimiter(char delimiter) {
         this.delimiter = delimiter;
     }
 
+    @Override
     public char getDelimiter() {
         return delimiter;
     }
 
+    @Override
     public boolean isUsable() {
         return !isEmpty();
     }
@@ -79,10 +83,11 @@ public class TitleKey extends AbstractCollection<String>
     }
 
     /**
-     * Encode the titles
+     * Encode the titles.
      *
      * @return the encoded title form
      */
+    @Override
     public String encode() throws EncoderException {
         StringBuilder sb = new StringBuilder();
         for (String s : this) {

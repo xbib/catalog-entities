@@ -1,13 +1,13 @@
 package org.xbib.catalog.entities;
 
-import org.xbib.iri.IRI;
+import org.xbib.content.rdf.RdfContentBuilderProvider;
+import org.xbib.content.rdf.Resource;
+import org.xbib.content.resource.IRI;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcField;
 import org.xbib.marc.MarcListener;
 import org.xbib.marc.MarcRecord;
 import org.xbib.marc.MarcRecordListener;
-import org.xbib.rdf.RdfContentBuilderProvider;
-import org.xbib.rdf.Resource;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -35,11 +35,11 @@ public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
     private static final Logger logger = Logger.getLogger(CatalogEntityBuilder.class.getName());
 
     private static final MarcRecord poison = MarcRecord.EMPTY;
-    protected final Map<String, Integer> mapped = Collections.synchronizedMap(new TreeMap<>());
+    private final Map<String, Integer> mapped = Collections.synchronizedMap(new TreeMap<>());
+    private final AtomicLong checksum = new AtomicLong();
     protected final Set<String> unmapped = Collections.synchronizedSet(new TreeSet<>());
     protected final Set<String> invalid = Collections.synchronizedSet(new TreeSet<>());
     protected final AtomicInteger counter = new AtomicInteger();
-    protected final AtomicLong checksum = new AtomicLong();
     private final boolean isMapped;
     private CatalogEntitySpecification entitySpecification;
     private Marc.Builder marcBuilder;
@@ -75,11 +75,11 @@ public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
                 packageName, workers, isMapped));
         if (isMapped) {
             this.entitySpecification = new CatalogEntitySpecification(url, new HashMap<>(), params, packageName);
-            for (String key : entitySpecification.keySet()) {
+            for (String key : entitySpecification.getMap().keySet()) {
                 mapped.put(key, 0);
             }
             logger.log(Level.INFO, MessageFormat.format("specification: map of {0} field keys with {1} entities",
-                    entitySpecification.size(), entitySpecification.getEntities().size()));
+                    entitySpecification.getMap().size(), entitySpecification.getEntities().size()));
             this.identifierMapper = setupIdentifierMapper(params);
             logger.log(Level.INFO, MessageFormat.format("identifier mapper: {0} entries",
                     identifierMapper.getMap().size()));
@@ -105,7 +105,7 @@ public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
         return poison;
     }
 
-    public Map<IRI, RdfContentBuilderProvider> contentBuilderProviders() {
+    public Map<IRI, RdfContentBuilderProvider<?>> contentBuilderProviders() {
         return new HashMap<>();
     }
 

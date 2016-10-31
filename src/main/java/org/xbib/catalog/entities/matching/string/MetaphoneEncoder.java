@@ -1,5 +1,8 @@
 package org.xbib.catalog.entities.matching.string;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * A class to generate phonetic code. The initial Java implementation, William
  * B. Brogden. December, 1997 Permission given by wbrogden for code to be used
@@ -10,8 +13,10 @@ package org.xbib.catalog.entities.matching.string;
  */
 public class MetaphoneEncoder implements StringEncoder {
 
+    private static final Logger logger = Logger.getLogger(MetaphoneEncoder.class.getName());
+
     /**
-     * The max code length for metaphone is 4
+     * The max code length for metaphone is 4.
      */
     private int maxCodeLen = 4;
 
@@ -27,7 +32,7 @@ public class MetaphoneEncoder implements StringEncoder {
      */
     public String encode(String txt) throws EncoderException {
         int mtsz = 0;
-        boolean hard = false;
+        boolean hard;
         if ((txt == null) || (txt.length() == 0)) {
             return "";
         }
@@ -37,8 +42,8 @@ public class MetaphoneEncoder implements StringEncoder {
         }
         char[] inwd = txt.toUpperCase().toCharArray();
         String tmpS;
-        StringBuffer local = new StringBuffer(40); // manipulate
-        StringBuffer code = new StringBuffer(10); //   output
+        StringBuilder local = new StringBuilder(40); // manipulate
+        StringBuilder code = new StringBuilder(10); //   output
         // handle initial 2 characters exceptions
         switch (inwd[0]) {
             case 'K':
@@ -99,19 +104,9 @@ public class MetaphoneEncoder implements StringEncoder {
                         }
                         break; // only use vowel if leading char
                     }
-                    case 'B': {
-                        code.append(symb);
-                        mtsz++;
-                        break;
-                    }
                     case 'C': {
-                        // lots of C special cases
-
-            /* discard if SCI, SCE or SCY */
-                        /*
-      Variable used in Metaphone algorithm
-     */
-                        if ((n > 0) && (local.charAt(n - 1) == 'S') && (n + 1 < wdsz) && (frontv.indexOf(local.charAt(n + 1)) >= 0)) {
+                        if ((n > 0) && (local.charAt(n - 1) == 'S') && (n + 1 < wdsz) &&
+                                (frontv.indexOf(local.charAt(n + 1)) >= 0)) {
                             break;
                         }
                         tmpS = local.toString();
@@ -130,9 +125,6 @@ public class MetaphoneEncoder implements StringEncoder {
                             mtsz++;
                             break;
                         }
-                        /*
-      Five values in the English language
-     */
                         if (tmpS.indexOf("CH", n) == n) { // detect CH
                             if ((n == 0) && (wdsz >= 3) // CH consonant -> K consonant
                                     && (vowels.indexOf(local.charAt(2)) < 0)) {
@@ -183,19 +175,17 @@ public class MetaphoneEncoder implements StringEncoder {
                         if (n + 1 == wdsz) {
                             break; // terminal H
                         }
-                        /*
-      Variable used in Metaphone algorithm
-     */
                         String varson = "CSPTG";
                         if ((n > 0) && (varson.indexOf(local.charAt(n - 1)) >= 0)) {
                             break;
                         }
                         if (vowels.indexOf(local.charAt(n + 1)) >= 0) {
                             code.append('H');
-                            mtsz++;// Hvowel
+                            mtsz++; // Hvowel
                         }
                         break;
                     }
+                    case 'B':
                     case 'F':
                     case 'J':
                     case 'L':
@@ -310,6 +300,7 @@ public class MetaphoneEncoder implements StringEncoder {
         try {
             return encode(str1).equals(encode(str2));
         } catch (EncoderException e) {
+            logger.log(Level.FINE, e.getMessage(), e);
             return false;
         }
     }

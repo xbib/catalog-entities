@@ -4,6 +4,9 @@ import org.xbib.catalog.entities.CatalogEntity;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class LibraryServiceDescription extends CatalogEntity {
 
     public LibraryServiceDescription(Map<String, Object> params) {

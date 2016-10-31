@@ -1,14 +1,14 @@
 package org.xbib.catalog.entities.marc;
 
-import static org.xbib.rdf.content.RdfXContentFactory.rdfXContentBuilder;
+import static org.xbib.content.rdf.RdfXContentFactory.rdfXContentBuilder;
 
 import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
-import org.xbib.iri.IRI;
+import org.xbib.content.rdf.RdfContentBuilder;
+import org.xbib.content.rdf.RdfXContentParams;
+import org.xbib.content.resource.IRI;
 import org.xbib.marc.Marc;
-import org.xbib.rdf.RdfContentBuilder;
-import org.xbib.rdf.content.RdfXContentParams;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,7 +42,7 @@ public class HolTest {
         }
 
         @Override
-        public void beforeFinishState(CatalogEntityWorkerState state) {
+        public void afterFinishState(CatalogEntityWorkerState state) {
             try {
                 IRI iri = IRI.builder().scheme("http")
                         .host("zdb")
@@ -50,7 +50,7 @@ public class HolTest {
                         .fragment(Long.toString(counter.getAndIncrement())).build();
                 state.getResource().setId(iri);
                 RdfXContentParams params = new RdfXContentParams();
-                RdfContentBuilder builder = rdfXContentBuilder(params);
+                RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
                 builder.receive(state.getResource());
                 String result = params.getGenerator().get();
                 //logger.info("rdf="+result);

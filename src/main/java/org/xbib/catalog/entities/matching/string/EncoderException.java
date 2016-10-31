@@ -1,7 +1,7 @@
 package org.xbib.catalog.entities.matching.string;
 
 /**
- * String encoding exception
+ * String encoding exception.
  */
 public class EncoderException extends Exception {
 

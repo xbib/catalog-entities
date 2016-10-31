@@ -1,9 +1,9 @@
 package org.xbib.catalog.entities;
 
-import org.xbib.iri.IRI;
+import org.xbib.content.rdf.Resource;
+import org.xbib.content.resource.IRI;
 import org.xbib.marc.MarcField;
 import org.xbib.marc.MarcRecord;
-import org.xbib.rdf.Resource;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -132,6 +132,9 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
             } else {
                 entityBuilder.unmapped(getWorkerState().getRecordIdentifier(), marcField,
                         "field " + marcField + " tag definition missing in specification");
+            }
+            if (logger.isLoggable(Level.FINE)) {
+                logger.log(Level.FINE, "field=" + marcField + " entity=" + entity);
             }
         }
         if (entityBuilder.isEnableChecksum()) {
@@ -279,7 +282,7 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
                                                 entity.getParams().get(fieldName),
                                                 entity.getParams().get(fieldName).getClass(),
                                                 entity.getParams(),
-                                                fieldName));
+                                                fieldName), e);
                             }
                         }
                     }

@@ -15,9 +15,9 @@ package org.xbib.catalog.entities.matching.string;
  */
 public class HaasePhonetikEncoder extends KoelnerPhonetikEncoder {
 
-    private final static String[] HAASE_VARIATIONS_PATTERNS = {"OWN", "RB", "WSK", "A$", "O$", "SCH",
+    private static final String[] HAASE_VARIATIONS_PATTERNS = {"OWN", "RB", "WSK", "A$", "O$", "SCH",
             "GLI", "EAU$", "^CH", "AUX", "EUX", "ILLE"};
-    private final static String[] HAASE_VARIATIONS_REPLACEMENTS = {"AUN", "RW", "RSK", "AR", "OW", "CH",
+    private static final String[] HAASE_VARIATIONS_REPLACEMENTS = {"AUN", "RW", "RSK", "AR", "OW", "CH",
             "LI", "O", "SCH", "O", "O", "I"};
 
     /**

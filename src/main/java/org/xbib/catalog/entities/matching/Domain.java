@@ -3,6 +3,9 @@ package org.xbib.catalog.entities.matching;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ */
 public enum Domain {
 
     MATERIAL("M"),

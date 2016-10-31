@@ -10,6 +10,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ */
 public class GeneralInformation extends CatalogEntity {
 
     private static final Logger logger = Logger.getLogger(GeneralInformation.class.getName());
@@ -23,7 +26,7 @@ public class GeneralInformation extends CatalogEntity {
     }
 
     /**
-     * Example "991118d19612006xx z||p|r ||| 0||||0ger c"
+     * Example "991118d19612006xx z||p|r ||| 0||||0ger c".
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -59,22 +62,6 @@ public class GeneralInformation extends CatalogEntity {
                     }
                 }
             }
-                /*Map<String,Object> map = (Map<String,Object>)params.get(worker.context().getResourceType());
-                if (map != null) {
-                    Map<String, Object> q = (Map<String, Object>) map.get(Integer.toString(i));
-                    if (q != null) {
-                        String predicate = (String) q.get("_predicate");
-                        if (predicate == null) {
-                            logger.warn("no predicate set, code {}, field {}", ch, field);
-                        } else {
-                            String code = (String) q.get(ch);
-                            if (code == null) {
-                                logger.warn("unmapped code {} in field {} predicate {}", ch, field, predicate);
-                            }
-                            worker.context().getResource().add(predicate, code);
-                        }
-                    }
-                }*/
         }
         return super.transform(worker, field);
     }
@@ -88,6 +75,7 @@ public class GeneralInformation extends CatalogEntity {
             }
             return d;
         } catch (Exception e) {
+            logger.log(Level.FINEST, e.getMessage(), e);
             return null;
         }
     }

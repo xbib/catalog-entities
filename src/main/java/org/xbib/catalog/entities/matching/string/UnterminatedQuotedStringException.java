@@ -1,7 +1,7 @@
 package org.xbib.catalog.entities.matching.string;
 
 /**
- * String tokenizer exception
+ * String tokenizer exception.
  *
  */
 public class UnterminatedQuotedStringException extends RuntimeException {

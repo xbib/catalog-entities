@@ -15,7 +15,7 @@ public class CatalogEntitySpecificationTest extends Assert {
                 .associate("100$02$def", entity)
                 .associate("200$02$abc", entity);
         // test if second "100" is ignored
-        assertEquals("{100=<null>, 200=<null>}", specification.toString());
+        assertEquals("{100=<null>, 200=<null>}", specification.getMap().toString());
         CatalogEntity e = specification.retrieve("100$01$abc");
         assertEquals("<null>", e.toString());
         // ignored?

@@ -1,6 +1,7 @@
 package org.xbib.catalog.entities.matching.string;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * A simple entropy encoder
@@ -24,14 +25,16 @@ public class SimpleEntropyEncoder implements StringEncoder {
      * @return encoded string
      * @throws EncoderException if encoding fails
      */
+    @Override
     public String encode(String s) throws EncoderException {
         LinkedHashMap<Character, Integer> freq = new LinkedHashMap<>();
         for (char ch : s.toLowerCase().toCharArray()) {
             freq.put(ch, freq.containsKey(ch) ? freq.get(ch) + 1 : 0);
         }
         StringBuilder sb = new StringBuilder();
-        for (char ch : freq.keySet()) {
-            if (!Character.isWhitespace(ch) && freq.get(ch) < 2) {
+        for (Map.Entry<Character, Integer> entry: freq.entrySet()) {
+            char ch = entry.getKey();
+            if (!Character.isWhitespace(ch) && entry.getValue() < 2) {
                 sb.append(ch);
             }
         }

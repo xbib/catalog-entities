@@ -2,9 +2,9 @@ package org.xbib.catalog.entities.marc.nlz;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.catalog.entities.matching.endeavor.WorkAuthor;
-import org.xbib.iri.IRI;
-import org.xbib.rdf.Resource;
+import org.xbib.catalog.entities.matching.endeavor.AuthoredWork;
+import org.xbib.content.rdf.Resource;
+import org.xbib.content.resource.IRI;
 
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -12,6 +12,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ */
 public class Title extends CatalogEntity {
 
     private static final Logger logger = Logger.getLogger(Title.class.getName());
@@ -59,9 +62,9 @@ public class Title extends CatalogEntity {
             String cleanTitle = value.replaceAll("\\p{C}", "")
                     .replaceAll("\\p{Space}", "")
                     .replaceAll("\\p{Punct}", "");
-            WorkAuthor workAuthorKey = worker.getWorkerState().getWorkAuthorKey();
-            if (!workAuthorKey.isBlacklisted(value)) {
-                workAuthorKey.workName(cleanTitle);
+            AuthoredWork authoredWorkKey = worker.getWorkerState().getAuthoredWorkKey();
+            if (!authoredWorkKey.isBlacklisted(value)) {
+                authoredWorkKey.workName(cleanTitle);
                 r.a(type);
                 r.add(DC_TITLE, s);
             } else {

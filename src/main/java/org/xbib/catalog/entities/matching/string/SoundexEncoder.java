@@ -56,11 +56,12 @@ public class SoundexEncoder implements StringEncoder {
     }
 
     /**
-     * Retrieves the Soundex code for a given string
+     * Retrieves the Soundex code for a given string.
      *
      * @param str String to encode using the Soundex algorithm
      * @return A soundex code for the String supplied
      */
+    @Override
     public String encode(String str) throws EncoderException {
         if (null == str || str.length() == 0) {
             return str;

@@ -62,11 +62,18 @@ public class IdentifierMapper {
         return map.containsKey(value) ? map.get(value) : value;
     }
 
+    /**
+     *
+     */
+    @FunctionalInterface
     interface LineProcessor {
 
         void process(String line) throws IOException;
     }
 
+    /**
+     *
+     */
     private static class TextProcessor {
 
         void execute(InputStream in, Charset charset, LineProcessor lp) throws IOException {

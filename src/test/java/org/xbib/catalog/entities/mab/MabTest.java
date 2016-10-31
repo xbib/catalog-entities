@@ -3,10 +3,10 @@ package org.xbib.catalog.entities.mab;
 import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
-import org.xbib.iri.IRI;
+import org.xbib.content.resource.IRI;
 import org.xbib.marc.Marc;
-import org.xbib.rdf.RdfContentBuilder;
-import org.xbib.rdf.content.RdfXContentParams;
+import org.xbib.content.rdf.RdfContentBuilder;
+import org.xbib.content.rdf.RdfXContentParams;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
-import static org.xbib.rdf.content.RdfXContentFactory.rdfXContentBuilder;
+import static org.xbib.content.rdf.RdfXContentFactory.rdfXContentBuilder;
 
 public class MabTest {
 
@@ -25,8 +25,8 @@ public class MabTest {
     @Test
     public void testSetupOfMABElements() throws Exception {
         try (MyBuilder builder = new MyBuilder(getClass().getResource("titel.json"))) {
-            assertEquals(512, builder.getEntitySpecification().size());
-            assertEquals(85, builder.getEntitySpecification().getEntities().size());
+            assertEquals(515, builder.getEntitySpecification().getMap().size());
+            assertEquals(86, builder.getEntitySpecification().getEntities().size());
         }
     }
 
@@ -69,7 +69,7 @@ public class MabTest {
             try {
                 state.getResource().setId(iri);
                 RdfXContentParams params = new RdfXContentParams();
-                RdfContentBuilder builder = rdfXContentBuilder(params);
+                RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
                 builder.receive(state.getResource());
                 String result = params.getGenerator().get();
                 //logger.info("rdf="+result);

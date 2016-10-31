@@ -7,10 +7,10 @@ import org.xbib.catalog.entities.Classifier;
 import org.xbib.catalog.entities.ClassifierEntry;
 import org.xbib.catalog.entities.IdentifierMapper;
 import org.xbib.catalog.entities.TermFacet;
-import org.xbib.iri.IRI;
+import org.xbib.content.rdf.Literal;
+import org.xbib.content.rdf.Resource;
+import org.xbib.content.resource.IRI;
 import org.xbib.marc.MarcField;
-import org.xbib.rdf.Literal;
-import org.xbib.rdf.Resource;
 
 import java.io.IOException;
 import java.util.Map;
@@ -51,7 +51,8 @@ public class OnlineAccess extends CatalogEntity {
                 IRI uid = state.getUID();
                 if (uid != null) {
                     // update UID to correct value
-                    state.setUID(IRI.builder().curie("uid:" + state.getRecordIdentifier() + "/" + state.getISIL() + "/" + uid.getSchemeSpecificPart()).build());
+                    state.setUID(IRI.builder().curie("uid:" + state.getRecordIdentifier() +
+                            "/" + state.getISIL() + "/" + uid.getSchemeSpecificPart()).build());
                 }
             }
             resource.add("identifier", isil);

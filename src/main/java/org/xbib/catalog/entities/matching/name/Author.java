@@ -1,15 +1,20 @@
-package org.xbib.catalog.entities.matching.endeavor;
+package org.xbib.catalog.entities.matching.name;
 
+import org.xbib.catalog.entities.matching.endeavor.Identifiable;
 import org.xbib.catalog.entities.matching.string.BaseformEncoder;
 import org.xbib.catalog.entities.matching.string.EncoderException;
 import org.xbib.catalog.entities.matching.string.WordBoundaryEntropyEncoder;
 
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * An identifiable endeavor for an author
+ * An identifiable endeavor for an author.
  */
 public class Author implements Identifiable {
+
+    private static final Logger logger = Logger.getLogger(Author.class.getName());
 
     private StringBuilder authorName;
 
@@ -24,7 +29,7 @@ public class Author implements Identifiable {
     }
 
     /**
-     * "Forename Givenname" or "Givenname, Forname"
+     * "Forename Givenname" or "Givenname, Forname".
      *
      * @param authorName author name
      * @return this
@@ -39,7 +44,7 @@ public class Author implements Identifiable {
         String[] s = authorName.split("\\s+");
         if (s.length > 0) {
             // check if there is a comma, then it's "Givenname, Forname"
-            if (s[0].indexOf(',') > 0) {
+            if (s[0].indexOf(',') >= 0) {
                 String lastname = s[0];
                 this.authorName.append(lastname);
                 if (s.length > 1) {
@@ -94,40 +99,42 @@ public class Author implements Identifiable {
     }
 
     /**
-     * "Smith J"
+     * "Smith J".
      * @param lastName last name
      * @param initials initials
      * @return work author key
      */
     public Author authorNameWithInitials(String lastName, String initials) {
-        if (initials != null) {
-            initials = initials.replaceAll("\\s+", "");
+        String s = initials;
+        if (s != null) {
+            s = s.replaceAll("\\s+", "");
         }
         if (lastName != null) {
             if (this.authorName == null) {
                 this.authorName = new StringBuilder(lastName);
-                if (initials != null && initials.length() > 0) {
-                    this.authorName.append(' ').append(initials);
+                if (s != null && s.length() > 0) {
+                    this.authorName.append(' ').append(s);
                 }
             } else {
                 this.authorName.append(lastName);
-                if (initials != null && initials.length() > 0) {
-                    this.authorName.append(' ').append(initials);
+                if (s != null && s.length() > 0) {
+                    this.authorName.append(' ').append(s);
                 }
             }
         }
         return this;
     }
 
+    @Override
     public String createIdentifier() {
         StringBuilder sb = new StringBuilder();
         if (authorName != null) {
             String aName = BaseformEncoder.normalizedFromUTF8(authorName.toString())
-                    .replaceAll("aeiou", ""); // TODO Unicode vocal category?
+                    .replaceAll("aeiou", "");
             try {
                 aName = encoder.encode(aName);
             } catch (EncoderException e) {
-                //ignore
+                logger.log(Level.FINE, e.getMessage(), e);
             }
             sb.append(aName);
         }

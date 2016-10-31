@@ -1,6 +1,7 @@
 package org.xbib.catalog.entities.matching.string;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * A word-boundary aware entropy encoder.
@@ -34,23 +35,25 @@ public class WordBoundaryEntropyEncoder implements StringEncoder {
      * @return encoded string
      * @throws EncoderException if encoding fails
      */
+    @Override
     public String encode(String s) throws EncoderException {
         LinkedHashMap<Character, Integer> freq = new LinkedHashMap<>();
         char[] chars = s.toLowerCase().toCharArray();
         for (int i = 0; i < chars.length; i++) {
             char ch = chars[i];
             // first character, character after space = first character of a word, and final character
-            if (i == 0 || (i > 0 && chars[i-1] == ' ') || i+1 == chars.length) {
+            if (i == 0 || (i > 0 && chars[i - 1] == ' ') || i + 1 == chars.length) {
                 ch = Character.toUpperCase(ch);
             }
             freq.put(ch, freq.containsKey(ch) ? freq.get(ch) + 1 : 0);
         }
         StringBuilder sb = new StringBuilder();
-        for (char ch : freq.keySet()) {
+        for (Map.Entry<Character, Integer> entry: freq.entrySet()) {
+            char ch = entry.getKey();
             if (Character.isWhitespace(ch)) {
                 continue;
             }
-            if (freq.get(ch) < 2) {
+            if (entry.getValue() < 2) {
                 sb.append(ch);
             }
         }

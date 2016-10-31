@@ -2,10 +2,9 @@ package org.xbib.catalog.entities.marc.nlz;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.common.Strings;
-import org.xbib.iri.IRI;
-import org.xbib.rdf.Node;
-import org.xbib.rdf.Resource;
+import org.xbib.content.rdf.Resource;
+import org.xbib.content.resource.IRI;
+import org.xbib.content.resource.Node;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -36,9 +35,11 @@ public class HostItemEntry extends CatalogEntity {
             put("Zeitschrift fur Orthographie", "Zeitschrift für Orthographie");
             put("Political quarterly", "The Political Quarterly");
             put("Zeitschrift fur Offentliches Recht Reappears", "Zeitschrift für Öffentliches Recht");
-            put("Zeitschrift der deutschen morgenlandischen Gesellschaft", "Zeitschrift der deutschen morgenländischen Gesellschaft");
+            put("Zeitschrift der deutschen morgenlandischen Gesellschaft",
+                    "Zeitschrift der deutschen morgenländischen Gesellschaft");
             put("Zeitschrift für Deutscher Verein für Kunstwissenschaft", "Zeitschrift für Kunstwissenschaft");
-            put("Canadian journal of economics and political science/Revue canadienne d'économique et de science politique", "Canadian journal of economics and political science");
+            put("Canadian journal of economics and political science/Revue canadienne d'économique et de science politique",
+                    "Canadian journal of economics and political science");
             put("Canadian modern language review/Revue canadienne des langues vivantes", "Canadian Modern Language Review");
         }
     };
@@ -108,10 +109,10 @@ public class HostItemEntry extends CatalogEntity {
                 }
                 if (date != null) {
                     r.add(PRISM_PUBLICATION_DATE, date);
-                    worker.getWorkerState().getWorkAuthorKey()
+                    worker.getWorkerState().getAuthoredWorkKey()
                             .chronology(date.substring(0, 4));
                 }
-                worker.getWorkerState().getWorkAuthorKey()
+                worker.getWorkerState().getAuthoredWorkKey()
                         .chronology(volume)
                         .chronology(issue);
                 break;
@@ -148,9 +149,7 @@ public class HostItemEntry extends CatalogEntity {
                             .add(DC_PUBLISHER, publisherName);
                     if (serial != null) {
                         for (Node issn : serial.objects(PRISM_ISSN)) {
-                            if (!Strings.isEmpty(issn.toString())) {
-                                j.add(PRISM_ISSN, issn.toString());
-                            }
+                             j.add(PRISM_ISSN, issn.toString());
                         }
                     } else {
                         worker.getWorkerState().getMissingSerials().put(journalTitle, true);

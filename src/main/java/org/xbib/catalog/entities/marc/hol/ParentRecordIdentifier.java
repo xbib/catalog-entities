@@ -7,6 +7,9 @@ import org.xbib.marc.MarcField;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ *
+ */
 public class ParentRecordIdentifier extends org.xbib.catalog.entities.marc.bib.Identifier {
 
     public ParentRecordIdentifier(Map<String, Object> params) {

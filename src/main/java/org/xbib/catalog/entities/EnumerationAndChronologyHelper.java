@@ -1,9 +1,9 @@
 package org.xbib.catalog.entities;
 
-import org.xbib.iri.IRI;
-import org.xbib.rdf.Node;
-import org.xbib.rdf.Resource;
-import org.xbib.rdf.memory.BlankMemoryResource;
+import org.xbib.content.rdf.Resource;
+import org.xbib.content.rdf.internal.DefaultAnonymousResource;
+import org.xbib.content.resource.IRI;
+import org.xbib.content.resource.Node;
 
 import java.text.MessageFormat;
 import java.time.LocalDate;
@@ -185,19 +185,88 @@ public class EnumerationAndChronologyHelper {
             Pattern.compile("(\\d{4}/?\\d{0,4})\\((\\d{4}/?\\d{0,4})\\)")
     };
 
-    private final Set<Integer> dates = new TreeSet<>();
+    private final Set<Integer> dates;
 
-    public EnumerationAndChronologyHelper() {
+    private final List<Pattern> movingwalls;
+
+    private final List<Integer> begin;
+
+    private final List<Integer> end;
+
+    private final List<String> beginVolume;
+
+    private final List<String> endVolume;
+
+    private final List<Integer> beginPubDate;
+
+    private final List<Integer> endPubDate;
+
+    private final List<Boolean> open;
+
+    public EnumerationAndChronologyHelper(List<Pattern> movingwalls) {
+        this.movingwalls = movingwalls;
+        this.dates = new TreeSet<>();
+        this.begin = new LinkedList<>();
+        this.end = new LinkedList<>();
+        this.beginVolume = new LinkedList<>();
+        this.endVolume = new LinkedList<>();
+        this.beginPubDate = new LinkedList<>();
+        this.endPubDate = new LinkedList<>();
+        this.open = new LinkedList<>();
     }
 
-    public Resource parse(String values) {
-        return parse(values, new BlankMemoryResource(), null);
+    public List<Integer> getBegin() {
+        return begin;
     }
 
-    public Resource parse(String values, Resource resource, List<Pattern> movingwalls) {
-        if (values == null) {
-            return resource;
+    public List<Integer> getEnd() {
+        return end;
+    }
+
+    public List<String> getBeginVolume() {
+        return beginVolume;
+    }
+
+    public List<String> getEndVolume() {
+        return endVolume;
+    }
+
+    public List<Integer> getBeginPubDate() {
+        return beginPubDate;
+    }
+
+    public List<Integer> getEndPubDate() {
+        return endPubDate;
+    }
+
+    public List<Boolean> getOpen() {
+        return open;
+    }
+
+    public Resource parseToResource(String content) {
+        return parseToResource(content, new DefaultAnonymousResource());
+    }
+
+    public Resource parseToResource(String content, Resource resource) {
+        int groups = parseInternal(content);
+        for (int i = 0; i < groups; i++) {
+            resource.newResource("group")
+                    .add("begindate", begin.get(i))
+                    .add("enddate", end.get(i))
+                    .add("beginvolume", beginVolume.get(i))
+                    .add("endvolume", endVolume.get(i))
+                    .add("beginpubdate", beginPubDate.get(i))
+                    .add("endpubdate", endPubDate.get(i))
+                    .add("open", open.get(i));
         }
+        return resource;
+    }
+
+    private int parseInternal(String values) {
+        if (values == null) {
+            return 0;
+        }
+        int i = 0;
         for (String value : values.split(";")) {
             boolean found = false;
             // Jahrgänge, mit zwei Zählungen, jeweils Berichtsjahr/Erscheinungsjahr, geschlossen
@@ -205,13 +274,14 @@ public class EnumerationAndChronologyHelper {
                 Matcher m = p.matcher(value);
                 found = m.find();
                 if (found) {
-                    resource.newResource("group")
-                            .add("begindate", m.group(2))
-                            .add("enddate", m.group(5))
-                            .add("beginvolume", m.group(1))
-                            .add("endvolume", m.group(4))
-                            .add("beginpubdate", m.group(3))
-                            .add("endpubdate", m.group(6));
+                    begin.add(i, sanitizeDate(m.group(2)));
+                    end.add(i, sanitizeDate(m.group(5)));
+                    beginVolume.add(i, m.group(1));
+                    endVolume.add(i, m.group(4));
+                    beginPubDate.add(i, sanitizeDate(m.group(3)));
+                    endPubDate.add(i, sanitizeDate(m.group(6)));
+                    open.add(i, false);
+                    i++;
                 }
             }
             if (found) {
@@ -222,12 +292,14 @@ public class EnumerationAndChronologyHelper {
                 Matcher m = p.matcher(value);
                 found = m.find();
                 if (found) {
-                    resource.newResource("group")
-                            .add("begindate", m.group(2))
-                            .add("enddate", m.group(5))
-                            .add("beginvolume", m.group(1))
-                            .add("endvolume", m.group(4))
-                            .add("beginpubdate", m.group(3));
+                    begin.add(i, sanitizeDate(m.group(2)));
+                    end.add(i, sanitizeDate(m.group(5)));
+                    beginVolume.add(i, m.group(1));
+                    endVolume.add(i, m.group(4));
+                    beginPubDate.add(i, sanitizeDate(m.group(3)));
+                    endPubDate.add(i, sanitizeDate(m.group(5)));
+                    open.add(i, false);
+                    i++;
                 }
             }
             if (found) {
@@ -238,11 +310,14 @@ public class EnumerationAndChronologyHelper {
                 Matcher m = p.matcher(value);
                 found = m.find();
                 if (found) {
-                    resource.newResource("group")
-                            .add("begindate", m.group(2))
-                            .add("beginvolume", m.group(1))
-                            .add("beginpubdate", m.group(3))
-                            .add("open", "true");
+                    begin.add(i, sanitizeDate(m.group(2)));
+                    end.add(i, null);
+                    beginVolume.add(i, m.group(1));
+                    endVolume.add(i, null);
+                    beginPubDate.add(i, sanitizeDate(m.group(3)));
+                    endPubDate.add(i, null);
+                    open.add(i, true);
+                    i++;
                 }
             }
             if (found) {
@@ -253,10 +328,14 @@ public class EnumerationAndChronologyHelper {
                 Matcher m = p.matcher(value);
                 found = m.find();
                 if (found) {
-                    resource.newResource("group")
-                            .add("begindate", m.group(2))
-                            .add("beginvolume", m.group(1))
-                            .add("beginpubdate", m.group(3));
+                    begin.add(i, sanitizeDate(m.group(2)));
+                    end.add(i, null);
+                    beginVolume.add(i, m.group(1));
+                    endVolume.add(i, null);
+                    beginPubDate.add(i, sanitizeDate(m.group(3)));
+                    endPubDate.add(i, null);
+                    open.add(i, false);
+                    i++;
                 }
             }
             if (found) {
@@ -267,35 +346,34 @@ public class EnumerationAndChronologyHelper {
                 Matcher m = p.matcher(value);
                 found = m.find();
                 if (found) {
-                    resource.newResource("group")
-                            .add("begindate", m.group(1))
-                            .add("beginpubdate", m.group(2));
+                    begin.add(i, sanitizeDate(m.group(1)));
+                    end.add(i, null);
+                    beginVolume.add(i, null);
+                    endVolume.add(i, null);
+                    beginPubDate.add(i, sanitizeDate(m.group(2)));
+                    endPubDate.add(i, null);
+                    open.add(i, false);
+                    i++;
                 }
             }
             if (found) {
                 continue;
             }
-            /*for (Pattern p : p4a) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    resource.newResource("group")
-                            .add("begindate", sanitizeDate(m.group(1)));
-                }
-            }*/
-            // continue here
             found = false;
             for (Pattern p : p3e) {
                 Matcher m = p.matcher(value);
                 found = m.find();
                 if (found) {
                     Integer b = sanitizeDate(m.group(2));
-                    Integer e = sanitizeDate(m.group(3));
-                    resource.newResource("group")
-                            .add("beginvolume", m.group(1))
-                            .add("begindate", b)
-                            .add("endvolume", m.group(4))
-                            .add("enddate", e);
+                    Integer e =  sanitizeDate(m.group(3));
+                    begin.add(i, b);
+                    end.add(i, e);
+                    beginVolume.add(i, m.group(1));
+                    endVolume.add(i, m.group(4));
+                    beginPubDate.add(i, b);
+                    endPubDate.add(i, e);
+                    open.add(i, false);
+                    i++;
                     break;
                 }
             }
@@ -309,11 +387,14 @@ public class EnumerationAndChronologyHelper {
                 if (found) {
                     Integer b = sanitizeDate(m.group(1));
                     Integer e = sanitizeDate(m.group(4));
-                    resource.newResource("group")
-                            .add("beginvolume", m.group(2))
-                            .add("begindate", b)
-                            .add("endvolume", m.group(3))
-                            .add("enddate", e);
+                    begin.add(i, b);
+                    end.add(i, e);
+                    beginVolume.add(i, m.group(2));
+                    endVolume.add(i, m.group(3));
+                    beginPubDate.add(i, b);
+                    endPubDate.add(i, e);
+                    open.add(i, false);
+                    i++;
                     break;
                 }
             }
@@ -327,11 +408,14 @@ public class EnumerationAndChronologyHelper {
                 if (found) {
                     Integer b = sanitizeDate(m.group(1));
                     Integer e = sanitizeDate(m.group(3));
-                    resource.newResource("group")
-                            .add("beginvolume", m.group(2))
-                            .add("begindate", b)
-                            .add("endvolume", m.group(4))
-                            .add("enddate", e);
+                    begin.add(i, b);
+                    end.add(i, e);
+                    beginVolume.add(i, m.group(2));
+                    endVolume.add(i, m.group(4));
+                    beginPubDate.add(i, b);
+                    endPubDate.add(i, e);
+                    open.add(i, false);
+                    i++;
                     break;
                 }
             }
@@ -345,11 +429,14 @@ public class EnumerationAndChronologyHelper {
                 if (found) {
                     Integer b = sanitizeDate(m.group(2));
                     Integer e = sanitizeDate(m.group(4));
-                    resource.newResource("group")
-                            .add("beginvolume", m.group(1))
-                            .add("begindate", b)
-                            .add("endvolume", m.group(3))
-                            .add("enddate", e);
+                    begin.add(i, b);
+                    end.add(i, e);
+                    beginVolume.add(i, m.group(1));
+                    endVolume.add(i, m.group(3));
+                    beginPubDate.add(i, b);
+                    endPubDate.add(i, e);
+                    open.add(i, false);
+                    i++;
                     break;
                 }
             }
@@ -366,17 +453,27 @@ public class EnumerationAndChronologyHelper {
                         List<Integer> l2 = fractionDate(m.group(3) + m.group(4));
                         Integer b = sanitizeDate(l1.get(0));
                         Integer e = sanitizeDate(l2.get(l2.size() - 1));
-                        resource.newResource("group")
-                                .add("begindate", b)
-                                .add("enddate", e);
+                        begin.add(i, b);
+                        end.add(i, e);
+                        beginVolume.add(i, null);
+                        endVolume.add(i, null);
+                        beginPubDate.add(i, b);
+                        endPubDate.add(i, e);
+                        open.add(i, false);
+                        i++;
                     } else {
                         List<Integer> l1 = fractionDate(m.group(1));
                         List<Integer> l2 = fractionDate(m.group(2));
                         Integer b = sanitizeDate(l1.get(0));
                         Integer e = sanitizeDate(l2.get(l2.size() - 1));
-                        resource.newResource("group")
-                                .add("begindate", b)
-                                .add("enddate", e);
+                        begin.add(i, b);
+                        end.add(i, e);
+                        beginVolume.add(i, null);
+                        endVolume.add(i, null);
+                        beginPubDate.add(i, b);
+                        endPubDate.add(i, e);
+                        open.add(i, false);
+                        i++;
                     }
                     break;
                 }
@@ -389,10 +486,15 @@ public class EnumerationAndChronologyHelper {
                 Matcher m = p.matcher(value);
                 found = m.find();
                 if (found) {
-                    resource.newResource("group")
-                            .add("beginvolume", m.group(2))
-                            .add("begindate", sanitizeDate(m.group(1)))
-                            .add("open", "true");
+                    Integer b = sanitizeDate(m.group(1));
+                    begin.add(i, b);
+                    end.add(i, null);
+                    beginVolume.add(i,  m.group(2));
+                    endVolume.add(i, null);
+                    beginPubDate.add(i, b);
+                    endPubDate.add(i, null);
+                    open.add(i, true);
+                    i++;
                     break;
                 }
             }
@@ -404,10 +506,15 @@ public class EnumerationAndChronologyHelper {
                 Matcher m = p.matcher(value);
                 found = m.find();
                 if (found) {
-                    resource.newResource("group")
-                            .add("beginvolume", m.group(1))
-                            .add("begindate", sanitizeDate(m.group(2)))
-                            .add("open", "true");
+                    Integer b = sanitizeDate(m.group(2));
+                    begin.add(i, b);
+                    end.add(i, null);
+                    beginVolume.add(i,  m.group(1));
+                    endVolume.add(i, null);
+                    beginPubDate.add(i, b);
+                    endPubDate.add(i, null);
+                    open.add(i, true);
+                    i++;
                     break;
                 }
             }
@@ -419,9 +526,15 @@ public class EnumerationAndChronologyHelper {
                 Matcher m = p.matcher(value);
                 found = m.find();
                 if (found) {
-                    resource.newResource("group")
-                            .add("begindate", sanitizeDate(m.group(1)))
-                            .add("open", "true");
+                    Integer b = sanitizeDate(m.group(1));
+                    begin.add(i, b);
+                    end.add(i, null);
+                    beginVolume.add(i, null);
+                    endVolume.add(i, null);
+                    beginPubDate.add(i, b);
+                    endPubDate.add(i, null);
+                    open.add(i, true);
+                    i++;
                     break;
                 }
             }
@@ -436,16 +549,35 @@ public class EnumerationAndChronologyHelper {
                     if (m.groupCount() > 1) {
                         List<Integer> l = fractionDate(m.group(1) + m.group(2));
                         Integer b = sanitizeDate(l.get(0));
-                        resource.newResource("group")
-                                .add("begindate", b);
+                        begin.add(i, b);
+                        end.add(i, null);
+                        beginVolume.add(i, null);
+                        endVolume.add(i, null);
+                        beginPubDate.add(i, b);
+                        endPubDate.add(i, null);
+                        open.add(i, false);
+                        i++;
                         if (l.size() > 1) {
                             b = sanitizeDate(l.get(1));
-                            resource.newResource("group")
-                                    .add("begindate", b);
+                            begin.add(i, b);
+                            end.add(i, null);
+                            beginVolume.add(i, null);
+                            endVolume.add(i, null);
+                            beginPubDate.add(i, b);
+                            endPubDate.add(i, null);
+                            open.add(i, false);
+                            i++;
                         }
                     } else {
-                        resource.newResource("group")
-                                .add("begindate", sanitizeDate(m.group(1)));
+                        Integer b = sanitizeDate(m.group(1));
+                        begin.add(i, b);
+                        end.add(i, null);
+                        beginVolume.add(i, null);
+                        endVolume.add(i, null);
+                        beginPubDate.add(i, b);
+                        endPubDate.add(i, null);
+                        open.add(i, false);
+                        i++;
                     }
                     break;
                 }
@@ -461,19 +593,35 @@ public class EnumerationAndChronologyHelper {
                     if (m.groupCount() == 3) {
                         List<Integer> l = fractionDate(m.group(2) + m.group(3));
                         Integer b = sanitizeDate(l.get(0));
-                        resource.newResource("group")
-                                .add("beginvolume", m.group(1))
-                                .add("begindate", b);
+                        begin.add(i, b);
+                        end.add(i, null);
+                        beginVolume.add(i,  m.group(1));
+                        endVolume.add(i, null);
+                        beginPubDate.add(i, b);
+                        endPubDate.add(i, null);
+                        open.add(i, false);
+                        i++;
                         if (l.size() > 1) {
                             b = sanitizeDate(l.get(1));
-                            resource.newResource("group")
-                                    .add("beginvolume", m.group(1))
-                                    .add("begindate", b);
+                            begin.add(i, b);
+                            end.add(i, null);
+                            beginVolume.add(i,  m.group(1));
+                            endVolume.add(i, null);
+                            beginPubDate.add(i, b);
+                            endPubDate.add(i, null);
+                            open.add(i, false);
+                            i++;
                         }
                     } else {
-                        resource.newResource("group")
-                                .add("beginvolume", m.group(1))
-                                .add("begindate", sanitizeDate(m.group(2)));
+                        Integer b = sanitizeDate(m.group(2));
+                        begin.add(i, b);
+                        end.add(i, null);
+                        beginVolume.add(i,  m.group(1));
+                        endVolume.add(i, null);
+                        beginPubDate.add(i, b);
+                        endPubDate.add(i, null);
+                        open.add(i, false);
+                        i++;
                     }
                     break;
                 }
@@ -490,34 +638,77 @@ public class EnumerationAndChronologyHelper {
                         List<Integer> l1 = fractionDate(m.group(1) + m.group(2));
                         List<Integer> l2 = fractionDate(m.group(3) + m.group(4));
                         Integer b = sanitizeDate(l1.get(0));
-                        resource.newResource("group")
-                                .add("begindate", b);
+                        begin.add(i, b);
+                        end.add(i, null);
+                        beginVolume.add(i, null);
+                        endVolume.add(i, null);
+                        beginPubDate.add(i, b);
+                        endPubDate.add(i, null);
+                        open.add(i, false);
+                        i++;
                         if (l1.size() > 1) {
                             b = sanitizeDate(l1.get(1));
-                            resource.newResource("group")
-                                    .add("begindate", b);
+                            begin.add(i, b);
+                            end.add(i, null);
+                            beginVolume.add(i, null);
+                            endVolume.add(i, null);
+                            beginPubDate.add(i, b);
+                            endPubDate.add(i, null);
+                            open.add(i, false);
+                            i++;
                         }
                         b = sanitizeDate(l2.get(0));
-                        resource.newResource("group")
-                                .add("begindate", b);
+                        begin.add(i, b);
+                        end.add(i, null);
+                        beginVolume.add(i, null);
+                        endVolume.add(i, null);
+                        beginPubDate.add(i, b);
+                        endPubDate.add(i, null);
+                        open.add(i, false);
+                        i++;
                         if (l2.size() > 1) {
                             b = sanitizeDate(l2.get(1));
-                            resource.newResource("group")
-                                    .add("begindate", b);
+                            begin.add(i, b);
+                            end.add(i, null);
+                            beginVolume.add(i, null);
+                            endVolume.add(i, null);
+                            beginPubDate.add(i, b);
+                            endPubDate.add(i, null);
+                            open.add(i, false);
+                            i++;
                         }
                     } else if (m.groupCount() == 2) {
                         List<Integer> l = fractionDate(m.group(1) + m.group(2));
                         Integer b = sanitizeDate(l.get(0));
-                        resource.newResource("group")
-                                .add("begindate", b);
+                        begin.add(i, b);
+                        end.add(i, null);
+                        beginVolume.add(i, null);
+                        endVolume.add(i, null);
+                        beginPubDate.add(i, b);
+                        endPubDate.add(i, null);
+                        open.add(i, false);
+                        i++;
                         if (l.size() > 1) {
                             b = sanitizeDate(l.get(1));
-                            resource.newResource("group")
-                                    .add("begindate", b);
+                            begin.add(i, b);
+                            end.add(i, null);
+                            beginVolume.add(i, null);
+                            endVolume.add(i, null);
+                            beginPubDate.add(i, b);
+                            endPubDate.add(i, null);
+                            open.add(i, false);
+                            i++;
                         }
                     } else {
-                        resource.newResource("group")
-                                .add("begindate", sanitizeDate(m.group(1)));
+                        Integer b = sanitizeDate(m.group(1));
+                        begin.add(i, b);
+                        end.add(i, null);
+                        beginVolume.add(i, null);
+                        endVolume.add(i, null);
+                        beginPubDate.add(i, b);
+                        endPubDate.add(i, null);
+                        open.add(i, false);
+                        i++;
                     }
                     break;
                 }
@@ -531,372 +722,24 @@ public class EnumerationAndChronologyHelper {
                     found = m.find();
                     if (found) {
                         Integer b = currentYear - Integer.parseInt(m.group(1));
-                        resource.newResource("group")
-                                .add("begindate", b)
-                                .add("open", "true");
+                        begin.add(i, b);
+                        end.add(i, null);
+                        beginVolume.add(i, null);
+                        endVolume.add(i, null);
+                        beginPubDate.add(i, b);
+                        endPubDate.add(i, null);
+                        open.add(i, true);
+                        i++;
                         break;
                     }
                 }
             }
         }
-        return resource;
-    }
-
-    public void parse(String content,
-                      List<Integer> begin,
-                      List<Integer> end,
-                      List<String> beginVolume,
-                      List<String> endVolume,
-                      List<Boolean> open
-    ) {
-        if (content == null) {
-            return;
-        }
-        String[] values = content.split(";");
-        int i = 0;
-        for (String value : values) {
-            boolean found = false;
-            // Jahrgänge, mit zwei Zählungen, jeweils Berichtsjahr/Erscheinungsjahr, geschlossen
-            for (Pattern p : g1a) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    begin.add(i, sanitizeDate(m.group(3)));
-                    end.add(i, sanitizeDate(m.group(6)));
-                    beginVolume.add(i, m.group(1));
-                    endVolume.add(i, m.group(4));
-                    i++;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            // Jahrgänge, mit zwei Zählungen, einmal Berichtsjahr/Erscheinungsjahr, geschlossen
-            for (Pattern p : g1b) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    begin.add(i, sanitizeDate(m.group(3)));
-                    end.add(i, sanitizeDate(m.group(5)));
-                    beginVolume.add(i, m.group(1));
-                    endVolume.add(i, m.group(4));
-                    i++;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            // Berichtsjahr/Erscheinungsjahr: Jahrgänge, mit Zählung, offen
-            for (Pattern p : g1c) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    begin.add(i, sanitizeDate(m.group(3)));
-                    beginVolume.add(i, m.group(1));
-                    i++;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            // Berichtsjahr/Erscheinungsjahr: einzelner Eintrag mit Zählung
-            for (Pattern p : g1d) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    begin.add(i, sanitizeDate(m.group(3)));
-                    beginVolume.add(i, m.group(1));
-                    i++;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            // Berichtsjahr/Erscheinungsjahr: einzelner Eintrag
-            for (Pattern p : g1e) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    begin.add(i, sanitizeDate(m.group(2)));
-                    i++;
-                }
-            }
-            // first, check dates in parentheses
-            /*for (Pattern p : p4a) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    begin.add(i, sanitizeDate(m.group(1)));
-                    end.add(i, null);
-                    open.add(i, false);
-                    i++;
-                }
-            }*/
-            // parentheses dates are optional
-            if (found) {
-                continue;
-            }
-            found = false;
-            for (Pattern p : p3e) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    Integer b = sanitizeDate(m.group(2));
-                    Integer e = sanitizeDate(m.group(3));
-                    beginVolume.add(i, m.group(1));
-                    endVolume.add(i, m.group(4));
-                    begin.add(i, b);
-                    end.add(i, e);
-                    i++;
-                    break;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            found = false;
-            for (Pattern p : p3d) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    Integer b = sanitizeDate(m.group(1));
-                    Integer e = sanitizeDate(m.group(4));
-                    beginVolume.add(i, m.group(2));
-                    endVolume.add(i, m.group(3));
-                    begin.add(i, b);
-                    end.add(i, e);
-                    i++;
-                    break;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            found = false;
-            for (Pattern p : p3c) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    Integer b = sanitizeDate(m.group(1));
-                    Integer e = sanitizeDate(m.group(3));
-                    beginVolume.add(i, m.group(2));
-                    endVolume.add(i, m.group(4));
-                    begin.add(i, b);
-                    end.add(i, e);
-                    i++;
-                    break;
-                }
-            }
-            if (found) {
-                continue;
-            }
-
-            for (Pattern p : p3b) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    begin.add(i, sanitizeDate(m.group(2)));
-                    end.add(i, sanitizeDate(m.group(4)));
-                    beginVolume.add(i, m.group(1));
-                    endVolume.add(i, m.group(3));
-                    open.add(i, false);
-                    i++;
-                    break;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            found = false;
-            // simple periods
-            for (Pattern p : p3a) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    if (m.groupCount() == 4) {
-                        List<Integer> l1 = fractionDate(m.group(1) + m.group(2));
-                        List<Integer> l2 = fractionDate(m.group(3) + m.group(4));
-                        begin.add(i, sanitizeDate(l1.get(0)));
-                        end.add(i, sanitizeDate(l2.get(l2.size() - 1)));
-                        open.add(i, false);
-                        i++;
-                    } else {
-                        List<Integer> l1 = fractionDate(m.group(1));
-                        List<Integer> l2 = fractionDate(m.group(2));
-                        begin.add(i, sanitizeDate(l1.get(0)));
-                        end.add(i, sanitizeDate(l2.get(l2.size() - 1)));
-                        open.add(i, false);
-                        i++;
-                    }
-                    break;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            found = false;
-            for (Pattern p : p2c) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    beginVolume.add(i, m.group(2));
-                    begin.add(i, sanitizeDate(m.group(1)));
-                    open.add(i, true);
-                    i++;
-                    break;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            found = false;
-            // open periods with volume
-            for (Pattern p : p2b) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    begin.add(i, sanitizeDate(m.group(2)));
-                    end.add(i, null);
-                    beginVolume.add(i, m.group(1));
-                    endVolume.add(i, null);
-                    open.add(i, true);
-                    i++;
-                    break;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            found = false;
-            // open periods without volume
-            for (Pattern p : p2a) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    begin.add(i, sanitizeDate(m.group(1)));
-                    end.add(i, null);
-                    open.add(i, true);
-                    i++;
-                    break;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            found = false;
-            // renamed single date
-            for (Pattern p : p1c) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    if (m.groupCount() > 1) {
-                        List<Integer> l = fractionDate(m.group(1) + m.group(2));
-                        begin.add(i, sanitizeDate(l.get(0)));
-                        end.add(i, null);
-                        open.add(i, false);
-                        i++;
-                        if (l.size() > 1) {
-                            begin.add(i, sanitizeDate(l.get(1)));
-                            end.add(i, null);
-                            open.add(i, false);
-                            i++;
-                        }
-                    } else {
-                        begin.add(i, sanitizeDate(m.group(1)));
-                        end.add(i, null);
-                        open.add(i, false);
-                        i++;
-                    }
-                    break;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            found = false;
-            // single date, with volume
-            for (Pattern p : p1b) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    if (m.groupCount() == 3) {
-                        List<Integer> l = fractionDate(m.group(2) + m.group(3));
-                        begin.add(i, sanitizeDate(l.get(0)));
-                        end.add(i, null);
-                        beginVolume.add(i, m.group(1));
-                        endVolume.add(i, null);
-                        open.add(i, false);
-                        i++;
-                        if (l.size() > 1) {
-                            begin.add(i, sanitizeDate(l.get(1)));
-                            end.add(i, null);
-                            beginVolume.add(i, m.group(1));
-                            endVolume.add(i, null);
-                            open.add(i, false);
-                        }
-                    } else {
-                        begin.add(i, sanitizeDate(m.group(2)));
-                        end.add(i, null);
-                        beginVolume.add(i, m.group(1));
-                        endVolume.add(i, null);
-                        open.add(i, false);
-                    }
-                    break;
-                }
-            }
-            if (found) {
-                continue;
-            }
-            // single date, without volume
-            for (Pattern p : p1a) {
-                Matcher m = p.matcher(value);
-                found = m.find();
-                if (found) {
-                    if (m.groupCount() == 4) {
-                        List<Integer> l1 = fractionDate(m.group(1) + m.group(2));
-                        List<Integer> l2 = fractionDate(m.group(3) + m.group(4));
-                        begin.set(i, sanitizeDate(l1.get(0)));
-                        if (l1.size() > 1) {
-                            begin.add(i, sanitizeDate(l1.get(1)));
-                            end.add(i, null);
-                            open.add(i, false);
-                            i++;
-                        }
-                        begin.add(i, sanitizeDate(l2.get(0)));
-                        end.add(i, null);
-                        open.add(i, false);
-                        i++;
-                        if (l2.size() > 1) {
-                            begin.add(i, sanitizeDate(l2.get(1)));
-                            end.add(i, null);
-                            open.add(i, false);
-                            i++;
-                        }
-                    } else if (m.groupCount() == 2) {
-                        List<Integer> l = fractionDate(m.group(1) + m.group(2));
-                        begin.add(i, sanitizeDate(l.get(0)));
-                        end.add(i, null);
-                        open.add(i, false);
-                        i++;
-                        if (l.size() > 1) {
-                            begin.add(i, sanitizeDate(l.get(1)));
-                            end.add(i, null);
-                            open.add(i, false);
-                            i++;
-                        }
-                    } else {
-                        begin.add(i, sanitizeDate(m.group(1)));
-                        end.add(i, null);
-                        open.add(i, false);
-                    }
-                    break;
-                }
-            }
-        }
+        return i;
     }
 
     private Integer sanitizeDate(String date) {
-        int pos = date.indexOf("/");
+        int pos = date.indexOf('/');
         if (pos > 0) {
             if (pos > 4) {
                 return null; // invalid date
@@ -910,39 +753,7 @@ public class EnumerationAndChronologyHelper {
         }
     }
 
-    private Integer sanitizeDate(Integer date) {
-        return date > 1500 && date <= currentYear ? date : null;
-    }
-
-    private List<Integer> fractionDate(String date) {
-        List<Integer> dates = new LinkedList<>();
-        int pos = date.indexOf("/");
-        if (pos > 0) {
-            String s = date.substring(0, pos).replaceAll("[^\\d]", "");
-            int base = Integer.parseInt(s);
-            dates.add(base);
-            int frac = 0;
-            try {
-                frac = Integer.parseInt(date.substring(pos + 1));
-            } catch (NumberFormatException e) {
-                // not important
-            }
-            if (frac >= 100 && frac <= currentYear) {
-                dates.add(frac);
-            } else if (frac > 0 && frac < 100) {
-                // two digits frac, create full year
-                frac += Integer.parseInt(s.substring(0, 2)) * 100;
-                dates.add(frac);
-            }
-        } else {
-            String s = date.replaceAll("[^\\d]", "");
-            int base = Integer.parseInt(s);
-            dates.add(base);
-        }
-        return dates;
-    }
-
-    public Set<Integer> dates(IRI id, Resource resource) {
+    public Set<Integer> dates(Resource resource, String logmarker) {
         for (IRI iri : resource.predicates()) {
             resource.resources(iri).forEach(group -> {
                 Iterator<Node> begindateCollection = group.objects("begindate").iterator();
@@ -985,22 +796,24 @@ public class EnumerationAndChronologyHelper {
                     end = ends.get(0);
                 }
                 if (open != null) {
-                    end = currentYear;
+                    if ("true^^xsd:boolean".equals(open.toString())) {
+                        end = currentYear;
+                    }
                 }
                 // add years from interval
                 if (start >= 0 && end >= 0) {
                     if (start > currentYear || end > currentYear) {
                         logger.log(Level.WARNING, MessageFormat.format("future dates in {0}: {1},{2} (from {3},{4})",
-                                id, start, end, begindate, enddate));
+                                logmarker, start, end, begindate, enddate));
                     } else if (end - start > 250) {
                         logger.log(Level.WARNING, MessageFormat.format("too many years in {0}: {1}-{2} (from {3},{4})",
-                                id, start, end, begindate, enddate));
+                                logmarker, start, end, begindate, enddate));
                         // RDA: 1500
                         // Acta eruditorum: 1682
                         // Phil. Trans.: 1655 (but not in print)
                     } else if (start < 1500 || end < 1500) {
                         logger.log(Level.WARNING, MessageFormat.format("too early in {0}: {1},{2} ({3},{4})",
-                                id, start, end, begindate, enddate));
+                                logmarker, start, end, begindate, enddate));
                     } else {
                         for (int i = start; i <= end; i++) {
                             dates.add(i);
@@ -1008,9 +821,42 @@ public class EnumerationAndChronologyHelper {
                     }
                 }
                 if (dates.size() > 250) {
-                    logger.log(Level.WARNING, MessageFormat.format("too many dates in {0}: {1}", id, dates.size()));
+                    logger.log(Level.WARNING, MessageFormat.format("too many dates in {0}: {1}",
+                            logmarker, dates.size()));
                 }
             });
+        }
+        return dates;
+    }
+
+    private Integer sanitizeDate(Integer date) {
+        return date > 1500 && date <= currentYear ? date : null;
+    }
+
+    private List<Integer> fractionDate(String date) {
+        List<Integer> dates = new LinkedList<>();
+        int pos = date.indexOf('/');
+        if (pos > 0) {
+            String s = date.substring(0, pos).replaceAll("[^\\d]", "");
+            int base = Integer.parseInt(s);
+            dates.add(base);
+            int frac = 0;
+            try {
+                frac = Integer.parseInt(date.substring(pos + 1));
+            } catch (NumberFormatException e) {
+                // not important
+            }
+            if (frac >= 100 && frac <= currentYear) {
+                dates.add(frac);
+            } else if (frac > 0 && frac < 100) {
+                // two digits frac, create full year
+                frac += Integer.parseInt(s.substring(0, 2)) * 100;
+                dates.add(frac);
+            }
+        } else {
+            String s = date.replaceAll("[^\\d]", "");
+            int base = Integer.parseInt(s);
+            dates.add(base);
         }
         return dates;
     }

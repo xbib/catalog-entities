@@ -1,8 +1,7 @@
 package org.xbib.catalog.entities.matching;
 
 /**
- * Invalid cluster domain exception
- *
+ * Invalid cluster domain exception.
  */
 public class InvalidDomainException extends Exception {
 

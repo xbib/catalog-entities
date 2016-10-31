@@ -1,6 +1,6 @@
 package org.xbib.catalog.entities;
 
-import org.xbib.iri.IRI;
+import org.xbib.content.resource.IRI;
 
 import java.util.List;
 

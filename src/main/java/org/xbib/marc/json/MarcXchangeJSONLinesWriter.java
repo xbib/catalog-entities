@@ -1,8 +1,8 @@
 package org.xbib.marc.json;
 
-import static org.xbib.common.xcontent.XContentService.jsonBuilder;
+import static org.xbib.content.json.JsonXContent.contentBuilder;
 
-import org.xbib.common.xcontent.XContentBuilder;
+import org.xbib.content.XContentBuilder;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcField;
 import org.xbib.marc.MarcListener;
@@ -22,30 +22,24 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Convert a MarcXchange stream to XContent builder.
- *
  */
 public class MarcXchangeJSONLinesWriter implements MarcListener, MarcRecordListener, MarcXchangeConstants {
 
     private final OutputStream out;
-
+    private final ReentrantLock lock;
     private Marc.Builder marcBuilder;
-
     private XContentBuilder builder;
-
     private String format;
-
     private String type;
-
     private Exception exception;
-
-    private boolean fatalErrors = false;
-
-    private final ReentrantLock lock = new ReentrantLock(true);
+    private boolean fatalErrors;
 
     public MarcXchangeJSONLinesWriter(OutputStream out) throws IOException {
         this.out = new BufferedOutputStream(out);
-        this.builder = jsonBuilder(out);
+        this.lock = new ReentrantLock(true);
+        this.builder = contentBuilder(out);
         this.marcBuilder = Marc.builder();
+        this.fatalErrors = false;
     }
 
     public MarcXchangeJSONLinesWriter setFatalErrors(boolean fatalErrors) {
@@ -64,16 +58,12 @@ public class MarcXchangeJSONLinesWriter implements MarcListener, MarcRecordListe
     }
 
     public void startDocument() throws IOException {
-        // empty
-    }
-
-    public void endDocument() throws IOException {
-        builder.flush();
-        out.flush();
+        // nothing to do here
     }
 
     @Override
     public void beginCollection() {
+        // nothing to do here
     }
 
     @Override
@@ -95,7 +85,12 @@ public class MarcXchangeJSONLinesWriter implements MarcListener, MarcRecordListe
 
     @Override
     public void endCollection() {
-        //
+        // nothing to do here
+    }
+
+    public void endDocument() throws IOException {
+        builder.flush();
+        out.flush();
     }
 
     @Override
@@ -174,7 +169,7 @@ public class MarcXchangeJSONLinesWriter implements MarcListener, MarcRecordListe
                                     builder.field(subfield.getKey());
                                     if (subfield.getValue() instanceof List) {
                                         builder.startArray();
-                                        for (String s : (List<String>)subfield.getValue()) {
+                                        for (String s : (List<String>) subfield.getValue()) {
                                             builder.value(s);
                                         }
                                         builder.endArray();

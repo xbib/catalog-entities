@@ -2,11 +2,14 @@ package org.xbib.catalog.entities.marc.zdb.hol;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.rdf.Resource;
+import org.xbib.content.rdf.Resource;
 
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ *
+ */
 public class ParentRecordIdentifier extends CatalogEntity {
 
     private String prefix = "";

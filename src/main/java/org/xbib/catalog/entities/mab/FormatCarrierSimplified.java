@@ -4,8 +4,8 @@ import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.catalog.entities.TermFacet;
+import org.xbib.content.rdf.Literal;
 import org.xbib.marc.MarcField;
-import org.xbib.rdf.Literal;
 
 import java.io.IOException;
 import java.util.Map;

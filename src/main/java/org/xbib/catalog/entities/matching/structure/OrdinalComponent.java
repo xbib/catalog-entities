@@ -17,7 +17,7 @@ public class OrdinalComponent extends TitleKey {
     private final Pattern numericPattern = Pattern.compile("^(\\d+).*");
 
     /**
-     * The domain name
+     * The domain name.
      *
      * @return the domain name
      */
@@ -27,7 +27,7 @@ public class OrdinalComponent extends TitleKey {
     }
 
     /**
-     * Add a component
+     * Add a component.
      *
      * @param value value
      */
@@ -38,7 +38,6 @@ public class OrdinalComponent extends TitleKey {
         if (m.matches()) {
             return super.add(m.group());
         } else {
-            // TODO count words, check length ...
             return super.add(value);
         }
     }

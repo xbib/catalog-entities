@@ -9,9 +9,7 @@ import java.util.regex.Pattern;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.xbib.catalog.entities.EnumerationAndChronologyHelper;
-import org.xbib.rdf.memory.BlankMemoryResource;
-import org.xbib.rdf.Resource;
+import org.xbib.content.rdf.Resource;
 
 public class EnumerationAndChronologyHelperTest extends Assert {
 
@@ -69,17 +67,17 @@ public class EnumerationAndChronologyHelperTest extends Assert {
             "[1956, 1957]",
             "[1970]",
             "[1970, 1971]",
-            "[1938, 1940, 1942]",
+            "[1938, 1942]",
             "[1996, 1997]",
             "",
             "",
             "[1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972]",
             "[1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970]",
             "[1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972]",
-            "[1961, 1962, 1963]",
-            "[1965, 1970, 1971, 1972]",
+            "[1961, 1963]",
+            "[1965, 1971]",
             "[1961, 1962]",
-            "[1921, 1922, 1923, 1924, 1925, 1926, 1927, 1928, 1929, 1930, 1931, 1932, 1933, 1934, 1935, 1936, 1937]",
+            "[1921, 1923, 1924, 1925, 1926, 1927, 1928, 1929, 1930, 1931, 1932, 1933, 1934, 1935, 1936, 1937]",
             "[1992]",
             "[1922]",
             "[1948, 1949]",
@@ -105,22 +103,21 @@ public class EnumerationAndChronologyHelperTest extends Assert {
         dates[31] = "[" + createYearList(1963, year) + "]";
 
         for (int i = 0; i < specs.length; i++) {
-            EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper();
+            EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(null);
             String s = specs[i];
-            Resource r = eac.parse(s);
-            Set<Integer> d = eac.dates(r.id(), r);
-            //logger.info("{} {}", d.toString(), dates[i]);
-            assertEquals(d.toString(), dates[i]);
+            Resource r = eac.parseToResource(s);
+            Set<Integer> d = eac.dates(r, r.id().toString());
+            assertEquals(dates[i], d.toString());
         }
     }
 
     @Test
     public void testMovingwall() {
-        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper();
         List<Pattern> p = Collections.singletonList(Pattern.compile("Letzte (\\d+) Jg"));
+        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(p);
         String s = "Letzte 10 Jg.";
-        Resource r = eac.parse(s, new BlankMemoryResource(), p);
-        Set<Integer> d = eac.dates(r.id(), r);
+        Resource r = eac.parseToResource(s);
+        Set<Integer> d = eac.dates(r, r.id().toString());
         // yeah, moving wall
         Set<Integer> set = new TreeSet<>();
         for (int i = 0; i < 11; i++) {
