@@ -35,12 +35,16 @@ configurations {
     testCompile.extendsFrom(provided)
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile 'org.xbib:marc:1.0.4'
     compile "org.xbib:content-rdf:1.0.1"
     testCompile 'junit:junit:4.12'
-    testCompile 'org.apache.logging.log4j:log4j-core:2.5'
-    testCompile 'org.apache.logging.log4j:log4j-jul:2.5'
+    testCompile 'org.apache.logging.log4j:log4j-core:2.7'
+    testCompile 'org.apache.logging.log4j:log4j-jul:2.7'
     provided "org.xbib:bibliographic-character-sets:1.0.0"
     wagon 'org.apache.maven.wagon:wagon-ssh-external:2.10'
 }
