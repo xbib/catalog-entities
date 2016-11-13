@@ -1,5 +1,5 @@
 
-task xbibUpload(type: Upload) {
+task xbibUpload(type: Upload, dependsOn: build) {
     configuration = configurations.archives
     uploadDescriptor = true
     repositories {
@@ -14,7 +14,7 @@ task xbibUpload(type: Upload) {
     }
 }
 
-task sonatypeUpload(type: Upload) {
+task sonatypeUpload(type: Upload, dependsOn: build) {
     configuration = configurations.archives
     uploadDescriptor = true
     repositories {

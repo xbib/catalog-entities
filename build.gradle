@@ -1,11 +1,11 @@
 plugins {
     id "org.sonarqube" version "2.2"
     id 'org.ajoberstar.github-pages' version '1.6.0-rc.1'
-    id "org.xbib.gradle.plugin.jbake" version "1.1.0"
+    id "org.xbib.gradle.plugin.jbake" version "1.2.1"
 }
 
 group = 'org.xbib'
-version = '1.0.0'
+version = '1.0.2'
 
 printf "Host: %s\nOS: %s %s %s\nJVM: %s %s %s %s\nGroovy: %s\nGradle: %s\n" +
         "Build: group: ${project.group} name: ${project.name} version: ${project.version}\n",
@@ -41,7 +41,7 @@ repositories {
 
 dependencies {
     compile 'org.xbib:marc:1.0.4'
-    compile "org.xbib:content-rdf:1.0.1"
+    compile "org.xbib:content-rdf:1.0.4"
     testCompile 'junit:junit:4.12'
     testCompile 'org.apache.logging.log4j:log4j-core:2.7'
     testCompile 'org.apache.logging.log4j:log4j-jul:2.7'
