@@ -18,7 +18,7 @@ public class RecordIdentifier extends CatalogEntity {
 
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
-        worker.getWorkerState().setRecordIdentifier(getValue(field));
+        worker.getWorkerState().setRecordIdentifier(field.getSubfields().getFirst().getValue());
         return super.transform(worker, field);
     }
 }

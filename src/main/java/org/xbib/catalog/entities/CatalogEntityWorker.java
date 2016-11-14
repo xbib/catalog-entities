@@ -87,11 +87,15 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
 
     @Override
     public void execute(MarcRecord marcRecord) throws IOException {
-        this.state = newState();
-        build(marcRecord);
-        entityBuilder.beforeFinishState(state);
-        state.finish();
-        entityBuilder.afterFinishState(state);
+        try {
+            this.state = newState();
+            build(marcRecord);
+        } finally {
+            // always execute state finishing, even in case of an IOException
+            entityBuilder.beforeFinishState(state);
+            state.finish();
+            entityBuilder.afterFinishState(state);
+        }
     }
 
     public CatalogEntityWorkerState getWorkerState() {
@@ -318,10 +322,5 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
         // rename, now that we know the predicate
         resource.rename(tempPredicate, IRI.builder().curie(predicate).build());
         return newResource;
-    }
-
-    @Override
-    public void close() throws IOException {
-        // nothing to do
     }
 }

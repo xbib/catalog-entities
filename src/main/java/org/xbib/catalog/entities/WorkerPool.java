@@ -1,6 +1,6 @@
 package org.xbib.catalog.entities;
 
-import java.io.Closeable;
+import java.io.Flushable;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.LinkedList;
@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  *
  * @param <R> the request type
  */
-abstract class WorkerPool<R> implements Closeable {
+abstract class WorkerPool<R> implements Flushable, AutoCloseable {
 
     private static final int DEFAULT_WAIT_SECONDS = 30;
 
@@ -125,7 +125,12 @@ abstract class WorkerPool<R> implements Closeable {
     }
 
     @Override
-    public void close() throws IOException {
+    public void flush() throws IOException {
+        // can be overriden, does nothing by default
+    }
+
+    @Override
+    public void close() {
         if (closed.compareAndSet(false, true)) {
             lock.lock();
             try {
@@ -138,8 +143,10 @@ abstract class WorkerPool<R> implements Closeable {
             } finally {
                 lock.unlock();
             }
-            for (Worker<R> worker : workers) {
-                worker.close();
+            try {
+                flush();
+            } catch (IOException e) {
+                throw new UncheckedIOException(e);
             }
             try {
                 executorService.shutdown();
@@ -171,7 +178,9 @@ abstract class WorkerPool<R> implements Closeable {
                     if (request.equals(getPoison())) {
                         break;
                     }
+                    logger.log(Level.INFO, "executing worker with request " + request.getClass());
                     worker.execute(request);
+                    logger.log(Level.INFO, "worker executed with request " + request.getClass());
                 }
             } catch (InterruptedException e) {
                 // we got interrupted, this may lead to data loss. Clear interrupt state and log warning.

@@ -32,5 +32,13 @@
     "subfields": {
       "0": "identifierForTheRecord"
     }
+  },
+  "Title" : {
+    "tags" : [
+      "021"
+    ],
+    "subfield" : {
+      "a" : "title"
+    }
   }
 }

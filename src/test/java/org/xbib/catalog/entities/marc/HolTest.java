@@ -13,7 +13,6 @@ import org.xbib.marc.Marc;
 import java.io.IOException;
 import java.net.URL;
 import java.text.MessageFormat;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

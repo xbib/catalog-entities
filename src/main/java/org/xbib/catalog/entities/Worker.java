@@ -1,6 +1,5 @@
 package org.xbib.catalog.entities;
 
-import java.io.Closeable;
 import java.io.IOException;
 
 /**
@@ -8,7 +7,7 @@ import java.io.IOException;
  *
  * @param <R> request type
  */
-public interface Worker<R> extends Closeable {
+public interface Worker<R> {
     /**
      * Execute a request.
      *

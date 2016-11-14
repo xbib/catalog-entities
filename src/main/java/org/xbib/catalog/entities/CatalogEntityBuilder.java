@@ -10,6 +10,7 @@ import org.xbib.marc.MarcRecord;
 import org.xbib.marc.MarcRecordListener;
 
 import java.io.Closeable;
+import java.io.Flushable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -30,7 +31,7 @@ import java.util.zip.CRC32;
  *
  */
 public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
-        implements MarcListener, MarcRecordListener, Closeable {
+        implements MarcListener, MarcRecordListener, Flushable, Closeable {
 
     private static final Logger logger = Logger.getLogger(CatalogEntityBuilder.class.getName());
 
@@ -224,7 +225,14 @@ public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
     }
 
     @Override
-    public void close() throws IOException {
+    public void flush() throws IOException {
+        logger.info("flushing");
+        super.flush();
+        logger.info("flushed");
+    }
+
+    @Override
+    public void close() {
         logger.info("closing");
         super.close();
         logger.info("closed");
@@ -279,18 +287,14 @@ public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
             errorstate = true;
-            try {
-                close();
-            } catch (IOException e1) {
-                logger.log(Level.SEVERE, e1.getMessage(), e1);
-            }
+            close();
         }
     }
 
     @Override
     public void endCollection() {
+        // nothing to do here
     }
-
 
     private IdentifierMapper setupIdentifierMapper(Map<String, Object> params) throws IOException {
         IdentifierMapper identifierMapper = new IdentifierMapper();
