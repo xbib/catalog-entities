@@ -3,10 +3,11 @@ package org.xbib.catalog.entities;
 import java.io.IOException;
 
 /**
- * Worker interface.
+ * Worker interface for executing requests.
  *
  * @param <R> request type
  */
+@FunctionalInterface
 public interface Worker<R> {
     /**
      * Execute a request.

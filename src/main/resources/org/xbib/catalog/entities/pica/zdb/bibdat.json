@@ -109,7 +109,7 @@
       "o": "locationAccessibility",
       "p": "isPublic",
       "z": "locationDescription",
-      "2": "LocationTypeResidence",
+      "2": "locationTypeResidence",
       "3": "locationTypeCustom"
     },
     "isPublic": {

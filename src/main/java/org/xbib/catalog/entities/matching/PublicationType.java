@@ -44,6 +44,7 @@ public class PublicationType extends LinkedList<BibliographicType>
      *
      * @return encoded type
      */
+    @Override
     public String encode() {
         if (isEmpty()) {
             throw new IllegalArgumentException("empty component");

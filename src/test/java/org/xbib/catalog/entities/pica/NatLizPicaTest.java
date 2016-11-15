@@ -22,7 +22,7 @@ public class NatLizPicaTest extends Assert {
     private static final Logger logger = Logger.getLogger(NatLizPicaTest.class.getName());
 
     @Test
-    public void testPicaSetup() throws Exception {
+    public void testNatLizPicaSetup() throws Exception {
         File file = File.createTempFile("natliz-pica-bib-entities.", ".json");
         file.deleteOnExit();
         try (FileWriter writer = new FileWriter(file);

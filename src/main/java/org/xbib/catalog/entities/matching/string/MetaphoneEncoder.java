@@ -30,6 +30,7 @@ public class MetaphoneEncoder implements StringEncoder {
      * @param txt String to find the metaphone code for
      * @return A metaphone code corresponding to the String supplied
      */
+    @Override
     public String encode(String txt) throws EncoderException {
         int mtsz = 0;
         boolean hard;

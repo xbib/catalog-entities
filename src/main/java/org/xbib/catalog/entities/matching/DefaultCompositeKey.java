@@ -97,10 +97,6 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
         }
     }
 
-    public void remove(Key<T> component) {
-        super.remove(component);
-    }
-
     @Override
     public Key<T> getComponent(Domain domain) {
         for (Key<T> segment : this) {

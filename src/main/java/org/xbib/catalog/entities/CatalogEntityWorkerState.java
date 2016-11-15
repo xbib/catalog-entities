@@ -184,16 +184,6 @@ public class CatalogEntityWorkerState {
     }
 
     public void finish() throws IOException {
-                /*Iterator<Resource> it = graph().getResources();
-        while (it.hasNext()) {
-            Resource resource = it.next();
-            if (recordIdentifier != null) {
-                resource.setId(IRI.builder().fragment(recordIdentifier).build());
-            }
-        }
-        super.finish();*/
-
-
         if (getResource().isDeleted()) {
             // no facet logic / sequence logic for deleted records
             return;

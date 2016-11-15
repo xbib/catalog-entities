@@ -178,18 +178,16 @@ abstract class WorkerPool<R> implements Flushable, AutoCloseable {
                     if (request.equals(getPoison())) {
                         break;
                     }
-                    logger.log(Level.INFO, "executing worker with request " + request.getClass());
                     worker.execute(request);
-                    logger.log(Level.INFO, "worker executed with request " + request.getClass());
                 }
             } catch (InterruptedException e) {
                 // we got interrupted, this may lead to data loss. Clear interrupt state and log warning.
                 Thread.currentThread().interrupt();
                 logger.log(Level.WARNING, e.getMessage(), e);
-            } catch (Exception t) {
+            } catch (Exception e) {
                 // unexpected exception
-                logger.log(Level.SEVERE, t.getMessage(), t);
-                throw new UncheckedIOException(new IOException(t));
+                logger.log(Level.SEVERE, e.getMessage(), e);
+                throw new UncheckedIOException(new IOException(e));
             } finally {
                 removeActiveWorker(worker);
                 logger.log(Level.INFO, "end of worker " + worker);

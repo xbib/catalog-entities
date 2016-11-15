@@ -769,53 +769,51 @@ public class EnumerationAndChronologyHelper {
                 Object endpubdate = endpubdateCollection.hasNext() ?
                         endpubdateCollection.next() : null;
                 Iterator<Node> openCollection = group.objects("open").iterator();
-                Object open = openCollection.hasNext() ?
+                Object openCollectionObject = openCollection.hasNext() ?
                         openCollection.next() : null;
                 List<Integer> starts;
-                int start = -1;
+                int beginNumber = -1;
                 if (begindate != null) {
                     starts = fractionDate(begindate.toString());
                     dates.addAll(starts);
-                    start = starts.get(0);
+                    beginNumber = starts.get(0);
                 }
                 if (beginpubdate != null) {
                     starts = fractionDate(beginpubdate.toString());
                     dates.addAll(starts);
-                    start = starts.get(0);
+                    beginNumber = starts.get(0);
                 }
-                int end = -1;
+                int endNumber = -1;
                 List<Integer> ends;
                 if (enddate != null) {
                     ends = fractionDate(enddate.toString());
                     dates.addAll(ends);
-                    end = ends.get(0);
+                    endNumber = ends.get(0);
                 }
                 if (endpubdate != null) {
                     ends = fractionDate(endpubdate.toString());
                     dates.addAll(ends);
-                    end = ends.get(0);
+                    endNumber = ends.get(0);
                 }
-                if (open != null) {
-                    if ("true^^xsd:boolean".equals(open.toString())) {
-                        end = currentYear;
-                    }
+                if (openCollectionObject != null && "true^^xsd:boolean".equals(openCollectionObject.toString())) {
+                    endNumber = currentYear;
                 }
                 // add years from interval
-                if (start >= 0 && end >= 0) {
-                    if (start > currentYear || end > currentYear) {
+                if (beginNumber >= 0 && endNumber >= 0) {
+                    if (beginNumber > currentYear || endNumber > currentYear) {
                         logger.log(Level.WARNING, MessageFormat.format("future dates in {0}: {1},{2} (from {3},{4})",
-                                logmarker, start, end, begindate, enddate));
-                    } else if (end - start > 250) {
+                                logmarker, beginNumber, endNumber, begindate, enddate));
+                    } else if (endNumber - beginNumber > 250) {
                         logger.log(Level.WARNING, MessageFormat.format("too many years in {0}: {1}-{2} (from {3},{4})",
-                                logmarker, start, end, begindate, enddate));
+                                logmarker, beginNumber, endNumber, begindate, enddate));
                         // RDA: 1500
                         // Acta eruditorum: 1682
                         // Phil. Trans.: 1655 (but not in print)
-                    } else if (start < 1500 || end < 1500) {
+                    } else if (beginNumber < 1500 || endNumber < 1500) {
                         logger.log(Level.WARNING, MessageFormat.format("too early in {0}: {1},{2} ({3},{4})",
-                                logmarker, start, end, begindate, enddate));
+                                logmarker, beginNumber, endNumber, begindate, enddate));
                     } else {
-                        for (int i = start; i <= end; i++) {
+                        for (int i = beginNumber; i <= endNumber; i++) {
                             dates.add(i);
                         }
                     }

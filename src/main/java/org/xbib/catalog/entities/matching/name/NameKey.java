@@ -18,19 +18,22 @@ public class NameKey extends TreeSet<String> implements Key<String> {
     private static final long serialVersionUID = -8452516356385112613L;
     private char delimiter = '/';
 
+    @Override
     public Domain getDomain() {
         return Domain.CREATOR;
     }
 
+    @Override
     public void setDelimiter(char delimiter) {
         this.delimiter = delimiter;
     }
 
+    @Override
     public char getDelimiter() {
         return delimiter;
     }
 
-
+    @Override
     public boolean isUsable() {
         return !isEmpty();
     }
@@ -57,6 +60,7 @@ public class NameKey extends TreeSet<String> implements Key<String> {
         return true;
     }
 
+    @Override
     public String encode() throws EncoderException {
         DoubleMetaphoneEncoder enc = new DoubleMetaphoneEncoder();
         StringBuilder sb = new StringBuilder();
