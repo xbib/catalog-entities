@@ -2050,15 +2050,11 @@
         "130" : "UniformTitle",
         /* 210 = abbreviated title */
         "210" : "AbbreviatedTitle",
-        /* 222 = key title */
         "222" : "KeyTitle",
-        /* 242 = translation of title */
+        "240" : "UniformTitle",
         "242" : "TranslatedTitle",
-        /* 245 = title statement */
         "245" : "TitleStatement",
-        /* 246 = varying form of title */
         "246" : "VaryingTitle",
-        /* 247 = former title */
         "247" : "FormerTitle"
       },
         "FormerTitle" : {
@@ -2373,15 +2369,11 @@
     },
     "LinkingEntry" : {
       "tags" : {
-        /* 760 = main series entry */
         "760" : "MainSeriesEntry",
-        /* 770 = supplement/special issue entry */
         "770" : "SupplementSpecialIssueEntry",
-        /* 772 = supplement parent entry */
         "772" : "SupplementParentEntry",
-        /* 775 = other edition entry */
         "775" : "OtherEditionEntry",
-        /* 787 = other relationship entry */
+        "776" : "AdditionalPhysicalFormEntry",
         "787" : "OtherRelationshipEntry"
       },
         "subfields" : {
@@ -2420,12 +2412,35 @@
         "4" : "code",
         "6" : "linkage",
         "7" : "controlfield",
-        /* 0 - Type of main entry heading
-          1 - Form of name
-          2 - Type of record
-          3 - Bibliographic level */
         "8" : "sequenceNumber"
       },
+        "AdditionalPhysicalFormEntry" : {
+            "a" : "mainEntryHeading",
+            "A" : "mainEntryHeading",
+            "b" : "edition",
+            "c" : "qualifyingInformation",
+            "d" : "publisherStatement",
+            "D" : "publisherStatement",
+            "g" : "relatedParts",
+            "h" : "physicalDescription",
+            "i" : "relationshipInformation",
+            "k" : "seriesDataForRelatedItem",
+            "m" : "materialSpecificDetails",
+            "n" : "note",
+            "o" : "otherItemIdentifier",
+            "r" : "reportNumber",
+            "s" : "uniformTitle",
+            "t" : "title",
+            "u" : "standardTechnicalReportNumber",
+            "w" : "id",
+            "x" : "issn",
+            "y" : "coden",
+            "z" : "isbn",
+            "4" : "code",
+            "6" : "linkage",
+            "7" : "controlfield",
+            "8" : "sequenceNumber"
+        },
         "relation" : {
             "Original-Ausg." : "hasOriginalEdition",
             "Orig.-Ausg." : "hasOriginalEdition",
@@ -3865,6 +3880,14 @@
             }
         ]
     },
+    "HoldingInstitution" : {
+        "tags" : [
+            "850"
+        ],
+        "subfields" : {
+            "a" : "institution"
+        }
+    },
     "ElectronicLocationAndAccess" : {
         "tags" : [
         /* 856 = electronic location and access */
@@ -3905,7 +3928,10 @@
     "AlternateGraphicRepresentation" : {
         "tags" : [
         "880"
-        ]
+        ],
+        "subfields" : {
+            "6" : "fieldLinkingTag"
+        }
     },
     "Ignore" : {
         "tags" : [
@@ -3965,7 +3991,6 @@
         "004",
         "541",
         "561",
-        "583",
         "843",
         "859",
         "866",

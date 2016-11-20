@@ -10,7 +10,6 @@ import org.xbib.marc.MarcRecord;
 import org.xbib.marc.MarcRecordListener;
 
 import java.io.Closeable;
-import java.io.Flushable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -21,7 +20,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,17 +28,17 @@ import java.util.zip.CRC32;
 /**
  *
  */
-public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
-        implements MarcListener, MarcRecordListener, Flushable, Closeable {
+public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
+        implements WorkerPool<MarcRecord>, MarcListener, MarcRecordListener, Closeable {
 
     private static final Logger logger = Logger.getLogger(CatalogEntityBuilder.class.getName());
 
     private static final MarcRecord poison = MarcRecord.EMPTY;
-    private final Map<String, Integer> mapped = Collections.synchronizedMap(new TreeMap<>());
-    private final AtomicLong checksum = new AtomicLong();
-    protected final Set<String> unmapped = Collections.synchronizedSet(new TreeSet<>());
-    protected final Set<String> invalid = Collections.synchronizedSet(new TreeSet<>());
-    protected final AtomicInteger counter = new AtomicInteger();
+
+    protected final Set<String> unmapped;
+    private final Map<String, Integer> mapped;
+    private final AtomicLong checksum;
+    private final Set<String> invalid;
     private final boolean isMapped;
     private CatalogEntitySpecification entitySpecification;
     private Marc.Builder marcBuilder;
@@ -56,8 +54,18 @@ public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
         this(packageName, Runtime.getRuntime().availableProcessors(), url, new HashMap<>(), true);
     }
 
+    public CatalogEntityBuilder(String packageName, URL url, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
+            throws IOException {
+        this(packageName, Runtime.getRuntime().availableProcessors(), url, new HashMap<>(), true, listener);
+    }
+
     public CatalogEntityBuilder(String packageName, int workers, URL url) throws IOException {
         this(packageName, workers, url, new HashMap<>(), true);
+    }
+
+    public CatalogEntityBuilder(String packageName, int workers, URL url,
+                                WorkerPoolListener<WorkerPool<MarcRecord>> listener) throws IOException {
+        this(packageName, workers, url, new HashMap<>(), true, listener);
     }
 
     public CatalogEntityBuilder(String packageName, URL url, boolean mapped) throws IOException {
@@ -70,23 +78,37 @@ public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
 
     public CatalogEntityBuilder(String packageName, int workers, URL url, Map<String, Object> params, boolean isMapped)
             throws IOException {
-        super(workers);
+        this(packageName, workers, url, params, isMapped, null);
+    }
+
+    public CatalogEntityBuilder(String packageName, int workers, URL url, Map<String, Object> params,
+        boolean isMapped, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
+            throws IOException {
+        super(workers, listener);
+        this.unmapped = Collections.synchronizedSet(new TreeSet<>());
+        this.mapped = Collections.synchronizedMap(new TreeMap<>());
+        this.checksum = new AtomicLong();
+        this.invalid = Collections.synchronizedSet(new TreeSet<>());
         this.isMapped = isMapped;
-        logger.log(Level.INFO, MessageFormat.format("workers:{1} mapped:{2} package:{0} ",
-                packageName, workers, isMapped));
+        logger.log(Level.INFO, MessageFormat.format("workers:{1} mapped:{2} package:{0} spec:{3}",
+                packageName, workers, isMapped, url));
         if (isMapped) {
             this.entitySpecification = new CatalogEntitySpecification(url, new HashMap<>(), params, packageName);
             for (String key : entitySpecification.getMap().keySet()) {
                 mapped.put(key, 0);
             }
-            logger.log(Level.INFO, MessageFormat.format("specification: map of {0} field keys with {1} entities",
+            logger.log(Level.INFO, MessageFormat.format("spec: map of {0} field keys with {1} entities",
                     entitySpecification.getMap().size(), entitySpecification.getEntities().size()));
             this.identifierMapper = setupIdentifierMapper(params);
-            logger.log(Level.INFO, MessageFormat.format("identifier mapper: {0} entries",
-                    identifierMapper.getMap().size()));
+            if (!identifierMapper.getMap().isEmpty()) {
+                logger.log(Level.INFO, MessageFormat.format("identifier mapper: {0} entries",
+                        identifierMapper.getMap().size()));
+            }
             this.statusMapper = setupStatusMapper(params);
-            logger.log(Level.INFO, MessageFormat.format("status mapper: {0} entries",
-                    statusMapper.getMap().size()));
+            if (!statusMapper.getMap().isEmpty()) {
+                logger.log(Level.INFO, MessageFormat.format("status mapper: {0} entries",
+                        statusMapper.getMap().size()));
+            }
             this.serialsMap = setupSerialsMap(params);
             this.missingSerials = new HashMap<>();
         }
@@ -117,10 +139,6 @@ public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
     public CatalogEntityBuilder setEnableChecksum(boolean enableChecksum) {
         this.enableChecksum = enableChecksum;
         return this;
-    }
-
-    public AtomicInteger getCounter() {
-        return counter;
     }
 
     public CatalogEntityBuilder addIdentifierMapper(String path) throws IOException {
@@ -168,11 +186,11 @@ public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
         return missingSerials;
     }
 
-    public void beforeFinishState(CatalogEntityWorkerState state) {
+    protected void beforeFinishState(CatalogEntityWorkerState state) {
         // can be overriden
     }
 
-    public void afterFinishState(CatalogEntityWorkerState state) {
+    protected void afterFinishState(CatalogEntityWorkerState state) {
         // can be overriden
     }
 
@@ -222,13 +240,6 @@ public class CatalogEntityBuilder extends WorkerPool<MarcRecord>
     @Override
     public CatalogEntityWorker newWorker() {
         return isMapped ? new CatalogEntityWorker(this) : new CatalogUnmappedEntityWorker(this);
-    }
-
-    @Override
-    public void flush() throws IOException {
-        logger.info("flushing");
-        super.flush();
-        logger.info("flushed");
     }
 
     @Override

@@ -778,6 +778,7 @@
             " " : "location",
             "3" : "enumerationAndChronology", /* materialsSpecified ? */
             "6" : "linkage",
+            "8" : "sequenceNumber",
             "9" : "number", /* ZDB sequence number */
             "a" : "location",
             "b" : "collection",
@@ -919,6 +920,14 @@
         "tags" : [
             "562"
         ]
+    },
+    "LicenseInformation" : {
+      "tags" : [
+          "933"
+      ],
+        "subfields" : {
+            "a" : "code"
+        }
     },
     "Ignore" : {
         /* known, but ignored by intent */

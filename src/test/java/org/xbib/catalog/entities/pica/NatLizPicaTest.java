@@ -3,14 +3,21 @@ package org.xbib.catalog.entities.pica;
 import org.junit.Assert;
 import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
+import org.xbib.catalog.entities.WorkerPool;
+import org.xbib.catalog.entities.WorkerPoolListener;
 import org.xbib.marc.Marc;
+import org.xbib.marc.MarcRecord;
 import org.xbib.marc.dialects.pica.PicaXMLContentHandler;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,11 +28,24 @@ public class NatLizPicaTest extends Assert {
 
     private static final Logger logger = Logger.getLogger(NatLizPicaTest.class.getName());
 
+    private static WorkerPoolListener<WorkerPool<MarcRecord>> listener =
+            new WorkerPoolListener<WorkerPool<MarcRecord>>() {
+                @Override
+                public void success(WorkerPool<MarcRecord> workerPool) {
+                    logger.log(Level.INFO, "success of " + workerPool + " (" + workerPool.getCounter() + " records)");
+                }
+
+                @Override
+                public void failure(WorkerPool<MarcRecord> workerPool, Map<Runnable, Throwable> exceptions) {
+                    logger.log(Level.SEVERE, "failure of " + workerPool + " reason " + exceptions.toString());
+                    fail();
+                }
+            };
     @Test
     public void testNatLizPicaSetup() throws Exception {
         File file = File.createTempFile("natliz-pica-bib-entities.", ".json");
         file.deleteOnExit();
-        try (FileWriter writer = new FileWriter(file);
+        try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
              NatLizPicaBuilder builder = new NatLizPicaBuilder("org.xbib.catalog.entities.pica.natliz.bib",
                 getClass().getResource("bib.json"))) {
             assertFalse(builder.getEntitySpecification().getEntities().isEmpty());
@@ -54,7 +74,7 @@ public class NatLizPicaTest extends Assert {
     /**
      * Class for counting records outside of NatLizPicaBuilder.
      */
-    private class CountingPicaXMLContentHandler extends PicaXMLContentHandler {
+    private static class CountingPicaXMLContentHandler extends PicaXMLContentHandler {
         private int counter = 0;
 
         @Override
@@ -68,10 +88,10 @@ public class NatLizPicaTest extends Assert {
         }
     }
 
-    private class NatLizPicaBuilder extends CatalogEntityBuilder {
+    private static class NatLizPicaBuilder extends CatalogEntityBuilder {
 
         NatLizPicaBuilder(String packageName, URL url) throws Exception {
-            super(packageName, 1, url);
+            super(packageName, 1, url, listener);
         }
     }
 }

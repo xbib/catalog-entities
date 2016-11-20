@@ -8,7 +8,6 @@ import org.xbib.catalog.entities.CatalogEntityBuilder;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.content.rdf.RdfContentBuilder;
 import org.xbib.content.rdf.RdfXContentParams;
-import org.xbib.content.resource.IRI;
 import org.xbib.marc.Marc;
 
 import java.io.IOException;
@@ -27,7 +26,8 @@ public class MabTest {
 
     @Test
     public void testSetupOfMABElements() throws Exception {
-        try (MyBuilder builder = new MyBuilder(getClass().getResource("titel.json"))) {
+        try (MyBuilder builder = new MyBuilder("org.xbib.catalog.entities.mab",
+                getClass().getResource("titel.json"))) {
             assertEquals(515, builder.getEntitySpecification().getMap().size());
             assertEquals(86, builder.getEntitySpecification().getEntities().size());
         }
@@ -35,7 +35,8 @@ public class MabTest {
 
     @Test
     public void testZDBMAB() throws Exception {
-        try (MyBuilder myBuilder = new MyBuilder(getClass().getResource("titel.json"))) {
+        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.mab",
+                getClass().getResource("titel.json"))) {
             Marc.builder()
                     .setInputStream(getClass().getResource("1217zdbtit.dat").openStream())
                     .setCharset(Charset.forName("x-MAB"))
@@ -57,20 +58,15 @@ public class MabTest {
         }
     }
 
-    private class MyBuilder extends CatalogEntityBuilder {
+    private static class MyBuilder extends CatalogEntityBuilder {
 
-        MyBuilder(URL url) throws Exception {
-            super("org.xbib.catalog.entities.mab", url);
+        MyBuilder(String packageName, URL url) throws Exception {
+            super(packageName, url);
         }
 
         @Override
-        public void beforeFinishState(CatalogEntityWorkerState state) {
-            IRI iri = IRI.builder().scheme("http")
-                    .host("dummy")
-                    .query("dummy")
-                    .fragment(Long.toString(counter.getAndIncrement())).build();
+        protected void beforeFinishState(CatalogEntityWorkerState state) {
             try {
-                state.getResource().setId(iri);
                 RdfXContentParams params = new RdfXContentParams();
                 RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
                 builder.receive(state.getResource());

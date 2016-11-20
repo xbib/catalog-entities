@@ -18,11 +18,9 @@ public class CustomIdentifier extends CatalogEntity {
     @Override
     public String transform(CatalogEntityWorker worker,
                             String predicate, Resource resource, String property, String value) {
-        if ("IdentifierZDB".equals(predicate)) {
-            if ("value".equals(property)) {
-                resource.add("identifierZDB", value.replaceAll("\\-", "").toLowerCase());
-                return null;
-            }
+        if ("IdentifierZDB".equals(predicate) && "value".equals(property)) {
+            resource.add("identifierZDB", value.replaceAll("\\-", "").toLowerCase());
+            return null;
         } else if ("IdentifierDNB".equals(predicate)) {
             if ("value".equals(property)) {
                 resource.add("identifierDNB", value.replaceAll("\\-", "").toLowerCase());

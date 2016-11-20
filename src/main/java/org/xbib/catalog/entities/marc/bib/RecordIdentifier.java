@@ -25,7 +25,8 @@ public class RecordIdentifier extends CatalogEntity {
         String value = getValue(field).trim();
         worker.getWorkerState().setIdentifier(value);
         worker.getWorkerState().setRecordIdentifier(value);
-        logger.log(Level.INFO, "id=" + value);
+        worker.getWorkerState().getResource().newResource("xbib").add("uid", value);
+        logger.log(Level.FINE, "id=" + value);
         return super.transform(worker, field);
     }
 }

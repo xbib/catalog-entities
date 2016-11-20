@@ -5,11 +5,11 @@ import org.xbib.catalog.entities.CatalogEntity;
 import java.util.Map;
 
 /**
- *
  */
-public class TitleAlternative extends CatalogEntity {
+public class HoldingInstitution extends CatalogEntity {
 
-    public TitleAlternative(Map<String, Object> params) {
+    public HoldingInstitution(Map<String, Object> params) {
         super(params);
     }
 }
+

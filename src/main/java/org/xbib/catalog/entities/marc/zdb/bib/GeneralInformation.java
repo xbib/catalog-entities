@@ -79,9 +79,7 @@ public class GeneralInformation extends CatalogEntity {
         try {
             int d = Integer.parseInt(date);
             if (d < 1450) {
-                if (d > 0) {
-                    logger.log(Level.WARNING, MessageFormat.format("very early date ignored: {0}", d));
-                }
+                logger.log(Level.WARNING, MessageFormat.format("very early date ignored: {0}", d));
                 return null;
             }
             if (d == 9999) {

@@ -7,21 +7,27 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
+import org.xbib.catalog.entities.WorkerPool;
+import org.xbib.catalog.entities.WorkerPoolListener;
 import org.xbib.content.rdf.RdfContentBuilder;
 import org.xbib.content.rdf.RdfXContentParams;
 import org.xbib.marc.Marc;
+import org.xbib.marc.MarcRecord;
 import org.xbib.marc.dialects.pica.PicaXMLContentHandler;
 import org.xbib.marc.transformer.value.MarcValueTransformers;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.text.Normalizer;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,6 +38,20 @@ public class BibdatTest extends Assert {
 
     private static final Logger logger = Logger.getLogger(BibdatTest.class.getName());
 
+    private static WorkerPoolListener<WorkerPool<MarcRecord>> listener =
+            new WorkerPoolListener<WorkerPool<MarcRecord>>() {
+                @Override
+                public void success(WorkerPool<MarcRecord> workerPool) {
+                    logger.log(Level.INFO, "success of " + workerPool + " (" + workerPool.getCounter() + " records)");
+                }
+
+                @Override
+                public void failure(WorkerPool<MarcRecord> workerPool, Map<Runnable, Throwable> exceptions) {
+                    logger.log(Level.SEVERE, "failure of " + workerPool + " reason " + exceptions.toString());
+                    fail();
+                }
+            };
+
     @Test
     public void testPicaBibdatSetup() throws Exception {
         File file = File.createTempFile("bibdat-entities.", ".json");
@@ -39,7 +59,7 @@ public class BibdatTest extends Assert {
         try (BibdatPicaBuilder builder = new BibdatPicaBuilder("org.xbib.catalog.entities.pica.zdb.bibdat",
                 getClass().getResource("bibdat.json"))) {
             assertFalse(builder.getEntitySpecification().getEntities().isEmpty());
-            FileWriter writer = new FileWriter(file);
+            Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
             builder.getEntitySpecification().dump(writer);
             writer.close();
         }
@@ -71,7 +91,7 @@ public class BibdatTest extends Assert {
     /**
      * Class for counting records outside of NatLizPicaBuilder.
      */
-    private class CountingPicaXMLContentHandler extends PicaXMLContentHandler {
+    private static class CountingPicaXMLContentHandler extends PicaXMLContentHandler {
         private int counter = 0;
 
         @Override
@@ -85,24 +105,28 @@ public class BibdatTest extends Assert {
         }
     }
 
-    private class BibdatPicaBuilder extends CatalogEntityBuilder {
+    private static class BibdatPicaBuilder extends CatalogEntityBuilder {
 
         BibdatPicaBuilder(String packageName, URL url) throws Exception {
-            super(packageName, 1, url);
+            super(packageName, 1, url, listener);
         }
 
         @Override
-        public void afterFinishState(CatalogEntityWorkerState state) {
-            counter.incrementAndGet();
+        protected void afterFinishState(CatalogEntityWorkerState state) {
             try {
                 RdfXContentParams params = new RdfXContentParams();
                 RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
                 builder.receive(state.getResource());
                 String result = params.getGenerator().get();
-                InputStream inputStream = getClass().getResource(state.getRecordIdentifier() + ".bibdat.json").openStream();
-                assertStream("" + state.getRecordIdentifier(),
-                        inputStream,
-                        new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8)));
+                URL url = getClass().getResource(state.getRecordIdentifier() + ".bibdat.json");
+                if (url != null) {
+                    InputStream inputStream = url.openStream();
+                    assertStream("" + state.getRecordIdentifier(),
+                            inputStream,
+                            new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8)));
+                } else {
+                    fail("resource not found: '" + state.getRecordIdentifier() + ".bibdat.json'");
+                }
             } catch (IOException e) {
                 logger.log(Level.SEVERE, e.getMessage(), e);
             }
