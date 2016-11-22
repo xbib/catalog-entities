@@ -18,14 +18,11 @@ import org.xbib.marc.Marc;
 import org.xbib.marc.MarcRecord;
 import org.xbib.marc.MarcXchangeConstants;
 
-import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.Map;
 import java.util.logging.Level;

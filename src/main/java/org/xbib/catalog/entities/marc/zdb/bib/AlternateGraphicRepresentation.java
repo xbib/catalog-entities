@@ -41,6 +41,7 @@ public class AlternateGraphicRepresentation extends CatalogEntity {
         if (!link) {
             builder.tag(field.getTag()).indicator(field.getIndicator());
         }
-        return super.transform(worker, builder.build());
+        worker.build(builder.build());
+        return this;
     }
 }

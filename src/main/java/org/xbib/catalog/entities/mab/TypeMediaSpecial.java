@@ -50,11 +50,18 @@ public class TypeMediaSpecial extends CatalogEntity {
 
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
-        String value = getValue(field);
-        for (String code : findCodes(value)) {
-            worker.getWorkerState().getResource().add(predicate, code);
-            // facetize here, so we have to find codes only once
-            facetize(worker, code);
+        String value = field.getSubfields().getFirst().getValue();
+        if (!value.isEmpty()) {
+            List<String> list = findCodes(value);
+            if (list.isEmpty()) {
+                logger.log(Level.WARNING, MessageFormat.format("no media type detected from value: \"{0}\" in field {1}",
+                        value, field));
+            }
+            for (String code : list) {
+                worker.getWorkerState().getResource().add(predicate, code);
+                // facetize here, so we have to find codes only once
+                facetize(worker, code);
+            }
         }
         return null; // done!
     }
@@ -78,9 +85,6 @@ public class TypeMediaSpecial extends CatalogEntity {
                     }
                 }
             }
-        }
-        if (!value.isEmpty() && list.isEmpty()) {
-            logger.log(Level.WARNING, MessageFormat.format("no media type detected from value: \"{0}\"", value));
         }
         return list;
     }

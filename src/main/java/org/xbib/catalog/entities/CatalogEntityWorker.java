@@ -118,27 +118,7 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
             crc32.reset();
         }
         for (MarcField marcField : marcRecord.getFields()) {
-            if (!marcField.isTagValid()) {
-                entityBuilder.invalid(getWorkerState().getRecordIdentifier(), marcField,
-                        "field " + marcField + ": invalid tag");
-                continue;
-            }
-            if (!marcField.isIndicatorValid()) {
-                entityBuilder.invalid(getWorkerState().getRecordIdentifier(), marcField,
-                        "field " + marcField + " invalid indicator");
-                continue;
-            }
-            CatalogEntity entity = entityBuilder.getEntitySpecification().retrieve(marcField);
-            if (entity != null) {
-                entity.transform(this, marcField);
-                entityBuilder.mapped(getWorkerState().getRecordIdentifier(), marcField);
-            } else {
-                entityBuilder.unmapped(getWorkerState().getRecordIdentifier(), marcField,
-                        "field " + marcField + " tag definition missing in specification");
-            }
-            if (logger.isLoggable(Level.FINE)) {
-                logger.log(Level.FINE, "field=" + marcField + " entity=" + entity);
-            }
+            build(marcField);
         }
         if (entityBuilder.isEnableChecksum()) {
             crc32.update(marcRecord.getFields().toString().getBytes(StandardCharsets.UTF_8));
@@ -146,6 +126,30 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
             entityBuilder.checksum(crc32);
         }
         entityBuilder.getCounter().incrementAndGet();
+    }
+
+    public void build (MarcField marcField) throws IOException {
+        if (!marcField.isTagValid()) {
+            entityBuilder.invalid(getWorkerState().getRecordIdentifier(), marcField,
+                    "field " + marcField + ": invalid tag");
+            return;
+        }
+        if (!marcField.isIndicatorValid()) {
+            entityBuilder.invalid(getWorkerState().getRecordIdentifier(), marcField,
+                    "field " + marcField + " invalid indicator");
+            return;
+        }
+        CatalogEntity entity = entityBuilder.getEntitySpecification().retrieve(marcField);
+        if (entity != null) {
+            entity.transform(this, marcField);
+            entityBuilder.mapped(getWorkerState().getRecordIdentifier(), marcField);
+        } else {
+            entityBuilder.unmapped(getWorkerState().getRecordIdentifier(), marcField,
+                    "field " + marcField + " tag definition missing in specification");
+        }
+        if (logger.isLoggable(Level.FINE)) {
+            logger.log(Level.FINE, "field=" + marcField + " entity=" + entity);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -279,7 +283,8 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
                             subfield.getValue()));
                 } else {
                     entityBuilder.unmapped(getWorkerState().getRecordIdentifier(), field,
-                            "field " + field + " missing definition for subfield '" + subfieldId + "'");
+                            "field " + field + " missing definition for subfield '" + subfieldId
+                                    + "' subfields=" + subfields);
                 }
             }
         }

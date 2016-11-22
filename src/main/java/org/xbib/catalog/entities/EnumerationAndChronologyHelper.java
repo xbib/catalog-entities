@@ -4,6 +4,7 @@ import org.xbib.content.rdf.Resource;
 import org.xbib.content.rdf.internal.DefaultAnonymousResource;
 import org.xbib.content.resource.IRI;
 import org.xbib.content.resource.Node;
+import org.xbib.marc.MarcField;
 
 import java.text.MessageFormat;
 import java.time.LocalDate;
@@ -185,6 +186,10 @@ public class EnumerationAndChronologyHelper {
             Pattern.compile("(\\d{4}/?\\d{0,4})\\((\\d{4}/?\\d{0,4})\\)")
     };
 
+    private final String id;
+
+    private final MarcField marcField;
+
     private final Set<Integer> dates;
 
     private final List<Pattern> movingwalls;
@@ -203,7 +208,9 @@ public class EnumerationAndChronologyHelper {
 
     private final List<Boolean> open;
 
-    public EnumerationAndChronologyHelper(List<Pattern> movingwalls) {
+    public EnumerationAndChronologyHelper(String id, MarcField marcField, List<Pattern> movingwalls) {
+        this.id = id;
+        this.marcField = marcField;
         this.movingwalls = movingwalls;
         this.dates = new TreeSet<>();
         this.begin = new LinkedList<>();
@@ -753,7 +760,7 @@ public class EnumerationAndChronologyHelper {
         }
     }
 
-    public Set<Integer> dates(Resource resource, String logmarker) {
+    public Set<Integer> dates(Resource resource) {
         for (IRI iri : resource.predicates()) {
             resource.resources(iri).forEach(group -> {
                 Iterator<Node> begindateCollection = group.objects("begindate").iterator();
@@ -801,17 +808,19 @@ public class EnumerationAndChronologyHelper {
                 // add years from interval
                 if (beginNumber >= 0 && endNumber >= 0) {
                     if (beginNumber > currentYear || endNumber > currentYear) {
-                        logger.log(Level.WARNING, MessageFormat.format("future dates in {0}: {1},{2} (from {3},{4})",
-                                logmarker, beginNumber, endNumber, begindate, enddate));
+                        logger.log(Level.WARNING,
+                                MessageFormat.format("{0} {1} future dates: {2},{3} (from {4},{5})",
+                                id, marcField, beginNumber, endNumber, begindate, enddate));
                     } else if (endNumber - beginNumber > 250) {
-                        logger.log(Level.WARNING, MessageFormat.format("too many years in {0}: {1}-{2} (from {3},{4})",
-                                logmarker, beginNumber, endNumber, begindate, enddate));
+                        logger.log(Level.WARNING,
+                                MessageFormat.format("{0} {1} too many years: {2},{3} (from {4},{5})",
+                                id, marcField, beginNumber, endNumber, begindate, enddate));
                         // RDA: 1500
                         // Acta eruditorum: 1682
                         // Phil. Trans.: 1655 (but not in print)
                     } else if (beginNumber < 1500 || endNumber < 1500) {
-                        logger.log(Level.WARNING, MessageFormat.format("too early in {0}: {1},{2} ({3},{4})",
-                                logmarker, beginNumber, endNumber, begindate, enddate));
+                        logger.log(Level.WARNING, MessageFormat.format("{0} {1} too early: {2},{3} ({4},{5})",
+                                id, marcField, beginNumber, endNumber, begindate, enddate));
                     } else {
                         for (int i = beginNumber; i <= endNumber; i++) {
                             dates.add(i);
@@ -819,8 +828,8 @@ public class EnumerationAndChronologyHelper {
                     }
                 }
                 if (dates.size() > 250) {
-                    logger.log(Level.WARNING, MessageFormat.format("too many dates in {0}: {1}",
-                            logmarker, dates.size()));
+                    logger.log(Level.WARNING, MessageFormat.format("{0} {1} too many dates: {2}",
+                            id, marcField, dates.size()));
                 }
             });
         }

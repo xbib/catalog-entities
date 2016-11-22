@@ -107,10 +107,10 @@ public class EnumerationAndChronologyHelperTest extends Assert {
         dates[31] = "[" + createYearList(1963, year) + "]";
 
         for (int i = 0; i < specs.length; i++) {
-            EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(null);
+            EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(null, null, null);
             String s = specs[i];
             Resource r = eac.parseToResource(s);
-            Set<Integer> d = eac.dates(r, r.id().toString());
+            Set<Integer> d = eac.dates(r);
             assertEquals(dates[i], d.toString());
         }
     }
@@ -118,10 +118,10 @@ public class EnumerationAndChronologyHelperTest extends Assert {
     @Test
     public void testMovingwall() {
         List<Pattern> p = Collections.singletonList(Pattern.compile("Letzte (\\d+) Jg"));
-        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(p);
+        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(null, null, p);
         String s = "Letzte 10 Jg.";
         Resource r = eac.parseToResource(s);
-        Set<Integer> d = eac.dates(r, r.id().toString());
+        Set<Integer> d = eac.dates(r);
         // yeah, moving wall
         Set<Integer> set = new TreeSet<>();
         for (int i = 0; i < 11; i++) {

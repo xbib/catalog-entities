@@ -17,6 +17,7 @@ public class Ignore extends CatalogEntity {
 
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField fields) {
+        // swallow field
         return null;
     }
 }

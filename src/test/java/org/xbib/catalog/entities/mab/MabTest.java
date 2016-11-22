@@ -28,8 +28,9 @@ public class MabTest {
     public void testSetupOfMABElements() throws Exception {
         try (MyBuilder builder = new MyBuilder("org.xbib.catalog.entities.mab",
                 getClass().getResource("titel.json"))) {
-            assertEquals(515, builder.getEntitySpecification().getMap().size());
-            assertEquals(86, builder.getEntitySpecification().getEntities().size());
+            // update these values if you extend MAB specification
+            assertEquals(557, builder.getEntitySpecification().getMap().size());
+            assertEquals(95, builder.getEntitySpecification().getEntities().size());
         }
     }
 

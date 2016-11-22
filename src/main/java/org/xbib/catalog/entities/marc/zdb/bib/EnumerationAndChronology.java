@@ -43,14 +43,15 @@ public class EnumerationAndChronology extends CatalogEntity {
 
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
-        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(getMovingwallPatterns());
+        String id = worker.getWorkerState().getIdentifier();
+        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(id, field, getMovingwallPatterns());
         for (MarcField.Subfield subfield : field.getSubfields()) {
             if ("a".equals(subfield.getId())) {
                 worker.getWorkerState().getResource().add("TextualEnumerationAndChronology", subfield.getValue());
                 Resource r = worker.getWorkerState().getResource().newResource("EnumerationAndChronology");
                 Resource parsedHoldings = eac.parseToResource(subfield.getValue(), r);
                 if (!parsedHoldings.isEmpty()) {
-                    Set<Integer> dates = eac.dates(parsedHoldings, r.id().toString());
+                    Set<Integer> dates = eac.dates(parsedHoldings);
                     for (Integer date : dates) {
                         worker.getWorkerState().getResource().add("Dates", date);
                     }

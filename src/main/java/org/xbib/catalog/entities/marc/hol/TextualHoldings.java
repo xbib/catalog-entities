@@ -48,7 +48,8 @@ public class TextualHoldings extends CatalogEntity {
 
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
-        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(getMovingwallPatterns());
+        String id = worker.getWorkerState().getIdentifier();
+        EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(id, field, getMovingwallPatterns());
         for (MarcField.Subfield subfield : field.getSubfields()) {
             String value = subfield.getValue();
             worker.getWorkerState().getResource().add("textualholdings", value);
@@ -56,7 +57,7 @@ public class TextualHoldings extends CatalogEntity {
                 Resource r = worker.getWorkerState().getResource().newResource("holdings");
                 Resource parsedHoldings = eac.parseToResource(value, r);
                 if (!parsedHoldings.isEmpty()) {
-                    Set<Integer> dates = eac.dates(parsedHoldings, worker.getWorkerState().getResource().id().toString());
+                    Set<Integer> dates = eac.dates(parsedHoldings);
                     for (Integer date : dates) {
                         worker.getWorkerState().getResource().add("dates", date);
                     }
