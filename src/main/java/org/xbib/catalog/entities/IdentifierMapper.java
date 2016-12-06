@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,11 +17,13 @@ import java.util.regex.Pattern;
  */
 public class IdentifierMapper {
 
+    private static final Logger logger = Logger.getLogger(IdentifierMapper.class.getName());
+
     private static final Pattern p = Pattern.compile("^1\\s(.{21})(.{5}).*");
 
     private final Map<String, String> map = new HashMap<>();
 
-    public Map<String, String> load(InputStream in) throws IOException {
+    public Map<String, String> load(InputStream in) {
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in, StandardCharsets.ISO_8859_1))) {
             bufferedReader.lines().forEach(line -> {
                 if (line.trim().length() > 0 && !line.startsWith("!")) {
@@ -33,6 +37,9 @@ public class IdentifierMapper {
                     }
                 }
             });
+        } catch (IOException e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
+
         }
         return map;
     }
@@ -46,6 +53,11 @@ public class IdentifierMapper {
             isil = "DE-" + isil;
         }
         return isil;
+    }
+
+    public IdentifierMapper add(String key, String value) {
+        this.map.put(key, value);
+        return this;
     }
 
     public IdentifierMapper add(Map<String, String> map) {
