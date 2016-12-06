@@ -218,7 +218,6 @@ public class CatalogEntityWorkerState {
         }
         sequences.clear();
 
-        // create default facets
         Facet<String> languageFacet = facets.get(LANGUAGE_FACET);
         if (languageFacet == null) {
             CatalogEntity entity = builder.getEntitySpecification().getEntities().get(packageName + ".Language");
@@ -285,19 +284,14 @@ public class CatalogEntityWorkerState {
                 }
             }
         }
-        facets.clear();
-
-        if (graph.getResources() != null) {
+        if (builders != null && graph.getResources() != null) {
             Iterator<Resource> it = graph.getResources();
             while (it.hasNext()) {
                 Resource resource = it.next();
-                if (builders != null) {
-                    for (RdfContentBuilderProvider<?> provider : builders.values()) {
-                        provider.newContentBuilder().receive(resource);
-                    }
+                for (RdfContentBuilderProvider<?> provider : builders.values()) {
+                    provider.newContentBuilder().receive(resource);
                 }
             }
         }
     }
-
 }

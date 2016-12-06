@@ -32,14 +32,10 @@ public class Item extends CatalogEntity {
      */
 
     private static final String taxonomyFacet = "xbib.taxonomy";
-    private String identifierFacet = "xbib.identifier";
+    private static final String identifierFacet = "xbib.identifier";
 
     public Item(Map<String, Object> params) {
         super(params);
-        // facet name
-        if (params.containsKey("_facet")) {
-            this.identifierFacet = params.get("_facet").toString();
-        }
     }
 
     @Override

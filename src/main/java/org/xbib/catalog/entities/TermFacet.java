@@ -2,8 +2,10 @@ package org.xbib.catalog.entities;
 
 import org.xbib.content.resource.IRI;
 
-import java.util.LinkedList;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -14,7 +16,7 @@ public class TermFacet implements Facet<String> {
 
     private IRI type;
 
-    private List<String> values = new LinkedList<>();
+    private Set<String> values = new LinkedHashSet<>();
 
     @Override
     public String getName() {
@@ -47,8 +49,13 @@ public class TermFacet implements Facet<String> {
     }
 
     @Override
-    public List<String> getValues() {
+    public Collection<String> getValues() {
         return values;
     }
 
+
+    @Override
+    public String toString() {
+        return "[type=" + type + ",name=" + name + ",values=" + values + "]";
+    }
 }

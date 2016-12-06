@@ -22,6 +22,8 @@ public class OnlineAccess extends CatalogEntity {
 
     private static final String taxonomyFacet = "xbib.taxonomy";
 
+    private static final String identifierFacet = "xbib.identifier";
+
     public OnlineAccess(Map<String, Object> params) {
         super(params);
     }
@@ -48,6 +50,9 @@ public class OnlineAccess extends CatalogEntity {
             if (mapper != null) {
                 isil = mapper.lookup(value);
                 state.setISIL(isil);
+                state.getFacets().putIfAbsent(identifierFacet,
+                        new TermFacet().setName(identifierFacet).setType(Literal.STRING));
+                state.getFacets().get(identifierFacet).addValue(isil);
                 IRI uid = state.getUID();
                 if (uid != null) {
                     // update UID to correct value

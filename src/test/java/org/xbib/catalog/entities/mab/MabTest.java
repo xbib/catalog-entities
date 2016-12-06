@@ -29,7 +29,7 @@ public class MabTest {
         try (MyBuilder builder = new MyBuilder("org.xbib.catalog.entities.mab",
                 getClass().getResource("titel.json"))) {
             // update these values if you extend MAB specification
-            assertEquals(557, builder.getEntitySpecification().getMap().size());
+            assertEquals(558, builder.getEntitySpecification().getMap().size());
             assertEquals(95, builder.getEntitySpecification().getEntities().size());
         }
     }

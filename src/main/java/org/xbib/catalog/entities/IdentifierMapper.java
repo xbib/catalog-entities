@@ -17,7 +17,7 @@ public class IdentifierMapper {
 
     private static final Pattern p = Pattern.compile("^1\\s(.{21})(.{5}).*");
 
-    private Map<String, String> map = new HashMap<>();
+    private final Map<String, String> map = new HashMap<>();
 
     public Map<String, String> load(InputStream in) throws IOException {
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in, StandardCharsets.ISO_8859_1))) {
@@ -58,6 +58,7 @@ public class IdentifierMapper {
     }
 
     public String lookup(String value) {
-        return map.containsKey(value) ? map.get(value) : value;
+        String s = map.containsKey(value) ? map.get(value) : value;
+        return map.containsKey(s) ? map.get(s) : s;
     }
 }

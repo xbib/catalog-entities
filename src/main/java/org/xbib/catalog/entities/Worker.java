@@ -7,7 +7,6 @@ import java.io.IOException;
  *
  * @param <R> request type
  */
-@FunctionalInterface
 public interface Worker<R> {
     /**
      * Execute a request.
@@ -16,4 +15,6 @@ public interface Worker<R> {
      * @throws IOException if execution fails
      */
     void execute(R request) throws IOException;
+
+    R getRequest();
 }

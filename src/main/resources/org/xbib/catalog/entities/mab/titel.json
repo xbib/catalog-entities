@@ -909,7 +909,8 @@
       "431"
     ],
     "subfields": {
-      " ": "register"
+      " ": "register",
+      "a": "register"
     }
   },
   "AudienceCharacteristics": {
@@ -917,7 +918,8 @@
       "678"
     ],
     "subfields": {
-      "a": "audience"
+      "a": "audience",
+      "9": "id"
     }
   },
   "Extent": {
@@ -4903,13 +4905,15 @@
   },
   "Exemplar": {
     "tags": [
+      "B80",
       "B85",
       "B86",
       "B87",
       "B88"
     ],
     "subfields": {
-      "a": "coporateUnit",
+      " ": "value",
+      "a": "value",
       "b": "corporateUnit",
       "c": "section",
       "p": "personName",

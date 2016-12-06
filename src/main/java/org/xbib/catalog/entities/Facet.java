@@ -2,7 +2,7 @@ package org.xbib.catalog.entities;
 
 import org.xbib.content.resource.IRI;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * @param <O> the facet type paramter
@@ -19,6 +19,6 @@ public interface Facet<O> {
 
     Facet<O> addValue(O value);
 
-    List<O> getValues();
+    Collection<O> getValues();
 
 }

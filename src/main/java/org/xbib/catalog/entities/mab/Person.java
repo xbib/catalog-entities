@@ -33,7 +33,7 @@ public class Person extends CatalogEntity {
                 resource.add("identifierZDB", value.substring(8).replaceAll("\\-", "").toLowerCase());
                 return value.replaceAll("\\-", "").toLowerCase();
             }
-            // very important for GND referencing
+            // returning null is very important for GND referencing
             return null;
         } else if ("source".equals(property)) {
             IdentifierMapper mapper = worker.identifierMapper();

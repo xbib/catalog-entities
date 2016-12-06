@@ -21,6 +21,8 @@ public class OnlineAccessScopedLink extends OnlineAccess {
 
     private static final String taxonomyFacet = "xbib.taxonomy";
 
+    private static final String identifierFacet = "xbib.identifier";
+
     private String catalogid = "";
 
     public OnlineAccessScopedLink(Map<String, Object> params) {
@@ -51,6 +53,10 @@ public class OnlineAccessScopedLink extends OnlineAccess {
         } else if ("scope".equals(property) && catalogid != null && !catalogid.isEmpty()) {
             String isil = catalogid;
             resource.add("identifier", isil);
+            state.getFacets().putIfAbsent(identifierFacet,
+                    new TermFacet().setName(identifierFacet).setType(Literal.STRING));
+            state.getFacets().get(identifierFacet).addValue(isil);
+
             Classifier classifier = worker.classifier();
             if (classifier != null) {
                 String key = isil + "." + state.getRecordIdentifier() + ".";

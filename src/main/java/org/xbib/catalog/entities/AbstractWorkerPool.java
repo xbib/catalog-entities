@@ -143,6 +143,14 @@ public abstract class AbstractWorkerPool<R> implements WorkerPool<R>, AutoClosea
         }
     }
 
+    public CountDownLatch getLatch() {
+        return latch;
+    }
+
+    public Map<Runnable, Throwable> getExceptions() {
+        return exceptions;
+    }
+
     private class ThreadPoolWorkerExecutor extends ThreadPoolExecutor {
 
         private final Logger logger = Logger.getLogger(ThreadPoolWorkerExecutor.class.getName());

@@ -29,6 +29,8 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
 
     private final CRC32 crc32;
 
+    private MarcRecord marcRecord;
+
     private CatalogEntityWorkerState state;
 
     public CatalogEntityWorker(CatalogEntityBuilder entityBuilder) {
@@ -86,6 +88,7 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
 
     @Override
     public void execute(MarcRecord marcRecord) throws IOException {
+        this.marcRecord = marcRecord;
         try {
             this.state = newState();
             build(marcRecord);
@@ -95,6 +98,11 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
             state.finish();
             entityBuilder.afterFinishState(state);
         }
+    }
+
+    @Override
+    public MarcRecord getRequest() {
+        return marcRecord;
     }
 
     public CatalogEntityWorkerState getWorkerState() {
@@ -289,7 +297,9 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
             }
         }
         // rename, now that we know the predicate
-        resource.rename(tempPredicate, IRI.builder().curie(predicate).build());
+        if (predicate != null) {
+            resource.rename(tempPredicate, IRI.builder().curie(predicate).build());
+        }
         return newResource;
     }
 }

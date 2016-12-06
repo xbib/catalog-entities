@@ -5,7 +5,7 @@ import org.xbib.catalog.entities.CatalogEntity;
 import java.util.Map;
 
 /**
- *  MAB 680, 681, 682, 683
+ *  MAB 680, 681, 682, 683.
  *
  *  http://www.dnb.de/SharedDocs/Downloads/DE/DNB/standardisierung/mabTabelleDeutschEnglisch2006.pdf?__blob=publicationFile
  */
