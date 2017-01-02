@@ -26,7 +26,6 @@ apply plugin: "jacoco"
 configurations {
     wagon
     provided
-    testCompile.extendsFrom(provided)
 }
 
 repositories {
