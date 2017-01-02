@@ -41,6 +41,7 @@ public class AlternateGraphicRepresentation extends CatalogEntity {
         if (!link) {
             builder.tag(field.getTag()).indicator(field.getIndicator());
         }
+        // build another MARC field
         worker.build(builder.build());
         return this;
     }

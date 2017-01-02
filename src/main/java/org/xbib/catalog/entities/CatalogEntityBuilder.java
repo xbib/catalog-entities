@@ -120,7 +120,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     }
 
     public String getPackageName() {
-        return entitySpecification.getPackageName();
+        return entitySpecification != null ? entitySpecification.getPackageName() : null;
     }
 
     @Override

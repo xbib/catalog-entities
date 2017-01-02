@@ -17,7 +17,7 @@ public class CatalogUnmappedEntityWorker extends CatalogEntityWorker {
     }
 
     @Override
-    public void build(MarcRecord marcRecord) throws IOException {
+    protected void build(MarcRecord marcRecord) throws IOException {
         for (MarcField field : marcRecord.getFields()) {
             Resource resource = new DefaultAnonymousResource();
             if (field.isControl()) {

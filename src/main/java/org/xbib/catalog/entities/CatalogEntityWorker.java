@@ -81,16 +81,11 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
         };
     }
 
-    @SuppressWarnings("unchecked")
-    private CatalogEntityWorkerState newState() {
-        return new CatalogEntityWorkerState(entityBuilder);
-    }
-
     @Override
     public void execute(MarcRecord marcRecord) throws IOException {
         this.marcRecord = marcRecord;
+        this.state = newState();
         try {
-            this.state = newState();
             build(marcRecord);
         } finally {
             // always execute state finishing, even in case of an IOException
@@ -103,6 +98,11 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
     @Override
     public MarcRecord getRequest() {
         return marcRecord;
+    }
+
+    @SuppressWarnings("unchecked")
+    protected CatalogEntityWorkerState newState() {
+        return new CatalogEntityWorkerState(entityBuilder);
     }
 
     public CatalogEntityWorkerState getWorkerState() {
@@ -121,7 +121,7 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
         return entityBuilder.getStatusMapper();
     }
 
-    public void build(MarcRecord marcRecord) throws IOException {
+    protected void build(MarcRecord marcRecord) throws IOException {
         if (entityBuilder.isEnableChecksum()) {
             crc32.reset();
         }
@@ -136,6 +136,11 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
         entityBuilder.getCounter().incrementAndGet();
     }
 
+    /**
+     * Catalog entities can decide to build a MARC field.
+     * @param marcField the MARC field to build
+     * @throws IOException if build fails
+     */
     public void build (MarcField marcField) throws IOException {
         if (!marcField.isTagValid()) {
             entityBuilder.invalid(getWorkerState().getRecordIdentifier(), marcField,
