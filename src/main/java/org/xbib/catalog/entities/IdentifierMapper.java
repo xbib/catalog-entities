@@ -60,8 +60,10 @@ public class IdentifierMapper {
         return this;
     }
 
-    public IdentifierMapper add(Map<String, String> map) {
-        this.map.putAll(map);
+    public IdentifierMapper add(Map<String, Object> map) {
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            this.map.put(entry.getKey(), entry.getValue().toString());
+        }
         return this;
     }
 

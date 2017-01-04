@@ -22,9 +22,9 @@ public class IdentifierMapperTest {
     @Test
     public void testIdentifierMapper() throws IOException {
         IdentifierMapper identifierMapper = new IdentifierMapper();
-        ValueMaps valueMaps = new ValueMaps();
-        Map<String, String> sigel2isil =
-                valueMaps.getAssocStringMap("org/xbib/catalog/entities/mab/sigel2isil.json", "sigel2isil");
+        ValueMapper valueMapper = new ValueMapper();
+        Map<String, Object> sigel2isil =
+                valueMapper.getMap("org/xbib/catalog/entities/mab/sigel2isil.json", "sigel2isil");
         assertFalse(sigel2isil.isEmpty());
         identifierMapper.add(sigel2isil);
         // a private hbz resource for Aleph Owner mapping

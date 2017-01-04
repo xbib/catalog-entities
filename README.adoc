@@ -1,13 +1,17 @@
-# xbib Catalog Entities
+= Bibliographic entity processing with Java
 
 image:https://api.travis-ci.org/xbib/catalog-entities.svg[title="Build status", link="https://travis-ci.org/xbib/catalog-entities/"]
-image:https://img.shields.io/sonar/http/nemo.sonarqube.com/org.xbib%3Acatalog-entities/coverage.svg?style=flat-square[title="Coverage", link="https://sonarqube.com/dashboard/index?id=org.xbib%3Acatalog-entities"]
 image:https://maven-badges.herokuapp.com/maven-central/org.xbib/catalog-entities/badge.svg[title="Maven Central", link="http://search.maven.org/#search%7Cga%7C1%7Cxbib%20catalog-entities"]
 image:https://img.shields.io/badge/License-Apache%202.0-blue.svg[title="Apache License 2.0", link="https://opensource.org/licenses/Apache-2.0"]
 image:https://img.shields.io/twitter/url/https/twitter.com/xbib.svg?style=social&label=Follow%20%40xbib[title="Twitter", link="https://twitter.com/xbib"]
-image:https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif[title="PayPal", link="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVHFQYZ9WZ8HG"]
 
-This is a high performance Java library for transforming bibliographic data into catalog entities.
+image:https://sonarqube.com/api/badges/gate?key=org.xbib:catalog-entities[title="Quality Gate", link="https://sonarqube.com/dashboard/index?id=org.xbib%3Acatalog-entities"]
+image:https://sonarqube.com/api/badges/measure?key=org.xbib:catalog-entities&metric=coverage[title="Coverage", link="https://sonarqube.com/dashboard/index?id=org.xbib%3Acatalog-entities"]
+image:https://sonarqube.com/api/badges/measure?key=org.xbib:catalog-entities&metric=vulnerabilities[title="Vulnerabilities", link="https://sonarqube.com/dashboard/index?id=org.xbib%3Acatalog-entities"]
+image:https://sonarqube.com/api/badges/measure?key=org.xbib:catalog-entities&metric=bugs[title="Bugs", link="https://sonarqube.com/dashboard/index?id=org.xbib%3Acatalog-entities"]
+image:https://sonarqube.com/api/badges/measure?key=org.xbib:catalog-entities&metric=sqale_debt_ratio[title="Technical debt ratio", link="https://sonarqube.com/dashboard/index?id=org.xbib%3Acatalog-entities"]
+
+This is a Java library for transforming bibliographic data into catalog entities.
 Catalog entities are represented as Java classes, which are used to generate RDF graphs from ISO 2709 or
 MARCXML streams.
 
@@ -21,3 +25,25 @@ ready for SRU/CQL searches, using a single JSON configuration file for defining 
 The creation of the RDF graphs are in-memory and currently focused on a per-record basis, but this will be enhanced
 in future versions. Parallel processing offers high performance - on ordinary hardware, a million MARC records
 can be indexed into Elasticsearch per minute.
+
+== Documentation
+
+Documentation with many examples is available at the link:https://jprante.github.io/catalog-entities[documentation]
+
+== License
+
+Copyright (C) 2016 Jörg Prante
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+you may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+image:https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif[title="PayPal", link="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVHFQYZ9WZ8HG"]

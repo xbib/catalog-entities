@@ -36,7 +36,7 @@ public class Person extends CatalogEntity {
             // returning null is very important for GND referencing
             return null;
         } else if ("source".equals(property)) {
-            IdentifierMapper mapper = worker.identifierMapper();
+            IdentifierMapper mapper = worker.getIdentifierMapper();
             if (mapper != null) {
                 String isil = mapper.lookup(value);
                 if (isil != null) {

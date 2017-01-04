@@ -1,5 +1,6 @@
 plugins {
     id "org.sonarqube" version "2.2"
+    id "org.xbib.gradle.plugin.asciidoctor" version "1.5.4.1.0"
 }
 
 printf "Host: %s\nOS: %s %s %s\nJVM: %s %s %s %s\nGroovy: %s\nGradle: %s\n" +
@@ -22,10 +23,10 @@ apply plugin: 'findbugs'
 apply plugin: 'pmd'
 apply plugin: 'checkstyle'
 apply plugin: "jacoco"
+apply plugin: 'org.xbib.gradle.plugin.asciidoctor'
 
 configurations {
     wagon
-    provided
 }
 
 repositories {
@@ -33,12 +34,12 @@ repositories {
 }
 
 dependencies {
-    compile 'org.xbib:marc:1.0.6'
+    compile 'org.xbib:marc:1.0.8'
     compile "org.xbib:content-rdf:1.0.7"
     testCompile 'junit:junit:4.12'
     testCompile 'org.apache.logging.log4j:log4j-core:2.7'
     testCompile 'org.apache.logging.log4j:log4j-jul:2.7'
-    provided "org.xbib:bibliographic-character-sets:1.0.0"
+    testCompile "org.xbib:bibliographic-character-sets:1.0.0"
     wagon 'org.apache.maven.wagon:wagon-ssh-external:2.10'
 }
 
@@ -51,12 +52,30 @@ tasks.withType(JavaCompile) {
 }
 
 test {
-    classpath += configurations.provided
     testLogging {
         showStandardStreams = true
         exceptionFormat = 'full'
     }
     systemProperty 'java.util.logging.manager', 'org.apache.logging.log4j.jul.LogManager'
+    reports.html.destination = file("${projectDir}/docs/test")
+}
+
+asciidoctor {
+    backends 'html5'
+    outputDir = file("${projectDir}/docs")
+    separateOutputDirs = false
+    attributes 'source-highlighter': 'coderay',
+            toc                 : '',
+            idprefix            : '',
+            idseparator         : '-',
+            stylesheet: "${projectDir}/src/docs/asciidoc/css/foundation.css"
+}
+
+javadoc {
+    options.destinationDirectory(file("${projectDir}/docs/javadoc"))
+    configure(options) {
+        noTimestamp = true
+    }
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

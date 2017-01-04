@@ -109,16 +109,16 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
         return state;
     }
 
-    public Classifier classifier() {
+    public Classifier getClassifier() {
         return entityBuilder.getClassifier();
     }
 
-    public IdentifierMapper identifierMapper() {
+    public IdentifierMapper getIdentifierMapper() {
         return entityBuilder.getIdentifierMapper();
     }
 
-    public StatusCodeMapper statusCodeMapper() {
-        return entityBuilder.getStatusMapper();
+    public ValueMapper getValueMapper() {
+        return entityBuilder.getValueMapper();
     }
 
     protected void build(MarcRecord marcRecord) throws IOException {

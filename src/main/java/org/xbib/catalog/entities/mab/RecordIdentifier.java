@@ -43,7 +43,7 @@ public class RecordIdentifier extends CatalogEntity {
         state.setRecordIdentifier(v);
         state.getResource().newResource("xbib").add("uid", v);
         // check for classifier
-        Classifier classifier = worker.classifier();
+        Classifier classifier = worker.getClassifier();
         if (classifier != null) {
             String isil = catalogid;
             String key = catalogid + "." + state.getRecordIdentifier() + ".";

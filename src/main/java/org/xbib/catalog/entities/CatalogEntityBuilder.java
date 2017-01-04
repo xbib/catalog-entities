@@ -43,7 +43,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     private CatalogEntitySpecification entitySpecification;
     private Marc.Builder marcBuilder;
     private IdentifierMapper identifierMapper;
-    private StatusCodeMapper statusMapper;
+    private ValueMapper valueMapper;
     private Classifier classifier;
     private Map<String, Resource> serialsMap;
     private Map<String, Boolean> missingSerials;
@@ -104,10 +104,10 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
                 logger.log(Level.INFO, MessageFormat.format("identifier mapper: {0} entries",
                         identifierMapper.getMap().size()));
             }
-            this.statusMapper = setupStatusMapper(params);
-            if (!statusMapper.getMap().isEmpty()) {
+            this.valueMapper = setupValueMapper(params);
+            if (!valueMapper.getMap("status").isEmpty()) {
                 logger.log(Level.INFO, MessageFormat.format("status mapper: {0} entries",
-                        statusMapper.getMap().size()));
+                        valueMapper.getMap("status").size()));
             }
             this.serialsMap = setupSerialsMap(params);
             this.missingSerials = new HashMap<>();
@@ -150,13 +150,13 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         return identifierMapper;
     }
 
-    public CatalogEntityBuilder addStatusMapper(String path) throws IOException {
-        statusMapper.load(path);
+    public CatalogEntityBuilder addStatusMapper(String path, String key) throws IOException {
+        valueMapper.getMap(path, key);
         return this;
     }
 
-    public StatusCodeMapper getStatusMapper() {
-        return statusMapper;
+    public ValueMapper getValueMapper() {
+        return valueMapper;
     }
 
     public CatalogEntityBuilder addClassifier(String prefix, String isil, String classifierPath) throws IOException {
@@ -307,11 +307,11 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         // nothing to do here
     }
 
-    private IdentifierMapper setupIdentifierMapper(Map<String, Object> params) throws IOException {
+    protected IdentifierMapper setupIdentifierMapper(Map<String, Object> params) throws IOException {
         IdentifierMapper identifierMapper = new IdentifierMapper();
-        ValueMaps valueMaps = new ValueMaps();
-        Map<String, String> sigel2isil =
-                valueMaps.getAssocStringMap("org/xbib/catalog/entities/mab/sigel2isil.json", "sigel2isil");
+        ValueMapper valueMapper = new ValueMapper();
+        Map<String, Object> sigel2isil =
+                valueMapper.getMap("org/xbib/catalog/entities/mab/sigel2isil.json", "sigel2isil");
         identifierMapper.add(sigel2isil);
         if (params != null && params.containsKey("tab_sigel_url")) {
             // current sigel
@@ -325,15 +325,13 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     }
 
     @SuppressWarnings("unchecked")
-    private StatusCodeMapper setupStatusMapper(Map<String, Object> params) throws IOException {
-        StatusCodeMapper statusMapper = new StatusCodeMapper();
-        ValueMaps valueMaps = new ValueMaps();
-        Map<String, Object> statuscodes = valueMaps.getMap("org/xbib/catalog/entities/mab/status.json", "status");
-        statusMapper.add(statuscodes);
-        return statusMapper;
+    protected ValueMapper setupValueMapper(Map<String, Object> params) throws IOException {
+        ValueMapper valueMapper = new ValueMapper();
+        valueMapper.getMap("org/xbib/catalog/entities/mab/status.json", "status");
+        return valueMapper;
     }
 
-    private Map<String, Resource> setupSerialsMap(Map<String, Object> params) {
+    protected Map<String, Resource> setupSerialsMap(Map<String, Object> params) {
         // can be overriden
         return null;
     }

@@ -57,7 +57,7 @@ public class OnlineAccessScopedLink extends OnlineAccess {
                     new TermFacet().setName(identifierFacet).setType(Literal.STRING));
             state.getFacets().get(identifierFacet).addValue(isil);
 
-            Classifier classifier = worker.classifier();
+            Classifier classifier = worker.getClassifier();
             if (classifier != null) {
                 String key = isil + "." + state.getRecordIdentifier() + ".";
                 java.util.Collection<ClassifierEntry> entries = classifier.lookup(key);

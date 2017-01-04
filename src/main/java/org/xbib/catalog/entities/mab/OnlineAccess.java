@@ -46,7 +46,7 @@ public class OnlineAccess extends CatalogEntity {
             // create synthetic local record identifier as scheme specific part. We have no ISIL!
             state.setUID(IRI.builder().curie("uid:" + value).build());
         } else if ("identifier".equals(property)) {
-            IdentifierMapper mapper = worker.identifierMapper();
+            IdentifierMapper mapper = worker.getIdentifierMapper();
             if (mapper != null) {
                 isil = mapper.lookup(value);
                 state.setISIL(isil);
@@ -61,7 +61,7 @@ public class OnlineAccess extends CatalogEntity {
                 }
             }
             resource.add("identifier", isil);
-            Classifier classifier = worker.classifier();
+            Classifier classifier = worker.getClassifier();
             if (classifier != null) {
                 String key = isil + "." + state.getRecordIdentifier() + ".";
                 java.util.Collection<ClassifierEntry> entries = classifier.lookup(key);

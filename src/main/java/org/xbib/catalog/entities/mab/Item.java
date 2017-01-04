@@ -7,8 +7,8 @@ import org.xbib.catalog.entities.Classifier;
 import org.xbib.catalog.entities.ClassifierEntry;
 import org.xbib.catalog.entities.Facet;
 import org.xbib.catalog.entities.IdentifierMapper;
-import org.xbib.catalog.entities.StatusCodeMapper;
 import org.xbib.catalog.entities.TermFacet;
+import org.xbib.catalog.entities.ValueMapper;
 import org.xbib.content.rdf.Literal;
 import org.xbib.content.rdf.Resource;
 import org.xbib.content.resource.IRI;
@@ -50,7 +50,7 @@ public class Item extends CatalogEntity {
                             String predicate, Resource resource, String property, String value) {
         CatalogEntityWorkerState state = worker.getWorkerState();
         if ("identifier".equals(property)) {
-            IdentifierMapper mapper = worker.identifierMapper();
+            IdentifierMapper mapper = worker.getIdentifierMapper();
             if (mapper != null) {
                 String isil = mapper.lookup(value);
                 if (isil != null) {
@@ -66,7 +66,7 @@ public class Item extends CatalogEntity {
                     if (isil.indexOf('-') < pos) {
                         holderFacet.addValue(isil.substring(0, pos));
                     }
-                    Classifier classifier = worker.classifier();
+                    Classifier classifier = worker.getClassifier();
                     if (classifier != null) {
                         String doc = state.getRecordIdentifier();
                         java.util.Collection<ClassifierEntry> entries = classifier.lookup(isil, doc, value, null);
@@ -87,7 +87,7 @@ public class Item extends CatalogEntity {
         } else if ("callnumber".equals(property)) {
             // create synthetic local record identifier
             state.setUID(IRI.builder().curie(state.getISIL() + "/" + value).build());
-            Classifier classifier = worker.classifier();
+            Classifier classifier = worker.getClassifier();
             if (classifier != null) {
                 String isil = state.getISIL();
                 String doc = state.getRecordIdentifier();
@@ -104,11 +104,16 @@ public class Item extends CatalogEntity {
                 }
             }
         } else if ("status".equals(property)) {
-            StatusCodeMapper mapper = worker.statusCodeMapper();
-            if (mapper != null && mapper.getMap().containsKey(value)) {
-                List<String> codes = (List<String>) mapper.getMap().get(value);
-                for (String code : codes) {
-                    resource.add("interlibraryservice", code);
+            ValueMapper mapper = worker.getValueMapper();
+            if (mapper != null) {
+                Map<String, Object> map = mapper.getMap("status");
+                if (map.containsKey(value)) {
+                    List<String> codes = (List<String>) map.get(value);
+                    if (codes != null) {
+                        for (String code : codes) {
+                            resource.add("interlibraryservice", code);
+                        }
+                    }
                 }
             }
         }
