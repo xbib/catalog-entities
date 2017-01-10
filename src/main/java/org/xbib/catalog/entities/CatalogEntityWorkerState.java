@@ -26,14 +26,6 @@ public class CatalogEntityWorkerState {
 
     private static final Logger logger = Logger.getLogger(CatalogEntityWorkerState.class.getName());
 
-    private static final String LANGUAGE_FACET = "dc.language";
-
-    private static final String DATE_FACET = "dc.date";
-
-    private static final String TYPE_FACET = "dc.type";
-
-    private static final String FORMAT_FACET = "dc.format";
-
     private final IRI itemIRI = IRI.create("item");
 
     private final CatalogEntityBuilder builder;
@@ -42,7 +34,7 @@ public class CatalogEntityWorkerState {
 
     private final Map<IRI, RdfContentBuilderProvider<?>> builders;
 
-    private final Map<String, Facet<String>> facets;
+    private final Map<String, TermFacet> facets;
 
     private final Map<String, Sequence<Resource>> sequences;
 
@@ -175,7 +167,7 @@ public class CatalogEntityWorkerState {
         return this;
     }
 
-    public Map<String, Facet<String>> getFacets() {
+    public Map<String, TermFacet> getFacets() {
         return facets;
     }
 
@@ -218,72 +210,52 @@ public class CatalogEntityWorkerState {
         }
         sequences.clear();
 
-        Facet<String> languageFacet = facets.get(LANGUAGE_FACET);
-        if (languageFacet == null) {
-            CatalogEntity entity = builder.getEntitySpecification().getEntities().get(packageName + ".Language");
-            if (entity != null) {
-                languageFacet = entity.getDefaultFacet();
-                if (languageFacet != null) {
-                    facets.put(LANGUAGE_FACET, languageFacet);
+        // collect facets from elements, if any
+        Map<String, String> facetElements = builder.getFacetElements();
+        if (facetElements != null && !facetElements.isEmpty()) {
+            for (Map.Entry<String, String> entry : facetElements.entrySet()) {
+                String facetName = entry.getKey();
+                String facetClass = entry.getValue();
+                TermFacet facet = facets.get(facetName);
+                if (facet == null) {
+                    CatalogEntity entity =
+                            builder.getEntitySpecification().getEntities().get(packageName + "." + facetClass);
+                    if (entity != null) {
+                        facet = entity.getDefaultFacet();
+                        if (facet != null) {
+                            facets.put(facetName, facet);
+                        }
+                    }
                 }
             }
-        }
-        Facet<String> formatFacet = facets.get(FORMAT_FACET);
-        if (formatFacet == null) {
-            CatalogEntity entity = builder.getEntitySpecification().getEntities().get(packageName + ".FormatCarrier");
-            if (entity != null) {
-                formatFacet = entity.getDefaultFacet();
-                if (formatFacet != null) {
-                    facets.put(FORMAT_FACET, formatFacet);
+            // merge facets into resource
+            for (TermFacet facet : facets.values()) {
+                String facetName = facet.getName();
+                if (facetName == null) {
+                    continue;
                 }
-            }
-        }
-        Facet<String> typeFacet = facets.get(TYPE_FACET);
-        if (typeFacet == null) {
-            CatalogEntity entity = builder.getEntitySpecification().getEntities().get(packageName + ".TypeMonograph");
-            if (entity != null) {
-                typeFacet = entity.getDefaultFacet();
-                if (typeFacet != null) {
-                    facets.put(TYPE_FACET, typeFacet);
+                // split facet name e.g. "dc.date" --> "dc", "date"
+                String[] facetPath = facetName.split("\\.");
+                Resource resource = getResource();
+                if (facetPath.length > 1) {
+                    for (int i = 0; i < facetPath.length - 1; i++) {
+                        resource = resource.newResource(IRI.builder().path(facetPath[i]).build());
+                    }
                 }
-            }
-        }
-        YearFacet dateFacet = (YearFacet) facets.get(DATE_FACET);
-        if (dateFacet == null) {
-            CatalogEntity entity = builder.getEntitySpecification().getEntities().get(packageName + ".Date");
-            if (entity != null) {
-                dateFacet = (YearFacet) entity.getDefaultFacet();
-                if (dateFacet != null) {
-                    facets.put(DATE_FACET, dateFacet);
+                facetName = facetPath[facetPath.length - 1];
+                IRI predicate = IRI.builder().path(facetName).build();
+                for (Object value : facet.getValues()) {
+                    Literal literal = new DefaultLiteral(value).type(facet.getType());
+                    try {
+                        literal.object(); // provoke NumberFormatException to ensure numerical values
+                        resource.add(predicate, literal);
+                    } catch (NumberFormatException e) {
+                        logger.log(Level.FINEST, e.getMessage(), e);
+                    }
                 }
             }
         }
 
-        for (Facet<?> facet : facets.values()) {
-            String facetName = facet.getName();
-            if (facetName == null) {
-                continue;
-            }
-            // split facet name e.g. "dc.date" --> "dc", "date"
-            String[] facetPath = facetName.split("\\.");
-            Resource resource = getResource();
-            if (facetPath.length > 1) {
-                for (int i = 0; i < facetPath.length - 1; i++) {
-                    resource = resource.newResource(IRI.builder().path(facetPath[i]).build());
-                }
-            }
-            facetName = facetPath[facetPath.length - 1];
-            IRI predicate = IRI.builder().path(facetName).build();
-            for (Object value : facet.getValues()) {
-                Literal literal = new DefaultLiteral(value).type(facet.getType());
-                try {
-                    literal.object(); // provoke NumberFormatException to ensure numerical values
-                    resource.add(predicate, literal);
-                } catch (NumberFormatException e) {
-                    logger.log(Level.FINEST, e.getMessage(), e);
-                }
-            }
-        }
         if (builders != null && graph.getResources() != null) {
             Iterator<Resource> it = graph.getResources();
             while (it.hasNext()) {

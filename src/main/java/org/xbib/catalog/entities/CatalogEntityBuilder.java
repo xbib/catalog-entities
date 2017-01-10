@@ -45,35 +45,36 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     private IdentifierMapper identifierMapper;
     private ValueMapper valueMapper;
     private Classifier classifier;
+    private Map<String, String> facetElements;
     private Map<String, Resource> serialsMap;
     private Map<String, Boolean> missingSerials;
     private boolean enableChecksum;
     private volatile boolean errorstate;
 
     public CatalogEntityBuilder(String packageName, URL url) throws IOException {
-        this(packageName, Runtime.getRuntime().availableProcessors(), url, new HashMap<>(), true);
+        this(packageName, Runtime.getRuntime().availableProcessors(), url, Collections.emptyMap(), true);
     }
 
     public CatalogEntityBuilder(String packageName, URL url, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
             throws IOException {
-        this(packageName, Runtime.getRuntime().availableProcessors(), url, new HashMap<>(), true, listener);
+        this(packageName, Runtime.getRuntime().availableProcessors(), url, Collections.emptyMap(), true, listener);
     }
 
     public CatalogEntityBuilder(String packageName, int workers, URL url) throws IOException {
-        this(packageName, workers, url, new HashMap<>(), true);
+        this(packageName, workers, url, Collections.emptyMap(), true);
     }
 
     public CatalogEntityBuilder(String packageName, int workers, URL url,
                                 WorkerPoolListener<WorkerPool<MarcRecord>> listener) throws IOException {
-        this(packageName, workers, url, new HashMap<>(), true, listener);
+        this(packageName, workers, url, Collections.emptyMap(), true, listener);
     }
 
     public CatalogEntityBuilder(String packageName, URL url, boolean mapped) throws IOException {
-        this(packageName, Runtime.getRuntime().availableProcessors(), url, new HashMap<>(), mapped);
+        this(packageName, Runtime.getRuntime().availableProcessors(), url, Collections.emptyMap(), mapped);
     }
 
     public CatalogEntityBuilder(String packageName, int workers, URL url, boolean mapped) throws IOException {
-        this(packageName, workers, url, new HashMap<>(), mapped);
+        this(packageName, workers, url, Collections.emptyMap(), mapped);
     }
 
     public CatalogEntityBuilder(String packageName, int workers, URL url, Map<String, Object> params, boolean isMapped)
@@ -109,132 +110,15 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
                 logger.log(Level.INFO, MessageFormat.format("status mapper: {0} entries",
                         valueMapper.getMap("status").size()));
             }
+            this.facetElements = setupFacets(params);
+            if (!getFacetElements().isEmpty()) {
+                logger.log(Level.INFO, MessageFormat.format("facets: {0} entries",
+                        getFacetElements()));
+            }
             this.serialsMap = setupSerialsMap(params);
             this.missingSerials = new HashMap<>();
         }
         open();
-    }
-
-    public CatalogEntitySpecification getEntitySpecification() {
-        return entitySpecification;
-    }
-
-    public String getPackageName() {
-        return entitySpecification != null ? entitySpecification.getPackageName() : null;
-    }
-
-    @Override
-    public MarcRecord getPoison() {
-        return poison;
-    }
-
-    public Map<IRI, RdfContentBuilderProvider<?>> contentBuilderProviders() {
-        return new HashMap<>();
-    }
-
-    public boolean isEnableChecksum() {
-        return enableChecksum;
-    }
-
-    public CatalogEntityBuilder setEnableChecksum(boolean enableChecksum) {
-        this.enableChecksum = enableChecksum;
-        return this;
-    }
-
-    public CatalogEntityBuilder addIdentifierMapper(String path) throws IOException {
-        identifierMapper.load(getClass().getResource(path).openStream());
-        return this;
-    }
-
-    public IdentifierMapper getIdentifierMapper() {
-        return identifierMapper;
-    }
-
-    public CatalogEntityBuilder addStatusMapper(String path, String key) throws IOException {
-        valueMapper.getMap(path, key);
-        return this;
-    }
-
-    public ValueMapper getValueMapper() {
-        return valueMapper;
-    }
-
-    public CatalogEntityBuilder addClassifier(String prefix, String isil, String classifierPath) throws IOException {
-        if (classifier == null) {
-            classifier = new Classifier();
-        }
-        URL url = new URL(classifierPath);
-        InputStream in = url.openStream();
-        if (in == null) {
-            in = getClass().getResource(classifierPath).openStream();
-        }
-        classifier.load(in, isil, prefix);
-        logger.log(Level.INFO, MessageFormat.format("added classifications for {0} with size of {1}",
-                isil, classifier.getMap().size()));
-        return this;
-    }
-
-    public Classifier getClassifier() {
-        return classifier;
-    }
-
-    public Map<String, Resource> getSerialsMap() {
-        return serialsMap;
-    }
-
-    public Map<String, Boolean> getMissingSerials() {
-        return missingSerials;
-    }
-
-    protected void beforeFinishState(CatalogEntityWorkerState state) {
-        // can be overriden
-    }
-
-    protected void afterFinishState(CatalogEntityWorkerState state) {
-        // can be overriden
-    }
-
-    public void mapped(String id, MarcField marcField) {
-        String k = marcField.toKey();
-        mapped.put(k, mapped.containsKey(k) ? mapped.get(k) + 1 : 1);
-        k = marcField.toTagKey();
-        mapped.put(k, mapped.containsKey(k) ? mapped.get(k) + 1 : 1);
-    }
-
-    public Map<String, Integer> getMapped() {
-        return mapped;
-    }
-
-    public void unmapped(String id, MarcField marcField, String message) {
-        String k = marcField.toKey();
-        if (!unmapped.contains(k)) {
-            logger.log(Level.WARNING, id + " : " + message);
-            unmapped.add(k);
-        }
-    }
-
-    public Set<String> getUnmapped() {
-        return unmapped;
-    }
-
-    public void invalid(String id, MarcField marcField, String message) {
-        String k = "\"" + marcField.toKey() + "\"";
-        if (!invalid.contains(k)) {
-            logger.log(Level.WARNING, id + " : " + message);
-            invalid.add(k);
-        }
-    }
-
-    public Set<String> getInvalid() {
-        return invalid;
-    }
-
-    public void checksum(CRC32 crc32) {
-        checksum.accumulateAndGet(crc32.getValue(), (n, m) -> n ^ m);
-    }
-
-    public long getChecksum() {
-        return checksum.get();
     }
 
     @Override
@@ -307,6 +191,133 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         // nothing to do here
     }
 
+    public CatalogEntitySpecification getEntitySpecification() {
+        return entitySpecification;
+    }
+
+    public String getPackageName() {
+        return entitySpecification != null ? entitySpecification.getPackageName() : null;
+    }
+
+    @Override
+    public MarcRecord getPoison() {
+        return poison;
+    }
+
+    public Map<IRI, RdfContentBuilderProvider<?>> contentBuilderProviders() {
+        return new HashMap<>();
+    }
+
+    public boolean isEnableChecksum() {
+        return enableChecksum;
+    }
+
+    public CatalogEntityBuilder setEnableChecksum(boolean enableChecksum) {
+        this.enableChecksum = enableChecksum;
+        return this;
+    }
+
+    public CatalogEntityBuilder addIdentifierMapper(String path) throws IOException {
+        identifierMapper.load(getClass().getResource(path).openStream());
+        return this;
+    }
+
+    public IdentifierMapper getIdentifierMapper() {
+        return identifierMapper;
+    }
+
+    public CatalogEntityBuilder addStatusMapper(String path, String key) throws IOException {
+        valueMapper.getMap(path, key);
+        return this;
+    }
+
+    public ValueMapper getValueMapper() {
+        return valueMapper;
+    }
+
+    public CatalogEntityBuilder addClassifier(String prefix, String isil, String classifierPath) throws IOException {
+        if (classifier == null) {
+            classifier = new Classifier();
+        }
+        URL url = new URL(classifierPath);
+        InputStream in = url.openStream();
+        if (in == null) {
+            in = getClass().getResource(classifierPath).openStream();
+        }
+        classifier.load(in, isil, prefix);
+        logger.log(Level.INFO, MessageFormat.format("added classifications for {0} with size of {1}",
+                isil, classifier.getMap().size()));
+        return this;
+    }
+
+    public Classifier getClassifier() {
+        return classifier;
+    }
+
+    public Map<String, String> getFacetElements() {
+        return facetElements;
+    }
+
+    public Map<String, Resource> getSerialsMap() {
+        return serialsMap;
+    }
+
+    public Map<String, Boolean> getMissingSerials() {
+        return missingSerials;
+    }
+
+    protected void beforeFinishState(CatalogEntityWorkerState state) {
+        // can be overriden
+    }
+
+    protected void afterFinishState(CatalogEntityWorkerState state) {
+        // can be overriden
+    }
+
+    public void mapped(String id, MarcField marcField) {
+        String k = marcField.toKey();
+        mapped.put(k, mapped.containsKey(k) ? mapped.get(k) + 1 : 1);
+        k = marcField.toTagKey();
+        mapped.put(k, mapped.containsKey(k) ? mapped.get(k) + 1 : 1);
+    }
+
+    public Map<String, Integer> getMapped() {
+        return mapped;
+    }
+
+    public void unmapped(String id, MarcField marcField, String message) {
+        String k = marcField.toKey();
+        if (!unmapped.contains(k)) {
+            logger.log(Level.WARNING, id + " : " + message);
+            unmapped.add(k);
+        }
+    }
+
+    public Set<String> getUnmapped() {
+        return unmapped;
+    }
+
+    public void invalid(String id, MarcField marcField, String message) {
+        String k = "\"" + marcField.toKey() + "\"";
+        if (!invalid.contains(k)) {
+            logger.log(Level.WARNING, id + " : " + message);
+            invalid.add(k);
+        }
+    }
+
+    public Set<String> getInvalid() {
+        return invalid;
+    }
+
+    public void checksum(CRC32 crc32) {
+        checksum.accumulateAndGet(crc32.getValue(), (n, m) -> n ^ m);
+    }
+
+    public long getChecksum() {
+        return checksum.get();
+    }
+
+
     protected IdentifierMapper setupIdentifierMapper(Map<String, Object> params) throws IOException {
         IdentifierMapper identifierMapper = new IdentifierMapper();
         ValueMapper valueMapper = new ValueMapper();
@@ -329,6 +340,19 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         ValueMapper valueMapper = new ValueMapper();
         valueMapper.getMap("org/xbib/catalog/entities/mab/status.json", "status");
         return valueMapper;
+    }
+
+    @SuppressWarnings("unchecked")
+    protected Map<String, String> setupFacets(Map<String, Object> params) {
+        Map<String, String> map =  (Map<String, String>) params.get("facets");
+        if (map == null) {
+            map = new HashMap<>();
+            map.put("dc.language", "Language");
+            map.put("dc.format", "FormatCarrier");
+            map.put("dc.type", "TypeMonograph");
+            map.put("dc.date", "Date");
+        }
+        return map;
     }
 
     protected Map<String, Resource> setupSerialsMap(Map<String, Object> params) {

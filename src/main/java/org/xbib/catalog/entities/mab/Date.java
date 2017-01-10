@@ -7,6 +7,7 @@ import org.xbib.catalog.entities.YearFacet;
 import org.xbib.content.rdf.Literal;
 import org.xbib.marc.MarcField;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -21,11 +22,22 @@ public class Date extends CatalogEntity {
     }
 
     @Override
-    public void facetize(CatalogEntityWorker worker, MarcField.Subfield field) {
+    @SuppressWarnings("unchecked")
+    public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
+        super.transform(worker, field);
+        facetize(worker, field.getValue());
+        for (MarcField.Subfield subfield : field.getSubfields()) {
+            facetize(worker, subfield.getValue());
+        }
+        return this;
+    }
+
+    @Override
+    public void facetize(CatalogEntityWorker worker, String value) {
         CatalogEntityWorkerState state = worker.getWorkerState();
         state.getFacets().putIfAbsent(getFacetName(), new YearFacet().setName(getFacetName()).setType(Literal.GYEAR));
         YearFacet dateFacet = (YearFacet) state.getFacets().get(getFacetName());
-        dateFacet.addValue(field.getValue());
+        dateFacet.addValue(value);
     }
 
     @Override

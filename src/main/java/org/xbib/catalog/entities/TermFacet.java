@@ -4,11 +4,10 @@ import org.xbib.content.resource.IRI;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * A term facet.
  */
 public class TermFacet implements Facet<String> {
 

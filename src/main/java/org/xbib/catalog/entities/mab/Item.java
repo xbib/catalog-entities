@@ -5,7 +5,6 @@ import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.catalog.entities.Classifier;
 import org.xbib.catalog.entities.ClassifierEntry;
-import org.xbib.catalog.entities.Facet;
 import org.xbib.catalog.entities.IdentifierMapper;
 import org.xbib.catalog.entities.TermFacet;
 import org.xbib.catalog.entities.ValueMapper;
@@ -59,7 +58,7 @@ public class Item extends CatalogEntity {
                     state.setISIL(isil);
                     state.getFacets().putIfAbsent(identifierFacet,
                             new TermFacet().setName(identifierFacet).setType(Literal.STRING));
-                    Facet<String> holderFacet = state.getFacets().get(identifierFacet);
+                    TermFacet holderFacet = state.getFacets().get(identifierFacet);
                     holderFacet.addValue(isil);
                     // add "main ISIL" if not main ISIL (=two hyphens)
                     int pos = isil.lastIndexOf('-');

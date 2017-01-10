@@ -34,7 +34,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.xbib:marc:1.0.8'
+    compile 'org.xbib:marc:1.0.9'
     compile "org.xbib:content-rdf:1.0.7"
     testCompile 'junit:junit:4.12'
     testCompile 'org.apache.logging.log4j:log4j-core:2.7'

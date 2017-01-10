@@ -2,6 +2,7 @@ package org.xbib.catalog.entities.mab;
 
 import static org.junit.Assert.assertEquals;
 import static org.xbib.content.rdf.RdfXContentFactory.rdfXContentBuilder;
+import static org.xbib.helper.StreamMatcher.assertStream;
 
 import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
@@ -10,9 +11,12 @@ import org.xbib.content.rdf.RdfContentBuilder;
 import org.xbib.content.rdf.RdfXContentParams;
 import org.xbib.marc.Marc;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,8 +33,8 @@ public class MabTest {
         try (MyBuilder builder = new MyBuilder("org.xbib.catalog.entities.mab",
                 getClass().getResource("titel.json"))) {
             // update these values if you extend MAB specification
-            assertEquals(558, builder.getEntitySpecification().getMap().size());
-            assertEquals(95, builder.getEntitySpecification().getEntities().size());
+            assertEquals(735, builder.getEntitySpecification().getMap().size());
+            assertEquals(96, builder.getEntitySpecification().getEntities().size());
         }
     }
 
@@ -66,15 +70,18 @@ public class MabTest {
         }
 
         @Override
-        protected void beforeFinishState(CatalogEntityWorkerState state) {
+        protected void afterFinishState(CatalogEntityWorkerState state) {
             try {
                 RdfXContentParams params = new RdfXContentParams();
                 RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
                 builder.receive(state.getResource());
                 String result = params.getGenerator().get();
-                //logger.info("rdf="+result);
+                InputStream inputStream =
+                        getClass().getResource("zdb-mab-" + state.getRecordIdentifier() + ".json").openStream();
+                assertStream(state.getRecordIdentifier(), inputStream,
+                        new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8)));
             } catch (IOException e) {
-                // ignore
+                logger.log(Level.SEVERE, e.getMessage(), e);
             }
         }
     }

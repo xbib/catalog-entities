@@ -3,11 +3,11 @@ package org.xbib.catalog.entities.mab;
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
-import org.xbib.catalog.entities.Facet;
 import org.xbib.catalog.entities.TermFacet;
 import org.xbib.content.rdf.Literal;
 import org.xbib.marc.MarcField;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -21,19 +21,28 @@ public class Language extends CatalogEntity {
         super(params);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public void facetize(CatalogEntityWorker worker, MarcField.Subfield field) {
+    @SuppressWarnings("unchecked")
+    public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
+        super.transform(worker, field);
+        facetize(worker, field.getValue());
+        for (MarcField.Subfield subfield : field.getSubfields()) {
+            facetize(worker, subfield.getValue());
+        }
+        return this;
+    }
+
+    @SuppressWarnings("unchecked")
+    protected void facetize(CatalogEntityWorker worker, String value) {
         CatalogEntityWorkerState state = worker.getWorkerState();
         state.getFacets().putIfAbsent(getFacetName(), new TermFacet().setName(getFacetName()).setType(Literal.STRING));
-        Facet<String> languageFacet = state.getFacets().get(getFacetName());
-        String s = field.getValue();
+        TermFacet languageFacet = state.getFacets().get(getFacetName());
         Map<String, String> languages = (Map<String, String>) getParams().get("language");
         if (languages == null) {
             return;
         }
-        if (languages.containsKey(s)) {
-            languageFacet.addValue(languages.get(s));
+        if (languages.containsKey(value)) {
+            languageFacet.addValue(languages.get(value));
         }
     }
 

@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -150,13 +150,20 @@ extends <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html" ti
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/xbib/catalog/entities/mab/Language.html#facetize-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField.Subfield-">facetize</a></span>(<a href="../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
-        org.xbib.marc.MarcField.Subfield&nbsp;field)</code>&nbsp;</td>
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/xbib/catalog/entities/mab/Language.html#facetize-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-">facetize</a></span>(<a href="../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
+        java.lang.String&nbsp;value)</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/xbib/catalog/entities/mab/Language.html#getFacetName--">getFacetName</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/xbib/catalog/entities/mab/Language.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField-">transform</a></span>(<a href="../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
+         org.xbib.marc.MarcField&nbsp;field)</code>
+<div class="block">Transform field.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -164,7 +171,7 @@ extends <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html" ti
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.xbib.catalog.entities.<a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a></h3>
-<code><a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#facetize-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-">facetize</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getCodes--">getCodes</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getDefaultFacet--">getDefaultFacet</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getFacetCodes--">getFacetCodes</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getParams--">getParams</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getRegexes--">getRegexes</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getResource-org.xbib.catalog.entities.CatalogEntityWorker-">getResource</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getValue-org.xbib.marc.MarcField-">getValue</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField-">transform</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-org.xbib.content.rdf.Resource-java.lang.String-java.lang.String-">transform</a></code></li>
+<code><a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getCodes--">getCodes</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getDefaultFacet--">getDefaultFacet</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getFacetCodes--">getFacetCodes</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getParams--">getParams</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getRegexes--">getRegexes</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getResource-org.xbib.catalog.entities.CatalogEntityWorker-">getResource</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#getValue-org.xbib.marc.MarcField-">getValue</a>, <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-org.xbib.content.rdf.Resource-java.lang.String-java.lang.String-">transform</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -204,17 +211,42 @@ extends <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html" ti
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="facetize-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField.Subfield-">
+<a name="transform-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>transform</h4>
+<pre>public&nbsp;<a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a>&nbsp;transform(<a href="../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
+                               org.xbib.marc.MarcField&nbsp;field)
+                        throws java.io.IOException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField-">CatalogEntity</a></code></span></div>
+<div class="block">Transform field.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField-">transform</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>worker</code> - the worker</dd>
+<dd><code>field</code> - the field</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>null if processing has been completed and should not continue at this point,
+ another entity if processing should continue</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code> - if transformation fails</dd>
+</dl>
+</li>
+</ul>
+<a name="facetize-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>facetize</h4>
-<pre>public&nbsp;void&nbsp;facetize(<a href="../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
-                     org.xbib.marc.MarcField.Subfield&nbsp;field)</pre>
+<pre>protected&nbsp;void&nbsp;facetize(<a href="../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
+                        java.lang.String&nbsp;value)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#facetize-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField.Subfield-">facetize</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a></code></dd>
+<dd><code><a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html#facetize-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-">facetize</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a></code></dd>
 </dl>
 </li>
 </ul>

@@ -52,9 +52,6 @@ public class CatalogEntity {
         return value;
     }
 
-    public void facetize(CatalogEntityWorker worker, MarcField.Subfield field) {
-    }
-
     @SuppressWarnings("unchecked")
     public Map<String, Object> getCodes() {
         return (Map<String, Object>) getParams().get("codes");
@@ -66,7 +63,7 @@ public class CatalogEntity {
     }
 
     @SuppressWarnings("unchecked")
-    public Map<String, Object> getRegexes() {
+    protected Map<String, Object> getRegexes() {
         return (Map<String, Object>) getParams().get("regexes");
     }
 
@@ -78,7 +75,7 @@ public class CatalogEntity {
         return null;
     }
 
-    public Facet<String> getDefaultFacet() {
+    public TermFacet getDefaultFacet() {
         Object def = getParams().get("_default");
         return def != null ?
                 new TermFacet().setName(getFacetName()).setType(Literal.STRING).addValue(def.toString()) :
@@ -86,9 +83,9 @@ public class CatalogEntity {
     }
 
     protected void facetize(CatalogEntityWorker worker, String value) {
-        worker.getWorkerState().getFacets().putIfAbsent(getFacetName(),
-                new TermFacet().setName(getFacetName()).setType(Literal.STRING));
-        worker.getWorkerState().getFacets().get(getFacetName()).addValue(value);
+        CatalogEntityWorkerState state = worker.getWorkerState();
+        state.getFacets().putIfAbsent(getFacetName(), new TermFacet().setName(getFacetName()).setType(Literal.STRING));
+        state.getFacets().get(getFacetName()).addValue(value);
     }
 
     protected String getValue(MarcField marcField) {
