@@ -31,7 +31,7 @@ public class RecordLabel extends CatalogEntity {
             worker.getWorkerState().getResource().add("boost", satztyp == 'u' ? "0.1" : "1.0");
         } else {
             logger.log(Level.WARNING,
-                    MessageFormat.format("the length of this record label is {0} characters and was skipped: {1}",
+                    () -> MessageFormat.format("the length of this record label is {0} characters and was skipped: {1}",
                             value.length(), value));
         }
         return null; // done

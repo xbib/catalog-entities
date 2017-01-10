@@ -27,7 +27,7 @@ public class PhysicalDescriptionCode extends CatalogEntity {
         String value = getValue(field);
         Map<String, Object> codes = (Map<String, Object>) getParams().get("codes");
         if (codes == null) {
-            logger.log(Level.WARNING, MessageFormat.format("no 'codes' for {0}", value));
+            logger.log(Level.WARNING, () -> MessageFormat.format("no 'codes' for {0}", value));
             return super.transform(worker, field);
         }
         // position 0 is the selector

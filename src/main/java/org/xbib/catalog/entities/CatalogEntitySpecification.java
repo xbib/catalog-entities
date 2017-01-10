@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -121,7 +122,7 @@ public class CatalogEntitySpecification {
     public CatalogEntitySpecification associate(String key, CatalogEntity entity) {
         String k = clean(key);
         if (map.containsKey(k)) {
-            logger.log(Level.WARNING, "key " + k + " already exist: " + key);
+            logger.log(Level.WARNING, () -> MessageFormat.format("key {0} already exist: {1}", k,  key));
             return this;
         }
         map.put(k, entity);

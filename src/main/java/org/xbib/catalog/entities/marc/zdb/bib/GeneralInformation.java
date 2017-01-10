@@ -50,7 +50,7 @@ public class GeneralInformation extends CatalogEntity {
                         String code = (String) q.get(ch);
                         if (code == null) {
                             logger.log(Level.WARNING,
-                                    MessageFormat.format("unmapped code {0} in field {1} predicate {2}",
+                                    () -> MessageFormat.format("unmapped code {0} in field {1} predicate {2}",
                                             ch, field, predicate));
                         }
                         worker.getWorkerState().getResource().add(predicate, code);
@@ -63,7 +63,7 @@ public class GeneralInformation extends CatalogEntity {
                         String code = (String) q.get(ch);
                         if (code == null) {
                             logger.log(Level.WARNING,
-                                    MessageFormat.format("unmapped code {0} in field {1} predicate {2}",
+                                    () -> MessageFormat.format("unmapped code {0} in field {1} predicate {2}",
                                             ch, field, predicate));
                         }
                         worker.getWorkerState().getResource().add(predicate, code);
@@ -79,7 +79,7 @@ public class GeneralInformation extends CatalogEntity {
         try {
             int d = Integer.parseInt(date);
             if (d < 1450) {
-                logger.log(Level.WARNING, MessageFormat.format("very early date ignored: {0}", d));
+                logger.log(Level.WARNING, () -> MessageFormat.format("very early date ignored: {0}", d));
                 return null;
             }
             if (d == 9999) {

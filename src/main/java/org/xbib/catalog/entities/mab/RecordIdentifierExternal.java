@@ -43,7 +43,7 @@ public class RecordIdentifierExternal extends CatalogEntity {
                     if (!unknown.contains(s)) {
                         unknown.add(s);
                         logger.log(Level.WARNING,
-                                MessageFormat.format("no external source key configured for {0}", s));
+                                () -> MessageFormat.format("no external source key configured for {0}", s));
                     }
                 }
             } else {

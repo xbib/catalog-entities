@@ -54,7 +54,8 @@ public class TypeMediaSpecial extends CatalogEntity {
         if (!value.isEmpty()) {
             List<String> list = findCodes(value);
             if (list.isEmpty()) {
-                logger.log(Level.WARNING, MessageFormat.format("no media type detected from value: \"{0}\" in field {1}",
+                logger.log(Level.WARNING,
+                        () -> MessageFormat.format("no media type detected from value: \"{0}\" in field {1}",
                         value, field));
             }
             for (String code : list) {

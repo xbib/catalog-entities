@@ -208,7 +208,7 @@ public abstract class AbstractWorkerPool<R> implements WorkerPool<R>, AutoClosea
         public void run() {
             R request = null;
             try {
-                logger.log(Level.INFO,  MessageFormat.format("start of worker {0}", worker));
+                logger.log(Level.INFO,  () -> MessageFormat.format("start of worker {0}", worker));
                 while (true) {
                     request = getQueue().take();
                     if (getPoison().equals(request)) {
@@ -226,12 +226,24 @@ public abstract class AbstractWorkerPool<R> implements WorkerPool<R>, AutoClosea
                 // catch unexpected exception. Throwables, Errors are examined in afterExecute.
                 logger.log(Level.SEVERE, e.getMessage(), e);
                 exceptions.put(this, e);
+                if (closed.get()) {
+                    try {
+                        getQueue().poll(1, TimeUnit.MINUTES);
+                    } catch (InterruptedException e2) {
+                        Thread.currentThread().interrupt();
+                        logger.log(Level.WARNING, e2.getMessage(), e2);
+                    }
+                }
                 throw new UncheckedIOException(new IOException(e));
             } finally {
                 latch.countDown();
-                logger.log(Level.INFO, MessageFormat.format("end of worker {0} {1}",
-                        worker, getPoison().equals(request) ? "(completed, " + counter + " requests)" :
-                                "(abnormal termination after " + counter + " requests)"));
+                if (getPoison().equals(request)) {
+                    logger.log(Level.INFO, () -> MessageFormat.format("end of worker {0} {1}",
+                            worker, "(completed, " + counter + " requests)"));
+                } else {
+                    logger.log(Level.WARNING, () -> MessageFormat.format("end of worker {0} {1}",
+                            worker, "(abnormal termination after " + counter + " requests)"));
+                }
             }
         }
     }

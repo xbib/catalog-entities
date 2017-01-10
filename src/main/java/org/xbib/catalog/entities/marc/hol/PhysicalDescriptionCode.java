@@ -5,6 +5,7 @@ import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,10 +24,10 @@ public class PhysicalDescriptionCode extends CatalogEntity {
     @SuppressWarnings("unchecked")
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
-        String value = getValue(field);
+        final String value = getValue(field);
         Map<String, Object> codes = (Map<String, Object>) getParams().get("codes");
         if (codes == null) {
-            logger.log(Level.WARNING, "no 'codes' for " + value);
+            logger.log(Level.WARNING, () -> MessageFormat.format("no 'codes' for {0}", value));
             return super.transform(worker, field);
         }
         // position 0 is the selector
@@ -35,8 +36,7 @@ public class PhysicalDescriptionCode extends CatalogEntity {
             check(worker, codes, value);
         }
         for (MarcField.Subfield subfield : field.getSubfields()) {
-            value = subfield.getValue();
-            check(worker, codes, value);
+            check(worker, codes, subfield.getValue());
         }
         return super.transform(worker, field);
     }

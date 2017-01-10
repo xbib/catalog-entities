@@ -79,11 +79,13 @@ public class TypeMedia extends CatalogEntity {
             }
         }
         if (!isRAK && !list.isEmpty()) {
-            logger.log(Level.WARNING, MessageFormat.format("additional media types {0} detected from value: \"{1}\"",
+            logger.log(Level.WARNING,
+                    () -> MessageFormat.format("additional media types {0} detected from value: \"{1}\"",
                     list, value));
         }
         if (list.isEmpty()) {
-            logger.log(Level.WARNING, MessageFormat.format("no media type detected from value: \"{0}\"", value));
+            logger.log(Level.WARNING,
+                    () -> MessageFormat.format("no media type detected from value: \"{0}\"", value));
         }
         return list;
     }

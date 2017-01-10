@@ -49,13 +49,13 @@ public class GeneralInformation extends CatalogEntity {
                 if (q != null) {
                     String predicate = (String) q.get("_predicate");
                     if (predicate == null) {
-                        logger.log(Level.WARNING, MessageFormat.format("no predicate set, code {0}, field {1}",
+                        logger.log(Level.WARNING, () -> MessageFormat.format("no predicate set, code {0}, field {1}",
                                 ch, field));
                     } else {
                         String code = (String) q.get(ch);
                         if (code == null) {
                             logger.log(Level.WARNING,
-                                    MessageFormat.format("unmapped code {0} in field {1} predicate {2}",
+                                    () -> MessageFormat.format("unmapped code {0} in field {1} predicate {2}",
                                             ch, field, predicate));
                         }
                         worker.getWorkerState().getResource().add(predicate, code);

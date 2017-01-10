@@ -62,7 +62,7 @@ public class TextualHoldings extends CatalogEntity {
                         worker.getWorkerState().getResource().add("dates", date);
                     }
                 } else {
-                    logger.log(Level.WARNING, MessageFormat.format("no dates found in field {0}", field));
+                    logger.log(Level.WARNING, () -> MessageFormat.format("no dates found in field {0}", field));
                 }
             }
         }

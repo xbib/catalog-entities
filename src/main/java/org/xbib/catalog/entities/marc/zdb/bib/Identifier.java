@@ -36,7 +36,7 @@ public class Identifier extends CatalogEntity {
                 String prefix = pos > 0 ? value.substring(1,pos).replaceAll("\\-", "").toUpperCase() : "";
                 value = pos > 0 ? value.substring(pos + 1) : value;
                 resource.add("identifier" + prefix, value.replaceAll("\\-", "").toLowerCase());*/
-                logger.log(Level.WARNING, MessageFormat.format("unprocessed identifier: {0}", value));
+                logger.log(Level.WARNING, () -> MessageFormat.format("unprocessed identifier: {0}", value));
                 return null;
             }
         }

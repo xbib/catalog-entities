@@ -68,9 +68,8 @@ public class Title extends CatalogEntity {
                 r.a(type);
                 r.add(DC_TITLE, s);
             } else {
-                logger.log(Level.WARNING, MessageFormat.format("{0} blacklisted title: {1}",
-                        worker.getWorkerState().getIdentifier(),
-                        cleanTitle));
+                logger.log(Level.WARNING, () -> MessageFormat.format("{0} blacklisted title: {1}",
+                        worker.getWorkerState().getIdentifier(), cleanTitle));
             }
         }
         return value;

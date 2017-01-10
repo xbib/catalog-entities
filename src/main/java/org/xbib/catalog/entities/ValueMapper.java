@@ -38,7 +38,7 @@ public class ValueMapper {
                     maps.put(key, new ObjectMapper().readValue(in, HashMap.class));
                 }
             } else {
-                logger.log(Level.WARNING, "value map not found at: " + path);
+                logger.log(Level.WARNING, "value map not found at: %s", path);
             }
         }
         return (Map<String, Object>) maps.get(key);

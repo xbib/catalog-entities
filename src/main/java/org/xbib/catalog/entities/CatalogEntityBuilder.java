@@ -91,28 +91,28 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         this.checksum = new AtomicLong();
         this.invalid = Collections.synchronizedSet(new TreeSet<>());
         this.isMapped = isMapped;
-        logger.log(Level.INFO, MessageFormat.format("workers:{1} mapped:{2} package:{0} spec:{3}",
+        logger.log(Level.INFO, () -> MessageFormat.format("workers:{1} mapped:{2} package:{0} spec:{3}",
                 packageName, workers, isMapped, url));
         if (isMapped) {
             this.entitySpecification = new CatalogEntitySpecification(url, new HashMap<>(), params, packageName);
             for (String key : entitySpecification.getMap().keySet()) {
                 mapped.put(key, 0);
             }
-            logger.log(Level.INFO, MessageFormat.format("spec: map of {0} field keys with {1} entities",
+            logger.log(Level.INFO, () -> MessageFormat.format("spec: map of {0} field keys with {1} entities",
                     entitySpecification.getMap().size(), entitySpecification.getEntities().size()));
             this.identifierMapper = setupIdentifierMapper(params);
             if (!identifierMapper.getMap().isEmpty()) {
-                logger.log(Level.INFO, MessageFormat.format("identifier mapper: {0} entries",
+                logger.log(Level.INFO, () -> MessageFormat.format("identifier mapper: {0} entries",
                         identifierMapper.getMap().size()));
             }
             this.valueMapper = setupValueMapper(params);
             if (!valueMapper.getMap("status").isEmpty()) {
-                logger.log(Level.INFO, MessageFormat.format("status mapper: {0} entries",
+                logger.log(Level.INFO, () -> MessageFormat.format("status mapper: {0} entries",
                         valueMapper.getMap("status").size()));
             }
             this.facetElements = setupFacets(params);
             if (!getFacetElements().isEmpty()) {
-                logger.log(Level.INFO, MessageFormat.format("facets: {0} entries",
+                logger.log(Level.INFO, () -> MessageFormat.format("facets: {0} entries",
                         getFacetElements()));
             }
             this.serialsMap = setupSerialsMap(params);
@@ -245,7 +245,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
             in = getClass().getResource(classifierPath).openStream();
         }
         classifier.load(in, isil, prefix);
-        logger.log(Level.INFO, MessageFormat.format("added classifications for {0} with size of {1}",
+        logger.log(Level.INFO, () -> MessageFormat.format("added classifications for {0} with size of {1}",
                 isil, classifier.getMap().size()));
         return this;
     }
@@ -288,7 +288,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     public void unmapped(String id, MarcField marcField, String message) {
         String k = marcField.toKey();
         if (!unmapped.contains(k)) {
-            logger.log(Level.WARNING, id + " : " + message);
+            logger.log(Level.WARNING, () -> MessageFormat.format("{0} : {1}", id, message));
             unmapped.add(k);
         }
     }
@@ -300,7 +300,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     public void invalid(String id, MarcField marcField, String message) {
         String k = "\"" + marcField.toKey() + "\"";
         if (!invalid.contains(k)) {
-            logger.log(Level.WARNING, id + " : " + message);
+            logger.log(Level.WARNING, () -> MessageFormat.format("{0} : {1}", id, message));
             invalid.add(k);
         }
     }
@@ -327,9 +327,9 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         if (params != null && params.containsKey("tab_sigel_url")) {
             // current sigel
             URL url = new URL((String) params.get("tab_sigel_url"));
-            logger.log(Level.INFO, MessageFormat.format("loading tab_sigel from {0}", url));
+            logger.log(Level.INFO, () -> MessageFormat.format("loading tab_sigel from {0}", url));
             identifierMapper.load(url.openStream());
-            logger.log(Level.INFO, MessageFormat.format("sigel2isil size = {0}, plus tab_sigel = {1}",
+            logger.log(Level.INFO, () -> MessageFormat.format("sigel2isil size = {0}, plus tab_sigel = {1}",
                     sigel2isil.size(), identifierMapper.getMap().size()));
         }
         return identifierMapper;

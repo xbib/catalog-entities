@@ -42,7 +42,7 @@ public class Extent extends CatalogEntity {
                 patterns.put(Pattern.compile(Pattern.quote(key), Pattern.CASE_INSENSITIVE), (String) regexes.get(key));
             }
         }
-        logger.log(Level.FINE, MessageFormat.format("Pattern for extent format detection: {0}", patterns));
+        logger.log(Level.FINE, () -> MessageFormat.format("Pattern for extent format detection: {0}", patterns));
     }
 
     @Override
