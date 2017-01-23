@@ -17,19 +17,15 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  */
 public class Item extends CatalogEntity {
 
-    /*
-            "a": "identifier",
-            "b": "shelfmark",
-            "c": "callnumber",
-            "d": "collection",
-            "e": "status"
-     */
+    private static final Logger logger = Logger.getLogger(Item.class.getName());
 
     private static final String taxonomyFacet = "xbib.taxonomy";
     private static final String identifierFacet = "xbib.identifier";
@@ -53,7 +49,9 @@ public class Item extends CatalogEntity {
             IdentifierMapper mapper = worker.getIdentifierMapper();
             if (mapper != null) {
                 String isil = mapper.lookup(value);
-                if (isil != null) {
+                if (isil == null) {
+                    logger.log(Level.WARNING, "ISIL lookup failed for " + value);
+                } else {
                     resource.add("identifier", isil);
                     state.setUID(IRI.builder().curie(isil).build());
                     state.setISIL(isil);

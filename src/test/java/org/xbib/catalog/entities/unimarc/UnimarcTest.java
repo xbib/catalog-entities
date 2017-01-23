@@ -41,7 +41,7 @@ public class UnimarcTest extends Assert {
     public void testUnimarcSetup() throws Exception {
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.unimarc.bib")
-                .put("elements", "/org/xbib/catalog/entities/unimarc/bib.json")
+                .put("elements", "org/xbib/catalog/entities/unimarc/bib.json")
                 .build();
         try (MyBuilder myBuilder = new MyBuilder(settings)) {
             StringWriter writer = new StringWriter();
@@ -54,7 +54,7 @@ public class UnimarcTest extends Assert {
     public void testUnimarc() throws Exception {
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.unimarc.bib")
-                .put("elements", "/org/xbib/catalog/entities/unimarc/bib.json")
+                .put("elements", "org/xbib/catalog/entities/unimarc/bib.json")
                 .build();
         try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()

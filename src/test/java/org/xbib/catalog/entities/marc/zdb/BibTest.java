@@ -58,7 +58,7 @@ public class BibTest {
     public void testBibFromMarc() throws IOException {
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.marc.zdb.bib")
-                .put("elements", "/org/xbib/catalog/entities/marc/zdb/bib.json")
+                .put("elements", "org/xbib/catalog/entities/marc/zdb/bib.json")
                 .build();
         try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()
@@ -74,7 +74,7 @@ public class BibTest {
     public void testOAIFromXML() throws IOException {
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.marc.zdb.bib")
-                .put("elements", "/org/xbib/catalog/entities/marc/zdb/bib.json")
+                .put("elements", "org/xbib/catalog/entities/marc/zdb/bib.json")
                 .build();
         try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()
@@ -93,7 +93,7 @@ public class BibTest {
     public void testBibRecords() throws IOException {
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.marc.zdb.bib")
-                .put("elements", "/org/xbib/catalog/entities/marc/zdb/bib.json")
+                .put("elements", "org/xbib/catalog/entities/marc/zdb/bib.json")
                 .build();
         try (MyRouteBuilder myBuilder = new MyRouteBuilder(settings)) {
             Marc.builder()

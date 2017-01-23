@@ -33,7 +33,8 @@ public class Title extends CatalogEntity {
 
     @Override
     public List<String> transform(CatalogEntityWorker worker,
-                                  String resourcePredicate, Resource resource, String property, String value) throws IOException {
+                                  String resourcePredicate, Resource resource, String property, String value)
+            throws IOException {
         Resource r = worker.getWorkerState().getResource();
         IRI type = null;
         if ("title".equals(property)) {

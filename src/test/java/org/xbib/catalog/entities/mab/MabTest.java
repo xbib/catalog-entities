@@ -56,7 +56,7 @@ public class MabTest {
     public void testSetupOfMABElements() throws IOException {
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.mab")
-                .put("elements", "/org/xbib/catalog/entities/mab/titel.json")
+                .put("elements", "org/xbib/catalog/entities/mab/titel.json")
                 .put("facets", "org/xbib/catalog/entities/mab/facets.json")
                 .build();
         try (MyBuilder builder = new MyBuilder(settings)) {
@@ -70,7 +70,7 @@ public class MabTest {
     public void testZDBMAB() throws IOException {
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.mab")
-                .put("elements", "/org/xbib/catalog/entities/mab/titel.json")
+                .put("elements", "org/xbib/catalog/entities/mab/titel.json")
                 .put("facets", "org/xbib/catalog/entities/mab/facets.json")
                 .build();
         try (MyBuilder myBuilder = new MyBuilder(settings)) {

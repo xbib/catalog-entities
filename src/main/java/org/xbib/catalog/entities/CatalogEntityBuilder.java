@@ -13,7 +13,6 @@ import org.xbib.marc.label.RecordLabel;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.util.Collections;
@@ -91,6 +90,11 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
 
     public CatalogEntityBuilder(Settings settings, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
             throws IOException {
+        this(CatalogEntityBuilder.class.getClassLoader(), settings, listener);
+    }
+
+    public CatalogEntityBuilder(ClassLoader classLoader, Settings settings, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
+            throws IOException {
         super(settings.getAsInt("workers", Runtime.getRuntime().availableProcessors()), listener);
         this.settings = settings;
         this.unmapped = Collections.synchronizedSet(new TreeSet<>());
@@ -101,18 +105,16 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         if (isMapped) {
             String packageName = settings.get("package");
             String elements = settings.get("elements");
-            InputStream inputStream = null;
-            try {
-                URL url = new URL(elements);
-                inputStream = url.openStream();
-            } catch (MalformedURLException e) {
-                logger.log(Level.FINER, e.getMessage(), e);
-                inputStream = getClass().getResourceAsStream(elements);
-            }
-            Map<String, Object> params = settings.getAsStructuredMap();
             logger.log(Level.INFO, () -> MessageFormat.format("package:{0} elements:{1}",
                     packageName, elements));
-            this.entitySpecification = new CatalogEntitySpecification(inputStream, new HashMap<>(), params, packageName);
+            URL url = classLoader.getResource(elements);
+            if (url == null) {
+                url = new URL(elements);
+            }
+            Map<String, Object> params = settings.getAsStructuredMap();
+            try (InputStream inputStream = url.openStream()) {
+                this.entitySpecification = new CatalogEntitySpecification(inputStream, new HashMap<>(), params, packageName);
+            }
             for (String key : entitySpecification.getMap().keySet()) {
                 mapped.put(key, 0);
             }

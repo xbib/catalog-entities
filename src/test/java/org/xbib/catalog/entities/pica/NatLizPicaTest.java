@@ -47,7 +47,7 @@ public class NatLizPicaTest extends Assert {
         file.deleteOnExit();
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.pica.natliz.bib")
-                .put("elements", "/org/xbib/catalog/entities/pica/bib.json")
+                .put("elements", "org/xbib/catalog/entities/pica/bib.json")
                 .build();
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
              NatLizPicaBuilder builder = new NatLizPicaBuilder(settings)) {
@@ -61,7 +61,7 @@ public class NatLizPicaTest extends Assert {
         CountingPicaXMLContentHandler contentHandler = new CountingPicaXMLContentHandler();
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.pica.natliz.bib")
-                .put("elements", "/org/xbib/catalog/entities/pica/bib.json")
+                .put("elements", "org/xbib/catalog/entities/pica/bib.json")
                 .build();
         try (InputStream inputStream = getClass().getResource("natliz.xml").openStream();
                 NatLizPicaBuilder builder = new NatLizPicaBuilder(settings)) {

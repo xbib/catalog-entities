@@ -54,7 +54,7 @@ public class De2382MarcTest {
     public void testCatpfile() throws IOException {
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.marc.bib")
-                .put("elements", "/org/xbib/catalog/entities/marc/bib.json")
+                .put("elements", "org/xbib/catalog/entities/marc/bib.json")
                 .build();
         try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()

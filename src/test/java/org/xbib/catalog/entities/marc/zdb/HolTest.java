@@ -54,7 +54,7 @@ public class HolTest {
     public void testHol() throws IOException {
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.marc.zdb.hol")
-                .put("elements", "/org/xbib/catalog/entities/marc/zdb/hol.json")
+                .put("elements", "org/xbib/catalog/entities/marc/zdb/hol.json")
                 .build();
         try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()

@@ -262,30 +262,30 @@ public class CatalogEntityWorkerState {
                     }
                 }
             }
-            // merge facets into resource
-            for (TermFacet facet : facets.values()) {
-                String facetName = facet.getName();
-                if (facetName == null) {
-                    continue;
+        }
+        // merge facets into resource
+        for (TermFacet facet : facets.values()) {
+            String facetName = facet.getName();
+            if (facetName == null) {
+                continue;
+            }
+            // split facet name e.g. "dc.date" --> "dc", "date"
+            String[] facetPath = facetName.split("\\.");
+            Resource resource = getResource();
+            if (facetPath.length > 1) {
+                for (int i = 0; i < facetPath.length - 1; i++) {
+                    resource = resource.newResource(IRI.builder().path(facetPath[i]).build());
                 }
-                // split facet name e.g. "dc.date" --> "dc", "date"
-                String[] facetPath = facetName.split("\\.");
-                Resource resource = getResource();
-                if (facetPath.length > 1) {
-                    for (int i = 0; i < facetPath.length - 1; i++) {
-                        resource = resource.newResource(IRI.builder().path(facetPath[i]).build());
-                    }
-                }
-                facetName = facetPath[facetPath.length - 1];
-                IRI predicate = IRI.builder().path(facetName).build();
-                for (Object value : facet.getValues()) {
-                    Literal literal = new DefaultLiteral(value).type(facet.getType());
-                    try {
-                        literal.object(); // provoke NumberFormatException to ensure numerical values
-                        resource.add(predicate, literal);
-                    } catch (NumberFormatException e) {
-                        logger.log(Level.FINEST, e.getMessage(), e);
-                    }
+            }
+            facetName = facetPath[facetPath.length - 1];
+            IRI predicate = IRI.builder().path(facetName).build();
+            for (Object value : facet.getValues()) {
+                Literal literal = new DefaultLiteral(value).type(facet.getType());
+                try {
+                    literal.object(); // provoke NumberFormatException to ensure numerical values
+                    resource.add(predicate, literal);
+                } catch (NumberFormatException e) {
+                    logger.log(Level.FINEST, e.getMessage(), e);
                 }
             }
         }

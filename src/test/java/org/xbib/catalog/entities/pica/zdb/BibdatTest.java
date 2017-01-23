@@ -59,7 +59,7 @@ public class BibdatTest extends Assert {
         file.deleteOnExit();
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.pica.zdb.bibdat")
-                .put("elements", "/org/xbib/catalog/entities/pica/zdb/bibdat.json")
+                .put("elements", "org/xbib/catalog/entities/pica/zdb/bibdat.json")
                 .build();
         try (BibdatPicaBuilder builder = new BibdatPicaBuilder(settings)) {
             assertFalse(builder.getEntitySpecification().getEntities().isEmpty());
@@ -77,7 +77,7 @@ public class BibdatTest extends Assert {
         CountingPicaXMLContentHandler contentHandler = new CountingPicaXMLContentHandler();
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.pica.zdb.bibdat")
-                .put("elements", "/org/xbib/catalog/entities/pica/zdb/bibdat.json")
+                .put("elements", "org/xbib/catalog/entities/pica/zdb/bibdat.json")
                 .build();
         try (InputStream inputStream = getClass().getResource("zdb-oai-bib.xml").openStream();
              BibdatPicaBuilder builder = new BibdatPicaBuilder(settings)) {
