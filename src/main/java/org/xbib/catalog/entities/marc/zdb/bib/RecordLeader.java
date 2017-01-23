@@ -2,6 +2,7 @@ package org.xbib.catalog.entities.marc.zdb.bib;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
+import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
@@ -14,14 +15,10 @@ public class RecordLeader extends CatalogEntity {
 
     private Map<String, Object> codes;
 
-    private String predicate;
-
     @SuppressWarnings("unchecked")
     public RecordLeader(Map<String, Object> params) {
         super(params);
         this.codes = (Map<String, Object>) params.get("codes");
-        this.predicate = params.containsKey("_predicate") ?
-                (String) params.get("_predicate") : "leader";
     }
 
     @SuppressWarnings("unchecked")
@@ -31,16 +28,23 @@ public class RecordLeader extends CatalogEntity {
             return super.transform(worker, fields);
         }
         String value = getValue(fields);
+        worker.getWorkerState().setRecordLabel(value);
+        Resource resource = worker.getWorkerState().getResource().newResource("RecordLeader");
         for (Map.Entry<String, Object> entry : codes.entrySet()) {
             String k = entry.getKey();
             int pos = Integer.parseInt(k);
             Map<String, String> v = (Map<String, String>) codes.get(k);
             String code = value.length() > pos ? value.substring(pos, pos + 1) : "";
             if (v.containsKey(code)) {
-                worker.getWorkerState().getResource().add(predicate, v.get(code));
+                resource.add(v.get("_predicate"), v.get(code));
             }
         }
         // deleted record?
+        char ch5 = value.charAt(5);
+        if (ch5 == 'd') {
+            worker.getWorkerState().getResource().add("deleted", "true");
+        }
+
         char ch6 = value.charAt(6);
         char ch7 = value.charAt(7);
 

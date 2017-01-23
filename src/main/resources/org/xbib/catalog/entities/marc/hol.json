@@ -10,34 +10,37 @@
         ]  
     },
     "RecordLeader" : {
-        "tags" : [
-        "_LEADER"
+        "tags": [
+            "_LEADER"
         ],
-        "codes" : {
-            "5" : {
-                "a" : "Increase in encoding level",
-                "c" : "Corrected or revised",
-                "d" : "Deleted",
-                "n" : "New",
-                "p" : "Increase in encoding level from prepublication"
+        "codes": {
+            "5": {
+                "_predicate": "recordStatus",
+                "a": "Increase in encoding level",
+                "c": "Corrected or revised",
+                "d": "Deleted",
+                "n": "New",
+                "p": "Increase in encoding level from prepublication"
             },
-            "6" : {
-                "a" : "Language material",
-                "c" : "Notated music",
-                "d" : "Manuscript notated music",
-                "e" : "Cartographic material",
-                "f" : "Manuscript cartographic material",
-                "g" : "Projected medium",
-                "i" : "Nonmusical sound recording",
-                "j" : "Musical sound recording",
-                "k" : "Two-dimensional nonprojectable graphic",
-                "m" : "Computer file",
-                "o" : "Kit",
-                "p" : "Mixed materials",
-                "r" : "Three-dimensional artifact or naturally occurring object",
-                "t" : "Manuscript language material"
+            "6": {
+                "_predicate": "typeOfRecord",
+                "a": "Language material",
+                "c": "Notated music",
+                "d": "Manuscript notated music",
+                "e": "Cartographic material",
+                "f": "Manuscript cartographic material",
+                "g": "Projected medium",
+                "i": "Nonmusical sound recording",
+                "j": "Musical sound recording",
+                "k": "Two-dimensional nonprojectable graphic",
+                "m": "Computer file",
+                "o": "Kit",
+                "p": "Mixed materials",
+                "r": "Three-dimensional artifact or naturally occurring object",
+                "t": "Manuscript language material"
             },
-            "7" : {
+            "7": {
+                "_predicate": "bibliographicLevel",
                 "a" : "Monographic component part",
                 "b" : "Serial component part",
                 "c" : "Collection",
@@ -47,32 +50,44 @@
                 "s" : "Serial"
             },
             "8" : {
-                "a" : "Archival"
+                "_predicate": "typeOfControl",
+                " ": "unspecified",
+                "a": "Archival",
+                "0": null
             },
-            "9" : {
-                "a" : "Unicode"
+            "9": {
+                "_predicate": "characterEncoding",
+                " ": "MARC-8",
+                "a": "Unicode"
             },
-            "17" : {
-                "1" : "Full level, material not examined",
-                "2" : "Less-than-full level, material not examined",
-                "3" : "Abbreviated level",
-                "4" : "Core level",
-                "5" : "Partial (preliminary) level",
-                "7" : "Minimal level",
-                "8" : "Prepublication level",
-                "u" : "Unknown",
-                "z" : "Not applicable"
+            "17": {
+                "_predicate": "encodingLevel",
+                " ": "Full level",
+                "1": "Full level, material not examined",
+                "2": "Less-than-full level, material not examined",
+                "3": "Abbreviated level",
+                "4": "Core level",
+                "5": "Partial (preliminary) level",
+                "7": "Minimal level",
+                "8": "Prepublication level",
+                "u": "Unknown",
+                "z": "Not applicable"
             },
-            "18" : {
-                "a" : "AACR 2",
-                "c" : "ISBD punctuation omitted",
-                "i" : "ISBD punctuation included",
-                "u" : "Unknown"
+            "18": {
+                "_predicate": "descriptiveCatalogingForm",
+                " ": "Non-ISBD",
+                "a": "AACR 2",
+                "c": "ISBD punctuation omitted",
+                "i": "ISBD punctuation included",
+                "n": "Non-ISBD punctuation omitted",
+                "u": "Unknown"
             },
-            "19" : {
-                "a" : "Set",
-                "b" : "Part with independent title",
-                "c" : "Part with dependent title"
+            "19": {
+                "_predicate": "multipartResourceRecordLevel",
+                " ": "Not specified",
+                "a": "Set",
+                "b": "Part with independent title",
+                "c": "Part with dependent title"
             }
         }
     },

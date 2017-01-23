@@ -1,20 +1,21 @@
 {
   "RecordFormat": {
     "tags": [
-      "__FORMAT"
+      "_FORMAT"
     ]
   },
   "RecordType": {
     "tags": [
-      "__TYPE"
+      "_TYPE"
     ]
   },
-  "RecordLeader": {
+  "RecordLeader" : {
     "tags": [
-      "__LEADER"
+      "_LEADER"
     ],
     "codes": {
       "5": {
+        "_predicate": "recordStatus",
         "a": "Increase in encoding level",
         "c": "Corrected or revised",
         "d": "Deleted",
@@ -22,6 +23,7 @@
         "p": "Increase in encoding level from prepublication"
       },
       "6": {
+        "_predicate": "typeOfRecord",
         "a": "Language material",
         "c": "Notated music",
         "d": "Manuscript notated music",
@@ -38,21 +40,29 @@
         "t": "Manuscript language material"
       },
       "7": {
-        "a": "Monographic component part",
-        "b": "Serial component part",
-        "c": "Collection",
-        "d": "Subunit",
-        "i": "Integrating resource",
-        "m": "Monograph/Item",
-        "s": "Serial"
+        "_predicate": "bibliographicLevel",
+        "a" : "Monographic component part",
+        "b" : "Serial component part",
+        "c" : "Collection",
+        "d" : "Subunit",
+        "i" : "Integrating resource",
+        "m" : "Monograph/Item",
+        "s" : "Serial"
       },
-      "8": {
-        "a": "Archival"
+      "8" : {
+        "_predicate": "typeOfControl",
+        " ": "unspecified",
+        "a": "Archival",
+        "0": null
       },
       "9": {
+        "_predicate": "characterEncoding",
+        " ": "MARC-8",
         "a": "Unicode"
       },
       "17": {
+        "_predicate": "encodingLevel",
+        " ": "Full level",
         "1": "Full level, material not examined",
         "2": "Less-than-full level, material not examined",
         "3": "Abbreviated level",
@@ -64,12 +74,17 @@
         "z": "Not applicable"
       },
       "18": {
+        "_predicate": "descriptiveCatalogingForm",
+        " ": "Non-ISBD",
         "a": "AACR 2",
         "c": "ISBD punctuation omitted",
         "i": "ISBD punctuation included",
+        "n": "Non-ISBD punctuation omitted",
         "u": "Unknown"
       },
       "19": {
+        "_predicate": "multipartResourceRecordLevel",
+        " ": "Not specified",
         "a": "Set",
         "b": "Part with independent title",
         "c": "Part with dependent title"
@@ -92,7 +107,7 @@
       "0": {
         "a": {
           /* Map (007/00=a) */
-          /*"_predicate" : "physicalDescriptionMap",*/
+          "_predicate" : "physicalDescriptionMap",
           "1": {
             /* Specific material designation */
             "d": "atlas",
@@ -531,7 +546,7 @@
       "0-5": "date",
       "6": {
         /* Type of date/Publication status */
-        /*"_predicate" : "typeOfDate",*/
+        "_predicate" : "typeOfDate",
         "b": "No dates given",
         "c": "Continuing resource currently published",
         "d": "Continuing resource ceased publication",
@@ -545,39 +560,345 @@
       "11-14": "date2",
       "15-17": {
         /*  Place of publication, production, or execution http://www.loc.gov/marc/countries/ */
-        "xx": "no place",
-        "vp": "various places"
+        "_predicate": "place",
+        "au ": "Austria",
+        "ck ": "Colombia",
+        "ja ": "Japan",
+        "gw ": "Germany",
+        "it ": "Italy",
+        "sp ": "Spain",
+        "sz ": "Switzerland",
+        "us ": "USA",
+        "pl ": "Poland",
+        "xx ": "no place",
+        "xxk": "United Kingdom",
+        "xxu": "United States",
+        "vp ": "various places"
       },
-      "18-34": "material-specific codes",
+      /*"18-34": "material-specific codes",*/
       "35-37": {
         /* http://www.loc.gov/marc/languages/ */
-        "zxx": "no linguistic content",
+        "_predicate": "language",
+        "eng": "english",
         "ger": "german",
+        "ita": "italian",
+        "spa": "spanish",
+        "rus": "russian",
+        "ara": "arabic",
+        "zxx": "no linguistic content",
         "mul": "multiple languages",
         "sgn": "sign languages",
         "und": "undetermined"
       },
       "38": {
         /* Modified record */
-        /* "_predicate" : "modifiedRecord", */
+         "_predicate" : "modifiedRecord",
+        " ": "not modified",
         "d": "Dashed-on information omitted",
+        "e": null,
         "o": "Completely romanized/printed cards romanized",
+        "m": null,
         "r": "Completely romanized/printed cards in script",
         "s": "Shortened",
         "x": "Missing characters"
       },
       "39": {
         /* Cataloging source */
-        /*"_predicate" : "catalogingSource",*/
+        "_predicate" : "catalogingSource",
+        " ": "Library of Congress",
+        "a": "National Agricultural Library",
+        "b": "National Library of Medicine",
         "c": "Cooperative cataloging program",
         "d": "Other",
+        "o": "Other institution cataloguing",
+        "n": "Report to New serial titles",
+        "r": "Reporting library",
         "u": "Unknown"
+      }
+    },
+    "book": {
+      "18": {
+        "_predicate": "illustrations",
+        " ": "No illustrations",
+        "a": "Illustrations",
+        "b": "Maps",
+        "c": "Portraits",
+        "d": "Charts",
+        "e": "Plans",
+        "f": "Plates",
+        "g": "Music",
+        "h": "Facsimiles",
+        "i": "Coats of arms",
+        "j": "Genealogical tables",
+        "k": "Forms",
+        "l": "Samples",
+        "m": "Phonodisc, phonowire",
+        "o": "Photographs",
+        "p": "Illuminations"
+      },
+      "19": {
+        "_predicate": "illustrations",
+        " ": "No illustrations",
+        "a": "Illustrations",
+        "b": "Maps",
+        "c": "Portraits",
+        "d": "Charts",
+        "e": "Plans",
+        "f": "Plates",
+        "g": "Music",
+        "h": "Facsimiles",
+        "i": "Coats of arms",
+        "j": "Genealogical tables",
+        "k": "Forms",
+        "l": "Samples",
+        "m": "Phonodisc, phonowire",
+        "o": "Photographs",
+        "p": "Illuminations"
+      },
+      "20": {
+        "_predicate": "illustrations",
+        " ": "No illustrations",
+        "a": "Illustrations",
+        "b": "Maps",
+        "c": "Portraits",
+        "d": "Charts",
+        "e": "Plans",
+        "f": "Plates",
+        "g": "Music",
+        "h": "Facsimiles",
+        "i": "Coats of arms",
+        "j": "Genealogical tables",
+        "k": "Forms",
+        "l": "Samples",
+        "m": "Phonodisc, phonowire",
+        "o": "Photographs",
+        "p": "Illuminations"
+      },
+      "21": {
+        "_predicate": "illustrations",
+        " ": "No illustrations",
+        "a": "Illustrations",
+        "b": "Maps",
+        "c": "Portraits",
+        "d": "Charts",
+        "e": "Plans",
+        "f": "Plates",
+        "g": "Music",
+        "h": "Facsimiles",
+        "i": "Coats of arms",
+        "j": "Genealogical tables",
+        "k": "Forms",
+        "l": "Samples",
+        "m": "Phonodisc, phonowire",
+        "o": "Photographs",
+        "p": "Illuminations"
+      },
+      "22": {
+        "_predicate": "targetAudience",
+        " ": "Unknown or not specified",
+        "a": "Preschool",
+        "b": "Primary",
+        "c": "Pre-adolescent",
+        "d": "Adolescent",
+        "e": "Adult",
+        "f": "Specialized",
+        "g": "General",
+        "j": "Juvenile"
+      },
+      "23": {
+        "_predicate": "formOfItem",
+        " ": "none",
+        "a": "Microfilm",
+        "b": "Microfiche",
+        "c": "Microopaque",
+        "d": "Large print",
+        "f": "Braille",
+        "o": "Online",
+        "q": "Direct electronic",
+        "r": "Regular print reproduction",
+        "s": "Electronic"
+      },
+      "24": {
+        "_predicate": "natureOfContent",
+        " ": "No specified nature of content",
+        "a": "Abstracts/summaries",
+        "b": "Bibliographies",
+        "c": "Catalogs",
+        "d": "Dictionaries",
+        "e": "Encyclopedias",
+        "f": "Handbooks",
+        "g": "Legal articles",
+        "i": "Indexes",
+        "j": "Patent document",
+        "k": "Discographies",
+        "l": "Legislation",
+        "m": "Theses",
+        "n": "Surveys of literature in a subject area",
+        "o": "Reviews",
+        "p": "Programmed texts",
+        "q": "Filmographies",
+        "r": "Directories",
+        "s": "Statistics",
+        "t": "Technical reports",
+        "u": "Standards/specifications",
+        "v": "Legal cases and case notes",
+        "w": "Law reports and digests",
+        "y": "Yearbooks",
+        "z": "Treaties",
+        "2": "Offprints",
+        "5": "Calendars",
+        "6": "Comics/graphic novels"
+      },
+      "25": {
+        "_predicate": "natureOfContent",
+        " ": "No specified nature of content",
+        "a": "Abstracts/summaries",
+        "b": "Bibliographies",
+        "c": "Catalogs",
+        "d": "Dictionaries",
+        "e": "Encyclopedias",
+        "f": "Handbooks",
+        "g": "Legal articles",
+        "i": "Indexes",
+        "j": "Patent document",
+        "k": "Discographies",
+        "l": "Legislation",
+        "m": "Theses",
+        "n": "Surveys of literature in a subject area",
+        "o": "Reviews",
+        "p": "Programmed texts",
+        "q": "Filmographies",
+        "r": "Directories",
+        "s": "Statistics",
+        "t": "Technical reports",
+        "u": "Standards/specifications",
+        "v": "Legal cases and case notes",
+        "w": "Law reports and digests",
+        "y": "Yearbooks",
+        "z": "Treaties",
+        "2": "Offprints",
+        "5": "Calendars",
+        "6": "Comics/graphic novels"
+      },
+      "26": {
+        "_predicate": "natureOfContent",
+        " ": "No specified nature of content",
+        "a": "Abstracts/summaries",
+        "b": "Bibliographies",
+        "c": "Catalogs",
+        "d": "Dictionaries",
+        "e": "Encyclopedias",
+        "f": "Handbooks",
+        "g": "Legal articles",
+        "i": "Indexes",
+        "j": "Patent document",
+        "k": "Discographies",
+        "l": "Legislation",
+        "m": "Theses",
+        "n": "Surveys of literature in a subject area",
+        "o": "Reviews",
+        "p": "Programmed texts",
+        "q": "Filmographies",
+        "r": "Directories",
+        "s": "Statistics",
+        "t": "Technical reports",
+        "u": "Standards/specifications",
+        "v": "Legal cases and case notes",
+        "w": "Law reports and digests",
+        "y": "Yearbooks",
+        "z": "Treaties",
+        "2": "Offprints",
+        "5": "Calendars",
+        "6": "Comics/graphic novels"
+      },
+      "27": {
+        "_predicate": "natureOfContent",
+        " ": "No specified nature of content",
+        "a": "Abstracts/summaries",
+        "b": "Bibliographies",
+        "c": "Catalogs",
+        "d": "Dictionaries",
+        "e": "Encyclopedias",
+        "f": "Handbooks",
+        "g": "Legal articles",
+        "i": "Indexes",
+        "j": "Patent document",
+        "k": "Discographies",
+        "l": "Legislation",
+        "m": "Theses",
+        "n": "Surveys of literature in a subject area",
+        "o": "Reviews",
+        "p": "Programmed texts",
+        "q": "Filmographies",
+        "r": "Directories",
+        "s": "Statistics",
+        "t": "Technical reports",
+        "u": "Standards/specifications",
+        "v": "Legal cases and case notes",
+        "w": "Law reports and digests",
+        "y": "Yearbooks",
+        "z": "Treaties",
+        "2": "Offprints",
+        "5": "Calendars",
+        "6": "Comics/graphic novels"
+      },
+      "28": {
+        "_predicate": "governmentPublication",
+        " ": "Not a government publication",
+        "a": "Autonomous or semi-autonomous component",
+        "c": "Multilocal",
+        "f": "Federal/national",
+        "i": "International intergovernmental",
+        "l": "Local",
+        "m": "Multistate",
+        "o": "Government publication-level undetermined",
+        "s": "State, provincial, territorial, dependent",
+        "u": "Unknown if item is government publication",
+        "z": "Other"
+      },
+      "29": {
+        "_predicate": "conferencePublication",
+        "0": "Not a conference publication",
+        "1": "Conference publication"
+      },
+      "30": {
+        "_predicate": "festschriftPublication",
+        "0": "Not a festschrift",
+        "1": "Festschrift"
+      },
+      "31": {
+        "_predicate": "indexPresence",
+        "0": "No index",
+        "1": "Index present"
+      },
+      "33": {
+        "_predicate": "literaryForm",
+        "0": "Not fiction",
+        "1": "Fiction",
+        "d": "Dramas",
+        "e": "Essays",
+        "f": "Novels",
+        "h": "Humor, satires",
+        "i": "Letters",
+        "j": "Short stories",
+        "m": "Mixed forms",
+        "p": "Poetry",
+        "s": "Speeches",
+        "u": "Unknown"
+      },
+      "34": {
+        "_predicate": "biography",
+        " ": "No biographical material",
+        "a": "Autobiography",
+        "b": "Individual biography",
+        "c": "Collective biography",
+        "d": "Contains biographical information"
       }
     },
     "continuingresource": {
       "18": {
         /* Frequency (006/01) */
-        /*"_predicate" : "frequency",*/
+        "_predicate" : "frequency",
         "a": "Annual",
         "b": "Bimonthly",
         "c": "Semiweekly",
@@ -599,7 +920,7 @@
       },
       "19": {
         /* Regularity (006/02) */
-        /*"_predicate" : "regularity", */
+        "_predicate" : "regularity",
         "n": "Normalized irregular",
         "r": "Regular",
         "u": "Unknown",
@@ -607,7 +928,7 @@
       },
       "21": {
         /* Type of continuing resource (006/04) */
-        /* "_predicate" : "typeOfContinuingResource", */
+         "_predicate" : "typeOfContinuingResource",
         "d": "Updating database",
         "l": "Updating loose-leaf",
         "m": "Monographic series",
@@ -617,7 +938,7 @@
       },
       "22": {
         /* Form of original item (006/05) */
-        /* "_predicate" : "formOfOriginalItem", */
+        "_predicate" : "formOfOriginalItem",
         "a": "Microfilm",
         "b": "Microfiche",
         "c": "Microopaque",
@@ -630,7 +951,7 @@
       },
       "23": {
         /* Form of item (006/06) */
-        /* "_predicate" : "formOfItem", */
+        "_predicate" : "formOfItem",
         "a": "Microfilm",
         "b": "Microfiche",
         "c": "Microopaque",
@@ -643,7 +964,7 @@
       },
       "24": {
         /* Nature of entire work (006/07) */
-        /* "_predicate" : "natureOfWork", */
+        "_predicate" : "natureOfWork",
         "a": "Abstracts/summaries",
         "b": "Bibliographies",
         "c": "Catalogs",
@@ -673,7 +994,7 @@
       },
       "25": {
         /* Nature of contents (006/08-10) */
-        /* "_predicate" : "natureOfContent", */
+        "_predicate" : "natureOfContent",
         "a": "Abstracts/summaries",
         "b": "Bibliographies",
         "c": "Catalogs",
@@ -703,7 +1024,7 @@
       },
       "28": {
         /* Government publication (006/11) */
-        /*"_predicate" : "governmentPublication",*/
+        "_predicate" : "governmentPublication",
         "a": "Autonomous or semi-autonomous component",
         "c": "Multilocal",
         "f": "Federal/national",
@@ -717,13 +1038,13 @@
       },
       "29": {
         /* Conference publication (006/12) */
-        /*"_predicate" : "conferencePublication",*/
+        "_predicate" : "conferencePublication",
         "0": "Not a conference publication",
         "1": "Conference publication"
       },
       "33": {
         /* Original alphabet or script of title (006/16) */
-        /*"_predicate" : "scriptOfTitle",*/
+        "_predicate" : "scriptOfTitle",
         "a": "Basic Roman",
         "b": "Extended Roman",
         "c": "Cyrillic",
@@ -741,7 +1062,7 @@
       },
       "34": {
         /* Entry convention (006/17) */
-        /*"_predicate" : "entryConvention",*/
+        "_predicate" : "entryConvention",
         "0": "Successive entry",
         "1": "Latest entry",
         "2": "Integrated entry"
@@ -768,7 +1089,7 @@
       "a": "value",
       "c": "termsOfAvailability",
       "z": "incorrect",
-      "6": "linkage",
+      "6": null,
       "8": "sequenceNumber",
       "9": "formatted"
     },
@@ -779,7 +1100,7 @@
       "y": "incorrect",
       "z": "canceled",
       "2": "sourceISSN",
-      "6": "linkage",
+      "6": null,
       "8": "sequenceNumber"
     },
     "sourceISSN": {
@@ -1387,7 +1708,7 @@
       "b": "LocalSubentityCountry",
       "c": "isoCountry",
       "2": "type",
-      "6": "linkage",
+      "6": null,
       "8": "sequenceNumber"
     },
     "PublishingCountry": {
@@ -1737,40 +2058,39 @@
   "ClassificationNumber": {
     "tags": {
       /* DDC */
-      "082": "DDCClassificationNumber",
+      "082": "DDC",
       /* 083 = additional DDC */
-      "083": "DDCClassificationNumber",
-      "084": "NBNClassificationNumber",
+      "083": "DDC",
+      "084": "NBN",
       /* 085 = synthesized classification number */
       "085": "ClassificationNumber",
       /* 086 = Amtliche Druckschriftennummer */
       "086": "OfficialClassificationNumber"
     },
     "subfields": {
-      "a": "value",
+      "a": "classificatioNumber",
       "q": "agency",
       "2": "type"
     },
-    "DDCClassificationNumber": {
-      "a": "ddc",
+    "DDC": {
+      "a": "classificatioNumber",
       "b": "itemNumber",
       "m": "designation",
       "q": "agency",
       "2": "editionNumber",
-      "6": "linkage",
+      "6": null,
       "8": "sequenceNumber"
     },
-    "NBNClassificationNumber": {
-      /*"_predicate" : "type",*/
-      "a": "value",
+    "NBN": {
+      "a": "classificatioNumber",
       "b": "itemNumber",
       "q": "agency",
       "2": "type",
-      "6": "linkage",
+      "6": null,
       "8": "sequenceNumber"
     },
     "ClassificationNumber": {
-      "a": "value",
+      "a": "classificatioNumber",
       "b": "baseNumber",
       "c": "endingNumber",
       "f": "facetDesignator",
@@ -1782,39 +2102,39 @@
       "w": "addedTableIdentification",
       "y": "tableSequenceNumber",
       "z": "tableIdentification",
-      "6": "linkage",
+      "6": null,
       "8": "sortkey"
     },
     "OfficialClassificationNumber": {
-      "a": "value",
+      "a": "classificatioNumber",
       "2": "type"
     },
     "type": {
       "z": "OfficialClassificationNumber",
-      "zdbs": "ClassificationNumberZDB",
-      "ssgn": "ClassificationNumberSSG",
-      "sdnb": "ClassificationNumberDNB",
-      "sswd": "ClassificationNumberSWD",
-      "bkl": "ClassificationNumberBKL",
-      "ddc": "ClassificationNumberDDC",
-      "dopaed": "ClassificationNumberDOPAED",
-      "ifsz": "ClassificationNumberIFZ",
-      "ifz1": "ClassificationNumberIFZ",
-      "ifzs": "ClassificationNumberIFZ",
-      "nwbib": "ClassificationNumberNWBIB",
-      "rpb": "ClassificationNumberRPB",
-      "rpb100%20$": "ClassificationNumberRPB",
+      "zdbs": "ZDB",
+      "ssgn": "SSG",
+      "sdnb": "DNB",
+      "sswd": "SWD",
+      "bkl": "BKL",
+      "ddc": "DDC",
+      "dopaed": "DOPAED",
+      "ifsz": "IFZ",
+      "ifz1": "IFZ",
+      "ifzs": "IFZ",
+      "nwbib": "NWBIB",
+      "rpb": "RPB",
+      "rpb100%20$": "RPB",
       /* 1045237-0 */
-      "rpb330%20$": "ClassificationNumberRPB",
+      "rpb330%20$": "RPB",
       /* 218034-0, 531364-8 */
-      "rpb630%20$": "ClassificationNumberRPB",
+      "rpb630%20$": "RPB",
       /* 548068-1 */
-      "rpb930%20$": "ClassificationNumberRPB",
+      "rpb930%20$": "RPB",
       /* 1012264-3 */
-      "rvk": "ClassificationNumberRVK",
-      "sbb": "ClassificationNumberSBB",
-      "stub": "ClassificationNumberSTUB",
-      "sub": "ClassificationNumberSUB"
+      "rvk": "RVK",
+      "sbb": "SBB",
+      "stub": "STUB",
+      "sub": "SUB"
     },
     "ddc": {
       "000": "Informatik, Wissen, Systeme",
@@ -2041,7 +2361,7 @@
       "n": "personalNumber",
       "0": "personalIdentifier",
       "4": "roleTerm",
-      "6": "linkage",
+      "6": null,
       "7": "unknown",
       "9": "prefix"
     }
@@ -2064,7 +2384,7 @@
       "n": "corporateNumber",
       "0": "corporateIdentifier",
       "4": "roleTerm",
-      "6": "linkage",
+      "6": null,
       "7": "unknown",
       "8": "sequenceNumber",
       "9": "formatted"
@@ -2093,7 +2413,7 @@
       "u": "affiliation",
       "0": "meetingIdentifier",
       "4": "relatorCode",
-      "6": "linkage",
+      "6": null,
       "7": "unknown",
       "8": "sequenceNumber",
       "9": "formatted"
@@ -2101,9 +2421,7 @@
   },
   "Title": {
     "tags": {
-      /* 130 = heading - uniform title */
       "130": "UniformTitle",
-      /* 210 = abbreviated title */
       "210": "AbbreviatedTitle",
       "222": "KeyTitle",
       "240": "UniformTitle",
@@ -2113,8 +2431,8 @@
       "247": "FormerTitle"
     },
     "FormerTitle": {
-      "6": "linkage",
-      "a": "titleMain",
+      "6": null,
+      "a": "title",
       "b": "titleRemainder",
       "f": "titleDatesOrSequentialDesignation",
       "g": "titleInformation",
@@ -2123,7 +2441,7 @@
       "p": "titlePartName"
     },
     "TitleStatement": {
-      "a": "titleMain",
+      "a": "title",
       "b": "titleRemainder",
       "c": "titleStatement",
       "f": "titleInclusiveDates",
@@ -2136,10 +2454,10 @@
       "s": "titleVersion",
       "y": "titleLanguageCode",
       "5": "institution",
-      "6": "linkage"
+      "6": null
     },
     "subfields": {
-      "a": "titleMain",
+      "a": "title",
       "b": "titleRemainder",
       "c": "titleStatement",
       "f": "titleInclusiveDates",
@@ -2152,7 +2470,7 @@
       "s": "titleVersion",
       "y": "titleLanguageCode",
       "5": "institution",
-      "6": "linkage"
+      "6": null
     }
   },
   "EditionStatement": {
@@ -2171,12 +2489,12 @@
       "264"
     ],
     "subfields": {
-      "6": "linkage",
-      "a": "place",
-      "b": "name",
-      "c": "date",
-      "e": "place",
-      "f": "Name",
+      "6": null,
+      "a" : "placeOfPublication",
+      "b" : "publisherName",
+      "c" : "dateOfPublication",
+      "e" : "placeOfManufacture",
+      "f" : "manufacturerName",
       "n": null
       /* "[s.n.]" */
     }
@@ -2197,7 +2515,7 @@
       "w": "workIdentifier",
       "g": "sizeOfUnit",
       "3": "materialsSpecified",
-      "6": "linkage",
+      "6": null,
       "8": "sequenceNumber"
     }
   },
@@ -2272,6 +2590,8 @@
   },
   "SeriesStatement": {
     "tags": {
+      /* 440 old series statement plus added entry, obsolete since 2008 */
+      "440": "SeriesStatement",
       /* 490 = series statement */
       "490": "SeriesStatement",
       /* 810 = series added entry - corporate name */
@@ -2306,8 +2626,6 @@
       "501": "WithNote",
       /* 502 = dissertation note */
       "502": "DissertationNote",
-      /* 505 = table fo contents */
-      "505": "TableOfContents",
       /* 515 = numbering peculiarities note */
       "515": "NumberingNote",
       /* type of computer file or data note */
@@ -2333,7 +2651,7 @@
     },
     "subfields": {
       "a": "value",
-      "6": "linkage"
+      "6": null
     },
     "ActionNote": {
       "a": "action",
@@ -2355,7 +2673,7 @@
       "2": "sourceOfTerm",
       "3": "materialsSpecified",
       "5": "institution",
-      "6": "linkage",
+      "6": null,
       "8": "sequenceNumber"
     },
     "ProductionNote": {
@@ -2377,34 +2695,34 @@
                    12 - Frequency
                    13 - Regularity
                    14 - Form of item */
-      "6": "linkage",
+      "6": null,
       "8": "sequenceNumber"
     }
   },
   "Subject": {
     "tags": {
       /* 600 = subject added entry - personal name */
-      "600": "subjectPersonalName",
+      "600": "SubjectPersonalName",
       /* 610 = subject added entry - corporate name */
-      "610": "subjectCorporateName",
+      "610": "SubjectCorporateName",
       /* 611 = subject added entry - meeting name */
-      "611": "meetingName",
+      "611": "SubjectMeetingName",
       /* 630 = subject added entry = uniform title */
-      "630": "uniformTitleName",
+      "630": "SubjectUniformTitleName",
       /* 648 = subject added entry - chronological term */
-      "648": "chronologicalName",
+      "648": "SubjectChronologicalName",
       /* 650 = subject added entry - topical term */
-      "650": "topicalName",
+      "650": "SubjectTopicalName",
       /* 651 = subject added entry - geographical name */
-      "651": "geoName",
-      "653": "geoName",
+      "651": "SubjectGeoName",
+      "653": "SubjectGeoName",
       /* 655 = index term - genre/form */
-      "655": "genreFormName",
+      "655": "SubjectGenreFormName",
       /* 730 = added entry - uniform title */
-      "730": "uniformTitleName",
-      "731": "uniformTitleName",
+      "730": "SubjectUniformTitleName",
+      "731": "SubjectUniformTitleName",
       /* 751 = added entry - geographic name */
-      "751": "geoName"
+      "751": "SubjectGeoName"
     },
     "subfields": {
       "a": "value",
@@ -2435,7 +2753,7 @@
       "2": "source",
       "3": "material",
       "4": "relatorCode",
-      "6": "linkage",
+      "6": null,
       "8": "sequenceNumber",
       "9": "prefix"
     }
@@ -2451,7 +2769,7 @@
       "787": "OtherRelationshipEntry"
     },
     "subfields": {
-      "6": "linkage",
+      "6": null,
       "i": "relation",
       "a": "author",
       "t": "title",
@@ -2485,7 +2803,7 @@
       "y": "coden",
       "z": "isbn",
       "4": "code",
-      "6": "linkage",
+      "6": null,
       "7": "controlfield",
       "8": "sequenceNumber"
     },
@@ -2512,7 +2830,7 @@
       "y": "coden",
       "z": "isbn",
       "4": "code",
-      "6": "linkage",
+      "6": null,
       "7": "controlfield",
       "8": "sequenceNumber"
     },
@@ -3542,7 +3860,7 @@
       "780"
     ],
     "subfields": {
-      "6": "linkage",
+      "6": null,
       "i": "relation",
       "a": "author",
       "d": "publisherStatement",
@@ -3778,7 +4096,7 @@
       "785"
     ],
     "subfields": {
-      "6": "linkage",
+      "6": null,
       "i": "relation",
       "a": "author",
       "d": "publisherStatement",
@@ -3985,7 +4303,7 @@
     "subfields": {
       "2": "accessmode",
       "3": "relatedto",
-      "6": "linkage",
+      "6": null,
       "8": "pos",
       "9": "prefix",
       "a": "hostname",
@@ -4019,7 +4337,19 @@
       "880"
     ],
     "subfields": {
-      "6": "fieldLinkingTag"
+      "6": null
+    }
+  },
+  "FormattedContentsNote" : {
+    "tags" : [
+      "505"
+    ],
+    "subfields" : {
+      "6": null,
+      "a": "note",
+      "g": "miscellaneous",
+      "r": "statementOfResponsibility",
+      "t": "title"
     }
   },
   "Ignore": {

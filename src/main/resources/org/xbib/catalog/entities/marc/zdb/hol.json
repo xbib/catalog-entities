@@ -9,12 +9,13 @@
       "_TYPE"
     ]
   },
-  "RecordLeader": {
+  "RecordLeader" : {
     "tags": [
       "_LEADER"
     ],
     "codes": {
       "5": {
+        "_predicate": "recordStatus",
         "a": "Increase in encoding level",
         "c": "Corrected or revised",
         "d": "Deleted",
@@ -22,6 +23,7 @@
         "p": "Increase in encoding level from prepublication"
       },
       "6": {
+        "_predicate": "typeOfRecord",
         "a": "Language material",
         "c": "Notated music",
         "d": "Manuscript notated music",
@@ -38,21 +40,29 @@
         "t": "Manuscript language material"
       },
       "7": {
-        "a": "Monographic component part",
-        "b": "Serial component part",
-        "c": "Collection",
-        "d": "Subunit",
-        "i": "Integrating resource",
-        "m": "Monograph/Item",
-        "s": "Serial"
+        "_predicate": "bibliographicLevel",
+        "a" : "Monographic component part",
+        "b" : "Serial component part",
+        "c" : "Collection",
+        "d" : "Subunit",
+        "i" : "Integrating resource",
+        "m" : "Monograph/Item",
+        "s" : "Serial"
       },
-      "8": {
-        "a": "Archival"
+      "8" : {
+        "_predicate": "typeOfControl",
+        " ": "unspecified",
+        "a": "Archival",
+        "0": null
       },
       "9": {
+        "_predicate": "characterEncoding",
+        " ": "MARC-8",
         "a": "Unicode"
       },
       "17": {
+        "_predicate": "encodingLevel",
+        " ": "Full level",
         "1": "Full level, material not examined",
         "2": "Less-than-full level, material not examined",
         "3": "Abbreviated level",
@@ -64,12 +74,17 @@
         "z": "Not applicable"
       },
       "18": {
+        "_predicate": "descriptiveCatalogingForm",
+        " ": "Non-ISBD",
         "a": "AACR 2",
         "c": "ISBD punctuation omitted",
         "i": "ISBD punctuation included",
+        "n": "Non-ISBD punctuation omitted",
         "u": "Unknown"
       },
       "19": {
+        "_predicate": "multipartResourceRecordLevel",
+        " ": "Not specified",
         "a": "Set",
         "b": "Part with independent title",
         "c": "Part with dependent title"

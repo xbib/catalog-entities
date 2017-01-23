@@ -776,7 +776,7 @@
       "S": null,
       "P": "prefix",
       "6": "script",
-      "8": "linkage",
+      "8": "link",
       "9": "identifierForDescription",
       "a": "description",
       "b": "description",
@@ -849,7 +849,6 @@
       "531": "DescriptionOfFormerEditionsOrVolumes",
       "532": "DescriptionOfTemporaryTitles",
       "533": "DescriptionOfContinuingEditionsOrVolumes",
-      "785": "DescriptionOfContinuingEditionsOrVolumes",
       "534": "DescriptionOfTitleForms",
       "535": "DescriptionOfItems",
       "536": "DescriptionOfEstimatedPublicationDate",
@@ -896,13 +895,18 @@
   "Edition": {
     "subfields": {
       " ": "edition",
+      "1": null,
+      "2": null,
       "6": "script",
+      "8": "link",
       "a": "edition",
       "b": "edition",
       "e": "edition",
       "n": "edition",
       "p": "editionPrefix",
-      "s": "edition"
+      "s": "edition",
+      "A": null,
+      "V": null
     },
     "tags": [
       "400",
@@ -1200,7 +1204,7 @@
     "subfields": {
       "2": null,
       "3": null,
-      "8": null,
+      "8": "link",
       "a": "typeName",
       "b": "typeCode"
     }
@@ -1212,7 +1216,7 @@
     ],
     "subfields": {
       "a": "carrierName",
-      "8": "carrierID",
+      "8": "link",
       "9": "carrierID",
       "x": "carrierTerm",
       "y": "carrierChronologicalTerm",
@@ -1972,8 +1976,8 @@
       "$": "label",
       "2": "owner",
       "3": "relatedto",
-      "6": "linkage",
-      "8": "pos",
+      "6": "link",
+      "8": "link",
       "9": "prefix",
       "A": null,
       "Z": "publicnote",
@@ -2509,7 +2513,7 @@
       "4": "roleCode",
       "5": null,
       "6": "script",
-      "8": null,
+      "8": "link",
       "9": "personIdentifier",
       "P": "personName",
       "a": "personName",
@@ -2648,12 +2652,18 @@
       "d": "publisherName",
       "e": "publisherName",
       "g": "publisherName",
-      "s": "publisherName"
+      "s": "publisherName",
+      "A": "publisherName",
+      "F": "publisherName",
+      "P": "publisherName",
+      "S": "publisherName",
+      "R": "publisherName"
     },
     "PrinterName": {
       "2": null,
       "3": "role",
       "6": "script",
+      "8": "printerDate",
       "a": "printerPlace",
       "b": "printerName",
       "c": "printerDate",
@@ -2683,7 +2693,8 @@
     "subfields": {
       " ": "name",
       "a": "name",
-      "A": null
+      "0": null,
+      "8": null
     },
     "tags": {
       "410": "PublicationPlace",
@@ -3658,6 +3669,7 @@
       "A": null,
       "B": null,
       "G": null,
+      "H": null,
       "K": null,
       "N": null,
       "S": null,
@@ -3734,13 +3746,23 @@
   "TitleSuper": {
     "TitleSuperIdentifier": {
       " ": "titleSuperIdentifier",
+      "1": null,
+      "3": null,
       "6": "script",
+      "9": null,
       "a": "titleSuperIdentifier"
     },
     "TitleSuperSortableVolumeDesignation": {
       " ": "sortableVolumeDesignation",
+      "1": null,
+      "2": null,
+      "3": null,
+      "4": null,
       "6": "script",
-      "a": "sortableVolumeDesignation"
+      "a": "sortableVolumeDesignation",
+      "b": null,
+      "q": null,
+      "s": null
     },
     "TitleSuperStandardNumber": {
       " ": "standardNumber",
@@ -3750,15 +3772,21 @@
     "TitleSuperUniform": {
       " ": "uniformTitle",
       "6": "script",
-      "a": "uniformTitle"
+      "a": "uniformTitle",
+      "b": null
     },
     "TitleSuperVolumeDesignation": {
       " ": "volumeDesignation",
+      "1": null,
       "6": "script",
-      "a": "volumeDesignation"
+      "8": null,
+      "a": "volumeDesignation",
+      "s": null
     },
     "subfields": {
       " ": "titleSuper",
+      "1": null,
+      "3": null,
       "6": "script",
       "a": "titleSuper",
       "b": "titleSuper",
@@ -3766,7 +3794,8 @@
       "g": "titleSuper",
       "i": "titleSuper",
       "p": "titleSuper",
-      "s": "titleSuper"
+      "s": "titleSuper",
+      "A": "titleSuper"
     },
     "tags": {
       "451": "TitleSuper",
@@ -4863,7 +4892,7 @@
       "2": "source",
       "3": "volumeDesignation",
       "4": "volumeDesignation",
-      "8": "volumeDesignation",
+      "8": "link",
       "a": "volumeDesignation",
       "b": "volumeDesignation",
       "c": "volumeDesignation",
@@ -4938,7 +4967,7 @@
       "f": "date",
       "j": "date",
       "k": "comment",
-      "8": null
+      "8": "link"
     }
   },
   "Exemplar": {
@@ -5068,6 +5097,8 @@
       "a": "mediumOfPerformance",
       "b": "role",
       "n": "count",
+      "p": "alternativeMediumOfPerformance",
+      "v": "note",
       "2": "source",
       "9": "number"
     }
@@ -5081,6 +5112,47 @@
       "b": "opusNumber",
       "c": "thematicIndexNumber",
       "e": "publisher"
+    }
+  },
+  "Key" : {
+    "tags" : [
+      "384"
+    ],
+    "subfields" : {
+      "a" : "key",
+      "8" : "link"
+    }
+  },
+  "PrecedingEntry": {
+    "tags": [
+      "780"
+    ],
+    "subfields": {
+      "6": "linkage",
+      "i": "relation",
+      "a": "author",
+      "d": "publisherStatement",
+      "h": "physicalDescription",
+      "n": "number",
+      "t": "title",
+      "w": "id",
+      "x": "issn"
+    }
+  },
+  "SucceedingEntry": {
+    "tags": [
+      "785"
+    ],
+    "subfields": {
+      "6": "linkage",
+      "i": "relation",
+      "a": "author",
+      "d": "publisherStatement",
+      "h": "physicalDescription",
+      "n": "number",
+      "t": "title",
+      "w": "id",
+      "x": "issn"
     }
   },
   "Ignore": {
@@ -5098,7 +5170,7 @@
       /* 040 = SWD-Nummer */
       "040",
       "047",
-      /* 053 = Nachlässe und Autographen, Codes*/
+      /* 053 = Nachlässe und Autographen, Codes */
       "053",
       "056",
       "063",
@@ -5128,8 +5200,23 @@
       "338",
       "339",
       "356",
+      "395",
+      "397",
+      "401",
+      "402",
+      "404",
+      /* obsolet: 420 = Mehrteilige, unselbstständig erschienene Werke */
       "420",
-      /* MAB obsolet: Mehrteilige, unselbstständig erschienene Werke */
+      "421",
+      "422",
+      "423",
+      "424",
+      "457",
+      "459",
+      "470",
+      "480",
+      "490",
+      "500",
       "800",
       "801",
       "802",

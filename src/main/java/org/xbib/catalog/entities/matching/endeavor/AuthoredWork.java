@@ -14,6 +14,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -24,6 +25,8 @@ public class AuthoredWork implements Identifiable {
     private static final Logger logger = Logger.getLogger(AuthoredWork.class.getName());
 
     private static final Pattern p1 = Pattern.compile(".*Cover and Back matter.*", Pattern.CASE_INSENSITIVE);
+
+    private static final Pattern yearPattern = Pattern.compile("\\d{4}");
 
     private StringBuilder workName;
 
@@ -150,6 +153,15 @@ public class AuthoredWork implements Identifiable {
                     this.authorName.append(' ').append(s);
                 }
             }
+        }
+        return this;
+    }
+
+    public AuthoredWork year(String year) {
+        // searching for gregorian dates, clean all characters except the first four digits
+        Matcher matcher = yearPattern.matcher(year);
+        if (matcher.find()) {
+            chronology(matcher.group());
         }
         return this;
     }

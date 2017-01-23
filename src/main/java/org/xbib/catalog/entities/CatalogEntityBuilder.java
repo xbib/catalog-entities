@@ -8,8 +8,8 @@ import org.xbib.marc.MarcField;
 import org.xbib.marc.MarcListener;
 import org.xbib.marc.MarcRecord;
 import org.xbib.marc.MarcRecordListener;
+import org.xbib.marc.label.RecordLabel;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -26,10 +26,32 @@ import java.util.logging.Logger;
 import java.util.zip.CRC32;
 
 /**
+ * The catalog entity builder is a worker pool for generating bibliographic entities.
+ *
+ * [source,java]
+ * --
+ * class MyBuilder extends CatalogEntityBuilder {
+ *
+ *   MyBuilder(String packageName, InputStream inputStream) throws Exception {
+ *      super(packageName, inputStream, listener);
+ *   }
+ *
+ *   @Override
+ *   protected void afterFinishState(CatalogEntityWorkerState state) {
+ *     RdfXContentParams params = new RdfXContentParams();
+ *     RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
+ *     builder.receive(state.getResource());
+ *     String content = params.getGenerator().get();
+ *     if (content != null) {
+ *       logger.log(Level.FINE, "rdf=" + content);
+ *     }
+ *   }
+ * }
+ * --
  *
  */
 public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
-        implements WorkerPool<MarcRecord>, MarcListener, MarcRecordListener, Closeable {
+        implements WorkerPool<MarcRecord>, MarcListener, MarcRecordListener {
 
     private static final Logger logger = Logger.getLogger(CatalogEntityBuilder.class.getName());
 
@@ -60,6 +82,12 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         this(packageName, Runtime.getRuntime().availableProcessors(), url, Collections.emptyMap(), true, listener);
     }
 
+    public CatalogEntityBuilder(String packageName, InputStream inputStream,
+                                WorkerPoolListener<WorkerPool<MarcRecord>> listener)
+            throws IOException {
+        this(packageName, Runtime.getRuntime().availableProcessors(), inputStream, Collections.emptyMap(), true, listener);
+    }
+
     public CatalogEntityBuilder(String packageName, int workers, URL url) throws IOException {
         this(packageName, workers, url, Collections.emptyMap(), true);
     }
@@ -83,6 +111,14 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     }
 
     public CatalogEntityBuilder(String packageName, int workers, URL url, Map<String, Object> params,
+                                boolean isMapped, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
+            throws IOException {
+        this(packageName, workers, url.openStream(), params, isMapped, listener);
+        logger.log(Level.INFO, () -> MessageFormat.format("workers:{1} mapped:{2} package:{0} spec:{3}",
+                packageName, workers, isMapped, url));
+    }
+
+    public CatalogEntityBuilder(String packageName, int workers, InputStream inputStream, Map<String, Object> params,
         boolean isMapped, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
             throws IOException {
         super(workers, listener);
@@ -91,10 +127,8 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         this.checksum = new AtomicLong();
         this.invalid = Collections.synchronizedSet(new TreeSet<>());
         this.isMapped = isMapped;
-        logger.log(Level.INFO, () -> MessageFormat.format("workers:{1} mapped:{2} package:{0} spec:{3}",
-                packageName, workers, isMapped, url));
         if (isMapped) {
-            this.entitySpecification = new CatalogEntitySpecification(url, new HashMap<>(), params, packageName);
+            this.entitySpecification = new CatalogEntitySpecification(inputStream, new HashMap<>(), params, packageName);
             for (String key : entitySpecification.getMap().keySet()) {
                 mapped.put(key, 0);
             }
@@ -153,7 +187,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
 
     @Override
     public void leader(String label) {
-        marcBuilder.leader(label);
+        marcBuilder.recordLabel(RecordLabel.builder().from(label.toCharArray()).build());
         if (logger.isLoggable(Level.FINE)) {
             logger.fine("leader=" + label);
         }
@@ -266,11 +300,11 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         return missingSerials;
     }
 
-    protected void beforeFinishState(CatalogEntityWorkerState state) {
+    protected void beforeFinishState(CatalogEntityWorkerState state) throws IOException {
         // can be overriden
     }
 
-    protected void afterFinishState(CatalogEntityWorkerState state) {
+    protected void afterFinishState(CatalogEntityWorkerState state) throws IOException {
         // can be overriden
     }
 

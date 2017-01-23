@@ -1,9 +1,12 @@
 package org.xbib.catalog.entities;
 
+import static org.xbib.catalog.entities.CatalogEntitySpecification.LEADER;
+
 import org.xbib.content.rdf.Resource;
 import org.xbib.content.resource.IRI;
 import org.xbib.marc.MarcField;
 import org.xbib.marc.MarcRecord;
+import org.xbib.marc.label.RecordLabel;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -125,6 +128,7 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
         if (entityBuilder.isEnableChecksum()) {
             crc32.reset();
         }
+        build(marcRecord.getRecordLabel());
         for (MarcField marcField : marcRecord.getFields()) {
             build(marcField);
         }
@@ -136,12 +140,22 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
         entityBuilder.getCounter().incrementAndGet();
     }
 
+    public void build(RecordLabel recordLabel) throws IOException {
+        CatalogEntity entity = entityBuilder.getEntitySpecification().retrieve(recordLabel);
+        if (entity != null) {
+            entity.transform(this, MarcField.builder().tag(LEADER).value(recordLabel.toString()).build());
+        }
+        if (logger.isLoggable(Level.FINE)) {
+            logger.log(Level.FINE, "recordLabel=" + recordLabel + " entity=" + entity);
+        }
+    }
+
     /**
      * Catalog entities can decide to build a MARC field.
      * @param marcField the MARC field to build
      * @throws IOException if build fails
      */
-    public void build (MarcField marcField) throws IOException {
+    public void build(MarcField marcField) throws IOException {
         if (!marcField.isTagValid()) {
             entityBuilder.invalid(getWorkerState().getRecordIdentifier(), marcField,
                     "field " + marcField + ": invalid tag");

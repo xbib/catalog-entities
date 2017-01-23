@@ -24,7 +24,7 @@ public class RecordLabel extends CatalogEntity {
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
-        worker.getWorkerState().setLabel(value.trim());
+        worker.getWorkerState().setRecordLabel(value.trim());
         if (value.length() == 24) {
             char satztyp = value.charAt(23);
             worker.getWorkerState().getResource().add("type", String.valueOf(satztyp));

@@ -13,8 +13,10 @@ import org.xbib.content.rdf.internal.DefaultResource;
 import org.xbib.content.resource.IRI;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,14 +43,24 @@ public class CatalogEntityWorkerState {
     private final String packageName;
 
     private final AuthoredWork authoredWorkKey;
+
     private String systemIdentifier;
+
     private String recordIdentifier;
+
     private String format;
+
     private String type;
-    private String label;
+
+    private String recordLabel;
+
     private String isil;
+
     private IRI uid;
+
     private Resource resource;
+
+    private List<String> resourceType;
 
     public CatalogEntityWorkerState(CatalogEntityBuilder builder) {
         this.builder = builder;
@@ -58,6 +70,7 @@ public class CatalogEntityWorkerState {
         this.facets = new HashMap<>();
         this.sequences = new HashMap<>();
         this.authoredWorkKey = new AuthoredWork();
+        this.resourceType = new ArrayList<>();
     }
 
     public AuthoredWork getAuthoredWorkKey() {
@@ -72,12 +85,17 @@ public class CatalogEntityWorkerState {
         return builder.getMissingSerials();
     }
 
-    public String getLabel() {
-        return label;
+    public CatalogEntityWorkerState setRecordLabel(String recordLabel) {
+        this.recordLabel = recordLabel;
+        return this;
     }
 
-    public CatalogEntityWorkerState setLabel(String label) {
-        this.label = label;
+    public String getRecordLabel() {
+        return recordLabel;
+    }
+
+    public CatalogEntityWorkerState setRecordIdentifier(String recordIdentifier) {
+        this.recordIdentifier = recordIdentifier;
         return this;
     }
 
@@ -85,9 +103,13 @@ public class CatalogEntityWorkerState {
         return recordIdentifier;
     }
 
-    public CatalogEntityWorkerState setRecordIdentifier(String recordIdentifier) {
-        this.recordIdentifier = recordIdentifier;
+    public CatalogEntityWorkerState addResourceType(String resourceType) {
+        this.resourceType.add(resourceType);
         return this;
+    }
+
+    public List<String> getResourceType() {
+        return resourceType;
     }
 
     public Resource getResource() throws IOException {
@@ -210,7 +232,7 @@ public class CatalogEntityWorkerState {
         }
         sequences.clear();
 
-        // collect facets from elements, if any
+        // collect facets, if any
         Map<String, String> facetElements = builder.getFacetElements();
         if (facetElements != null && !facetElements.isEmpty()) {
             for (Map.Entry<String, String> entry : facetElements.entrySet()) {
@@ -256,6 +278,12 @@ public class CatalogEntityWorkerState {
             }
         }
 
+        // keys
+        if (getAuthoredWorkKey().isValidWork()) {
+            getResource().newResource("xbib").add("authoredWorkKey", getAuthoredWorkKey().createIdentifier());
+        }
+
+        // output
         if (builders != null && graph.getResources() != null) {
             Iterator<Resource> it = graph.getResources();
             while (it.hasNext()) {

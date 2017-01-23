@@ -1,2683 +1,2810 @@
 {
-    "RecordFormat" : {
-        "tags" : [
-        "_FORMAT"
-        ]  
-    },
-    "RecordType" : {
-        "tags" : [
-        "_TYPE"
-        ]  
-    },
-    "RecordLeader" : {
-        "tags" : [
-        "_LEADER"
-        ],
-        "codes" : {
-            "5" : {
-                "a" : "Increase in encoding level",
-                "c" : "Corrected or revised",
-                "d" : "Deleted",
-                "n" : "New",
-                "p" : "Increase in encoding level from prepublication"
-            },
-            "6" : {
-                "a" : "Language material",
-                "c" : "Notated music",
-                "d" : "Manuscript notated music",
-                "e" : "Cartographic material",
-                "f" : "Manuscript cartographic material",
-                "g" : "Projected medium",
-                "i" : "Nonmusical sound recording",
-                "j" : "Musical sound recording",
-                "k" : "Two-dimensional nonprojectable graphic",
-                "m" : "Computer file",
-                "o" : "Kit",
-                "p" : "Mixed materials",
-                "r" : "Three-dimensional artifact or naturally occurring object",
-                "t" : "Manuscript language material"
-            },
-            "7" : {
-                "a" : "Monographic component part",
-                "b" : "Serial component part",
-                "c" : "Collection",
-                "d" : "Subunit",
-                "i" : "Integrating resource",
-                "m" : "Monograph/Item",
-                "s" : "Serial"
-            },
-            "8" : {
-                "a" : "Archival"
-            },
-            "9" : {
-                "a" : "Unicode"
-            },
-            "17" : {
-                "1" : "Full level, material not examined",
-                "2" : "Less-than-full level, material not examined",
-                "3" : "Abbreviated level",
-                "4" : "Core level",
-                "5" : "Partial (preliminary) level",
-                "7" : "Minimal level",
-                "8" : "Prepublication level",
-                "u" : "Unknown",
-                "z" : "Not applicable"
-            },
-            "18" : {
-                "a" : "AACR 2",
-                "c" : "ISBD punctuation omitted",
-                "i" : "ISBD punctuation included",
-                "u" : "Unknown"
-            },
-            "19" : {
-                "a" : "Set",
-                "b" : "Part with independent title",
-                "c" : "Part with dependent title"
-            }
-        }
-    },
-    "RecordIdentifier" : {
-        "tags": [
-            "001"
-        ],
-        "subfields" : {
-            " " : "identifierForTheRecord"
-        }
-    },
-    "PhysicalDescriptionCode" : {
-        "tags" : {
-            "007" : "physicalDescription"
-        },
-        "codes" : {
-            "0" : {
-                "a" : { /* Map (007/00=a) */
-                    "_predicate" : "physicalDescriptionMap",
-                    "1" : { /* Specific material designation */
-                        "d" : "atlas",
-                        "g" : "diagram",
-                        "j" : "map",
-                        "k" : "profile",
-                        "q" : "model",
-                        "r" : "remote-sensing image",
-                        "s" : "section",
-                        "u" : null,
-                        "y" : "view",
-                        "z" : "other"
-                    },
-                    "3" : { /* Color */
-                        "a" : "one color",
-                        "c" : "multicolored"
-                    },
-                    "4" : { /* Physical medium */
-                        "a" : "paper",
-                        "b" : "wood",
-                        "c" : "stone",
-                        "d" : "metal",
-                        "e" : "synthetic",
-                        "f" : "skin",
-                        "g" : "textiles",
-                        "i" : "plastic",
-                        "j" : "glass",
-                        "l" : "vinyl",
-                        "n" : "vellum",
-                        "p" : "plaster",
-                        "q" : "flexible base photographic, positive",
-                        "r" : "flexible base photographic, negative",
-                        "s" : "non-flexible base photographic, positive",
-                        "t" : "non-flexible base photographic, negative",
-                        "u" : "unknown",
-                        "v" : "leather",
-                        "w" : "parchment",
-                        "y" : "other photographic medium",
-                        "z" : "other"
-                    },
-                    "5" : { /* Type of reproduction */
-                        "f" : "facsimile",
-                        "n" : "not applicable",
-                        "u" : "unknown",
-                        "z" : "other"
-                    },
-                    "6" : { /* Production/reproduction details */
-                        "a" : "photocopy, blueline print",
-                        "b" : "photocopy",
-                        "c" : "pre-production",
-                        "d" : "film",
-                        "u" : "unknown",
-                        "z" : "other"
-                    },
-                    "7" : { /* Positive/negative aspect */
-                        "a" : "positive",
-                        "b" : "negative",
-                        "m" : "mixed polarity",
-                        "n" : "not applicable"
-                    }
-                },
-                "c" : { /* 007/00=c Electronic resource */
-                    "_predicate" : "physicalDescriptionElectronicResource",
-                    "1" : { /* Specific material designation */
-                        "a" : "computer tape cartridge",
-                        "b" : "computer chip cartridge",
-                        "c" : "computer disc cartridge", /* "Computer optical disc cartridge", */
-                        "d" : "computer disc",
-                        "e" : "computer disc cartridge",
-                        "f" : "computer tape cassette",
-                        "h" : "computer tape reel",
-                        "j" : "computer disc", /* "Magnetic disk", */
-                        "k" : "computer card",
-                        "m" : "computer disc", /* "Magneto-optical disc", */
-                        "o" : "computer disc", /*"Optical disc",*/
-                        "r" : "online resource",
-                        "u" : null,
-                        "z" : "other"
-                    },
-                    "3" : { /* Color */
-                        "a" : "one color",
-                        "b" : "black-and-white",
-                        "c" : "multicolored",
-                        "g" : "gray scale",
-                        "m" : "mixed",
-                        "n" : "not applicable",
-                        "u" : "unknown",
-                        "z" : "other"
-                    },
-                    "4" : { /* Dimensions */
-                        "a" : "3 1/2 in.",
-                        "e" : "12 in.",
-                        "g" : "4 3/4 in. or 12 cm.",
-                        "i" : "1 1/8 x 2 3/8 in.",
-                        "j" : "3 7/8 x 2 1/2 in.",
-                        "n" : "not applicable",
-                        "o" : "5 1/4 in.",
-                        "u" : "unknown",
-                        "v" : "8 in.",
-                        "z" : "other"
-                    },
-                    "5" : { /* Sound */
-                        "a" : "sound",
-                        "u" : "Unknown"
-                    },
-                    "10" : { /* Quality assurance target(s) */
-                        "a" : "absent",
-                        "n" : "not applicable",
-                        "p" : "present",
-                        "u" : "unknown"
-                    }
-                },
-                "d" : {
-                    "_predicate" : "physicalDescriptionGlobe"
-                },
-                "e" : {
-                    "_predicate" : "physicalDescriptionStereographicCarriers", /* RDA */
-                    "1" : {
-                        "h" : "stereograph card",
-                        "s" : "stereograph disc",
-                        "z" : "other"
-                    }
-                },
-                "f" : {
-                    "_predicate" : "physicalDescriptionTactileMaterial",
-                    "1" : {  /* Specific material designation */
-                        "a" : "moon",
-                        "b" : "braille",
-                        "c" : "combination",
-                        "d" : "tactile, with no writing system",
-                        "u" : null,
-                        "z" : "other"
-                    },
-                    "3" : { /* Class of braille writing */
-                        "a" : "literary braille",
-                        "b" : "format code braille",
-                        "c" : "mathematics and scientific braille",
-                        "d" : "computer braille",
-                        "e" : "music braille",
-                        "m" : "multiple braille types",
-                        "n" : "not applicable",
-                        "u" : "unknown",
-                        "z" : "Other"
-                    },
-                    "4" : { /* Class of braille writing */
-                        "a" : "literary braille",
-                        "b" : "format code braille",
-                        "c" : "mathematics and scientific braille",
-                        "d" : "computer braille",
-                        "e" : "music braille",
-                        "m" : "multiple braille types",
-                        "n" : "not applicable",
-                        "u" : "unknown",
-                        "z" : "other"
-                    },
-                    "5": { /* Level of contraction */
-                        "a" : "uncontracted",
-                        "b" : "contracted",
-                        "m" : "combination",
-                        "n" : "not applicable",
-                        "u" : "unknown",
-                        "z" : "other"
-                    },
-                    "6" : {  /* Braille music format */
-                        "a" : "bar over bar",
-                        "b" : "bar by bar",
-                        "c" : "line over line",
-                        "d" : "paragraph",
-                        "e" : "single line",
-                        "f" : "section by section",
-                        "g" : "line by line",
-                        "h" : "open score",
-                        "i" : "spanner short form scoring",
-                        "j" : "short form scoring",
-                        "k" : "outline",
-                        "l" : "vertical score",
-                        "n" : "not applicable",
-                        "u" : "unknown",
-                        "z" : "other"
-                    },
-                    "7" : {  /* Braille music format */
-                        "a" : "bar over bar",
-                        "b" : "bar by bar",
-                        "c" : "line over line",
-                        "d" : "paragraph",
-                        "e" : "single line",
-                        "f" : "section by section",
-                        "g" : "line by line",
-                        "h" : "open score",
-                        "i" : "spanner short form scoring",
-                        "j" : "short form scoring",
-                        "k" : "outline",
-                        "l" : "vertical score",
-                        "n" : "not applicable",
-                        "u" : "unknown",
-                        "z" : "other"
-                    },
-                    "8" : {  /* Braille music format */
-                        "a" : "bar over bar",
-                        "b" : "bar by bar",
-                        "c" : "line over line",
-                        "d" : "paragraph",
-                        "e" : "single line",
-                        "f" : "section by section",
-                        "g" : "line by line",
-                        "h" : "open score",
-                        "i" : "spanner short form scoring",
-                        "j" : "short form scoring",
-                        "k" : "outline",
-                        "l" : "vertical score",
-                        "n" : "not applicable",
-                        "u" : "unknown",
-                        "z" : "other"
-                    },
-                    "9" : { /* Special physical characteristics */
-                        "a" : "print/braille",
-                        "b" : "jumbo or enlarged braille",
-                        "n" : "not applicable",
-                        "u" : "unknown",
-                        "z" : "other"
-                    }
-                },
-                "g" : {
-                    "_predicate" : "physicalDescriptionProjectedGraphic",
-                    "1" : {
-                        "d" : "filmslip",
-                        "f" : "filmstrip",
-                        "c" : "filmstrip cartridge",
-                        "t" : "overhead transparency",
-                        "s" : "slide"
-                    }
-                },
-                "h" : {
-                    "_predicate" : "physicalDescriptionMicroform",
-                    "1" : { /* Specific material designation */
-                    "a" : "aperture card",
-                    "b" : "microfilm cartridge",
-                    "c" : "microfilm cassette",
-                    "d" : "microfilm reel",
-                    "e" : "microfiche",
-                    "f" : "microfiche cassette",
-                    "g" : "microopaque",
-                    "h" : "microfilm slip",
-                    "j" : "microfilm roll",
-                    "u" : "unspecified",
-                    "z" : "other"
-                    },
-                    "3" : { /* Positive/negative aspect */
-                    "a" : "positive",
-                    "b" : "negative",
-                    "m" : "mixed polarity",
-                    "u" : "unknown"
-                    },
-                    "4" : { /* Dimensions */
-                    "a" : "8 mm",
-                    "d" : "16 mm",
-                    "f" : "35 mm",
-                    "g" : "70 mm",
-                    "h" : "105 mm",
-                    "l" : "3x5 in (8x13 cm)",
-                    "m" : "4x6 in (11x15 cm)",
-                    "o" : "6x9 in (16x23 cm)",
-                    "p" : "3 1/4 x 7 3/8 in (9x19 cm)",
-                    "u" : "unknown",
-                    "z" : "other"
-                    },
-                    "5" : { /* Reduction ratio range */
-                    "a" : "low reduction ratio",
-                    "b" : "normal reduction",
-                    "c" : "high reduction",
-                    "d" : "very high reduction",
-                    "e" : "ultra high reduction",
-                    "u" : "unknown",
-                    "v" : "reduction rate varies"
-                    },
-                    "9" : { /* Color */
-                    "b" : "black-and-white",
-                    "c" : "multicolored",
-                    "m" : "mixed",
-                    "u" : "unknown",
-                    "z" : "other"
-                    },
-                    "10" : { /* Emulsion on film */
-                    "a" : "silver halide",
-                    "b" : "diazo",
-                    "c" : "vesicular",
-                    "m" : "mixed emulsion",
-                    "n" : "not applicable",
-                    "u" : "unknown",
-                    "z" : "other"
-                    },
-                    "11" : { /* Generation */
-                    "a" : "first generation (master)",
-                    "b" : "printing master",
-                    "c" : "service copy",
-                    "m" : "mixed generation",
-                    "u" : "unknown"
-                    },
-                    "12" : {  /* Base of film */
-                    "a" : "safety base, undetermined",
-                    "c" : "safety base, acetate undetermined",
-                    "d" : "safety base, diacetate",
-                    "i" : "nitrate base",
-                    "m" : "mixed base (nitrate and safety)",
-                    "n" : "not applicable",
-                    "p" : "safety base, polyester",
-                    "r" : "safety base, mixed",
-                    "t" : "safety base, triacetate",
-                    "u" : "unknown",
-                    "z" : "other"
-                    }
-                },
-                "k" : {
-                    "_predicate" : "physicalDescriptionNonprojectedGraphic"
-                },
-                "m" : {
-                    "_predicate" : "physicalDescriptionMotionPicture",
-                    "1" : {
-                        "c" : "film cartridge",
-                        "f" : "film cassette",
-                        "r" : "film reel",
-                        "o" : "film roll",
-                        "z" : "other"
-                    }
-                },
-                "n" : {
-                    "_predicate" : "physicalDescriptionUnmediatedCarriers",
-                    "1" : {
-                        "o" : "card",
-                        "n" : "flipchart",
-                        "a" : "roll",
-                        "b" : "sheet",
-                        "c" : "volume",
-                        "r" : "object",
-                        "z" : "other"
-                    }
-                },
-                "o" : {
-                    "_predicate" : "physicalDescriptionKit"
-                },
-                "p" : {
-                    "_predicate" : "physicalDescriptionMicroscopicCarriers", /* RDA */
-                    "1" : {
-                        "p" : "microscopic slide",
-                        "z" : "other"
-                    }
-                },
-                "q" : {
-                    "_predicate" : "physicalDescriptionNotatedMusic"
-                },
-                "r" : {
-                    "_predicate" : "physicalDescriptionRemoteSensingImage"
-                },
-                "s" : {
-                    "_predicate" : "physicalDescriptionSoundRecording",
-                    "1" : {
-                       "g" : "audio cartridge",
-                       "e" : "audio cylinder",
-                       "d" : "audio disc",
-                       "i" : "sound track reel",
-                       "q" : "audio roll",
-                       "s" : "audiocassette",
-                       "t" : "audiotape reel",
-                       "z" : "other"
-                    }
-                },
-                "t" : {
-                    "_predicate" : "physicalDescriptionText",
-                    "1" : {
-                       "a" : "regular print",
-                       "b" : "large print",
-                       "c" : "braille",
-                       "d" : "loose-leaf",
-                       "u" : "unknown",
-                       "z" : "other"
-                    }
-                },
-                "v" : {
-                    "_predicate" : "physicalDescriptionVideorecording",
-                    "1" : {
-                        "c" : "video cartridge",
-                        "f" : "videocassette",
-                        "d" : "videodisc",
-                        "r" : "videotape reel",
-                        "z" : "other"
-                    }
-                },
-                "z" : {
-                    "_predicate" : "physicalDescriptionUnspecified",
-                    "1" : {
-                        "u" : "unspecified"
-                    }
-                }
-            }
-        }
-    },
-    "GeneralInformation" :{
-        "tags" : [
-            "008"
-        ],
-        "codes" : {
-            /* Date entered on file */
-            "0-5" : "date",
-            "6" : { /* */
-                "_predicate" : "typeOfDate", /* Type of date/Publication status */
-                "b" : "No dates given",
-                "c" : "Continuing resource currently published",
-                "d" : "Continuing resource ceased publication",
-                "e" : "Detailed date",
-                "i" : "Inclusive dates of collection",
-                "k" : "Range of years of bulk of collection",
-                "m" : "Multiple dates",
-                "n" : "Dates unknown",
-                "p" : "Date of distribution/release/issue and production/recording session when different",
-                "q" : "Questionable date",
-                "r" : "Reprint/reissue date and original date",
-                "s" : "Single known date/probable date",
-                "t" : "Publication date and copyright date",
-                "u" : "Continuing resource status unknown"
-            },
-            "7-10" : "date1",
-            "11-14" : "date2",
-            "15-17" : { /*  Place of publication, production, or execution http://www.loc.gov/marc/countries/ */
-                "xx" : "no place",
-                "vp" : "various places"
-            },
-            "18-34" : "material-specific codes",
-            "35-37" : { /* http://www.loc.gov/marc/languages/ */
-                "zxx" : "no linguistic content",
-                "ger" : "german",
-                "mul" : "multiple languages",
-                "sgn" : "sign languages",
-                "und" : "undetermined"
-            },
-            "38" : {
-                "_predicate" : "modifiedRecord", /* Modified record */
-                "d" : "Dashed-on information omitted",
-                "e" : null,
-                "o" : "Completely romanized/printed cards romanized",
-                "m" : null,
-                "r" : "Completely romanized/printed cards in script",
-                "s" : "Shortened",
-                "x" : "Missing characters"
-            },
-            "39" : {
-                "_predicate" : "catalogingSource", /* Cataloging source */
-                " " : "Library of Congress",
-                "a" : "National Agricultural Library",
-                "b" : "National Library of Medicine",
-                "c" : "Cooperative cataloging program",
-                "d" : "Other",
-                "o" : "Other institution cataloguing",
-                "n" : "Report to New serial titles",
-                "r" : "Reporting library",
-                "u" : "Unknown"
-            }
-        },
-        "book" : {
-            "18" : {
-                "_predicate" : "illustrations",
-                "a" : "Illustrations",
-                "b" : "Maps",
-                "c" : "Portraits",
-                "d" : "Charts",
-                "e" : "Plans",
-                "f" : "Plates",
-                "g" : "Music",
-                "h" : "Facsimiles",
-                "i" : "Coats of arms",
-                "j" : "Genealogical tables",
-                "k" : "Forms",
-                "l" : "Samples",
-                "m" : "Phonodisc, phonowire",
-                "o" : "Photographs",
-                "p" : "Illuminations"
-            },
-            "19" : {
-                "_predicate" : "illustrations",
-                "a" : "Illustrations",
-                "b" : "Maps",
-                "c" : "Portraits",
-                "d" : "Charts",
-                "e" : "Plans",
-                "f" : "Plates",
-                "g" : "Music",
-                "h" : "Facsimiles",
-                "i" : "Coats of arms",
-                "j" : "Genealogical tables",
-                "k" : "Forms",
-                "l" : "Samples",
-                "m" : "Phonodisc, phonowire",
-                "o" : "Photographs",
-                "p" : "Illuminations"
-            },
-            "20" : {
-                "_predicate" : "illustrations",
-                "a" : "Illustrations",
-                "b" : "Maps",
-                "c" : "Portraits",
-                "d" : "Charts",
-                "e" : "Plans",
-                "f" : "Plates",
-                "g" : "Music",
-                "h" : "Facsimiles",
-                "i" : "Coats of arms",
-                "j" : "Genealogical tables",
-                "k" : "Forms",
-                "l" : "Samples",
-                "m" : "Phonodisc, phonowire",
-                "o" : "Photographs",
-                "p" : "Illuminations"
-            },
-            "21" : {
-                "_predicate" : "illustrations",
-                "a" : "Illustrations",
-                "b" : "Maps",
-                "c" : "Portraits",
-                "d" : "Charts",
-                "e" : "Plans",
-                "f" : "Plates",
-                "g" : "Music",
-                "h" : "Facsimiles",
-                "i" : "Coats of arms",
-                "j" : "Genealogical tables",
-                "k" : "Forms",
-                "l" : "Samples",
-                "m" : "Phonodisc, phonowire",
-                "o" : "Photographs",
-                "p" : "Illuminations"
-            },
-            "22" : {
-                "_predicate" : "targetAudience",
-                "a" : "Preschool",
-                "b" : "Primary",
-                "c" : "Pre-adolescent",
-                "d" : "Adolescent",
-                "e" : "Adult",
-                "f" : "Specialized",
-                "g" : "General",
-                "j" : "Juvenile"
-            },
-            "23" : {
-                "_predicate" : "formOfItem",
-                "a" : "Microfilm",
-                "b" : "Microfiche",
-                "c" : "Microopaque",
-                "d" : "Large print",
-                "f" : "Braille",
-                "o" : "Online",
-                "q" : "Direct electronic",
-                "r" : "Regular print reproduction",
-                "s" : "Electronic"
-            },
-            "24" : {
-                "_predicate" : "natureOfContent",
-                "a" : "Abstracts/summaries",
-                "b" : "Bibliographies",
-                "c" : "Catalogs",
-                "d" : "Dictionaries",
-                "e" : "Encyclopedias",
-                "f" : "Handbooks",
-                "g" : "Legal articles",
-                "i" : "Indexes",
-                "j" : "Patent document",
-                "k" : "Discographies",
-                "l" : "Legislation",
-                "m" : "Theses",
-                "n" : "Surveys of literature in a subject area",
-                "o" : "Reviews",
-                "p" : "Programmed texts",
-                "q" : "Filmographies",
-                "r" : "Directories",
-                "s" : "Statistics",
-                "t" : "Technical reports",
-                "u" : "Standards/specifications",
-                "v" : "Legal cases and case notes",
-                "w" : "Law reports and digests",
-                "y" : "Yearbooks",
-                "z" : "Treaties",
-                "2" : "Offprints",
-                "5" : "Calendars",
-                "6" : "Comics/graphic novels"
-            },
-            "25" : {
-                "_predicate" : "natureOfContent",
-                "a" : "Abstracts/summaries",
-                "b" : "Bibliographies",
-                "c" : "Catalogs",
-                "d" : "Dictionaries",
-                "e" : "Encyclopedias",
-                "f" : "Handbooks",
-                "g" : "Legal articles",
-                "i" : "Indexes",
-                "j" : "Patent document",
-                "k" : "Discographies",
-                "l" : "Legislation",
-                "m" : "Theses",
-                "n" : "Surveys of literature in a subject area",
-                "o" : "Reviews",
-                "p" : "Programmed texts",
-                "q" : "Filmographies",
-                "r" : "Directories",
-                "s" : "Statistics",
-                "t" : "Technical reports",
-                "u" : "Standards/specifications",
-                "v" : "Legal cases and case notes",
-                "w" : "Law reports and digests",
-                "y" : "Yearbooks",
-                "z" : "Treaties",
-                "2" : "Offprints",
-                "5" : "Calendars",
-                "6" : "Comics/graphic novels"
-            },
-            "26" : {
-                "_predicate" : "natureOfContent",
-                "a" : "Abstracts/summaries",
-                "b" : "Bibliographies",
-                "c" : "Catalogs",
-                "d" : "Dictionaries",
-                "e" : "Encyclopedias",
-                "f" : "Handbooks",
-                "g" : "Legal articles",
-                "i" : "Indexes",
-                "j" : "Patent document",
-                "k" : "Discographies",
-                "l" : "Legislation",
-                "m" : "Theses",
-                "n" : "Surveys of literature in a subject area",
-                "o" : "Reviews",
-                "p" : "Programmed texts",
-                "q" : "Filmographies",
-                "r" : "Directories",
-                "s" : "Statistics",
-                "t" : "Technical reports",
-                "u" : "Standards/specifications",
-                "v" : "Legal cases and case notes",
-                "w" : "Law reports and digests",
-                "y" : "Yearbooks",
-                "z" : "Treaties",
-                "2" : "Offprints",
-                "5" : "Calendars",
-                "6" : "Comics/graphic novels"
-            },
-            "27" : {
-                "_predicate" : "natureOfContent",
-                "a" : "Abstracts/summaries",
-                "b" : "Bibliographies",
-                "c" : "Catalogs",
-                "d" : "Dictionaries",
-                "e" : "Encyclopedias",
-                "f" : "Handbooks",
-                "g" : "Legal articles",
-                "i" : "Indexes",
-                "j" : "Patent document",
-                "k" : "Discographies",
-                "l" : "Legislation",
-                "m" : "Theses",
-                "n" : "Surveys of literature in a subject area",
-                "o" : "Reviews",
-                "p" : "Programmed texts",
-                "q" : "Filmographies",
-                "r" : "Directories",
-                "s" : "Statistics",
-                "t" : "Technical reports",
-                "u" : "Standards/specifications",
-                "v" : "Legal cases and case notes",
-                "w" : "Law reports and digests",
-                "y" : "Yearbooks",
-                "z" : "Treaties",
-                "2" : "Offprints",
-                "5" : "Calendars",
-                "6" : "Comics/graphic novels"
-            },
-            "28" : {
-                "_predicate" : "governmentPublication",
-                "a" : "Autonomous or semi-autonomous component",
-                "c" : "Multilocal",
-                "f" : "Federal/national",
-                "i" : "International intergovernmental",
-                "l" : "Local",
-                "m" : "Multistate",
-                "o" : "Government publication-level undetermined",
-                "s" : "State, provincial, territorial, dependent",
-                "u" : "Unknown if item is government publication",
-                "z" : "Other"
-            },
-            "29" : {
-                "_predicate" : "conferencePublication",
-                "0" : "Not a conference publication",
-                "1" : "Conference publication"
-            },
-            "30" : {
-                "_predicate" : "festschriftPublication",
-                "0" : "Not a festschrift",
-                "1" : "Festschrift"
-            },
-            "31" : {
-                "_predicate" : "indexPresence",
-                "0" : "No index",
-                "1" : "Index present"
-            },
-            "33" : {
-                "_predicate" : "literaryForm",
-                "0" : "Not fiction",
-                "1" : "Fiction",
-                "d" : "Dramas",
-                "e" : "Essays",
-                "f" : "Novels",
-                "h" : "Humor, satires",
-                "i" : "Letters",
-                "j" : "Short stories",
-                "m" : "Mixed forms",
-                "p" : "Poetry",
-                "s" : "Speeches",
-                "u" : "Unknown"
-            },
-            "34" : {
-                "_predicate" : "biography",
-                "a" : "Autobiography",
-                "b" : "Individual biography",
-                "c" : "Collective biography",
-                "d" : "Contains biographical information"
-            }
-        },
-        "continuingresource" : {
-            "18" : { /* Frequency (006/01) */
-            "_predicate" : "frequency",
-            "a" : "Annual",
-            "b" : "Bimonthly",
-            "c" : "Semiweekly",
-            "d" : "Daily",
-            "e" : "Biweekly",
-            "f" : "Semiannual",
-            "g" : "Biennial",
-            "h" : "Triennial",
-            "i" : "Three times a week",
-            "j" : "Three times a month",
-            "k" : "Continuously updated",
-            "m" : "Monthly",
-            "q" : "Quarterly",
-            "s" : "Semimonthly",
-            "t" : "Three times a year",
-            "u" : "Unknown",
-            "w" : "Weekly",
-            "z" : "Other"
-            },
-            "19" : { /* Regularity (006/02) */
-            "_predicate" : "regularity",
-
-            "n" : "Normalized irregular",
-            "r" : "Regular",
-            "u" : "Unknown",
-            "x" : "Completely irregular"
-            },
-            "21" : { /* Type of continuing resource (006/04) */
-            "_predicate" : "typeOfContinuingResource",
-            "d" : "Updating database",
-            "l" : "Updating loose-leaf",
-            "m" : "Monographic series",
-            "n" : "Newspaper",
-            "p" : "Periodical",
-            "u" : "Unknown",
-            "w" : "Updating Web site"
-            },
-            "22" : { /* Form of original item (006/05) */
-            "_predicate" : "formOfOriginalItem",
-            "a" : "Microfilm",
-            "b" : "Microfiche",
-            "c" : "Microopaque",
-            "d" : "Large print",
-            "e" : "Newspaper format",
-            "f" : "Braille",
-            "o" : "Online",
-            "q" : "Direct electronic",
-            "s" : "Electronic"
-            },
-            "23" : { /* Form of item (006/06) */
-            "_predicate" : "formOfItem",
-            "a" : "Microfilm",
-            "b" : "Microfiche",
-            "c" : "Microopaque",
-            "d" : "Large print",
-            "f" : "Braille",
-            "o" : "Online",
-            "q" : "Direct electronic",
-            "r" : "Regular print reproduction",
-            "s" : "Electronic"
-            },
-            "24" : { /* Nature of entire work (006/07) */
-            "_predicate" : "natureOfWork",
-            "a" : "Abstracts/summaries",
-            "b" : "Bibliographies",
-            "c" : "Catalogs",
-            "d" : "Dictionaries",
-            "e" : "Encyclopedias",
-            "f" : "Handbooks",
-            "g" : "Legal articles",
-            "h" : "Biography",
-            "i" : "Indexes",
-            "k" : "Discographies",
-            "l" : "Legislation",
-            "m" : "Theses",
-            "n" : "Surveys of literature in a subject area",
-            "o" : "Reviews",
-            "p" : "Programmed texts",
-            "q" : "Filmographies",
-            "r" : "Directories",
-            "s" : "Statistics",
-            "t" : "Technical reports",
-            "u" : "Standards/specifications",
-            "v" : "Legal cases and case notes",
-            "w" : "Law reports and digests",
-            "y" : "Yearbooks",
-            "z" : "Treaties",
-            "5" : "Calendars",
-            "6" : "Comics/graphic novels"
-            },
-            "25" : {  /* Nature of contents (006/08-10) */
-            "_predicate" : "natureOfContent",
-            "a" : "Abstracts/summaries",
-            "b" : "Bibliographies",
-            "c" : "Catalogs",
-            "d" : "Dictionaries",
-            "e" : "Encyclopedias",
-            "f" : "Handbooks",
-            "g" : "Legal articles",
-            "h" : "Biography",
-            "i" : "Indexes",
-            "k" : "Discographies",
-            "l" : "Legislation",
-            "m" : "Theses",
-            "n" : "Surveys of literature in a subject area",
-            "o" : "Reviews",
-            "p" : "Programmed texts",
-            "q" : "Filmographies",
-            "r" : "Directories",
-            "s" : "Statistics",
-            "t" : "Technical reports",
-            "u" : "Standards/specifications",
-            "v" : "Legal cases and case notes",
-            "w" : "Law reports and digests",
-            "y" : "Yearbooks",
-            "z" : "Treaties",
-            "5" : "Calendars",
-            "6" : "Comics/graphic novels"
-            },
-            "28" : { /* Government publication (006/11) */
-            "_predicate" : "governmentPublication",
-            "a" : "Autonomous or semi-autonomous component",
-            "c" : "Multilocal",
-            "f" : "Federal/national",
-            "i" : "International intergovernmental",
-            "l" : "Local",
-            "m" : "Multistate",
-            "o" : "Government publication-level undetermined",
-            "s" : "State, provincial, territorial, dependent, etc.",
-            "u" : "Unknown if item is government publication",
-            "z" : "Other"
-            },
-            "29" : { /* Conference publication (006/12) */
-            "_predicate" : "conferencePublication",
-            "0" : "Not a conference publication",
-            "1" : "Conference publication"
-            },
-            "33" : { /* Original alphabet or script of title (006/16) */
-            "_predicate" : "scriptOfTitle",
-            "0" : null,
-            "a" : "Basic Roman",
-            "b" : "Extended Roman",
-            "c" : "Cyrillic",
-            "d" : "Japanese",
-            "e" : "Chinese",
-            "f" : "Arabic",
-            "g" : "Greek",
-            "h" : "Hebrew",
-            "i" : "Thai",
-            "j" : "Devanagari",
-            "k" : "Korean",
-            "l" : "Tamil",
-            "u" : "Unknown",
-            "z" : "Other"
-            },
-            "34" : { /* Entry convention (006/17) */
-            "_predicate" : "entryConvention",
-            "0" : "Successive entry",
-            "1" : "Latest entry",
-            "2" : "Integrated entry"
-            }
-        }
-    },
-    "Identifier" : {
-        "tags" : {
-            /* LCCN */
-            "010" : "IdentifierLCCN",
-            "020" : "IdentifierISBN",
-            "022" : "IdentifierISSN",
-            "029" : "OtherIdentfier",
-            /* 030 = CODEN */
-            "030" : "IdentifierCODEN",
-            /* 032 - postal registration number */
-            "032" : "IdentifierPostal",
-            /* 035 = system control number */
-            "035" : "IdentifierZDB",
-            /* 912 = Produktsigel für NatLiz und digitale Sammlungen */
-            "912" : "IdentifierISIL"
-        },
-        "IdentifierISBN" : {
-            "a" : "value",
-            "c" : "termsOfAvailability",
-            "z" : "incorrect",
-            "6" : "linkage",
-            "8" : "sequenceNumber",
-            "9" : "formatted"
-        },
-        "IdentifierISSN" : {
-            "a" : "value",
-            "l" : "valueLinking",
-            "m" : "canceledLinking",
-            "y" : "incorrect",
-            "z" : "canceled",
-            "2" : "sourceISSN",
-            "6" : "linkage",
-            "8" : "sequenceNumber"
-        },
-        "sourceISSN" : {
-            "6" : "Nationales ISSN-Zentrum für Deutschland"
-        },
-        "OtherStandardIdentifier" : {
-            "a" : "value",
-            "c" : "termsOfAvailability",
-            "d" : "other",
-            "z" : "canceled",
-            "2" : "type"
-        },
-        "IdentifierISIL" : {
-            "a" : "value"
-        },
-        "subfields" : {
-            "a" : "value",
-            "b" : "price",
-            "c" : "termsOfAvailability",
-            "y" : "invalidValue",
-            "2" : "type"
-        },
-        "type" : {
-            "DE-101" : "IdentifierDNB",
-            "DE-600" : "IdentifierZDB",
-            "doi" : "IdentifierDOI",
-            "urn" : "IdentifierURI",
-            "local" : "IdentifierLocal"
-        }
-    },
-    "IdentifierOther" : {
-       "tags" : [ "024" ],
-      "subfields" : {
-        "a" : "value"
+  "RecordFormat" : {
+    "tags" : [
+      "_FORMAT"
+    ]
+  },
+  "RecordType" : {
+    "tags": [
+      "_TYPE"
+    ]
+  },
+  "RecordLeader" : {
+    "tags": [
+      "_LEADER"
+    ],
+    "codes": {
+      "5": {
+        "_predicate": "recordStatus",
+        "a": "Increase in encoding level",
+        "c": "Corrected or revised",
+        "d": "Deleted",
+        "n": "New",
+        "p": "Increase in encoding level from prepublication"
       },
-      "indicators" : {
-        "024" : {
-          "0 ": "IdentifierISRC",
-          "1 ": "IdentifierUPC",
-          "2 ": "IdentifierISMN",
-          "3 ": "IdentifierEAN",
-          "4 ": "IdentifierSICI"
+      "6": {
+        "_predicate": "typeOfRecord",
+        "a": "Language material",
+        "c": "Notated music",
+        "d": "Manuscript notated music",
+        "e": "Cartographic material",
+        "f": "Manuscript cartographic material",
+        "g": "Projected medium",
+        "i": "Nonmusical sound recording",
+        "j": "Musical sound recording",
+        "k": "Two-dimensional nonprojectable graphic",
+        "m": "Computer file",
+        "o": "Kit",
+        "p": "Mixed materials",
+        "r": "Three-dimensional artifact or naturally occurring object",
+        "t": "Manuscript language material"
+      },
+      "7": {
+        "_predicate": "bibliographicLevel",
+        "a" : "Monographic component part",
+        "b" : "Serial component part",
+        "c" : "Collection",
+        "d" : "Subunit",
+        "i" : "Integrating resource",
+        "m" : "Monograph/Item",
+        "s" : "Serial"
+      },
+      "8" : {
+        "_predicate": "typeOfControl",
+        " ": "unspecified",
+        "a": "Archival",
+        "0": null
+      },
+      "9": {
+        "_predicate": "characterEncoding",
+        " ": "MARC-8",
+        "a": "Unicode"
+      },
+      "17": {
+        "_predicate": "encodingLevel",
+        " ": "Full level",
+        "1": "Full level, material not examined",
+        "2": "Less-than-full level, material not examined",
+        "3": "Abbreviated level",
+        "4": "Core level",
+        "5": "Partial (preliminary) level",
+        "7": "Minimal level",
+        "8": "Prepublication level",
+        "u": "Unknown",
+        "z": "Not applicable"
+      },
+      "18": {
+        "_predicate": "descriptiveCatalogingForm",
+        " ": "Non-ISBD",
+        "a": "AACR 2",
+        "c": "ISBD punctuation omitted",
+        "i": "ISBD punctuation included",
+        "n": "Non-ISBD punctuation omitted",
+        "u": "Unknown"
+      },
+      "19": {
+        "_predicate": "multipartResourceRecordLevel",
+        " ": "Not specified",
+        "a": "Set",
+        "b": "Part with independent title",
+        "c": "Part with dependent title"
+      }
+    }
+  },
+  "RecordIdentifier": {
+    "tags": [
+      "001"
+    ],
+    "subfields": {
+      "": "identifierForTheRecord"
+    }
+  },
+  "PhysicalDescriptionCode" : {
+    "tags": {
+      "007": "physicalDescription"
+    },
+    "codes" : {
+      "0": {
+        "a": { /* Map (007/00=a) */
+          "_predicate": "physicalDescriptionMap",
+          "1": { /* Specific material designation */
+            "d": "atlas",
+            "g": "diagram",
+            "j": "map",
+            "k": "profile",
+            "q": "model",
+            "r": "remote-sensing image",
+            "s": "section",
+            "u": null,
+            "y": "view",
+            "z": "other"
+          },
+          "3": { /* Color */
+            "a": "one color",
+            "c": "multicolored"
+          },
+          "4": { /* Physical medium */
+            "a": "paper",
+            "b": "wood",
+            "c": "stone",
+            "d": "metal",
+            "e": "synthetic",
+            "f": "skin",
+            "g": "textiles",
+            "i": "plastic",
+            "j": "glass",
+            "l": "vinyl",
+            "n": "vellum",
+            "p": "plaster",
+            "q": "flexible base photographic, positive",
+            "r": "flexible base photographic, negative",
+            "s": "non-flexible base photographic, positive",
+            "t": "non-flexible base photographic, negative",
+            "u": "unknown",
+            "v": "leather",
+            "w": "parchment",
+            "y": "other photographic medium",
+            "z": "other"
+          },
+          "5": { /* Type of reproduction */
+            "f": "facsimile",
+            "n": "not applicable",
+            "u": "unknown",
+            "z": "other"
+          },
+          "6": { /* Production/reproduction details */
+            "a": "photocopy, blueline print",
+            "b": "photocopy",
+            "c": "pre-production",
+            "d": "film",
+            "u": "unknown",
+            "z": "other"
+          },
+          "7": { /* Positive/negative aspect */
+            "a": "positive",
+            "b": "negative",
+            "m": "mixed polarity",
+            "n": "not applicable"
+          }
+        },
+        "c": { /* 007/00=c Electronic resource */
+          "_predicate": "physicalDescriptionElectronicResource",
+          "1": { /* Specific material designation */
+            "a": "computer tape cartridge",
+            "b": "computer chip cartridge",
+            "c": "computer disc cartridge", /* "Computer optical disc cartridge", */
+            "d": "computer disc",
+            "e": "computer disc cartridge",
+            "f": "computer tape cassette",
+            "h": "computer tape reel",
+            "j": "computer disc", /* "Magnetic disk", */
+            "k": "computer card",
+            "m": "computer disc", /* "Magneto-optical disc", */
+            "o": "computer disc", /*"Optical disc",*/
+            "r": "online resource",
+            "u": null,
+            "z": "other"
+          },
+          "3": { /* Color */
+            "a": "one color",
+            "b": "black-and-white",
+            "c": "multicolored",
+            "g": "gray scale",
+            "m": "mixed",
+            "n": "not applicable",
+            "u": "unknown",
+            "z": "other"
+          },
+          "4": { /* Dimensions */
+            "a": "3 1/2 in.",
+            "e": "12 in.",
+            "g": "4 3/4 in. or 12 cm.",
+            "i": "1 1/8 x 2 3/8 in.",
+            "j": "3 7/8 x 2 1/2 in.",
+            "n": "not applicable",
+            "o": "5 1/4 in.",
+            "u": "unknown",
+            "v": "8 in.",
+            "z": "other"
+          },
+          "5": { /* Sound */
+            "a": "sound",
+            "u": "Unknown"
+          },
+          "10": { /* Quality assurance target(s) */
+            "a": "absent",
+            "n": "not applicable",
+            "p": "present",
+            "u": "unknown"
+          }
+        },
+        "d": {
+          "_predicate": "physicalDescriptionGlobe"
+        },
+        "e": {
+          "_predicate": "physicalDescriptionStereographicCarriers", /* RDA */
+          "1": {
+            "h": "stereograph card",
+            "s": "stereograph disc",
+            "z": "other"
+          }
+        },
+        "f": {
+          "_predicate": "physicalDescriptionTactileMaterial",
+          "1": {  /* Specific material designation */
+            "a": "moon",
+            "b": "braille",
+            "c": "combination",
+            "d": "tactile, with no writing system",
+            "u": null,
+            "z": "other"
+          },
+          "3": { /* Class of braille writing */
+            "a": "literary braille",
+            "b": "format code braille",
+            "c": "mathematics and scientific braille",
+            "d": "computer braille",
+            "e": "music braille",
+            "m": "multiple braille types",
+            "n": "not applicable",
+            "u": "unknown",
+            "z": "Other"
+          },
+          "4": { /* Class of braille writing */
+            "a": "literary braille",
+            "b": "format code braille",
+            "c": "mathematics and scientific braille",
+            "d": "computer braille",
+            "e": "music braille",
+            "m": "multiple braille types",
+            "n": "not applicable",
+            "u": "unknown",
+            "z": "other"
+          },
+          "5": { /* Level of contraction */
+            "a": "uncontracted",
+            "b": "contracted",
+            "m": "combination",
+            "n": "not applicable",
+            "u": "unknown",
+            "z": "other"
+          },
+          "6": {  /* Braille music format */
+            "a": "bar over bar",
+            "b": "bar by bar",
+            "c": "line over line",
+            "d": "paragraph",
+            "e": "single line",
+            "f": "section by section",
+            "g": "line by line",
+            "h": "open score",
+            "i": "spanner short form scoring",
+            "j": "short form scoring",
+            "k": "outline",
+            "l": "vertical score",
+            "n": "not applicable",
+            "u": "unknown",
+            "z": "other"
+          },
+          "7": {  /* Braille music format */
+            "a": "bar over bar",
+            "b": "bar by bar",
+            "c": "line over line",
+            "d": "paragraph",
+            "e": "single line",
+            "f": "section by section",
+            "g": "line by line",
+            "h": "open score",
+            "i": "spanner short form scoring",
+            "j": "short form scoring",
+            "k": "outline",
+            "l": "vertical score",
+            "n": "not applicable",
+            "u": "unknown",
+            "z": "other"
+          },
+          "8": {  /* Braille music format */
+            "a": "bar over bar",
+            "b": "bar by bar",
+            "c": "line over line",
+            "d": "paragraph",
+            "e": "single line",
+            "f": "section by section",
+            "g": "line by line",
+            "h": "open score",
+            "i": "spanner short form scoring",
+            "j": "short form scoring",
+            "k": "outline",
+            "l": "vertical score",
+            "n": "not applicable",
+            "u": "unknown",
+            "z": "other"
+          },
+          "9": { /* Special physical characteristics */
+            "a": "print/braille",
+            "b": "jumbo or enlarged braille",
+            "n": "not applicable",
+            "u": "unknown",
+            "z": "other"
+          }
+        },
+        "g": {
+          "_predicate": "physicalDescriptionProjectedGraphic",
+          "1": {
+            "d": "filmslip",
+            "f": "filmstrip",
+            "c": "filmstrip cartridge",
+            "t": "overhead transparency",
+            "s": "slide"
+          }
+        },
+        "h": {
+          "_predicate": "physicalDescriptionMicroform",
+          "1": { /* Specific material designation */
+            "a": "aperture card",
+            "b": "microfilm cartridge",
+            "c": "microfilm cassette",
+            "d": "microfilm reel",
+            "e": "microfiche",
+            "f": "microfiche cassette",
+            "g": "microopaque",
+            "h": "microfilm slip",
+            "j": "microfilm roll",
+            "u": "unspecified",
+            "z": "other"
+          },
+          "3": { /* Positive/negative aspect */
+            "a": "positive",
+            "b": "negative",
+            "m": "mixed polarity",
+            "u": "unknown"
+          },
+          "4": { /* Dimensions */
+            "a": "8 mm",
+            "d": "16 mm",
+            "f": "35 mm",
+            "g": "70 mm",
+            "h": "105 mm",
+            "l": "3x5 in (8x13 cm)",
+            "m": "4x6 in (11x15 cm)",
+            "o": "6x9 in (16x23 cm)",
+            "p": "3 1/4 x 7 3/8 in (9x19 cm)",
+            "u": "unknown",
+            "z": "other"
+          },
+          "5": { /* Reduction ratio range */
+            "a": "low reduction ratio",
+            "b": "normal reduction",
+            "c": "high reduction",
+            "d": "very high reduction",
+            "e": "ultra high reduction",
+            "u": "unknown",
+            "v": "reduction rate varies"
+          },
+          "9": { /* Color */
+            "b": "black-and-white",
+            "c": "multicolored",
+            "m": "mixed",
+            "u": "unknown",
+            "z": "other"
+          },
+          "10": { /* Emulsion on film */
+            "a": "silver halide",
+            "b": "diazo",
+            "c": "vesicular",
+            "m": "mixed emulsion",
+            "n": "not applicable",
+            "u": "unknown",
+            "z": "other"
+          },
+          "11": { /* Generation */
+            "a": "first generation (master)",
+            "b": "printing master",
+            "c": "service copy",
+            "m": "mixed generation",
+            "u": "unknown"
+          },
+          "12": {  /* Base of film */
+            "a": "safety base, undetermined",
+            "c": "safety base, acetate undetermined",
+            "d": "safety base, diacetate",
+            "i": "nitrate base",
+            "m": "mixed base (nitrate and safety)",
+            "n": "not applicable",
+            "p": "safety base, polyester",
+            "r": "safety base, mixed",
+            "t": "safety base, triacetate",
+            "u": "unknown",
+            "z": "other"
+          }
+        },
+        "k": {
+          "_predicate": "physicalDescriptionNonprojectedGraphic"
+        },
+        "m": {
+          "_predicate": "physicalDescriptionMotionPicture",
+          "1": {
+            "c": "film cartridge",
+            "f": "film cassette",
+            "r": "film reel",
+            "o": "film roll",
+            "z": "other"
+          }
+        },
+        "n": {
+          "_predicate": "physicalDescriptionUnmediatedCarriers",
+          "1": {
+            "o": "card",
+            "n": "flipchart",
+            "a": "roll",
+            "b": "sheet",
+            "c": "volume",
+            "r": "object",
+            "z": "other"
+          }
+        },
+        "o": {
+          "_predicate": "physicalDescriptionKit"
+        },
+        "p": {
+          "_predicate": "physicalDescriptionMicroscopicCarriers", /* RDA */
+          "1": {
+            "p": "microscopic slide",
+            "z": "other"
+          }
+        },
+        "q": {
+          "_predicate": "physicalDescriptionNotatedMusic"
+        },
+        "r": {
+          "_predicate": "physicalDescriptionRemoteSensingImage"
+        },
+        "s": {
+          "_predicate": "physicalDescriptionSoundRecording",
+          "1": {
+            "g": "audio cartridge",
+            "e": "audio cylinder",
+            "d": "audio disc",
+            "i": "sound track reel",
+            "q": "audio roll",
+            "s": "audiocassette",
+            "t": "audiotape reel",
+            "z": "other"
+          }
+        },
+        "t": {
+          "_predicate": "physicalDescriptionText",
+          "1": {
+            "a": "regular print",
+            "b": "large print",
+            "c": "braille",
+            "d": "loose-leaf",
+            "u": "unknown",
+            "z": "other"
+          }
+        },
+        "v": {
+          "_predicate": "physicalDescriptionVideorecording",
+          "1": {
+            "c": "video cartridge",
+            "f": "videocassette",
+            "d": "videodisc",
+            "r": "videotape reel",
+            "z": "other"
+          }
+        },
+        "z": {
+          "_predicate": "physicalDescriptionUnspecified",
+          "1": {
+            "u": "unspecified"
+          }
         }
       }
+    }
+  },
+  "GeneralInformation" :{
+    "tags" : [
+      "008"
+    ],
+    "codes" : {
+      /* Date entered on file in yymmdd */
+      "0-5": "dateEntered",
+      "6": { /* */
+        "_predicate": "typeOfDate", /* Type of date/Publication status */
+        "b": "No dates given",
+        "c": "Continuing resource currently published",
+        "d": "Continuing resource ceased publication",
+        "e": "Detailed date",
+        "i": "Inclusive dates of collection",
+        "k": "Range of years of bulk of collection",
+        "m": "Multiple dates",
+        "n": "Dates unknown",
+        "p": "Date of distribution/release/issue and production/recording session when different",
+        "q": "Questionable date",
+        "r": "Reprint/reissue date and original date",
+        "s": "Single known date/probable date",
+        "t": "Publication date and copyright date",
+        "u": "Continuing resource status unknown"
+      },
+      "7-10": "date1",
+      "11-14": "date2",
+      "15-17": { /*  Place of publication, production, or execution http://www.loc.gov/marc/countries/ */
+        "_predicate": "place",
+        "ja ": "Japan",
+        "us ": "USA",
+        "xx ": "no place",
+        "vp ": "various places"
+      },
+      /* 18-34: material specific code */
+      "35-37": { /* http://www.loc.gov/marc/languages/ */
+        "_predicate": "language",
+        "eng": "english",
+        "ger": "german",
+        "zxx": "no linguistic content",
+        "mul": "multiple languages",
+        "sgn": "sign languages",
+        "und": "undetermined"
+      },
+      "38": {
+        "_predicate": "modifiedRecord", /* Modified record */
+        "d": "Dashed-on information omitted",
+        "e": null,
+        "o": "Completely romanized/printed cards romanized",
+        "m": null,
+        "r": "Completely romanized/printed cards in script",
+        "s": "Shortened",
+        "x": "Missing characters"
+      },
+      "39": {
+        "_predicate": "catalogingSource", /* Cataloging source */
+        " ": "Library of Congress",
+        "a": "National Agricultural Library",
+        "b": "National Library of Medicine",
+        "c": "Cooperative cataloging program",
+        "d": "Other",
+        "o": "Other institution cataloguing",
+        "n": "Report to New serial titles",
+        "r": "Reporting library",
+        "u": "Unknown"
+      }
     },
-    "CustomIdentifier" : {
-        "tags" : [
-        /* NBN */
-        "015",
-        /* NBN control number */
-        "016"
-        ],
-        "_predicate" : "type",
-        "subfields" : {
-            "a" : "value",
-            "2" : "type"
-        },
-        "type" : {
-            "DE-101" : "IdentifierDNB",
-            "DE-600" : "IdentifierZDB",
-            "dnb" : "IdentifierNBN"
-        }
+    "book": {
+      "18": {
+        "_predicate": "illustrations",
+        " ": "No illustrations",
+        "a": "Illustrations",
+        "b": "Maps",
+        "c": "Portraits",
+        "d": "Charts",
+        "e": "Plans",
+        "f": "Plates",
+        "g": "Music",
+        "h": "Facsimiles",
+        "i": "Coats of arms",
+        "j": "Genealogical tables",
+        "k": "Forms",
+        "l": "Samples",
+        "m": "Phonodisc, phonowire",
+        "o": "Photographs",
+        "p": "Illuminations"
+      },
+      "19": {
+        "_predicate": "illustrations",
+        " ": "No illustrations",
+        "a": "Illustrations",
+        "b": "Maps",
+        "c": "Portraits",
+        "d": "Charts",
+        "e": "Plans",
+        "f": "Plates",
+        "g": "Music",
+        "h": "Facsimiles",
+        "i": "Coats of arms",
+        "j": "Genealogical tables",
+        "k": "Forms",
+        "l": "Samples",
+        "m": "Phonodisc, phonowire",
+        "o": "Photographs",
+        "p": "Illuminations"
+      },
+      "20": {
+        "_predicate": "illustrations",
+        " ": "No illustrations",
+        "a": "Illustrations",
+        "b": "Maps",
+        "c": "Portraits",
+        "d": "Charts",
+        "e": "Plans",
+        "f": "Plates",
+        "g": "Music",
+        "h": "Facsimiles",
+        "i": "Coats of arms",
+        "j": "Genealogical tables",
+        "k": "Forms",
+        "l": "Samples",
+        "m": "Phonodisc, phonowire",
+        "o": "Photographs",
+        "p": "Illuminations"
+      },
+      "21": {
+        "_predicate": "illustrations",
+        " ": "No illustrations",
+        "a": "Illustrations",
+        "b": "Maps",
+        "c": "Portraits",
+        "d": "Charts",
+        "e": "Plans",
+        "f": "Plates",
+        "g": "Music",
+        "h": "Facsimiles",
+        "i": "Coats of arms",
+        "j": "Genealogical tables",
+        "k": "Forms",
+        "l": "Samples",
+        "m": "Phonodisc, phonowire",
+        "o": "Photographs",
+        "p": "Illuminations"
+      },
+      "22": {
+        "_predicate": "targetAudience",
+        " ": "Unknown or not specified",
+        "a": "Preschool",
+        "b": "Primary",
+        "c": "Pre-adolescent",
+        "d": "Adolescent",
+        "e": "Adult",
+        "f": "Specialized",
+        "g": "General",
+        "j": "Juvenile"
+      },
+      "23": {
+        "_predicate": "formOfItem",
+        " ": "none",
+        "a": "Microfilm",
+        "b": "Microfiche",
+        "c": "Microopaque",
+        "d": "Large print",
+        "f": "Braille",
+        "o": "Online",
+        "q": "Direct electronic",
+        "r": "Regular print reproduction",
+        "s": "Electronic"
+      },
+      "24": {
+        "_predicate": "natureOfContent",
+        " ": "No specified nature of content",
+        "a": "Abstracts/summaries",
+        "b": "Bibliographies",
+        "c": "Catalogs",
+        "d": "Dictionaries",
+        "e": "Encyclopedias",
+        "f": "Handbooks",
+        "g": "Legal articles",
+        "i": "Indexes",
+        "j": "Patent document",
+        "k": "Discographies",
+        "l": "Legislation",
+        "m": "Theses",
+        "n": "Surveys of literature in a subject area",
+        "o": "Reviews",
+        "p": "Programmed texts",
+        "q": "Filmographies",
+        "r": "Directories",
+        "s": "Statistics",
+        "t": "Technical reports",
+        "u": "Standards/specifications",
+        "v": "Legal cases and case notes",
+        "w": "Law reports and digests",
+        "y": "Yearbooks",
+        "z": "Treaties",
+        "2": "Offprints",
+        "5": "Calendars",
+        "6": "Comics/graphic novels"
+      },
+      "25": {
+        "_predicate": "natureOfContent",
+        " ": "No specified nature of content",
+        "a": "Abstracts/summaries",
+        "b": "Bibliographies",
+        "c": "Catalogs",
+        "d": "Dictionaries",
+        "e": "Encyclopedias",
+        "f": "Handbooks",
+        "g": "Legal articles",
+        "i": "Indexes",
+        "j": "Patent document",
+        "k": "Discographies",
+        "l": "Legislation",
+        "m": "Theses",
+        "n": "Surveys of literature in a subject area",
+        "o": "Reviews",
+        "p": "Programmed texts",
+        "q": "Filmographies",
+        "r": "Directories",
+        "s": "Statistics",
+        "t": "Technical reports",
+        "u": "Standards/specifications",
+        "v": "Legal cases and case notes",
+        "w": "Law reports and digests",
+        "y": "Yearbooks",
+        "z": "Treaties",
+        "2": "Offprints",
+        "5": "Calendars",
+        "6": "Comics/graphic novels"
+      },
+      "26": {
+        "_predicate": "natureOfContent",
+        " ": "No specified nature of content",
+        "a": "Abstracts/summaries",
+        "b": "Bibliographies",
+        "c": "Catalogs",
+        "d": "Dictionaries",
+        "e": "Encyclopedias",
+        "f": "Handbooks",
+        "g": "Legal articles",
+        "i": "Indexes",
+        "j": "Patent document",
+        "k": "Discographies",
+        "l": "Legislation",
+        "m": "Theses",
+        "n": "Surveys of literature in a subject area",
+        "o": "Reviews",
+        "p": "Programmed texts",
+        "q": "Filmographies",
+        "r": "Directories",
+        "s": "Statistics",
+        "t": "Technical reports",
+        "u": "Standards/specifications",
+        "v": "Legal cases and case notes",
+        "w": "Law reports and digests",
+        "y": "Yearbooks",
+        "z": "Treaties",
+        "2": "Offprints",
+        "5": "Calendars",
+        "6": "Comics/graphic novels"
+      },
+      "27": {
+        "_predicate": "natureOfContent",
+        " ": "No specified nature of content",
+        "a": "Abstracts/summaries",
+        "b": "Bibliographies",
+        "c": "Catalogs",
+        "d": "Dictionaries",
+        "e": "Encyclopedias",
+        "f": "Handbooks",
+        "g": "Legal articles",
+        "i": "Indexes",
+        "j": "Patent document",
+        "k": "Discographies",
+        "l": "Legislation",
+        "m": "Theses",
+        "n": "Surveys of literature in a subject area",
+        "o": "Reviews",
+        "p": "Programmed texts",
+        "q": "Filmographies",
+        "r": "Directories",
+        "s": "Statistics",
+        "t": "Technical reports",
+        "u": "Standards/specifications",
+        "v": "Legal cases and case notes",
+        "w": "Law reports and digests",
+        "y": "Yearbooks",
+        "z": "Treaties",
+        "2": "Offprints",
+        "5": "Calendars",
+        "6": "Comics/graphic novels"
+      },
+      "28": {
+        "_predicate": "governmentPublication",
+        " ": "Not a government publication",
+        "a": "Autonomous or semi-autonomous component",
+        "c": "Multilocal",
+        "f": "Federal/national",
+        "i": "International intergovernmental",
+        "l": "Local",
+        "m": "Multistate",
+        "o": "Government publication-level undetermined",
+        "s": "State, provincial, territorial, dependent",
+        "u": "Unknown if item is government publication",
+        "z": "Other"
+      },
+      "29": {
+        "_predicate": "conferencePublication",
+        "0": "Not a conference publication",
+        "1": "Conference publication"
+      },
+      "30": {
+        "_predicate": "festschriftPublication",
+        "0": "Not a festschrift",
+        "1": "Festschrift"
+      },
+      "31": {
+        "_predicate": "indexPresence",
+        "0": "No index",
+        "1": "Index present"
+      },
+      "33": {
+        "_predicate": "literaryForm",
+        "0": "Not fiction",
+        "1": "Fiction",
+        "d": "Dramas",
+        "e": "Essays",
+        "f": "Novels",
+        "h": "Humor, satires",
+        "i": "Letters",
+        "j": "Short stories",
+        "m": "Mixed forms",
+        "p": "Poetry",
+        "s": "Speeches",
+        "u": "Unknown"
+      },
+      "34": {
+        "_predicate": "biography",
+        " ": "No biographical material",
+        "a": "Autobiography",
+        "b": "Individual biography",
+        "c": "Collective biography",
+        "d": "Contains biographical information"
+      }
     },
-    "Event" : {
-        "tags" : [
-            "033"
-            ],
-            "subfields" : {
-            "a" : "formattedDateTime",
-            "b" : "geographicClassificationAreaCode",
-            "c" : "geographicClassificationSubareaCode",
-            "p" : "placeOfEvent",
-            "0" : "number",
-            "2" : "source",
-            "3" : "materials",
-            "6" : "linkage",
-            "8" : "sequence"
-            }
+    "continuingresource": {
+      "18": { /* Frequency (006/01) */
+        "_predicate": "frequency",
+        "a": "Annual",
+        "b": "Bimonthly",
+        "c": "Semiweekly",
+        "d": "Daily",
+        "e": "Biweekly",
+        "f": "Semiannual",
+        "g": "Biennial",
+        "h": "Triennial",
+        "i": "Three times a week",
+        "j": "Three times a month",
+        "k": "Continuously updated",
+        "m": "Monthly",
+        "q": "Quarterly",
+        "s": "Semimonthly",
+        "t": "Three times a year",
+        "u": "Unknown",
+        "w": "Weekly",
+        "z": "Other"
+      },
+      "19": { /* Regularity (006/02) */
+        "_predicate": "regularity",
+        "n": "Normalized irregular",
+        "r": "Regular",
+        "u": "Unknown",
+        "x": "Completely irregular"
+      },
+      "21": { /* Type of continuing resource (006/04) */
+        "_predicate": "typeOfContinuingResource",
+        "d": "Updating database",
+        "l": "Updating loose-leaf",
+        "m": "Monographic series",
+        "n": "Newspaper",
+        "p": "Periodical",
+        "u": "Unknown",
+        "w": "Updating Web site"
+      },
+      "22": { /* Form of original item (006/05) */
+        "_predicate": "formOfOriginalItem",
+        "a": "Microfilm",
+        "b": "Microfiche",
+        "c": "Microopaque",
+        "d": "Large print",
+        "e": "Newspaper format",
+        "f": "Braille",
+        "o": "Online",
+        "q": "Direct electronic",
+        "s": "Electronic"
+      },
+      "23": { /* Form of item (006/06) */
+        "_predicate": "formOfItem",
+        "a": "Microfilm",
+        "b": "Microfiche",
+        "c": "Microopaque",
+        "d": "Large print",
+        "f": "Braille",
+        "o": "Online",
+        "q": "Direct electronic",
+        "r": "Regular print reproduction",
+        "s": "Electronic"
+      },
+      "24": { /* Nature of entire work (006/07) */
+        "_predicate": "natureOfWork",
+        "a": "Abstracts/summaries",
+        "b": "Bibliographies",
+        "c": "Catalogs",
+        "d": "Dictionaries",
+        "e": "Encyclopedias",
+        "f": "Handbooks",
+        "g": "Legal articles",
+        "h": "Biography",
+        "i": "Indexes",
+        "k": "Discographies",
+        "l": "Legislation",
+        "m": "Theses",
+        "n": "Surveys of literature in a subject area",
+        "o": "Reviews",
+        "p": "Programmed texts",
+        "q": "Filmographies",
+        "r": "Directories",
+        "s": "Statistics",
+        "t": "Technical reports",
+        "u": "Standards/specifications",
+        "v": "Legal cases and case notes",
+        "w": "Law reports and digests",
+        "y": "Yearbooks",
+        "z": "Treaties",
+        "5": "Calendars",
+        "6": "Comics/graphic novels"
+      },
+      "25": {  /* Nature of contents (006/08-10) */
+        "_predicate": "natureOfContent",
+        "a": "Abstracts/summaries",
+        "b": "Bibliographies",
+        "c": "Catalogs",
+        "d": "Dictionaries",
+        "e": "Encyclopedias",
+        "f": "Handbooks",
+        "g": "Legal articles",
+        "h": "Biography",
+        "i": "Indexes",
+        "k": "Discographies",
+        "l": "Legislation",
+        "m": "Theses",
+        "n": "Surveys of literature in a subject area",
+        "o": "Reviews",
+        "p": "Programmed texts",
+        "q": "Filmographies",
+        "r": "Directories",
+        "s": "Statistics",
+        "t": "Technical reports",
+        "u": "Standards/specifications",
+        "v": "Legal cases and case notes",
+        "w": "Law reports and digests",
+        "y": "Yearbooks",
+        "z": "Treaties",
+        "5": "Calendars",
+        "6": "Comics/graphic novels"
+      },
+      "28": { /* Government publication (006/11) */
+        "_predicate": "governmentPublication",
+        "a": "Autonomous or semi-autonomous component",
+        "c": "Multilocal",
+        "f": "Federal/national",
+        "i": "International intergovernmental",
+        "l": "Local",
+        "m": "Multistate",
+        "o": "Government publication-level undetermined",
+        "s": "State, provincial, territorial, dependent, etc.",
+        "u": "Unknown if item is government publication",
+        "z": "Other"
+      },
+      "29": { /* Conference publication (006/12) */
+        "_predicate": "conferencePublication",
+        "0": "Not a conference publication",
+        "1": "Conference publication"
+      },
+      "33": { /* Original alphabet or script of title (006/16) */
+        "_predicate": "scriptOfTitle",
+        "0": null,
+        "a": "Basic Roman",
+        "b": "Extended Roman",
+        "c": "Cyrillic",
+        "d": "Japanese",
+        "e": "Chinese",
+        "f": "Arabic",
+        "g": "Greek",
+        "h": "Hebrew",
+        "i": "Thai",
+        "j": "Devanagari",
+        "k": "Korean",
+        "l": "Tamil",
+        "u": "Unknown",
+        "z": "Other"
+      },
+      "34": { /* Entry convention (006/17) */
+        "_predicate": "entryConvention",
+        "0": "Successive entry",
+        "1": "Latest entry",
+        "2": "Integrated entry"
+      }
+    }
+  },
+  "Identifier" : {
+    "tags" : {
+      /* LCCN */
+      "010" : "IdentifierLCCN",
+      "020" : "IdentifierISBN",
+      "022" : "IdentifierISSN",
+      "029" : "OtherIdentfier",
+      /* 030 = CODEN */
+      "030" : "IdentifierCODEN",
+      /* 032 - postal registration number */
+      "032" : "IdentifierPostal",
+      /* 035 = system control number */
+      "035" : "IdentifierZDB",
+      /* 912 = Produktsigel für NatLiz und digitale Sammlungen */
+      "912" : "IdentifierISIL"
+    },
+    "IdentifierISBN" : {
+      "a" : "value",
+      "c" : "termsOfAvailability",
+      "z" : "incorrect",
+      "6" : null,
+      "8" : "sequenceNumber",
+      "9" : "formatted"
+    },
+    "IdentifierISSN" : {
+      "a" : "value",
+      "l" : "valueLinking",
+      "m" : "canceledLinking",
+      "y" : "incorrect",
+      "z" : "canceled",
+      "2" : "sourceISSN",
+      "6" : null,
+      "8" : "sequenceNumber"
+    },
+    "sourceISSN" : {
+      "6" : "Nationales ISSN-Zentrum für Deutschland"
+    },
+    "OtherStandardIdentifier" : {
+      "a" : "value",
+      "c" : "termsOfAvailability",
+      "d" : "other",
+      "z" : "canceled",
+      "2" : "type"
+    },
+    "IdentifierISIL" : {
+      "a" : "value"
+    },
+    "subfields" : {
+      "a" : "value",
+      "b" : "price",
+      "c" : "termsOfAvailability",
+      "y" : "invalidValue",
+      "2" : "type"
+    },
+    "type" : {
+      "DE-101" : "IdentifierDNB",
+      "DE-600" : "IdentifierZDB",
+      "doi" : "IdentifierDOI",
+      "urn" : "IdentifierURI",
+      "local" : "IdentifierLocal"
+    }
+  },
+  "IdentifierOther" : {
+    "tags" : [ "024" ],
+    "subfields" : {
+      "a" : "value"
+    },
+    "indicators" : {
+      "024" : {
+        "0 ": "IdentifierISRC",
+        "1 ": "IdentifierUPC",
+        "2 ": "IdentifierISMN",
+        "3 ": "IdentifierEAN",
+        "4 ": "IdentifierSICI",
+        "7 ": "IdentifierCustom"
+      }
+    }
+  },
+  "CustomIdentifier" : {
+    "tags" : [
+      /* NBN */
+      "015",
+      /* NBN control number */
+      "016"
+    ],
+    "_predicate" : "type",
+    "subfields" : {
+      "a" : "value",
+      "2" : "type"
+    },
+    "type" : {
+      "DE-101" : "IdentifierDNB",
+      "DE-600" : "IdentifierZDB",
+      "dnb" : "IdentifierNBN"
+    }
+  },
+  "Event" : {
+    "tags" : [
+      "033"
+    ],
+    "subfields" : {
+      "a" : "formattedDateTime",
+      "b" : "geographicClassificationAreaCode",
+      "c" : "geographicClassificationSubareaCode",
+      "p" : "placeOfEvent",
+      "0" : "number",
+      "2" : "source",
+      "3" : "materials",
+      "6" : null,
+      "8" : "sequence"
+    }
+  },
+  "Language" : {
+    "tags" : [
+      /* 041 = language code */
+      "041"
+    ],
+    "subfields" : {
+      "a" : "value",
+      "b" : "summaryOrAbstractLanguage",
+      "d" : "sungOrSpokenTextLanguage",
+      "e" : "librettoLanguage",
+      "f" : "tableOfContentLanguage",
+      "g" : "accompanyingMaterialLanguage",
+      "h" : "originalLanguage",
+      "j" : "subtitleOrCaptionLanguage",
+      "k" : "intermediateTranslationLanguage",
+      "m" : "originalAccompanyingMaterialLanguage",
+      "n" : "originalLibrettoLanguage",
+      "2" : "type"
     },
     "Language" : {
-        "tags" : [
-            /* 041 = language code */
-            "041"
-        ],
-        "subfields" : {
-            "a" : "value",
-            "b" : "summaryOrAbstractLanguage",
-            "d" : "sungOrSpokenTextLanguage",
-            "e" : "librettoLanguage",
-            "f" : "tableOfContentLanguage",
-            "g" : "accompanyingMaterialLanguage",
-            "h" : "originalLanguage",
-            "j" : "subtitleOrCaptionLanguage",
-            "k" : "intermediateTranslationLanguage",
-            "m" : "originalAccompanyingMaterialLanguage",
-            "n" : "originalLibrettoLanguage",
-            "2" : "type"
-        },
-        "Language" : {
-            "a" : "value"
-        },
-        "value" : {
-            "aar" : "Danakil",
-            "abk" : "Abchasisch",
-            "ace" : "Aceh",
-            "ach" : "Acholi",
-            "ada" : "Adangme",
-            "ady" : "Adygisch",
-            "afa" : "Hamitosemitisch",
-            "afh" : "Afrihili",
-            "afr" : "Afrikaans",
-            "ain" : "Ainu",
-            "aka" : "Akan",
-            "akk" : "Akkadisch",
-            "alb" : "Albanisch",
-            "ale" : "Aleutisch",
-            "alg" : "Algonkin",
-            "alt" : "Altaisch",
-            "amh" : "Amharisch",
-            "ang" : "Altenglisch",
-            "anp" : "Anga",
-            "apa" : "Apache",
-            "ara" : "Arabisch",
-            "arc" : "Aramäisch" ,
-            "arg" : "Aragonesisch",
-            "arm" : "Armenisch",
-            "arn" : "Arauka",
-            "arp" : "Arapaho",
-            "art" : "Kunstsprache",
-            "arw" : "Arawak",
-            "asm" : "Assamesisch",
-            "ast" : "Asturisch",
-            "ath" : "Athapaskisch",
-            "aus" : "Australisch",
-            "ava" : "Awarisch",
-            "ave" : "Avestisch",
-            "awa" : "Awadhī",
-            "aym" : "Aymará",
-            "aze" : "Aserbeidschanisch",
-            "bad" : "Banda",
-            "bai" : "Bamileke",
-            "bak" : "Baschkirisch",
-            "bal" : "Belutschisch",
-            "bam" : "Bambara",
-            "ban" : "Balinesisch",
-            "baq" : "Baskisch",
-            "bas" : "Basaa",
-            "bat" : "Baltisch",
-            "bej" : "Bedauye",
-            "bel" : "Weißrussisch",
-            "bem" : "Bemba",
-            "ben" : "Bengali",
-            "ber" : "Berber",
-            "bho" : "Bhojpurī",
-            "bih" : "Bihari",
-            "bik" : "Bikol",
-            "bin" : "Edo",
-            "bis" : "Beach-la-mar",
-            "bla" : "Blackfoot",
-            "bnt" : "Bantu",
-            "bos" : "Bosnisch",
-            "bra" : "Braj-Bhakha",
-            "bre" : "Braj-Bhakha",
-            "btk" : "Batak",
-            "bua" : "Burjatisch",
-            "bug" : "Bugi",
-            "bul" : "Bulgarisch",
-            "bur" : "Birmanisch",
-            "byn" : "Bilin",
-            "cad" : "Caddo",
-            "cai" : "Indianisch",
-            "car" : "Karibisch",
-            "cat" : "Katalanisch",
-            "cau" : "Kaukasisch",
-            "ceb" : "Cebuano",
-            "cel" : "Keltisch",
-            "cha" : "Chamorro",
-            "chb" : "Chibcha",
-            "che" : "Tschetschenisch",
-            "chg" : "Tschagataisch",
-            "chi" : "Chinesisch",
-            "chk" : "Trukesisch",
-            "chm" : "Tscheremissisch",
-            "chn" : "Chinook",
-            "cho" : "Choctaw",
-            "chp" : "Chipewyan",
-            "chr" : "Cherokee",
-            "chu" : "Kirchenslawisch",
-            "chv" : "Tschuwaschisch",
-            "chy" : "Cheyenne",
-            "cmc" : "Cham",
-            "cop" : "Koptisch",
-            "cor" : "Kornisch",
-            "cos" : "Korsisch",
-            "cpe" : "Kreolisch-Englisch",
-            "cpf" : "Kreolisch-Französisch",
-            "cpp" : "Kreolisch-Portugiesisch",
-            "cre" : "Cree",
-            "crh" : "Krimtatarisch",
-            "crp" : "Kreolisch",
-            "csb" : "Kaschubisch",
-            "cus" : "Kuschitisch",
-            "cze" : "Tschechisch",
-            "dak" : "Dakota",
-            "dan" : "Dänisch",
-            "dar" : "Darginisch",
-            "day" : "Dajakisch",
-            "del" : "Delaware",
-            "den" : "Slave",
-            "dgr" : "Dogrib",
-            "din" : "Dinka",
-            "div" : "Maledivisch",
-            "doi" : "Dogrī",
-            "dra" : "Drawidisch",
-            "dsb" : "Niedersorbisch",
-            "dua" : "Duala",
-            "dum" : "Mittelniederländisch",
-            "dut" : "Niederländisch",
-            "dyu" : "Dyula",
-            "dzo" : "Dzongkha",
-            "efi" : "Efik",
-            "egy" : "Ägyptisch",
-            "eka" : "Ekajuk",
-            "elx" : "Elamisch",
-            "eng" : "Englisch",
-            "enm" : "Mittelenglisch",
-            "epo" : "Esperanto",
-            "est" : "Estnisch",
-            "ewe" : "Ewe",
-            "ewo" : "Ewondo" ,
-            "fan" : "Pangwe",
-            "fao" : "Färöisch",
-            "fat" : "Fante",
-            "fij" : "Fidschi",
-            "fil" : "Pilipino",
-            "fin" : "Finnisch",
-            "fiu" : "Finnougrisch",
-            "fon" : "Fon",
-            "fre" : "Französisch",
-            "frm" : "Mittelfranzösisch",
-            "fro" : "Altfranzösisch",
-            "frr" : "Nordfriesisch",
-            "frs" : "Ostfriesisch",
-            "fry" : "Friesisch",
-            "ful" : "Ful",
-            "fur" : "Friulisch",
-            "gaa" : "Ga",
-            "gay" : "Gayo",
-            "gba" : "Gbaya",
-            "gem" : "Germanisch",
-            "geo" : "Georgisch",
-            "ger" : "Deutsch",
-            "gez" : "Altäthiopisch",
-            "gil" : "Gilbertesisch",
-            "gla" : "Gälisch-Schottisch",
-            "gle" : "Irisch",
-            "glg" : "Galicisch",
-            "glv" : "Manx",
-            "gmh" : "Mittelhochdeutsch",
-            "goh" : "Althochdeutsch",
-            "gon" : "Gondi",
-            "gor" : "Gorontalesisch",
-            "got" : "Gotisch",
-            "grb" : "Grebo-Sprache",
-            "grc" : "Griechisch",
-            "gre" : "Neugriechisch",
-            "grn" : "Guaraní",
-            "gsw" : "Schweizerdeutsch",
-            "guj" : "Gujarātī",
-            "gwi" : "Gwich´in",
-            "hai" : "Haida",
-            "hat" : "Haiti-Kreolisch",
-            "hau" : "Haussa",
-            "haw" : "Hawaiisch",
-            "heb" : "Hebräisch" ,
-            "her" : "Herero" ,
-            "hil" : "Hiligaynon" ,
-            "him" : "Himachali" ,
-            "hin" : "Hindi" ,
-            "hit" : "Hethitisch",
-            "hmn" : "Miao",
-            "hmo" : "Hiri-Motu",
-            "hrv" : "Kroatisch",
-            "hsb" : "Obersorbisch",
-            "hun" : "Ungarisch",
-            "hup" : "Hupa",
-            "iba" : "Iban",
-            "ibo" : "Ibo",
-            "ice" : "Isländisch",
-            "ido" : "Ido",
-            "iii" : "Lalo",
-            "ijo" : "Ijo",
-            "iku" : "Inuktitut",
-            "ile" : "Interlingue",
-            "ilo" : "Ilokano",
-            "ina" : "Interlingua",
-            "inc" : "Indoarisch",
-            "ind" : "Bahasa Indonesia",
-            "ine" : "Indogermanisch",
-            "inh" : "Inguschisch",
-            "ipk" : "Inupik",
-            "ira" : "Iranisch",
-            "iro" : "Irokesisch",
-            "ita" : "Italienisch",
-            "jav" : "Javanisch",
-            "jbo" : "Lojban",
-            "jpn" : "Japanisch",
-            "jpr" : "Jüdisch-Persisch",
-            "jrb" : "Jüdisch-Arabisch",
-            "kaa" : "Karakalpakisch",
-            "kab" : "Kabylisch",
-            "kac" : "Kachin",
-            "kal" : "Grönländisch",
-            "kam" : "Kamba",
-            "kan" : "Kannada",
-            "kar" : "Karenisch",
-            "kas" : "Kaschmiri",
-            "kau" : "Kanuri",
-            "kaw" : "Kawi",
-            "kaz" : "Kasachisch",
-            "kbd" : "Kabardinisch",
-            "kha" : "Khasi",
-            "khi" : "Khoisan",
-            "khm" : "Kambodschanisch",
-            "kho" : "Sakisch",
-            "kik" : "Kikuyu",
-            "kin" : "Rwanda",
-            "kir" : "Kirgisisch",
-            "kmb" : "Kimbundu",
-            "kok" : "Konkani",
-            "kom" : "Komi",
-            "kon" : "Kongo",
-            "kor" : "Koreanisch",
-            "kos" : "Kosraeanisch",
-            "kpe" : "Kpelle",
-            "krc" : "Karatschaiisch-Balkarisch",
-            "krl" : "Karelisch",
-            "kro" : "Kru",
-            "kru" : "Oraon",
-            "kua" : "Kwanyama",
-            "kum" : "Kumükisch",
-            "kur" : "Kurdisch",
-            "kut" : "Kutenai",
-            "lad" : "Judenspanisch",
-            "lah" : "Lahndā",
-            "lam" : "Lamba",
-            "lao" : "Laotisch",
-            "lat" : "Latein",
-            "lav" : "Lettisch",
-            "lez" : "Lesgisch",
-            "lim" : "Limburgisch",
-            "lin" : "Lingala",
-            "lit" : "Litauisch",
-            "lol" : "Mongo",
-            "loz" : "Rotse",
-            "ltz" : "Luxemburgisch",
-            "lua" : "Lulua",
-            "lub" : "Luba-Katanga",
-            "lug" : "Ganda",
-            "lui" : "Luiseño",
-            "lun" : "Lunda",
-            "luo" : "Luo",
-            "lus" : "Lushai",
-            "mac" : "Makedonisch",
-            "mad" : "Maduresisch",
-            "mag" : "Khotta",
-            "mah" : "Marschallesisch",
-            "mai" : "Maithili",
-            "mak" : "Makassarisch",
-            "mal" : "Malayalam",
-            "man" : "Malinke",
-            "mao" : "Maori",
-            "map" : "Austronesisch",
-            "mar" : "Marathi",
-            "mas" : "Massai",
-            "may" : "Malaiisch",
-            "mdf" : "Mokscha",
-            "mdr" : "Mandaresisch",
-            "men" : "Mende",
-            "mga" : "Mittelirisch",
-            "mic" : "Micmac",
-            "min" : "Minangkabau",
-            "mis" : "Einzelne andere",
-            "mkh" : "Mon-Khmer",
-            "mlg" : "Malagassi",
-            "mlt" : "Maltesisch",
-            "mnc" : "Mandschurisch",
-            "mni" : "Meithei",
-            "mno" : "Manobo",
-            "moh" : "Mohawk",
-            "mon" : "Mongolisch",
-            "mos" : "Mossi",
-            "mul" : "Mehrere",
-            "mun" : "Munda",
-            "mus" : "Muskogisch",
-            "mwl" : "Mirandesisch",
-            "mwr" : "Mārwārī",
-            "myn" : "Maya" ,
-            "myv" : "Erza-Mordwinisch",
-            "nah" : "Nahuatl",
-            "nai" : "Indianer",
-            "nap" : "Neapel",
-            "nau" : "Nauruanisch",
-            "nav" : "Navajo",
-            "nbl" : "Ndebele, Transvaal",
-            "nde" : "Ndebele, Simbabwe",
-            "ndo" : "Ndonga",
-            "nds" : "Niederdeutsch",
-            "nep" : "Nepali",
-            "new" : "Newārī",
-            "nia" : "Nias",
-            "nic" : "Nigerkordofanisch",
-            "niu" : "Niue",
-            "nno" : "Nynorsk",
-            "nob" : "Bokmål",
-            "nog" : "Nogaisch",
-            "non" : "Altnorwegisch",
-            "nor" : "Norwegisch",
-            "nqo" : "N'Ko",
-            "nso" : "Pedi",
-            "nub" : "Nubisch",
-            "nwc" : "Alt-Newārī",
-            "nya" : "Nyanja",
-            "nym" : "Nyamwezi",
-            "nyn" : "Nkole",
-            "nyo" : "Nyoro",
-            "nzi" : "Nzima",
-            "oci" : "Okzitanisch",
-            "oji" : "Ojibwa",
-            "ori" : "Oriya",
-            "orm" : "Galla",
-            "osa" : "Osage",
-            "oss" : "Ossetisch",
-            "ota" : "Osmanisch",
-            "oto" : "Otomangue",
-            "paa" : "Papua",
-            "pag" : "Pangasinan",
-            "pal" : "Mittelpersisch",
-            "pam" : "Pampanggan",
-            "pan" : "Pandschabi",
-            "pap" : "Papiamento",
-            "pau" : "Palau",
-            "peo" : "Altpersisch",
-            "per" : "Persisch",
-            "phi" : "Philippinisch-Austronesisch",
-            "phn" : "Phönikisch",
-            "pli" : "Pāli",
-            "pol" : "Polnisch",
-            "pon" : "Ponapeanisch",
-            "por" : "Portugiesisch",
-            "pra" : "Prākrit",
-            "pro" : "Altokzitanisch",
-            "pus" : "Paschtu",
-            "que" : "Quechua",
-            "raj" : "Rājasthānī",
-            "rap" : "Osterinsel",
-            "rar" : "Rarotonganisch",
-            "roa" : "Romanisch",
-            "roh" : "Rätoromanisch",
-            "rom" : "Romani",
-            "rum" : "Rumänisch",
-            "run" : "Rundi",
-            "rup" : "Aromunisch",
-            "rus" : "Russisch",
-            "sad" : "Sandawe",
-            "sag" : "Sango",
-            "sah" : "Jakutisch",
-            "sai" : "Indianersprache",
-            "sal" : "Salish",
-            "sam" : "Samaritanisch",
-            "san" : "Sanskrit",
-            "sas" : "Sasak",
-            "sat" : "Santālī",
-            "scn" : "Sizilianisch",
-            "sco" : "Schottisch",
-            "sel" : "Selkupisch",
-            "sem" : "Semitisch",
-            "sga" : "Altirisch",
-            "sgn" : "Zeichensprache",
-            "shn" : "Schan",
-            "sid" : "Sidamo",
-            "sin" : "Singhalesisch",
-            "sio" : "Sioux",
-            "sit" : "Sinotibetisch",
-            "sla" : "Slawisch",
-            "slo" : "Slowakisch",
-            "slv" : "Slowenisch",
-            "sma" : "Südsaamisch",
-            "sme" : "Nordsaamisch",
-            "smi" : "Saamisch",
-            "smj" : "Lulesaamisch",
-            "smn" : "Inarisaamisch",
-            "smo" : "Samoanisch",
-            "sms" : "Skoltsaamisch",
-            "sna" : "Schona",
-            "snd" : "Sindhi",
-            "snk" : "Soninke",
-            "sog" : "Sogdisch",
-            "som" : "Somali",
-            "son" : "Songhai",
-            "sot" : "Süd-Sotho",
-            "spa" : "Spanisch",
-            "srd" : "Sardisch",
-            "srn" : "Sranantongo",
-            "srp" : "Serbisch",
-            "srr" : "Serer",
-            "ssa" : "Nilosaharanisch",
-            "ssw" : "Swasi",
-            "suk" : "Sukuma",
-            "sun" : "Sundanesisch",
-            "sus" : "Susu",
-            "sux" : "Sumerisch",
-            "swa" : "Swahili",
-            "swe" : "Schwedisch",
-            "syc" : "Syrisch",
-            "syr" : "Neuostaramäisch",
-            "tah" : "Tahitisch",
-            "tai" : "Thai",
-            "tam" : "Tamil",
-            "tat" : "Tatarisch",
-            "tel" : "Telugu",
-            "tem" : "Temne",
-            "ter" : "Tereno",
-            "tet" : "Tetum",
-            "tgk" : "Tadschikisch",
-            "tgl" : "Tagalog",
-            "tha" : "Thailändisch",
-            "tib" : "Tibetisch",
-            "tig" : "Tigre",
-            "tir" : "Tigrinja",
-            "tiv" : "Tiv",
-            "tkl" : "Tokelauanisch",
-            "tlh" : "Klingonisch",
-            "tli" : "Tlingit",
-            "tmh" : "Tamašeq",
-            "tog" : "Tonga",
-            "ton" : "Tongaisch",
-            "tpi" : "Neumelanesisch",
-            "tsi" : "Tsimshian",
-            "tsn" : "Tswana",
-            "tso" : "Tsonga",
-            "tuk" : "Turkmenisch",
-            "tum" : "Tumbuka",
-            "tup" : "Tupi",
-            "tur" : "Türkisch",
-            "tut" : "Altaisch",
-            "tvl" : "Elliceanisch",
-            "twi" : "Twi",
-            "tyv" : "Tuwinisch",
-            "udm" : "Udmurtisch",
-            "uga" : "Ugaritisch",
-            "uig" : "Uigurisch",
-            "ukr" : "Ukrainisch",
-            "umb" : "Mbundu",
-            "und" : "nicht bestimmbar",
-            "urd" : "Urdu",
-            "uzb" : "Usbekisch",
-            "vai" : "Vai",
-            "ven" : "Venda",
-            "vie" : "Vietnamesisch",
-            "vol" : "Volapük",
-            "vot" : "Wotisch",
-            "wak" : "Wakash",
-            "wal" : "Walamo",
-            "war" : "Waray",
-            "was" : "Washo",
-            "wel" : "Kymrisch",
-            "wen" : "Sorbisch",
-            "wln" : "Wallonisch",
-            "wol" : "Wolof",
-            "xal" : "Kalmückisch",
-            "xho" : "Xhosa",
-            "yao" : "Yao",
-            "yap" : "Yapesisch",
-            "yid" : "Jiddisch",
-            "yor" : "Yoruba",
-            "ypk" : "Ypik",
-            "zap" : "Zapotekisch",
-            "zbl" : "Bliss-Symbol",
-            "zen" : "Zenaga",
-            "zha" : "Zhuang",
-            "znd" : "Zande",
-            "zul" : "Zuñi",
-            "zun" : "Zulu",
-            "zxx" : "nicht anwendbar",
-            "zza" : "Zazaki"
-        }
+      "a" : "value"
     },
-    "Country" : {
-        "tags" : [
-        /* 044 = country of publishing code */
-        "044"
-        ],
-        "subfields" : {
-            "a" : "country",
-            "b" : "LocalSubentityCountry",
-            "c" : "isoCountry",
-            "2" : "type",
-            "6" : "linkage",
-            "8" : "sequenceNumber"
-        },
-        "isoCountryCodes" : {
-                "XA-CH-AG" : "Aargau <Schweiz, Kanton>",
-                "XC-EG" : "Ägypten",
-                "XC-GQ" : "Äquatorialguinea",
-                "XC-ET" : "Äthiopien",
-                "XB-AF" : "Afghanistan",
-                "XC" : "Afrika",
-                "XA-AX" : "Ålandinseln",
-                "XA-AL" : "Albanien",
-                "XC-DZ" : "Algerien",
-                "XD" :"Amerika",
-                "XM-UM" : "Amerikanische Überseeinseln",
-                "XD-AS" : "Amerikanisch-Samoa",
-                "XA-AD" : "Andorra",
-                "XC-AO" : "Angola",
-                "XD-AI" : "Anguilla",
-                "XI-AQ" : "Antarktika",
-                "XI" : "Antarktis",
-                "XD-AG" : "Antigua und Barbuda",
-                "XA-CH-AR" : "Appenzell <Ausserrhoden>",
-                "XA-CH-AI" : "Appenzell <Innerrhoden>",
-                "XD-AR" : "Argentinien",
-                "XH" : "Arktis",
-                "XB-AM" : "Armenien",
-                "XD-AW" : "Aruba",
-                "XB-AZ" : "Aserbaidschan",
-                "XB" : "Asien",
-                "XK" : "Atlantischer Ozean",
-                "XE-AU" : "Australien",
-                "XE" : "Australien, Ozeanien",
-                "XA-DE-BW" : "Baden-Württemberg",
-                "XD-BS" : "Bahamas",
-                "XB-BH" : "Bahrain",
-                "XB-BD" : "Bangladesch",
-                "XD-BB" : "Barbados",
-                "XA-CH-BS" : "Basel <Schweiz, Kanton>",
-                "XA-CH-BL" : "Basel-Landschaft",
-                "XA-DE-BY" : "Bayern",
-                "XA-BE" : "Belgien",
-                "XD-BZ" : "Belize",
-                "XC-BJ" : "Benin",
-                "XA-DE-BE" : "Berlin",
-                "XD-BM" : "Bermudainseln",
-                "XA-CH-BE" : "Bern <Schweiz, Kanton>",
-                "XB-BT" : "Bhutan",
-                "XB-MM" : "Birma",
-                "XD-BO" : "Bolivien",
-                "XD-BQ" : "Bonaire, Sint Eustatius, Saba",
-                "XA-BA" : "Bosnien-Herzegowina",
-                "XC-BW" : "Botswana",
-                "XK-BV" : "Bouvetinsel",
-                "XA-DE-BB" : "Brandenburg",
-                "XD-BR" : "Brasilien",
-                "XA-DE-HB" : "Bremen",
-                "XI-BQAQ" : "Britisches Antarktis-Territorium",
-                "XL-IO" : "Britisches Territorium im Indischen Ozean",
-                "XB-BN" : "Brunei",
-                "XA-BG" : "Bulgarien",
-                "XA-AT-1" : "Burgenland",
-                "XC-BF" : "Burkina Faso",
-                "XB-BUMM" : "Burma",
-                "XC-BI" : "Burundi",
-                "XD-KY" : "Cayman Islands",
-                "XD-CL" : "Chile",
-                "XB-CN" : "China",
-                "XE-CX" : "Christmas Island",
-                "XE-CK" : "Cookinseln",
-                "XD-CR" : "Costa Rica",
-                "XD-CW" : "Curaçao",
-                "XA-DK" : "Dänemark",
-                "XC-DYBJ" : "Dahome",
-                "XA-DE" : "Deutschland",
-                "XA-DDDE" : "Deutschland <DDR>",
-                "XA-DXDE" : "Deutschland <Deutsches Reich>",
-                "XD-DM" : "Dominica",
-                "XD-DO" : "Dominikanische Republik",
-                "XC-DJ" : "Dschibuti",
-                "XC-AIDJ" : "Dschibuti",
-                "XD-EC" : "Ecuador",
-                "XD-SV" : "El Salvador",
-                "XC-CI" : "Elfenbeinküste",
-                "XC-ER" : "Eritrea",
-                "XA-EE" : "Estland",
-                "XA" : "Europa",
-                "XK-FO" : "Färöer",
-                "XK-FK" : "Falklandinseln",
-                "XE-FJ" : "Fidschi",
-                "XA-FI" : "Finnland",
-                "XA-FR" : "Frankreich",
-                "XL-TF" : "Französische Südgebiete",
-                "XD-GF" : "Französisch-Guayana",
-                "XE-PF" : "Französisch-Polynesien",
-                "XA-CH-FR" : "Freiburg <Schweiz, Kanton>",
-                "XC-GA" : "Gabun",
-                "XC-GM" : "Gambia",
-                "XA-CH-GE" : "Genf <Schweiz, Kanton>",
-                "XB-GE" : "Georgien",
-                "XC-GH" : "Ghana",
-                "XA-GI" : "Gibraltar",
-                "XE-GEHH" : "Gilbertinseln",
-                "XA-CH-GL" : "Glarus <Schweiz, Kanton>",
-                "XA-CH-GR" : "Graubünden <Schweiz, Kanton",
-                "XD-GD" : "Grenada",
-                "XA-GR" : "Griechenland",
-                "XK-GL" : "Grönland",
-                "XA-GB" : "Großbritannien",
-                "XD-GP" : "Guadeloupe",
-                "XE-GU" : "Guam",
-                "XD-GT" : "Guatemala",
-                "XA-GG" : "Guernsey",
-                "XC-GN" : "Guinea",
-                "XC-GW" : "Guinea-Bissau",
-                "XD-GY" : "Guyana",
-                "XD-HT" : "Haiti",
-                "XA-DE-HH" : "Hamburg",
-                "XI-HM" : "Heard und McDonaldinseln",
-                "XA-DE-HE" : "Hessen",
-                "XD-HN" : "Honduras",
-                "XB-HK" : "Hongkong",
-                "XB-IN" : "Indien",
-                "XL" : "Indischer Ozean",
-                "XB-ID" : "Indonesien",
-                "XB-IQ" : "Irak",
-                "XB-IR" : "Iran",
-                "XA-IE" : "Irland",
-                "XA-IS" : "Island",
-                "XB-IL" : "Israel",
-                "XA-IT" : "Italien",
-                "XD-JM" : "Jamaika",
-                "XB-JP" : "Japan",
-                "XB-YE" : "Jemen",
-                "XB-YDYE" : "Jemen <Demokratische Volksrepublik>",
-                "XA-JE" : "Jersey",
-                "XB-JO" : "Jordanien",
-                "XA-YUCS" : "Jugoslawien <Föderative Republik>",
-                "XD-VG" : "Jungferninseln <Großbritannien>",
-                "XD-VI" : "Jungferninseln <USA>",
-                "XA-CH-JU" : "Jura <Schweiz, Kanton>",
-                "XA-AT-2" : "Kärnten",
-                "XB-KH" : "Kambodscha",
-                "XC-CM" : "Kamerun",
-                "XD-CA" : "Kanada",
-                "XC-CV" : "Kapverdische Inseln",
-                "XB-KZ" : "Kasachstan",
-                "XB-QA" : "Katar",
-                "XC-KE" : "Kenia",
-                "XB-KG" : "Kirgisien",
-                "XE-KI" : "Kiribati",
-                "XI-NQAQ" : "Königin-Maud-Land",
-                "XE-CC" : "Kokosinseln",
-                "XD-CO" : "Kolumbien",
-                "XC-KM" : "Komoren",
-                "XC-CD" : "Kongo <Demokratische Republik>",
-                "XC-ZRCD" : "Zaire",
-                "XC-CG" : "Kongo <Republik>",
-                "XA-HR" : "Kroatien",
-                "XD-CU" : "Kuba",
-                "XB-KW" : "Kuwait",
-                "XB-LA" : "Laos",
-                "XC-LS" : "Lesotho",
-                "XA-LV" : "Lettland",
-                "XB-LB" : "Libanon",
-                "XC-LR" : "Liberia",
-                "XC-LY" : "Libyen",
-                "XA-LI" : "Liechtenstein",
-                "XA-LT" : "Litauen",
-                "XA-LU" : "Luxemburg",
-                "XA-CH-LU" : "Luzern <Schweiz, Kanton>",
-                "XB-MO" : "Macao",
-                "XC-MG" : "Madagaskar",
-                "XA-MK" : "Makedonien",
-                "XC-MW" : "Malawi",
-                "XB-MY" : "Malaysia",
-                "XB-MV" : "Malediven",
-                "XC-ML" : "Mali",
-                "XA-MT" : "Malta",
-                "XA-IM" : "Man",
-                "XC-MA" : "Marokko",
-                "XE-MH" : "Marshallinseln",
-                "XD-MQ" : "Martinique",
-                "XC-MR" : "Mauretanien",
-                "XC-MU" : "Mauritius",
-                "XC-YT" : "Mayotte",
-                "XA-DE-MV" : "Mecklenburg-Vorpommern",
-                "XD-MX" : "Mexiko",
-                "XM-MIUM" : "Midway Islands",
-                "XE-FM" : "Mikronesien",
-                "XC-MZ" : "Moçambique",
-                "XA-MD" : "Moldawien",
-                "XA-MC" : "Monaco",
-                "XB-MN" : "Mongolei",
-                "XA-ME" : "Montenegro",
-                "XD-MS" : "Montserrat",
-                "XC-NA" : "Namibia",
-                "XE-NR" : "Nauru",
-                "XB-NP" : "Nepal",
-                "XA-CH-NE" : "Neuenburg <Schweiz, Kanton>",
-                "XE-NC" : "Neukaledonien",
-                "XE-NZ" : "Neuseeland",
-                "XD-NI" : "Nicaragua",
-                "XA-CH-NW" : "Nidwalden <Schweiz, Kanton>",
-                "XD-ANHH" : "Niederländische Antillen",
-                "XA-NL" : "Niederlande",
-                "XA-AT-3" : "Niederösterreich",
-                "XA-DE-NI" : "Niedersachsen",
-                "XC-NE" : "Niger",
-                "XC-NG" : "Nigeria",
-                "XM-NU" : "Niue",
-                "XE-MP" : "Nördliche Marianen",
-                "XB-KP" : "Nordkorea",
-                "XA-DE-NW" : "Nordrhein-Westfalen",
-                "XE-NF" : "Norfolk-Insel",
-                "XA-NO" : "Norwegen",
-                "XA-AT-4" : "Oberösterreich",
-                "XA-CH-OW" : "Obwalden <Schweiz, Kanton>",
-                "XA-AT" : "Österreich",
-                "XA-AAAT" : "Österreich <Monarchie>",
-                "XB-OM" : "Oman",
-                "XB-TL" : "Osttimor",
-                "XB-TPTL" : "Osttimor",
-                "XE-PCHH" : "Ozeanien",
-                "XB-PK" : "Pakistan",
-                "XE-PW" : "Palauinseln",
-                "XB-PS" : "Palästina",
-                "XD-PA" : "Panama",
-                "XD-PZPA" : "Panamakanalzone",
-                "XE-PG" : "Papua-Neuguinea",
-                "XD-PY" : "Paraguay",
-                "XM" : "Pazifischer Ozean",
-                "XD-PE" : "Peru",
-                "XB-PH" : "Philippinen",
-                "XM-PN" : "Pitcairn",
-                "XA-PL" : "Polen",
-                "XA-PT" : "Portugal",
-                "XD-PR" : "Puerto Rico",
-                "XL-RE" : "Réunion",
-                "XA-DE-RP" : "Rheinland-Pfalz",
-                "XA-RO" : "Rumänien",
-                "XA-RU" : "Russland",
-                "XC-RW" : "Rwanda",
-                "XA-DE-SL" : "Saarland",
-                "XA-DE-SN" : "Sachsen",
-                "XA-DE-ST" : "Sachsen-Anhalt",
-                "XD-KN" : "Saint Kitts und Nevis",
-                "XD-LC" : "Saint Lucia",
-                "XD-VC" : "Saint Vincent and the Grenadines",
-                "XD-BL" : "Saint-Barthélemy",
-                "XD-MF" : "Saint-Martin",
-                "XD-PM" : "Saint-Pierre-et-Miquelon",
-                "XE-SB" : "Salomonen",
-                "XA-AT-5" : "Salzburg",
-                "XC-ZM" : "Sambia",
-                "XA-SM" : "San Marino",
-                "XA-CH-SG" : "Sankt Gallen <Schweiz, Kanton>",
-                "XK-SH" : "Sankt Helena",
-                "XC-ST" : "Sao Tomé und Príncipe",
-                "XB-SA" : "Saudi-Arabien",
-                "XA-CH-SH" : "Schaffhausen <Schweiz, Kanton>",
-                "XA-DE-SH" :"Schleswig-Holstein",
-                "XA-SE" : "Schweden",
-                "XA-CH" : "Schweiz",
-                "XA-CH-SZ" : "Schwyz <Kanton>",
-                "XC-SN" : "Senegal",
-                "XA-RS" : "Serbien",
-                "XA-CSXX" : "Serbien-Montenegro",
-                "XC-SC" : "Seychellen",
-                "XC-SL" : "Sierra Leone",
-                "XB-SKIN" : "Sikkim",
-                "XC-ZW" : "Simbabwe",
-                "XC-RHZW" : "Simbabwe",
-                "XB-SG" : "Singapur",
-                "XD-SX" : "Sint Maarten",
-                "XA-SK" : "Slowakei",
-                "XA-SI" : "Slowenien",
-                "XA-CH-SO" : "Solothurn <Kanton>",
-                "XC-SO" : "Somalia",
-                "XA-SUHH" : "Sowjetunion",
-                "XA-ES" : "Spanien",
-                "XB-LK" : "Sri Lanka",
-                "XA-AT-6" : "Steiermark",
-                "XC-SD" : "Sudan",
-                "XC-ZA" : "Südafrika",
-                "XK-GS" : "Südgeorgien und Südliche Sandwichinseln",
-                "XB-KR" : "Südkorea",
-                "XC-SS" : "Südsudan",
-                "XB-VDVN" : "Südvietnam",
-                "XD-SR" : "Surinam",
-                "XK-SJ" : "Svalbard und Jan Mayen",
-                "XC-SZ" : "Swasiland",
-                "XB-SY" : "Syrien",
-                "XB-TJ" : "Tadschikistan",
-                "XB-TW" : "Taiwan",
-                "XC-TZ" : "Tansania",
-                "XI-FQHH" : "Terres Australes et Antarctiques Françaises",
-                "XA-CH-TI" : "Tessin <Schweiz, Kanton>",
-                "XB-TH" : "Thailand",
-                "XA-DE-TH" : "Thüringen",
-                "XA-CH-TG" : "Thurgau <Schweiz, Kanton>",
-                "XB-CN-54" : "Tibet",
-                "XA-AT-7" : "Tirol",
-                "XC-TG" : "Togo",
-                "XE-TK" : "Tokelau",
-                "XE-TO" : "Tonga",
-                "XA-IT-32" : "Trentino-Südtirol",
-                "XD-TT" : "Trinidad und Tobago",
-                "XC-TD" : "Tschad",
-                "XA-CZ" : "Tschechische Republik",
-                "XA-CSHH" : "Tschechoslowakei",
-                "XB-TR" : "Türkei",
-                "XC-TN" : "Tunesien",
-                "XB-TM" : "Turkmenistan",
-                "XD-TC" : "Turks- und Caicos-Inseln",
-                "XE-TV" : "Tuvalu",
-                "XC-UG" : "Uganda",
-                "XA-UA" : "Ukraine",
-                "XA-HU" : "Ungarn",
-                "XA-CH-UR" : "Uri < Schweiz, Kanton>",
-                "XD-UY" : "Uruguay",
-                "XD-US" : "USA",
-                "XB-UZ" : "Usbekistan",
-                "XE-VU" : "Vanuatu",
-                "XE-NHVU" : "Vanuatu",
-                "XA-VA" : "Vatikanstadt",
-                "XD-VE" : "Venezuela",
-                "XB-AE" : "Vereinigte Arabische Emirate",
-                "XB-VN" : "Vietnam",
-                "XA-AT-8" : "Vorarlberg",
-                "XA-CH-VD" : "Waadt < Schweiz, Kanton>",
-                "XM-WKUM" : "Wake Island",
-                "XA-CH-VS" : "Wallis <Schweiz, Kanton>",
-                "XE-WF" : "Wallis und Futuna",
-                "XA-BY" : "Weißrussland",
-                "XC-EH" : "Westsahara",
-                "XE-WS" : "Westsamoa",
-                "XA-AT-9" : "Wien",
-                "XC-CF" : "Zentralafrikanische Republik",
-                "XA-CH-ZH" : "Zürich <Schweiz, Kanton>",
-                "XA-CH-ZG" : "Zug <Schweiz, Kanton>",
-                "XA-CY" : "Zypern"
-        }
+    "value" : {
+      "aar" : "Danakil",
+      "abk" : "Abchasisch",
+      "ace" : "Aceh",
+      "ach" : "Acholi",
+      "ada" : "Adangme",
+      "ady" : "Adygisch",
+      "afa" : "Hamitosemitisch",
+      "afh" : "Afrihili",
+      "afr" : "Afrikaans",
+      "ain" : "Ainu",
+      "aka" : "Akan",
+      "akk" : "Akkadisch",
+      "alb" : "Albanisch",
+      "ale" : "Aleutisch",
+      "alg" : "Algonkin",
+      "alt" : "Altaisch",
+      "amh" : "Amharisch",
+      "ang" : "Altenglisch",
+      "anp" : "Anga",
+      "apa" : "Apache",
+      "ara" : "Arabisch",
+      "arc" : "Aramäisch" ,
+      "arg" : "Aragonesisch",
+      "arm" : "Armenisch",
+      "arn" : "Arauka",
+      "arp" : "Arapaho",
+      "art" : "Kunstsprache",
+      "arw" : "Arawak",
+      "asm" : "Assamesisch",
+      "ast" : "Asturisch",
+      "ath" : "Athapaskisch",
+      "aus" : "Australisch",
+      "ava" : "Awarisch",
+      "ave" : "Avestisch",
+      "awa" : "Awadhī",
+      "aym" : "Aymará",
+      "aze" : "Aserbeidschanisch",
+      "bad" : "Banda",
+      "bai" : "Bamileke",
+      "bak" : "Baschkirisch",
+      "bal" : "Belutschisch",
+      "bam" : "Bambara",
+      "ban" : "Balinesisch",
+      "baq" : "Baskisch",
+      "bas" : "Basaa",
+      "bat" : "Baltisch",
+      "bej" : "Bedauye",
+      "bel" : "Weißrussisch",
+      "bem" : "Bemba",
+      "ben" : "Bengali",
+      "ber" : "Berber",
+      "bho" : "Bhojpurī",
+      "bih" : "Bihari",
+      "bik" : "Bikol",
+      "bin" : "Edo",
+      "bis" : "Beach-la-mar",
+      "bla" : "Blackfoot",
+      "bnt" : "Bantu",
+      "bos" : "Bosnisch",
+      "bra" : "Braj-Bhakha",
+      "bre" : "Braj-Bhakha",
+      "btk" : "Batak",
+      "bua" : "Burjatisch",
+      "bug" : "Bugi",
+      "bul" : "Bulgarisch",
+      "bur" : "Birmanisch",
+      "byn" : "Bilin",
+      "cad" : "Caddo",
+      "cai" : "Indianisch",
+      "car" : "Karibisch",
+      "cat" : "Katalanisch",
+      "cau" : "Kaukasisch",
+      "ceb" : "Cebuano",
+      "cel" : "Keltisch",
+      "cha" : "Chamorro",
+      "chb" : "Chibcha",
+      "che" : "Tschetschenisch",
+      "chg" : "Tschagataisch",
+      "chi" : "Chinesisch",
+      "chk" : "Trukesisch",
+      "chm" : "Tscheremissisch",
+      "chn" : "Chinook",
+      "cho" : "Choctaw",
+      "chp" : "Chipewyan",
+      "chr" : "Cherokee",
+      "chu" : "Kirchenslawisch",
+      "chv" : "Tschuwaschisch",
+      "chy" : "Cheyenne",
+      "cmc" : "Cham",
+      "cop" : "Koptisch",
+      "cor" : "Kornisch",
+      "cos" : "Korsisch",
+      "cpe" : "Kreolisch-Englisch",
+      "cpf" : "Kreolisch-Französisch",
+      "cpp" : "Kreolisch-Portugiesisch",
+      "cre" : "Cree",
+      "crh" : "Krimtatarisch",
+      "crp" : "Kreolisch",
+      "csb" : "Kaschubisch",
+      "cus" : "Kuschitisch",
+      "cze" : "Tschechisch",
+      "dak" : "Dakota",
+      "dan" : "Dänisch",
+      "dar" : "Darginisch",
+      "day" : "Dajakisch",
+      "del" : "Delaware",
+      "den" : "Slave",
+      "dgr" : "Dogrib",
+      "din" : "Dinka",
+      "div" : "Maledivisch",
+      "doi" : "Dogrī",
+      "dra" : "Drawidisch",
+      "dsb" : "Niedersorbisch",
+      "dua" : "Duala",
+      "dum" : "Mittelniederländisch",
+      "dut" : "Niederländisch",
+      "dyu" : "Dyula",
+      "dzo" : "Dzongkha",
+      "efi" : "Efik",
+      "egy" : "Ägyptisch",
+      "eka" : "Ekajuk",
+      "elx" : "Elamisch",
+      "eng" : "Englisch",
+      "enm" : "Mittelenglisch",
+      "epo" : "Esperanto",
+      "est" : "Estnisch",
+      "ewe" : "Ewe",
+      "ewo" : "Ewondo" ,
+      "fan" : "Pangwe",
+      "fao" : "Färöisch",
+      "fat" : "Fante",
+      "fij" : "Fidschi",
+      "fil" : "Pilipino",
+      "fin" : "Finnisch",
+      "fiu" : "Finnougrisch",
+      "fon" : "Fon",
+      "fre" : "Französisch",
+      "frm" : "Mittelfranzösisch",
+      "fro" : "Altfranzösisch",
+      "frr" : "Nordfriesisch",
+      "frs" : "Ostfriesisch",
+      "fry" : "Friesisch",
+      "ful" : "Ful",
+      "fur" : "Friulisch",
+      "gaa" : "Ga",
+      "gay" : "Gayo",
+      "gba" : "Gbaya",
+      "gem" : "Germanisch",
+      "geo" : "Georgisch",
+      "ger" : "Deutsch",
+      "gez" : "Altäthiopisch",
+      "gil" : "Gilbertesisch",
+      "gla" : "Gälisch-Schottisch",
+      "gle" : "Irisch",
+      "glg" : "Galicisch",
+      "glv" : "Manx",
+      "gmh" : "Mittelhochdeutsch",
+      "goh" : "Althochdeutsch",
+      "gon" : "Gondi",
+      "gor" : "Gorontalesisch",
+      "got" : "Gotisch",
+      "grb" : "Grebo-Sprache",
+      "grc" : "Griechisch",
+      "gre" : "Neugriechisch",
+      "grn" : "Guaraní",
+      "gsw" : "Schweizerdeutsch",
+      "guj" : "Gujarātī",
+      "gwi" : "Gwich´in",
+      "hai" : "Haida",
+      "hat" : "Haiti-Kreolisch",
+      "hau" : "Haussa",
+      "haw" : "Hawaiisch",
+      "heb" : "Hebräisch" ,
+      "her" : "Herero" ,
+      "hil" : "Hiligaynon" ,
+      "him" : "Himachali" ,
+      "hin" : "Hindi" ,
+      "hit" : "Hethitisch",
+      "hmn" : "Miao",
+      "hmo" : "Hiri-Motu",
+      "hrv" : "Kroatisch",
+      "hsb" : "Obersorbisch",
+      "hun" : "Ungarisch",
+      "hup" : "Hupa",
+      "iba" : "Iban",
+      "ibo" : "Ibo",
+      "ice" : "Isländisch",
+      "ido" : "Ido",
+      "iii" : "Lalo",
+      "ijo" : "Ijo",
+      "iku" : "Inuktitut",
+      "ile" : "Interlingue",
+      "ilo" : "Ilokano",
+      "ina" : "Interlingua",
+      "inc" : "Indoarisch",
+      "ind" : "Bahasa Indonesia",
+      "ine" : "Indogermanisch",
+      "inh" : "Inguschisch",
+      "ipk" : "Inupik",
+      "ira" : "Iranisch",
+      "iro" : "Irokesisch",
+      "ita" : "Italienisch",
+      "jav" : "Javanisch",
+      "jbo" : "Lojban",
+      "jpn" : "Japanisch",
+      "jpr" : "Jüdisch-Persisch",
+      "jrb" : "Jüdisch-Arabisch",
+      "kaa" : "Karakalpakisch",
+      "kab" : "Kabylisch",
+      "kac" : "Kachin",
+      "kal" : "Grönländisch",
+      "kam" : "Kamba",
+      "kan" : "Kannada",
+      "kar" : "Karenisch",
+      "kas" : "Kaschmiri",
+      "kau" : "Kanuri",
+      "kaw" : "Kawi",
+      "kaz" : "Kasachisch",
+      "kbd" : "Kabardinisch",
+      "kha" : "Khasi",
+      "khi" : "Khoisan",
+      "khm" : "Kambodschanisch",
+      "kho" : "Sakisch",
+      "kik" : "Kikuyu",
+      "kin" : "Rwanda",
+      "kir" : "Kirgisisch",
+      "kmb" : "Kimbundu",
+      "kok" : "Konkani",
+      "kom" : "Komi",
+      "kon" : "Kongo",
+      "kor" : "Koreanisch",
+      "kos" : "Kosraeanisch",
+      "kpe" : "Kpelle",
+      "krc" : "Karatschaiisch-Balkarisch",
+      "krl" : "Karelisch",
+      "kro" : "Kru",
+      "kru" : "Oraon",
+      "kua" : "Kwanyama",
+      "kum" : "Kumükisch",
+      "kur" : "Kurdisch",
+      "kut" : "Kutenai",
+      "lad" : "Judenspanisch",
+      "lah" : "Lahndā",
+      "lam" : "Lamba",
+      "lao" : "Laotisch",
+      "lat" : "Latein",
+      "lav" : "Lettisch",
+      "lez" : "Lesgisch",
+      "lim" : "Limburgisch",
+      "lin" : "Lingala",
+      "lit" : "Litauisch",
+      "lol" : "Mongo",
+      "loz" : "Rotse",
+      "ltz" : "Luxemburgisch",
+      "lua" : "Lulua",
+      "lub" : "Luba-Katanga",
+      "lug" : "Ganda",
+      "lui" : "Luiseño",
+      "lun" : "Lunda",
+      "luo" : "Luo",
+      "lus" : "Lushai",
+      "mac" : "Makedonisch",
+      "mad" : "Maduresisch",
+      "mag" : "Khotta",
+      "mah" : "Marschallesisch",
+      "mai" : "Maithili",
+      "mak" : "Makassarisch",
+      "mal" : "Malayalam",
+      "man" : "Malinke",
+      "mao" : "Maori",
+      "map" : "Austronesisch",
+      "mar" : "Marathi",
+      "mas" : "Massai",
+      "may" : "Malaiisch",
+      "mdf" : "Mokscha",
+      "mdr" : "Mandaresisch",
+      "men" : "Mende",
+      "mga" : "Mittelirisch",
+      "mic" : "Micmac",
+      "min" : "Minangkabau",
+      "mis" : "Einzelne andere",
+      "mkh" : "Mon-Khmer",
+      "mlg" : "Malagassi",
+      "mlt" : "Maltesisch",
+      "mnc" : "Mandschurisch",
+      "mni" : "Meithei",
+      "mno" : "Manobo",
+      "moh" : "Mohawk",
+      "mon" : "Mongolisch",
+      "mos" : "Mossi",
+      "mul" : "Mehrere",
+      "mun" : "Munda",
+      "mus" : "Muskogisch",
+      "mwl" : "Mirandesisch",
+      "mwr" : "Mārwārī",
+      "myn" : "Maya" ,
+      "myv" : "Erza-Mordwinisch",
+      "nah" : "Nahuatl",
+      "nai" : "Indianer",
+      "nap" : "Neapel",
+      "nau" : "Nauruanisch",
+      "nav" : "Navajo",
+      "nbl" : "Ndebele, Transvaal",
+      "nde" : "Ndebele, Simbabwe",
+      "ndo" : "Ndonga",
+      "nds" : "Niederdeutsch",
+      "nep" : "Nepali",
+      "new" : "Newārī",
+      "nia" : "Nias",
+      "nic" : "Nigerkordofanisch",
+      "niu" : "Niue",
+      "nno" : "Nynorsk",
+      "nob" : "Bokmål",
+      "nog" : "Nogaisch",
+      "non" : "Altnorwegisch",
+      "nor" : "Norwegisch",
+      "nqo" : "N'Ko",
+      "nso" : "Pedi",
+      "nub" : "Nubisch",
+      "nwc" : "Alt-Newārī",
+      "nya" : "Nyanja",
+      "nym" : "Nyamwezi",
+      "nyn" : "Nkole",
+      "nyo" : "Nyoro",
+      "nzi" : "Nzima",
+      "oci" : "Okzitanisch",
+      "oji" : "Ojibwa",
+      "ori" : "Oriya",
+      "orm" : "Galla",
+      "osa" : "Osage",
+      "oss" : "Ossetisch",
+      "ota" : "Osmanisch",
+      "oto" : "Otomangue",
+      "paa" : "Papua",
+      "pag" : "Pangasinan",
+      "pal" : "Mittelpersisch",
+      "pam" : "Pampanggan",
+      "pan" : "Pandschabi",
+      "pap" : "Papiamento",
+      "pau" : "Palau",
+      "peo" : "Altpersisch",
+      "per" : "Persisch",
+      "phi" : "Philippinisch-Austronesisch",
+      "phn" : "Phönikisch",
+      "pli" : "Pāli",
+      "pol" : "Polnisch",
+      "pon" : "Ponapeanisch",
+      "por" : "Portugiesisch",
+      "pra" : "Prākrit",
+      "pro" : "Altokzitanisch",
+      "pus" : "Paschtu",
+      "que" : "Quechua",
+      "raj" : "Rājasthānī",
+      "rap" : "Osterinsel",
+      "rar" : "Rarotonganisch",
+      "roa" : "Romanisch",
+      "roh" : "Rätoromanisch",
+      "rom" : "Romani",
+      "rum" : "Rumänisch",
+      "run" : "Rundi",
+      "rup" : "Aromunisch",
+      "rus" : "Russisch",
+      "sad" : "Sandawe",
+      "sag" : "Sango",
+      "sah" : "Jakutisch",
+      "sai" : "Indianersprache",
+      "sal" : "Salish",
+      "sam" : "Samaritanisch",
+      "san" : "Sanskrit",
+      "sas" : "Sasak",
+      "sat" : "Santālī",
+      "scn" : "Sizilianisch",
+      "sco" : "Schottisch",
+      "sel" : "Selkupisch",
+      "sem" : "Semitisch",
+      "sga" : "Altirisch",
+      "sgn" : "Zeichensprache",
+      "shn" : "Schan",
+      "sid" : "Sidamo",
+      "sin" : "Singhalesisch",
+      "sio" : "Sioux",
+      "sit" : "Sinotibetisch",
+      "sla" : "Slawisch",
+      "slo" : "Slowakisch",
+      "slv" : "Slowenisch",
+      "sma" : "Südsaamisch",
+      "sme" : "Nordsaamisch",
+      "smi" : "Saamisch",
+      "smj" : "Lulesaamisch",
+      "smn" : "Inarisaamisch",
+      "smo" : "Samoanisch",
+      "sms" : "Skoltsaamisch",
+      "sna" : "Schona",
+      "snd" : "Sindhi",
+      "snk" : "Soninke",
+      "sog" : "Sogdisch",
+      "som" : "Somali",
+      "son" : "Songhai",
+      "sot" : "Süd-Sotho",
+      "spa" : "Spanisch",
+      "srd" : "Sardisch",
+      "srn" : "Sranantongo",
+      "srp" : "Serbisch",
+      "srr" : "Serer",
+      "ssa" : "Nilosaharanisch",
+      "ssw" : "Swasi",
+      "suk" : "Sukuma",
+      "sun" : "Sundanesisch",
+      "sus" : "Susu",
+      "sux" : "Sumerisch",
+      "swa" : "Swahili",
+      "swe" : "Schwedisch",
+      "syc" : "Syrisch",
+      "syr" : "Neuostaramäisch",
+      "tah" : "Tahitisch",
+      "tai" : "Thai",
+      "tam" : "Tamil",
+      "tat" : "Tatarisch",
+      "tel" : "Telugu",
+      "tem" : "Temne",
+      "ter" : "Tereno",
+      "tet" : "Tetum",
+      "tgk" : "Tadschikisch",
+      "tgl" : "Tagalog",
+      "tha" : "Thailändisch",
+      "tib" : "Tibetisch",
+      "tig" : "Tigre",
+      "tir" : "Tigrinja",
+      "tiv" : "Tiv",
+      "tkl" : "Tokelauanisch",
+      "tlh" : "Klingonisch",
+      "tli" : "Tlingit",
+      "tmh" : "Tamašeq",
+      "tog" : "Tonga",
+      "ton" : "Tongaisch",
+      "tpi" : "Neumelanesisch",
+      "tsi" : "Tsimshian",
+      "tsn" : "Tswana",
+      "tso" : "Tsonga",
+      "tuk" : "Turkmenisch",
+      "tum" : "Tumbuka",
+      "tup" : "Tupi",
+      "tur" : "Türkisch",
+      "tut" : "Altaisch",
+      "tvl" : "Elliceanisch",
+      "twi" : "Twi",
+      "tyv" : "Tuwinisch",
+      "udm" : "Udmurtisch",
+      "uga" : "Ugaritisch",
+      "uig" : "Uigurisch",
+      "ukr" : "Ukrainisch",
+      "umb" : "Mbundu",
+      "und" : "nicht bestimmbar",
+      "urd" : "Urdu",
+      "uzb" : "Usbekisch",
+      "vai" : "Vai",
+      "ven" : "Venda",
+      "vie" : "Vietnamesisch",
+      "vol" : "Volapük",
+      "vot" : "Wotisch",
+      "wak" : "Wakash",
+      "wal" : "Walamo",
+      "war" : "Waray",
+      "was" : "Washo",
+      "wel" : "Kymrisch",
+      "wen" : "Sorbisch",
+      "wln" : "Wallonisch",
+      "wol" : "Wolof",
+      "xal" : "Kalmückisch",
+      "xho" : "Xhosa",
+      "yao" : "Yao",
+      "yap" : "Yapesisch",
+      "yid" : "Jiddisch",
+      "yor" : "Yoruba",
+      "ypk" : "Ypik",
+      "zap" : "Zapotekisch",
+      "zbl" : "Bliss-Symbol",
+      "zen" : "Zenaga",
+      "zha" : "Zhuang",
+      "znd" : "Zande",
+      "zul" : "Zuñi",
+      "zun" : "Zulu",
+      "zxx" : "nicht anwendbar",
+      "zza" : "Zazaki"
+    }
+  },
+  "Country" : {
+    "tags" : [
+      /* 044 = country of publishing code */
+      "044"
+    ],
+    "subfields" : {
+      "a" : "country",
+      "b" : "LocalSubentityCountry",
+      "c" : "isoCountry",
+      "2" : "type",
+      "6" : null,
+      "8" : "sequenceNumber"
+    },
+    "isoCountryCodes" : {
+      "XA-CH-AG" : "Aargau <Schweiz, Kanton>",
+      "XC-EG" : "Ägypten",
+      "XC-GQ" : "Äquatorialguinea",
+      "XC-ET" : "Äthiopien",
+      "XB-AF" : "Afghanistan",
+      "XC" : "Afrika",
+      "XA-AX" : "Ålandinseln",
+      "XA-AL" : "Albanien",
+      "XC-DZ" : "Algerien",
+      "XD" :"Amerika",
+      "XM-UM" : "Amerikanische Überseeinseln",
+      "XD-AS" : "Amerikanisch-Samoa",
+      "XA-AD" : "Andorra",
+      "XC-AO" : "Angola",
+      "XD-AI" : "Anguilla",
+      "XI-AQ" : "Antarktika",
+      "XI" : "Antarktis",
+      "XD-AG" : "Antigua und Barbuda",
+      "XA-CH-AR" : "Appenzell <Ausserrhoden>",
+      "XA-CH-AI" : "Appenzell <Innerrhoden>",
+      "XD-AR" : "Argentinien",
+      "XH" : "Arktis",
+      "XB-AM" : "Armenien",
+      "XD-AW" : "Aruba",
+      "XB-AZ" : "Aserbaidschan",
+      "XB" : "Asien",
+      "XK" : "Atlantischer Ozean",
+      "XE-AU" : "Australien",
+      "XE" : "Australien, Ozeanien",
+      "XA-DE-BW" : "Baden-Württemberg",
+      "XD-BS" : "Bahamas",
+      "XB-BH" : "Bahrain",
+      "XB-BD" : "Bangladesch",
+      "XD-BB" : "Barbados",
+      "XA-CH-BS" : "Basel <Schweiz, Kanton>",
+      "XA-CH-BL" : "Basel-Landschaft",
+      "XA-DE-BY" : "Bayern",
+      "XA-BE" : "Belgien",
+      "XD-BZ" : "Belize",
+      "XC-BJ" : "Benin",
+      "XA-DE-BE" : "Berlin",
+      "XD-BM" : "Bermudainseln",
+      "XA-CH-BE" : "Bern <Schweiz, Kanton>",
+      "XB-BT" : "Bhutan",
+      "XB-MM" : "Birma",
+      "XD-BO" : "Bolivien",
+      "XD-BQ" : "Bonaire, Sint Eustatius, Saba",
+      "XA-BA" : "Bosnien-Herzegowina",
+      "XC-BW" : "Botswana",
+      "XK-BV" : "Bouvetinsel",
+      "XA-DE-BB" : "Brandenburg",
+      "XD-BR" : "Brasilien",
+      "XA-DE-HB" : "Bremen",
+      "XI-BQAQ" : "Britisches Antarktis-Territorium",
+      "XL-IO" : "Britisches Territorium im Indischen Ozean",
+      "XB-BN" : "Brunei",
+      "XA-BG" : "Bulgarien",
+      "XA-AT-1" : "Burgenland",
+      "XC-BF" : "Burkina Faso",
+      "XB-BUMM" : "Burma",
+      "XC-BI" : "Burundi",
+      "XD-KY" : "Cayman Islands",
+      "XD-CL" : "Chile",
+      "XB-CN" : "China",
+      "XE-CX" : "Christmas Island",
+      "XE-CK" : "Cookinseln",
+      "XD-CR" : "Costa Rica",
+      "XD-CW" : "Curaçao",
+      "XA-DK" : "Dänemark",
+      "XC-DYBJ" : "Dahome",
+      "XA-DE" : "Deutschland",
+      "XA-DDDE" : "Deutschland <DDR>",
+      "XA-DXDE" : "Deutschland <Deutsches Reich>",
+      "XD-DM" : "Dominica",
+      "XD-DO" : "Dominikanische Republik",
+      "XC-DJ" : "Dschibuti",
+      "XC-AIDJ" : "Dschibuti",
+      "XD-EC" : "Ecuador",
+      "XD-SV" : "El Salvador",
+      "XC-CI" : "Elfenbeinküste",
+      "XC-ER" : "Eritrea",
+      "XA-EE" : "Estland",
+      "XA" : "Europa",
+      "XK-FO" : "Färöer",
+      "XK-FK" : "Falklandinseln",
+      "XE-FJ" : "Fidschi",
+      "XA-FI" : "Finnland",
+      "XA-FR" : "Frankreich",
+      "XL-TF" : "Französische Südgebiete",
+      "XD-GF" : "Französisch-Guayana",
+      "XE-PF" : "Französisch-Polynesien",
+      "XA-CH-FR" : "Freiburg <Schweiz, Kanton>",
+      "XC-GA" : "Gabun",
+      "XC-GM" : "Gambia",
+      "XA-CH-GE" : "Genf <Schweiz, Kanton>",
+      "XB-GE" : "Georgien",
+      "XC-GH" : "Ghana",
+      "XA-GI" : "Gibraltar",
+      "XE-GEHH" : "Gilbertinseln",
+      "XA-CH-GL" : "Glarus <Schweiz, Kanton>",
+      "XA-CH-GR" : "Graubünden <Schweiz, Kanton",
+      "XD-GD" : "Grenada",
+      "XA-GR" : "Griechenland",
+      "XK-GL" : "Grönland",
+      "XA-GB" : "Großbritannien",
+      "XD-GP" : "Guadeloupe",
+      "XE-GU" : "Guam",
+      "XD-GT" : "Guatemala",
+      "XA-GG" : "Guernsey",
+      "XC-GN" : "Guinea",
+      "XC-GW" : "Guinea-Bissau",
+      "XD-GY" : "Guyana",
+      "XD-HT" : "Haiti",
+      "XA-DE-HH" : "Hamburg",
+      "XI-HM" : "Heard und McDonaldinseln",
+      "XA-DE-HE" : "Hessen",
+      "XD-HN" : "Honduras",
+      "XB-HK" : "Hongkong",
+      "XB-IN" : "Indien",
+      "XL" : "Indischer Ozean",
+      "XB-ID" : "Indonesien",
+      "XB-IQ" : "Irak",
+      "XB-IR" : "Iran",
+      "XA-IE" : "Irland",
+      "XA-IS" : "Island",
+      "XB-IL" : "Israel",
+      "XA-IT" : "Italien",
+      "XD-JM" : "Jamaika",
+      "XB-JP" : "Japan",
+      "XB-YE" : "Jemen",
+      "XB-YDYE" : "Jemen <Demokratische Volksrepublik>",
+      "XA-JE" : "Jersey",
+      "XB-JO" : "Jordanien",
+      "XA-YUCS" : "Jugoslawien <Föderative Republik>",
+      "XD-VG" : "Jungferninseln <Großbritannien>",
+      "XD-VI" : "Jungferninseln <USA>",
+      "XA-CH-JU" : "Jura <Schweiz, Kanton>",
+      "XA-AT-2" : "Kärnten",
+      "XB-KH" : "Kambodscha",
+      "XC-CM" : "Kamerun",
+      "XD-CA" : "Kanada",
+      "XC-CV" : "Kapverdische Inseln",
+      "XB-KZ" : "Kasachstan",
+      "XB-QA" : "Katar",
+      "XC-KE" : "Kenia",
+      "XB-KG" : "Kirgisien",
+      "XE-KI" : "Kiribati",
+      "XI-NQAQ" : "Königin-Maud-Land",
+      "XE-CC" : "Kokosinseln",
+      "XD-CO" : "Kolumbien",
+      "XC-KM" : "Komoren",
+      "XC-CD" : "Kongo <Demokratische Republik>",
+      "XC-ZRCD" : "Zaire",
+      "XC-CG" : "Kongo <Republik>",
+      "XA-HR" : "Kroatien",
+      "XD-CU" : "Kuba",
+      "XB-KW" : "Kuwait",
+      "XB-LA" : "Laos",
+      "XC-LS" : "Lesotho",
+      "XA-LV" : "Lettland",
+      "XB-LB" : "Libanon",
+      "XC-LR" : "Liberia",
+      "XC-LY" : "Libyen",
+      "XA-LI" : "Liechtenstein",
+      "XA-LT" : "Litauen",
+      "XA-LU" : "Luxemburg",
+      "XA-CH-LU" : "Luzern <Schweiz, Kanton>",
+      "XB-MO" : "Macao",
+      "XC-MG" : "Madagaskar",
+      "XA-MK" : "Makedonien",
+      "XC-MW" : "Malawi",
+      "XB-MY" : "Malaysia",
+      "XB-MV" : "Malediven",
+      "XC-ML" : "Mali",
+      "XA-MT" : "Malta",
+      "XA-IM" : "Man",
+      "XC-MA" : "Marokko",
+      "XE-MH" : "Marshallinseln",
+      "XD-MQ" : "Martinique",
+      "XC-MR" : "Mauretanien",
+      "XC-MU" : "Mauritius",
+      "XC-YT" : "Mayotte",
+      "XA-DE-MV" : "Mecklenburg-Vorpommern",
+      "XD-MX" : "Mexiko",
+      "XM-MIUM" : "Midway Islands",
+      "XE-FM" : "Mikronesien",
+      "XC-MZ" : "Moçambique",
+      "XA-MD" : "Moldawien",
+      "XA-MC" : "Monaco",
+      "XB-MN" : "Mongolei",
+      "XA-ME" : "Montenegro",
+      "XD-MS" : "Montserrat",
+      "XC-NA" : "Namibia",
+      "XE-NR" : "Nauru",
+      "XB-NP" : "Nepal",
+      "XA-CH-NE" : "Neuenburg <Schweiz, Kanton>",
+      "XE-NC" : "Neukaledonien",
+      "XE-NZ" : "Neuseeland",
+      "XD-NI" : "Nicaragua",
+      "XA-CH-NW" : "Nidwalden <Schweiz, Kanton>",
+      "XD-ANHH" : "Niederländische Antillen",
+      "XA-NL" : "Niederlande",
+      "XA-AT-3" : "Niederösterreich",
+      "XA-DE-NI" : "Niedersachsen",
+      "XC-NE" : "Niger",
+      "XC-NG" : "Nigeria",
+      "XM-NU" : "Niue",
+      "XE-MP" : "Nördliche Marianen",
+      "XB-KP" : "Nordkorea",
+      "XA-DE-NW" : "Nordrhein-Westfalen",
+      "XE-NF" : "Norfolk-Insel",
+      "XA-NO" : "Norwegen",
+      "XA-AT-4" : "Oberösterreich",
+      "XA-CH-OW" : "Obwalden <Schweiz, Kanton>",
+      "XA-AT" : "Österreich",
+      "XA-AAAT" : "Österreich <Monarchie>",
+      "XB-OM" : "Oman",
+      "XB-TL" : "Osttimor",
+      "XB-TPTL" : "Osttimor",
+      "XE-PCHH" : "Ozeanien",
+      "XB-PK" : "Pakistan",
+      "XE-PW" : "Palauinseln",
+      "XB-PS" : "Palästina",
+      "XD-PA" : "Panama",
+      "XD-PZPA" : "Panamakanalzone",
+      "XE-PG" : "Papua-Neuguinea",
+      "XD-PY" : "Paraguay",
+      "XM" : "Pazifischer Ozean",
+      "XD-PE" : "Peru",
+      "XB-PH" : "Philippinen",
+      "XM-PN" : "Pitcairn",
+      "XA-PL" : "Polen",
+      "XA-PT" : "Portugal",
+      "XD-PR" : "Puerto Rico",
+      "XL-RE" : "Réunion",
+      "XA-DE-RP" : "Rheinland-Pfalz",
+      "XA-RO" : "Rumänien",
+      "XA-RU" : "Russland",
+      "XC-RW" : "Rwanda",
+      "XA-DE-SL" : "Saarland",
+      "XA-DE-SN" : "Sachsen",
+      "XA-DE-ST" : "Sachsen-Anhalt",
+      "XD-KN" : "Saint Kitts und Nevis",
+      "XD-LC" : "Saint Lucia",
+      "XD-VC" : "Saint Vincent and the Grenadines",
+      "XD-BL" : "Saint-Barthélemy",
+      "XD-MF" : "Saint-Martin",
+      "XD-PM" : "Saint-Pierre-et-Miquelon",
+      "XE-SB" : "Salomonen",
+      "XA-AT-5" : "Salzburg",
+      "XC-ZM" : "Sambia",
+      "XA-SM" : "San Marino",
+      "XA-CH-SG" : "Sankt Gallen <Schweiz, Kanton>",
+      "XK-SH" : "Sankt Helena",
+      "XC-ST" : "Sao Tomé und Príncipe",
+      "XB-SA" : "Saudi-Arabien",
+      "XA-CH-SH" : "Schaffhausen <Schweiz, Kanton>",
+      "XA-DE-SH" :"Schleswig-Holstein",
+      "XA-SE" : "Schweden",
+      "XA-CH" : "Schweiz",
+      "XA-CH-SZ" : "Schwyz <Kanton>",
+      "XC-SN" : "Senegal",
+      "XA-RS" : "Serbien",
+      "XA-CSXX" : "Serbien-Montenegro",
+      "XC-SC" : "Seychellen",
+      "XC-SL" : "Sierra Leone",
+      "XB-SKIN" : "Sikkim",
+      "XC-ZW" : "Simbabwe",
+      "XC-RHZW" : "Simbabwe",
+      "XB-SG" : "Singapur",
+      "XD-SX" : "Sint Maarten",
+      "XA-SK" : "Slowakei",
+      "XA-SI" : "Slowenien",
+      "XA-CH-SO" : "Solothurn <Kanton>",
+      "XC-SO" : "Somalia",
+      "XA-SUHH" : "Sowjetunion",
+      "XA-ES" : "Spanien",
+      "XB-LK" : "Sri Lanka",
+      "XA-AT-6" : "Steiermark",
+      "XC-SD" : "Sudan",
+      "XC-ZA" : "Südafrika",
+      "XK-GS" : "Südgeorgien und Südliche Sandwichinseln",
+      "XB-KR" : "Südkorea",
+      "XC-SS" : "Südsudan",
+      "XB-VDVN" : "Südvietnam",
+      "XD-SR" : "Surinam",
+      "XK-SJ" : "Svalbard und Jan Mayen",
+      "XC-SZ" : "Swasiland",
+      "XB-SY" : "Syrien",
+      "XB-TJ" : "Tadschikistan",
+      "XB-TW" : "Taiwan",
+      "XC-TZ" : "Tansania",
+      "XI-FQHH" : "Terres Australes et Antarctiques Françaises",
+      "XA-CH-TI" : "Tessin <Schweiz, Kanton>",
+      "XB-TH" : "Thailand",
+      "XA-DE-TH" : "Thüringen",
+      "XA-CH-TG" : "Thurgau <Schweiz, Kanton>",
+      "XB-CN-54" : "Tibet",
+      "XA-AT-7" : "Tirol",
+      "XC-TG" : "Togo",
+      "XE-TK" : "Tokelau",
+      "XE-TO" : "Tonga",
+      "XA-IT-32" : "Trentino-Südtirol",
+      "XD-TT" : "Trinidad und Tobago",
+      "XC-TD" : "Tschad",
+      "XA-CZ" : "Tschechische Republik",
+      "XA-CSHH" : "Tschechoslowakei",
+      "XB-TR" : "Türkei",
+      "XC-TN" : "Tunesien",
+      "XB-TM" : "Turkmenistan",
+      "XD-TC" : "Turks- und Caicos-Inseln",
+      "XE-TV" : "Tuvalu",
+      "XC-UG" : "Uganda",
+      "XA-UA" : "Ukraine",
+      "XA-HU" : "Ungarn",
+      "XA-CH-UR" : "Uri < Schweiz, Kanton>",
+      "XD-UY" : "Uruguay",
+      "XD-US" : "USA",
+      "XB-UZ" : "Usbekistan",
+      "XE-VU" : "Vanuatu",
+      "XE-NHVU" : "Vanuatu",
+      "XA-VA" : "Vatikanstadt",
+      "XD-VE" : "Venezuela",
+      "XB-AE" : "Vereinigte Arabische Emirate",
+      "XB-VN" : "Vietnam",
+      "XA-AT-8" : "Vorarlberg",
+      "XA-CH-VD" : "Waadt < Schweiz, Kanton>",
+      "XM-WKUM" : "Wake Island",
+      "XA-CH-VS" : "Wallis <Schweiz, Kanton>",
+      "XE-WF" : "Wallis und Futuna",
+      "XA-BY" : "Weißrussland",
+      "XC-EH" : "Westsahara",
+      "XE-WS" : "Westsamoa",
+      "XA-AT-9" : "Wien",
+      "XC-CF" : "Zentralafrikanische Republik",
+      "XA-CH-ZH" : "Zürich <Schweiz, Kanton>",
+      "XA-CH-ZG" : "Zug <Schweiz, Kanton>",
+      "XA-CY" : "Zypern"
+    }
+  },
+  "ClassificationNumber" : {
+    "tags" : {
+      "050": "LCCN",
+      "060": "NLM",
+      "080": "UDC",
+      /* DDC */
+      "082" : "DDC",
+      /* 083 = additional DDC */
+      "083" : "DDC",
+      /* */
+      "084" : "NBN",
+      /* 085 = synthesized classification number */
+      "085" : "ClassificationNumber",
+      /* 086 = Amtliche Druckschriftennummer */
+      "086" : "OfficialClassificationNumber"
+    },
+    "subfields" : {
+      "a" : "classificationNumber",
+      "q" : "agency",
+      "2" : "type"
+    },
+    "LCCN" : {
+      "a": "classificationNumber",
+      "b": "itemNumber"
+    },
+    "NLM": {
+      "a": "classificatioNumber",
+      "b": "itemNumber"
+    },
+    "UDC" : {
+      "a": "classificationNumber",
+      "b": "itemNumber",
+      "x": "subDivision"
+    },
+    "DDC" : {
+      "a" : "classificationNumber",
+      "b" : "itemNumber",
+      "m" : "designation",
+      "q" : "agency",
+      "2" : "editionNumber",
+      "6" : null,
+      "8" : "sequenceNumber"
+    },
+    "NBN" : {
+      "_predicate" : "type",
+      "a" : "classificationNumber",
+      "b" : "itemNumber",
+      "q" : "agency",
+      "2" : "type",
+      "6" : null,
+      "8" : "sequenceNumber"
     },
     "ClassificationNumber" : {
-        "tags" : {
-            /* DDC */
-            "082" : "DDCClassificationNumber",
-            /* 083 = additional DDC */
-            "083" : "DDCClassificationNumber",
-            "084" : "NBNClassificationNumber",
-            /* 085 = synthesized classification number */
-            "085" : "ClassificationNumber",
-            /* 086 = Amtliche Druckschriftennummer */
-            "086" : "OfficialClassificationNumber"
-        },
-        "subfields" : {
-            "a" : "value",
-            "q" : "agency",
-            "2" : "type"
-        },
-        "DDCClassificationNumber" : {
-            "a" : "ddc",
-            "b" : "itemNumber",
-            "m" : "designation",
-            "q" : "agency",
-            "2" : "editionNumber",
-            "6" : "linkage",
-            "8" : "sequenceNumber"
-        },
-        "NBNClassificationNumber" : {
-            "_predicate" : "type",
-            "a" : "value",
-            "b" : "itemNumber",
-            "q" : "agency",
-            "2" : "type",
-            "6" : "linkage",
-            "8" : "sequenceNumber"
-        },
-        "ClassificationNumber" : {
-            "a" : "value",
-            "b" : "baseNumber",
-            "c" : "endingNumber",
-            "f" : "facetDesignator",
-            "r" : "rootNumber",
-            "s" : "digitsFromclassificationNumber",
-            "t" : "digitsAddedFromTable",
-            "u" : "numberAnalyzed",
-            "v" : "numberAddedFromTable",
-            "w" : "addedTableIdentification",
-            "y" : "tableSequenceNumber",
-            "z" : "tableIdentification",
-            "6" : "linkage",
-            "8" : "sortkey"
-        },
-        "OfficialClassificationNumber" : {
-            "a" : "value",
-            "2" : "type"
-        },
-        "type" : {
-            "z" : "OfficialClassificationNumber",
-            "zdbs" : "ClassificationNumberZDB",
-            "ssgn" : "ClassificationNumberSSG",
-            "sdnb" : "ClassificationNumberDNB",
-            "sswd" : "ClassificationNumberSWD",
-            "bkl" : "ClassificationNumberBKL",
-            "ddc" : "ClassificationNumberDDC",
-            "dopaed" : "ClassificationNumberDOPAED",
-            "ifsz" : "ClassificationNumberIFZ",
-            "ifz1" : "ClassificationNumberIFZ",
-            "ifzs" : "ClassificationNumberIFZ",
-            "nwbib" : "ClassificationNumberNWBIB",
-            "rpb" : "ClassificationNumberRPB",
-            "rpb100%20$" : "ClassificationNumberRPB", /* 1045237-0 */
-            "rpb330%20$" : "ClassificationNumberRPB", /* 218034-0, 531364-8 */
-            "rpb630%20$" : "ClassificationNumberRPB", /* 548068-1 */
-            "rpb930%20$" : "ClassificationNumberRPB", /* 1012264-3 */
-            "rvk" : "ClassificationNumberRVK",
-            "sbb" : "ClassificationNumberSBB",
-            "stub" : "ClassificationNumberSTUB",
-            "sub" : "ClassificationNumberSUB"
-        }
+      "a" : "classificationNumber",
+      "b" : "baseNumber",
+      "c" : "endingNumber",
+      "f" : "facetDesignator",
+      "r" : "rootNumber",
+      "s" : "digitsFromclassificationNumber",
+      "t" : "digitsAddedFromTable",
+      "u" : "numberAnalyzed",
+      "v" : "numberAddedFromTable",
+      "w" : "addedTableIdentification",
+      "y" : "tableSequenceNumber",
+      "z" : "tableIdentification",
+      "6" : null,
+      "8" : "sortkey"
     },
-    "Codes" : {
-        "tags" : {
-          "090" : "OtherCodes"
-        },
-        "subfields" : {
-            "a" : "paper",
-              "b" : "b",
-              "c" : "c",
-              "f" : "f",
-              "i" : "i",
-              "n" : "genre",
-              "t" : "t",
-              "w" : "w",
-              "0" : "0",
-              "5" : "5",
-              "D" : "D"
-        },
-        "OtherCodes" : {
-              "a" : "paper",
-              "b" : "b",
-              "c" : "c",
-              "f" : "f",
-              "i" : "i",
-              "n" : "genre",
-              "t" : "t",
-              "w" : "w",
-              "0" : "0",
-              "5" : "5",
-              "D" : "D"
-        },
-        "paper" :{
-              "b" : "paper-acidfree",
-              "c" : "paper-nonacidfree",
-              "d" : "paper-deacidified"
-        },
-        "genre" : { /*
+    "OfficialClassificationNumber" : {
+      "a" : "classificationNumber",
+      "2" : "type"
+    },
+    "type" : {
+      "z" : "OfficialClassificationNumber",
+      "zdbs" : "ClassificationNumberZDB",
+      "ssgn" : "ClassificationNumberSSG",
+      "sdnb" : "ClassificationNumberDNB",
+      "sswd" : "ClassificationNumberSWD",
+      "bkl" : "ClassificationNumberBKL",
+      "ddc" : "ClassificationNumberDDC",
+      "dopaed" : "ClassificationNumberDOPAED",
+      "ifsz" : "ClassificationNumberIFZ",
+      "ifz1" : "ClassificationNumberIFZ",
+      "ifzs" : "ClassificationNumberIFZ",
+      "nwbib" : "ClassificationNumberNWBIB",
+      "rpb" : "ClassificationNumberRPB",
+      "rpb100%20$" : "ClassificationNumberRPB", /* 1045237-0 */
+      "rpb330%20$" : "ClassificationNumberRPB", /* 218034-0, 531364-8 */
+      "rpb630%20$" : "ClassificationNumberRPB", /* 548068-1 */
+      "rpb930%20$" : "ClassificationNumberRPB", /* 1012264-3 */
+      "rvk" : "ClassificationNumberRVK",
+      "sbb" : "ClassificationNumberSBB",
+      "stub" : "ClassificationNumberSTUB",
+      "sub" : "ClassificationNumberSUB"
+    }
+  },
+  "Codes" : {
+    "tags" : {
+      "090" : "OtherCodes"
+    },
+    "subfields" : {
+      "a" : "paper",
+      "b" : "b",
+      "c" : "c",
+      "f" : "f",
+      "i" : "i",
+      "n" : "genre",
+      "t" : "t",
+      "w" : "w",
+      "0" : "0",
+      "5" : "5",
+      "D" : "D"
+    },
+    "OtherCodes" : {
+      "a" : "paper",
+      "b" : "b",
+      "c" : "c",
+      "f" : "f",
+      "i" : "i",
+      "n" : "genre",
+      "t" : "t",
+      "w" : "w",
+      "0" : "0",
+      "5" : "5",
+      "D" : "D"
+    },
+    "paper" :{
+      "b" : "paper-acidfree",
+      "c" : "paper-nonacidfree",
+      "d" : "paper-deacidified"
+    },
+    "genre" : { /*
                  http://www.zeitschriftendatenbank.de/erschliessung/arbeitsunterlagen/zeta/0600/
                  http://support.d-nb.de/iltis/katricht/zdb/1140.pdf
                  */
-                "ab" : "abstract",
-                "ad" : "dfg-alliance-license",
-                "ag" : "aggregator-database",
-                "al" : "alliance-license",
-                "am" : "law",
-                "ao" : "public-newspaper",
-                "az" : "advertisement",
-                "bi" : "bibliography",
-                "da" : "database",
-                "di" : "directory",
-                "dm" : "digitization-master",
-                "ee" : "publication-terminated",
-                "eo" : "non-public-newspaper",
-                "es" : "acid-free-aging",
-                "fb" : "progress-report",
-                "fp" : "former-periodical",
-                "fr" : "former-series",
-                "ft" : "subject-paper",
-                "fz" : "company-paper",
-                "fn" : "former-newspaper",
-                "ha" : "budget-plan",
-                "il" : "illustrated-paper",
-                "in" : "index",
-                "ko" : "conference-paper",
-                "ks" : "acid-paper",
-                "kt" : "map",
-                "la" : "longterm-perservation",
-                "ld" : "layout-retention-digitization",
-                "lp" : "local-newspaper",
-                "mg" : "merged",
-                "me" : "exhibition-journal",
-                "mm" : "microform-master",
-                "mt" : "music",
-                "mw" : "multipart-work",
-                "nt" : "music-notes",
-                "nk" : "national-consortia",
-                "nl" : "national-license",
-                "nw" : "new",
-                "pa" : "parliament",
-                "pu" : "pay-per-use",
-                "pt" : "packet-import",
-                "ra" : "dnb-series-a",
-                "rb" : "dnb-series-b",
-                "rc" : "dnb-series-c",
-                "rg" : "dnb-series-g",
-                "re" : "report",
-                "rf" : "dictionary",
-                "rp" : "regional-newspaper",
-                "ro" : "dnb-series-o",
-                "rs" : "restitution",
-                "sc" : "school",
-                "sm" : "secondary-microform",
-                "st" : "statistics",
-                "sw" : "software",
-                "tt" : "audio",
-                "ub" : "translator-journal",
-                "up" : "universal-newspaper",
-                "vi" : "video",
-                "vt" : "filmed-newspaper",
-                "wk" : "webclient-record",
-                "wl" : "weblog",
-                "ws" : "website",
-                "zt" : "newspaper"
-        }
+      "ab" : "abstract",
+      "ad" : "dfg-alliance-license",
+      "ag" : "aggregator-database",
+      "al" : "alliance-license",
+      "am" : "law",
+      "ao" : "public-newspaper",
+      "az" : "advertisement",
+      "bi" : "bibliography",
+      "da" : "database",
+      "di" : "directory",
+      "dm" : "digitization-master",
+      "ee" : "publication-terminated",
+      "eo" : "non-public-newspaper",
+      "es" : "acid-free-aging",
+      "fb" : "progress-report",
+      "fp" : "former-periodical",
+      "fr" : "former-series",
+      "ft" : "subject-paper",
+      "fz" : "company-paper",
+      "fn" : "former-newspaper",
+      "ha" : "budget-plan",
+      "il" : "illustrated-paper",
+      "in" : "index",
+      "ko" : "conference-paper",
+      "ks" : "acid-paper",
+      "kt" : "map",
+      "la" : "longterm-perservation",
+      "ld" : "layout-retention-digitization",
+      "lp" : "local-newspaper",
+      "mg" : "merged",
+      "me" : "exhibition-journal",
+      "mm" : "microform-master",
+      "mt" : "music",
+      "mw" : "multipart-work",
+      "nt" : "music-notes",
+      "nk" : "national-consortia",
+      "nl" : "national-license",
+      "nw" : "new",
+      "pa" : "parliament",
+      "pu" : "pay-per-use",
+      "pt" : "packet-import",
+      "ra" : "dnb-series-a",
+      "rb" : "dnb-series-b",
+      "rc" : "dnb-series-c",
+      "rg" : "dnb-series-g",
+      "re" : "report",
+      "rf" : "dictionary",
+      "rp" : "regional-newspaper",
+      "ro" : "dnb-series-o",
+      "rs" : "restitution",
+      "sc" : "school",
+      "sm" : "secondary-microform",
+      "st" : "statistics",
+      "sw" : "software",
+      "tt" : "audio",
+      "ub" : "translator-journal",
+      "up" : "universal-newspaper",
+      "vi" : "video",
+      "vt" : "filmed-newspaper",
+      "wk" : "webclient-record",
+      "wl" : "weblog",
+      "ws" : "website",
+      "zt" : "newspaper"
+    }
+  },
+  "PersonalName" : {
+    "tags" : [
+      /* preferred name */
+      "100",
+      /* 700 = added entry - personal name */
+      "700"
+    ],
+    "subfields" : {
+      " " : "personalName",
+      "a" : "personalName",
+      "b" : "personalNumeration",
+      "c" : "personalTitle",
+      "d" : "personalDate",
+      "e" : "relatorTerm",
+      "n" : "personalNumber",
+      "0" : "identifier",
+      "4" : "roleTerm",
+      "6" : null,
+      "7" : "unknown",
+      "9" : null
+    }
+  },
+  "CorporateName" : {
+    "tags" : [
+      /* 110 = main entry / corporate name */
+      "110",
+      /* 710 = added entry - corporate name */
+      "710"
+    ],
+    "subfields" : {
+      "a" : "corporateName",
+      "b" : "corporateUnit",
+      "c" : "locationOfMeeting",
+      "d" : "corporateDate",
+      "e" : "relatorTerm",
+      "f" : "dateOfWork",
+      "g" : "corporatePlace",
+      "n" : "corporateNumber",
+      "0" : "identifier",
+      "4" : "roleTerm",
+      "7" : "unknown",
+      "8" : "sequenceNumber",
+      "9" : "formatted"
+    }
+  },
+  "MeetingName" : {
+    "tags" : [
+      "111",
+      /* 711 = added entry - meeting name */
+      "711"
+    ],
+    "subfields": {
+      "a" : "meetingName",
+      "c" : "locationOfMeeting",
+      "d" : "dateOfMeeting",
+      "e" : "subordinateUnit",
+      "f" : "dateOfWork",
+      "g" : "miscellaneousInformation",
+      "j" : "relatorTerm",
+      "k" : "formSubheading",
+      "l" : "languageOfWork",
+      "n" : "numberOfPart",
+      "p" : "nameOfPart",
+      "q" : "nameOfMeetingFollowingJurisdictionName",
+      "t" : "titleofWork",
+      "u" : "affiliation",
+      "0" : "identifier",
+      "4" : "relatorCode",
+      "6" : null,
+      "7" : "unknown",
+      "8" : "sequenceNumber",
+      "9" : "formatted"
+    }
+  },
+  "Title" : {
+    "tags": {
+      /* 130 = heading - uniform title */
+      "130": "UniformTitle",
+      /* 210 = abbreviated title */
+      "210": "AbbreviatedTitle",
+      /* 222 = key title */
+      "222": "KeyTitle",
+      /* 242 = translation of title */
+      "242": "TranslatedTitle",
+      /* 243 = collective uniform title */
+      "243": "CollectiveUniformTitle",
+      /* 245 = title statement */
+      "245": "TitleStatement",
+      /* 246 = varying form of title */
+      "246": "VaryingTitle",
+      /* 247 = former title */
+      "247": "FormerTitle"
     },
-    "PersonalName" : {
-        "tags" : [
-            /* preferred name */
-            "100",
-           /* 700 = added entry - personal name */
-            "700"
-        ],
-        "subfields" : {
-            " " : "personalName",
-            "a" : "personalName",
-            "b" : "personalNumeration",
-            "c" : "personalTitle",
-            "d" : "personalDate",
-            "e" : "relatorTerm",
-            "n" : "personalNumber",
-            "0" : "identifier",
-            "4" : "roleTerm",
-            "7" : "unknown",
-            "9" : null
-        }
+    "FormerTitle": {
+      "a": "title",
+      "b": "titleRemainder",
+      "f": "titleDatesOrSequentialDesignation",
+      "g": "titleInformation",
+      "h": "titleMedium",
+      "n": "titlePartNumber",
+      "p": "titlePartName"
     },
-    "CorporateName" : {
-        "tags" : [
-            /* 110 = main entry / corporate name */
-            "110",
-            /* 710 = added entry - corporate name */
-            "710"
-        ],
-        "subfields" : {
-            "a" : "corporateName",
-            "b" : "corporateUnit",
-            "c" : "locationOfMeeting",
-            "d" : "corporateDate",
-            "e" : "relatorTerm",
-            "f" : "dateOfWork",
-            "g" : "corporatePlace",
-            "n" : "corporateNumber",
-            "0" : "identifier",
-            "4" : "roleTerm",
-            "7" : "unknown",
-            "8" : "sequenceNumber",
-            "9" : "formatted"
-        }
+    "TitleStatement": {
+      "a": "title",
+      "b": "titleRemainder",
+      "c": "titleStatement",
+      "f": "titleInclusiveDates",
+      "g": "titleBulkDates",
+      "h": "titleMedium",
+      "i": "titleParallel",
+      "k": "titleForm",
+      "n": "titlePartNumber",
+      "p": "titlePartName",
+      "s": "titleVersion",
+      "y": "titleLanguageCode",
+      "5": "institution",
+      "6": "linkage"
     },
-    "MeetingName" : {
-        "tags" : [
-            "111",
-            /* 711 = added entry - meeting name */
-            "711"
-        ],
-        "subfields": {
-            "a" : "meetingName",
-            "c" : "locationOfMeeting",
-            "d" : "dateOfMeeting",
-            "e" : "subordinateUnit",
-            "f" : "dateOfWork",
-            "g" : "miscellaneousInformation",
-            "j" : "relatorTerm",
-            "k" : "formSubheading",
-            "l" : "languageOfWork",
-            "n" : "numberOfPart",
-            "p" : "nameOfPart",
-            "q" : "nameOfMeetingFollowingJurisdictionName",
-            "t" : "titleofWork",
-            "u" : "affiliation",
-            "0" : "identifier",
-            "4" : "relatorCode",
-            "6" : "linkage",
-            "7" : "unknown",
-            "8" : "sequenceNumber",
-            "9" : "formatted"
-        }
+    "subfields" : {
+      "a" : "title",
+      "b" : "titleRemainder",
+      "c" : "titleStatement",
+      "f" : "titleInclusiveDates",
+      "g" : "titleBulkDates",
+      "h" : "titleMedium",
+      "i" : "titleParallel",
+      "k" : "titleForm",
+      "n" : "titlePartNumber",
+      "p" : "titlePartName",
+      "s" : "titleVersion",
+      "y" : "titleLanguageCode",
+      "5" : "institution",
+      "6" : null
+    }
+  },
+  "EditionStatement" : {
+    "tags" : [
+      "250"
+    ],
+    "subfields" : {
+      "a" : "edition"
+    }
+  },
+  "PublicationStatement" : {
+    "tags" : [
+      /* 260 = imprint */
+      "260",
+      "264"
+    ],
+    "subfields" : {
+      "a" : "placeOfPublication",
+      "b" : "publisherName",
+      "c" : "dateOfPublication",
+      "e" : "placeOfManufacture",
+      "f" : "manufacturerName",
+      "n" : null /* "[s.n.]" */
+    }
+  },
+  "PhysicalDescription" : {
+    "tags" : {
+      /* 300 = physical description */
+      "300" : "Extent"
     },
-    "Title" : {
-        "tags": {
-            /* 130 = heading - uniform title */
-            "130" : "UniformTitle",
-            /* 210 = abbreviated title */
-            "210" : "AbbreviatedTitle",
-            /* 222 = key title */
-            "222" : "KeyTitle",
-            /* 242 = translation of title */
-            "242" : "TranslatedTitle",
-            /* 245 = title statement */
-            "245" : "TitleStatement",
-            /* 246 = varying form of title */
-            "246" : "VaryingTitle",
-            /* 247 = former title */
-            "247" : "FormerTitle"
-        },
-        "FormerTitle" : {
-            "a" : "titleMain",
-            "b" : "titleRemainder",
-            "f" : "titleDatesOrSequentialDesignation",
-            "g" : "titleInformation",
-            "h" : "titleMedium",
-            "n" : "titlePartNumber",
-            "p" : "titlePartName"
-        },
-        "subfields" : {
-            "a" : "titleMain",
-            "b" : "titleRemainder",
-            "c" : "titleStatement",
-            "f" : "titleInclusiveDates",
-            "g" : "titleBulkDates",
-            "h" : "titleMedium",
-            "i" : "titleParallel",
-            "k" : "titleForm",
-            "n" : "titlePartNumber",
-            "p" : "titlePartName",
-            "s" : "titleVersion",
-            "y" : "titleLanguageCode",
-            "5" : "institution",
-            "6" : "linkage"
-        }
+    "subfields" : {
+      "a" : "value",
+      "b" : "physicalDetails",
+      "c" : "dimensions",
+      "e" : "accompanyingMaterial",
+      "f" : "typeOfUnit",
+      "g" : "sizeOfUnit",
+      "3" : "materialsSpecified",
+      "6" : null,
+      "8" : "sequenceNumber"
+    }
+  },
+  "ContentType": {
+    "tags": [
+      "336"
+    ],
+    "subfields": {
+      "0": "controlNumber",
+      "2": "source",
+      "a": "term",
+      "b": "code"
+    }
+  },
+  "MediaType": {
+    "tags": [
+      "337"
+    ],
+    "subfields": {
+      "0": "controlNumber",
+      "2": "source",
+      "a": "term",
+      "b": "code"
+    }
+  },
+  "CarrierType": {
+    "tags": [
+      "338"
+    ],
+    "subfields": {
+      "0": "controlNumber",
+      "2": "source",
+      "a": "term",
+      "b": "code"
+    }
+  },
+  "Audience": {
+    "tags": [
+      "385"
+    ],
+    "subfields": {
+      "0": "controlNumber",
+      "2": "source",
+      "a": "term",
+      "b": "code"
+    }
+  },
+  "EnumerationAndChronology" : {
+    "tags" : {
+      /* 362 = dates of publication and/or sequential designation */
+      "362" : "DatesOfPublication",
+      /* 363 = normalized date and sequential designation */
+      "363" : "NormalizedDatesOfPublication"
     },
-    "EditionStatement" : {
-        "tags" : [
-        "250"
-        ],
-        "subfields" : {
-            "a" : "edition"
-        }
+    "subfields" : {
+      "a" : "value",
+      "8" : "sequenceNumber"
     },
-    "PublicationStatement" : {
-        "tags" : [
-        /* 260 = imprint */
-        "260",
-          "264"
-        ],
-        "subfields" : {
-            "a" : "placeOfPublication",
-            "b" : "publisherName",
-            "c" : "dateOfPublication",
-            "e" : "placeOfManufacture",
-            "f" : "manufacturerName",
-            "n" : null /* "[s.n.]" */
-        }
+    "DatesOfPublication" : {
+      "a" : "value",
+      "8" : "sequenceNumber"
     },
-    "PhysicalDescription" : {
-        "tags" : {
-            /* 300 = physical description */
-            "300" : "Extent"
-        },
-        "subfields" : {
-            "a" : "value",
-            "b" : "physicalDetails",
-            "c" : "dimensions",
-            "e" : "accompanyingMaterial",
-            "f" : "typeOfUnit",
-            "g" : "sizeOfUnit",
-            "3" : "materialsSpecified",
-            "6" : "linkage",
-            "8" : "sequenceNumber"
-        }
-    },
-    "EnumerationAndChronology" : {
-        "tags" : {
-            /* 362 = dates of publication and/or sequential designation */
-            "362" : "DatesOfPublication",
-            /* 363 = normalized date and sequential designation */
-            "363" : "NormalizedDatesOfPublication"
-        },
-        "subfields" : {
-            "a" : "value",
-            "8" : "sequenceNumber"
-        },
-        "DatesOfPublication" : {
-            "a" : "value",
-            "8" : "sequenceNumber"
-        },
-        "NormalizedDatesOfPublication" : {
-            "a" : "firstLevelOfEnumeration",
-            "b" : "secondLevelOfEnumeration",
-            "i" : "firstLevelOfChronology",
-            "j" : "secondLevelOfChronology",
-            "k" : "thirdLevelOfChronology",
-            "u" : "firstLevelTextualDesignation",
-            "8" : "sequenceNumber"
-        }
+    "NormalizedDatesOfPublication" : {
+      "a" : "firstLevelOfEnumeration",
+      "b" : "secondLevelOfEnumeration",
+      "i" : "firstLevelOfChronology",
+      "j" : "secondLevelOfChronology",
+      "k" : "thirdLevelOfChronology",
+      "u" : "firstLevelTextualDesignation",
+      "8" : "sequenceNumber"
+    }
+  },
+  "SeriesStatement" : {
+    "tags" : {
+      /* 440 old series statement plus added entry, obsolete since 2008 */
+      "440": "SeriesStatement",
+      /* 490 = series statement */
+      "490": "SeriesStatement",
+      /* 810 = series added entry - corporate name */
+      "810": "SeriesCorporateName",
+      /* 830 = series added entry = uniform title */
+      "830": "SeriesUniformTitle"
     },
     "SeriesStatement" : {
-        "tags" : {
-            /* 490 = series statement */
-           "490" : "SeriesStatement",
-            /* 810 = series added entry - corporate name */
-           "810" : "SeriesCorporateName",
-            /* 830 = series added entry = uniform title */
-           "830" : "SeriesUniformTitle"
-        },
-        "SeriesStatement" : {
-            "a" : "value",
-            "v" : "volume",
-            "3" : "materialsSpecified"
-        },
-        "SeriesCorporateName" : {
-            "4" : "relator",
-            "a" : "value",
-            "t" : "title",
-            "v" : "volume",
-            "w" : "controlNumber"
-        },
-        "SeriesUniformTitle" : {
-            "7" : "code",
-            "9" : "formatted",
-            "a" : "value",
-            "v" : "volume",
-            "w" : "controlNumber"
-         }
+      "a" : "value",
+      "v" : "volume",
+      "3" : "materialsSpecified"
     },
-    "Note" : {
-        "tags" : {
-            "500": "Note",
-            /* 501 = with note */
-            "501" : "WithNote",
-            /* 502 = dissertation note */
-            "502" : "DissertationNote",
-            /* 505 = table fo contents */
-            "505" : "TableOfContents",
-            /* 515 = numbering peculiarities note */
-            "515" : "NumberingNote",
-            /* type of computer file or data note */
-            "516" : "ComputerFileNote",
-            /* 520 = summary */
-            "520" : "SummaryNote",
-            /* 530 = additional physical form available */
-            "530" : "AdditionalPhysicalFormNote",
-            /* 533 = production note */
-            "533" : "ProductionNote",
-            /* 538 = system details note */
-            "538" : "SystemDetailsNote",
-            /* 546 = language note */
-            "546" : "LanguageNote",
-            /* 550 = issuing body note */
-            "550" : "IssuingBodyNote",
-            /* 555 = cumulative index/finding aids */
-            "555" : "IndexNote",
-            /* 583 = action note */
-            "583" : "ActionNote",
-            /* 591 = local notes */
-            "591" : "LocalNote"
-        },
-        "subfields" : {
-            "a" : "value"
-        },
-        "ActionNote" : {
-            "a" : "action",
-            "b" : "actionIdentification",
-            "c" : "dateOfAction",
-            "d" : "actionInterval",
-            "e" : "contingencyForAction",
-            "f" : "authorization",
-            "h" : "jurisdiction",
-            "i" : "methodOfAction",
-            "j" : "siteOfAction",
-            "k" : "actionAgent",
-            "l" : "status",
-            "n" : "extent",
-            "o" : "typeOfUnit",
-            "u" : "uniformResourceIdentifier",
-            "x" : "nonpublicNote",
-            "z" : "publicNote",
-            "2" : "sourceOfTerm",
-            "3" : "materialsSpecified",
-            "5" : "institution",
-            "6" : "linkage",
-            "8" : "sequenceNumber"
-        },
-        "ProductionNote" : {
-            "a" : "typeOfReproduction",
-            "b" : "placeOfReproduction",
-            "c" : "agencyResponsibleForReproduction",
-            "d" : "dateOfReproduction",
-            "e" : "physicalDescriptionOfReproduction",
-            "f" : "seriesStatementOfReproduction",
-            "m" : "sequentialDesignation",
-            "n" : "noteAboutReproduction",
-            "3" : "materialsSpecified",
-            "5" : "institution",
-            "7" : "elementsOfReproduction",
-                /* 0 - Type of date/Publication status
-                   1-4 - Date 1
-                   5-8 - Date 2
-                   9-11 - Place of publication, production, or execution
-                   12 - Frequency
-                   13 - Regularity
-                   14 - Form of item */
-            "6" : "linkage",
-            "8" : "sequenceNumber"
-        }
+    "SeriesCorporateName" : {
+      "4" : "relator",
+      "a" : "value",
+      "t" : "title",
+      "v" : "volume",
+      "w" : "controlNumber"
     },
-    "Subject" : {
-        "tags" : {
-            /* 600 = subject added entry - personal name */
-            "600" : "subjectPersonalName",
-            /* 610 = subject added entry - corporate name */
-            "610" : "subjectCorporateName",
-            /* 611 = subject added entry - meeting name */
-            "611" : "meetingName",
-            /* 630 = subject added entry = uniform title */
-            "630" : "uniformTitleName",
-            /* 648 = subject added entry - chronological term */
-            "648" : "chronologicalName",
-            /* 650 = subject added entry - topical term */
-            "650" : "topicalName",
-            /* 651 = subject added entry - geographical name */
-            "651" : "geoName",
-            "653" : "geoName",
-            /* 655 = index term - genre/form */
-            "655" : "genreFormName",
-            /* 730 = added entry - uniform title */
-            "730" : "uniformTitleName",
-            "731" : "uniformTitleName",
-            /* 751 = added entry - geographic name */
-            "751" : "geoName"
-        },
-        "subfields" : {
-            "a" : "value",
-            "b" : "numeration",
-            "c" : "titles",
-            "d" : "dates",
-            "e" : "relatorTerm",
-            "f" : "dateOfaWork",
-            "g" : "miscInfo",
-            "h" : "medium",
-            "j" : "attribution",
-            "k" : "formSubheading",
-            "l" : "languageOfaWork",
-            "m" : "mediumOfPerformance",
-            "n" : "number",
-            "o" : "statement",
-            "p" : "part",
-            "q" : "fullForm",
-            "r" : "key",
-            "s" : "version",
-            "t" : "titleOfAWork",
-            "u" : "affiliation",
-            "v" : "formSubdivision",
-            "x" : "generalSubdivision",
-            "y" : "chronologicalSubdivision",
-            "z" : "geographicSubdivision",
-            "0" : "identifier",
-            "2" : "source",
-            "3" : "material",
-            "4" : "relatorCode",
-            "6" : "linkage",
-            "8" : "sequenceNumber"
-        }
-    },
-    "LinkingEntry" : {
-        "tags" : {
-            /* 760 = main series entry */
-            "760" : "MainSeriesEntry",
-            /* 770 = supplement/special issue entry */
-            "770" : "SupplementSpecialIssueEntry",
-            /* 772 = supplement parent entry */
-            "772" : "SupplementParentEntry",
-            /* 775 = other edition entry */
-            "775" : "OtherEditionEntry",
-            /* 787 = other relationship entry */
-            "787" : "OtherRelationshipEntry"
-        },
-        "subfields" : {
-            "i" : "relation",
-            "a" : "author",
-            "t" : "title",
-            "w" : "identifier"
-        },
-        "OtherRelationshipEntry" : {
-            "a" : "mainEntryHeading",
-            "A" : "mainEntryHeading",
-            "b" : "edition",
-            "c" : "qualifyingInformation",
-            "d" : "publisherStatement",
-            "D" : "publisherStatement",
-            "g" : "relatedParts",
-            "h" : "physicalDescription",
-            "i" : "relationshipInformation",
-            "k" : "seriesDataForRelatedItem",
-            "m" : "materialSpecificDetails",
-            "n" : "note",
-            "o" : "otherItemIdentifier",
-            "r" : "reportNumber",
-            "s" : "uniformTitle",
-            "t" : "title",
-            "u" : "standardTechnicalReportNumber",
-            "w" : "identifier",
-            "x" : "issn",
-            "y" : "coden",
-            "z" : "isbn",
-            "4" : "code",
-            "6" : "linkage",
-            "7" : "controlfield",
-                /* 0 - Type of main entry heading
-                  1 - Form of name
-                  2 - Type of record
-                  3 - Bibliographic level */
-            "8" : "sequenceNumber"
-        }
-    },
-    "HostItemEntry" : {
-        "tags" : [
-            "773"
-        ],
-        "subfields" : {
-            "g" : "relatedParts",
-            "w" : "identifier",
-            "i" : "relationshipInformation",
-            "t" : "title"
-        }
-    },
-    "PrecedingEntry" : {
-        "tags" : [
-        /* 780 = preceeding entry */
-        "780"
-        ],
-        "subfields" : {
-            "i" : "relation",
-            "a" : "author",
-            "t" : "title",
-            "w" : "identifier"
-        }
-    },
-    "SucceedingEntry" : {
-        "tags" : [
-        /* 785 = succeeding entry */
-        "785"
-        ],
-        "subfields" : {
-            "i" : "relation",
-            "a" : "author",
-            "t" : "title",
-            "w" : "identifier"
-        }
-    },
-    "ElectronicLocationAndAccess" : {
-        "tags" : [
-        /* 856 = electronic location and access */
-        "856"
-        ],
-        "subfields" : {
-            "2" : "accessmode",
-            "3" : "relatedto",
-            "6" : "linkage",
-            "8" : "pos",
-            "9" : "prefix",
-            "a" : "hostname",
-            "b" : "accessnumber",
-            "c" : "compression",
-            "d" : "path",
-            "f" : "electronicname",
-            "h" : "processor",
-            "i" : "instruction",
-            "j" : "bitspersecond",
-            "k" : "password",
-            "l" : "logon",
-            "m" : "contact",
-            "n" : "locationofhost",
-            "o" : "operatingsystem",
-            "p" : "port",
-            "q" : "format",
-            "r" : "settings",
-            "s" : "size",
-            "t" : "terminal",
-            "u" : "uri",
-            "v" : "hoursaccess",
-            "w" : "controlnumber",
-            "x" : "nonpublicnote",
-            "y" : "label",
-            "z" : "publicnote"
-        }
-    },
-    "AlternateGraphicRepresentation" : {
-        "tags" : [
-        "880"
-        ]
-    },
-    "Ignore" : {
-        "tags" : [
-        /*  Control Number Identifier */
-        "003",
-        /* Date and Time of Latest Transaction */
-        "005",
-        /*Fixed-Length Data Elements - Additional Material Characteristics  */
-        "006",
-        /* terminal display? */
-        "012",
-        /* 040 = cataloging source */
-        "040",
-        /* 043 = geographic area */
-        "043",
-            /* 088 = ???? */
-        "088",
-        /* ??? */
-        "200",
-        /* 255 = cartographic mathematical data */
-        "255",
-        /* ? */
-        "259",
-        /* 365 = trade price */
-        "365",
-        /* RSWK */
-        "689",
-        /* ??? */
-        "801",
-        /* 882 = replacement record information */
-        "882",
-        /* 889 = Angaben zum umgelenkten Datensatz */
-        "889",
-        /* ??? */
-        "925",
-        /* 930 = Unterreihenangabe in strukturierter Form
-          $a Titel der Unterreihe
-          $d Zusatz zum Titel
-          $e Körperschaftliche Ergänzung
-          $f Parallelsachtitel
-          $l Reihenbezeichnung/Zählung
-          $h Verfasserangabe
-          $n Allgemeine Materialbenennung
-        */
-        "930",
-        /* 931 = masch. Änderungsverf.
-          $a Gravkorr-Datum
-          $b Gravkorr-Kennzeichen
-        */
-        "931",
-        /* 932 = OLC Ausschnittskennung */
-        "932",
-        "004",
-        "092",
-        "093",
-        "094",
-        "541",
-        "561",
-        "843",
-        "852",
-        "859",
-        "866",
-        "869",
-            "920"
-        ]
+    "SeriesUniformTitle" : {
+      "7" : "code",
+      "9" : "formatted",
+      "a" : "value",
+      "v" : "volume",
+      "w" : "controlNumber"
     }
+  },
+  "Note" : {
+    "tags" : {
+      "500": "Note",
+      /* 501 = with note */
+      "501" : "WithNote",
+      /* 502 = dissertation note */
+      "502" : "DissertationNote",
+      /* 515 = numbering peculiarities note */
+      "515" : "NumberingNote",
+      /* type of computer file or data note */
+      "516" : "ComputerFileNote",
+      /* 520 = summary */
+      "520" : "SummaryNote",
+      /* 530 = additional physical form available */
+      "530" : "AdditionalPhysicalFormNote",
+      /* 533 = production note */
+      "533" : "ProductionNote",
+      /* 538 = system details note */
+      "538" : "SystemDetailsNote",
+      /* 546 = language note */
+      "546" : "LanguageNote",
+      /* 550 = issuing body note */
+      "550" : "IssuingBodyNote",
+      /* 555 = cumulative index/finding aids */
+      "555" : "IndexNote",
+      /* 583 = action note */
+      "583" : "ActionNote",
+      /* 591 = local notes */
+      "591" : "LocalNote"
+    },
+    "subfields" : {
+      "a" : "value"
+    },
+    "ActionNote" : {
+      "a" : "action",
+      "b" : "actionIdentification",
+      "c" : "dateOfAction",
+      "d" : "actionInterval",
+      "e" : "contingencyForAction",
+      "f" : "authorization",
+      "h" : "jurisdiction",
+      "i" : "methodOfAction",
+      "j" : "siteOfAction",
+      "k" : "actionAgent",
+      "l" : "status",
+      "n" : "extent",
+      "o" : "typeOfUnit",
+      "u" : "uniformResourceIdentifier",
+      "x" : "nonpublicNote",
+      "z" : "publicNote",
+      "2" : "sourceOfTerm",
+      "3" : "materialsSpecified",
+      "5" : "institution",
+      "6" : null,
+      "8" : "sequenceNumber"
+    },
+    "ProductionNote" : {
+      "a" : "typeOfReproduction",
+      "b" : "placeOfReproduction",
+      "c" : "agencyResponsibleForReproduction",
+      "d" : "dateOfReproduction",
+      "e" : "physicalDescriptionOfReproduction",
+      "f" : "seriesStatementOfReproduction",
+      "m" : "sequentialDesignation",
+      "n" : "noteAboutReproduction",
+      "3" : "materialsSpecified",
+      "5" : "institution",
+      "7" : "elementsOfReproduction",
+      /* 0 - Type of date/Publication status
+         1-4 - Date 1
+         5-8 - Date 2
+         9-11 - Place of publication, production, or execution
+         12 - Frequency
+         13 - Regularity
+         14 - Form of item */
+      "6" : null,
+      "8" : "sequenceNumber"
+    }
+  },
+  "Subject" : {
+    "tags" : {
+      /* 600 = subject added entry - personal name */
+      "600" : "SubjectPersonalName",
+      /* 610 = subject added entry - corporate name */
+      "610" : "SubjectCorporateName",
+      /* 611 = subject added entry - meeting name */
+      "611" : "SubjectMeetingName",
+      /* 630 = subject added entry = uniform title */
+      "630" : "SubjectUniformTitleName",
+      /* 648 = subject added entry - chronological term */
+      "648" : "SubjectChronologicalName",
+      /* 650 = subject added entry - topical term */
+      "650" : "SubjectTopicalName",
+      /* 651 = subject added entry - geographical name */
+      "651" : "SubjectGeoName",
+      "653" : "SubjectGeoName",
+      /* 655 = index term - genre/form */
+      "655" : "SubjectGenreFormName",
+      /* 730 = added entry - uniform title */
+      "730" : "SubjectUniformTitleName",
+      "731" : "SubjectUniformTitleName",
+      /* 751 = added entry - geographic name */
+      "751" : "SubjectGeoName"
+    },
+    "subfields" : {
+      "a" : "value",
+      "b" : "numeration",
+      "c" : "titles",
+      "d" : "dates",
+      "e" : "relatorTerm",
+      "f" : "dateOfaWork",
+      "g" : "miscInfo",
+      "h" : "medium",
+      "j" : "attribution",
+      "k" : "formSubheading",
+      "l" : "languageOfaWork",
+      "m" : "mediumOfPerformance",
+      "n" : "number",
+      "o" : "statement",
+      "p" : "part",
+      "q" : "fullForm",
+      "r" : "key",
+      "s" : "version",
+      "t" : "titleOfAWork",
+      "u" : "affiliation",
+      "v" : "formSubdivision",
+      "x" : "generalSubdivision",
+      "y" : "chronologicalSubdivision",
+      "z" : "geographicSubdivision",
+      "0" : "identifier",
+      "2" : "source",
+      "3" : "material",
+      "4" : "relatorCode",
+      "6" : null,
+      "8" : "sequenceNumber"
+    }
+  },
+  "LinkingEntry" : {
+    "tags" : {
+      /* 760 = main series entry */
+      "760" : "MainSeriesEntry",
+      /* 770 = supplement/special issue entry */
+      "770" : "SupplementSpecialIssueEntry",
+      /* 772 = supplement parent entry */
+      "772" : "SupplementParentEntry",
+      /* 775 = other edition entry */
+      "775" : "OtherEditionEntry",
+      /* 787 = other relationship entry */
+      "787" : "OtherRelationshipEntry"
+    },
+    "subfields" : {
+      "i" : "relation",
+      "a" : "author",
+      "t" : "title",
+      "w" : "identifier"
+    },
+    "OtherRelationshipEntry" : {
+      "a" : "mainEntryHeading",
+      "A" : "mainEntryHeading",
+      "b" : "edition",
+      "c" : "qualifyingInformation",
+      "d" : "publisherStatement",
+      "D" : "publisherStatement",
+      "g" : "relatedParts",
+      "h" : "physicalDescription",
+      "i" : "relationshipInformation",
+      "k" : "seriesDataForRelatedItem",
+      "m" : "materialSpecificDetails",
+      "n" : "note",
+      "o" : "otherItemIdentifier",
+      "r" : "reportNumber",
+      "s" : "uniformTitle",
+      "t" : "title",
+      "u" : "standardTechnicalReportNumber",
+      "w" : "identifier",
+      "x" : "issn",
+      "y" : "coden",
+      "z" : "isbn",
+      "4" : "code",
+      "6" : null,
+      "7" : "controlfield",
+      /* 0 - Type of main entry heading
+        1 - Form of name
+        2 - Type of record
+        3 - Bibliographic level */
+      "8" : "sequenceNumber"
+    }
+  },
+  "HostItemEntry" : {
+    "tags" : [
+      "773"
+    ],
+    "subfields" : {
+      "g" : "relatedParts",
+      "w" : "identifier",
+      "i" : "relationshipInformation",
+      "t" : "title"
+    }
+  },
+  "PrecedingEntry" : {
+    "tags" : [
+      /* 780 = preceeding entry */
+      "780"
+    ],
+    "subfields" : {
+      "i" : "relation",
+      "a" : "author",
+      "t" : "title",
+      "w" : "identifier"
+    }
+  },
+  "SucceedingEntry" : {
+    "tags" : [
+      /* 785 = succeeding entry */
+      "785"
+    ],
+    "subfields" : {
+      "i" : "relation",
+      "a" : "author",
+      "t" : "title",
+      "w" : "identifier"
+    }
+  },
+  "ElectronicLocationAndAccess" : {
+    "tags" : [
+      /* 856 = electronic location and access */
+      "856"
+    ],
+    "subfields" : {
+      "2" : "accessmode",
+      "3" : "relatedto",
+      "6" : null,
+      "8" : "pos",
+      "9" : "prefix",
+      "a" : "hostname",
+      "b" : "accessnumber",
+      "c" : "compression",
+      "d" : "path",
+      "f" : "electronicname",
+      "h" : "processor",
+      "i" : "instruction",
+      "j" : "bitspersecond",
+      "k" : "password",
+      "l" : "logon",
+      "m" : "contact",
+      "n" : "locationofhost",
+      "o" : "operatingsystem",
+      "p" : "port",
+      "q" : "format",
+      "r" : "settings",
+      "s" : "size",
+      "t" : "terminal",
+      "u" : "uri",
+      "v" : "hoursaccess",
+      "w" : "controlnumber",
+      "x" : "nonpublicnote",
+      "y" : "label",
+      "z" : "publicnote"
+    }
+  },
+  "AlternateGraphicRepresentation" : {
+    "tags" : [
+      "880"
+    ],
+    "subfields" : {
+      "6" : null
+    }
+  },
+  "FormattedContentsNote" : {
+    "tags" : [
+      "505"
+    ],
+    "subfields" : {
+      "6": null,
+      "a": "note",
+      "g": "miscellaneous",
+      "r": "statementOfResponsibility",
+      "t": "title"
+    }
+  },
+  "Ignore" : {
+    "tags" : [
+      /*  Control Number Identifier */
+      "003",
+      /* Date and Time of Latest Transaction */
+      "005",
+      /*Fixed-Length Data Elements - Additional Material Characteristics  */
+      "006",
+      /* terminal display? */
+      "012",
+      /* 040 = cataloging source */
+      "040",
+      /* 043 = geographic area */
+      "043",
+      /* 088 = ???? */
+      "088",
+      /* ??? */
+      "200",
+      /* 255 = cartographic mathematical data */
+      "255",
+      /* ? */
+      "259",
+      /* 365 = trade price */
+      "365",
+      /* RSWK */
+      "689",
+      /* ??? */
+      "801",
+      /* 882 = replacement record information */
+      "882",
+      /* 889 = Angaben zum umgelenkten Datensatz */
+      "889",
+      /* ??? */
+      "925",
+      /* 930 = Unterreihenangabe in strukturierter Form
+        $a Titel der Unterreihe
+        $d Zusatz zum Titel
+        $e Körperschaftliche Ergänzung
+        $f Parallelsachtitel
+        $l Reihenbezeichnung/Zählung
+        $h Verfasserangabe
+        $n Allgemeine Materialbenennung
+      */
+      "930",
+      /* 931 = masch. Änderungsverf.
+        $a Gravkorr-Datum
+        $b Gravkorr-Kennzeichen
+      */
+      "931",
+      /* 932 = OLC Ausschnittskennung */
+      "932",
+      "004",
+      "092",
+      "093",
+      "094",
+      "541",
+      "561",
+      "843",
+      "852",
+      "859",
+      "866",
+      "869",
+      "920"
+    ]
+  }
 }

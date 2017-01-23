@@ -33,8 +33,8 @@ public class MabTest {
         try (MyBuilder builder = new MyBuilder("org.xbib.catalog.entities.mab",
                 getClass().getResource("titel.json"))) {
             // update these values if you extend MAB specification
-            assertEquals(735, builder.getEntitySpecification().getMap().size());
-            assertEquals(96, builder.getEntitySpecification().getEntities().size());
+            assertEquals(752, builder.getEntitySpecification().getMap().size());
+            assertEquals(99, builder.getEntitySpecification().getEntities().size());
         }
     }
 
@@ -70,19 +70,15 @@ public class MabTest {
         }
 
         @Override
-        protected void afterFinishState(CatalogEntityWorkerState state) {
-            try {
-                RdfXContentParams params = new RdfXContentParams();
-                RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
-                builder.receive(state.getResource());
-                String result = params.getGenerator().get();
-                InputStream inputStream =
-                        getClass().getResource("zdb-mab-" + state.getRecordIdentifier() + ".json").openStream();
-                assertStream(state.getRecordIdentifier(), inputStream,
-                        new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8)));
-            } catch (IOException e) {
-                logger.log(Level.SEVERE, e.getMessage(), e);
-            }
+        protected void afterFinishState(CatalogEntityWorkerState state) throws IOException {
+            RdfXContentParams params = new RdfXContentParams();
+            RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
+            builder.receive(state.getResource());
+            String result = params.getGenerator().get();
+            InputStream inputStream =
+                    getClass().getResource("zdb-mab-" + state.getRecordIdentifier() + ".json").openStream();
+            assertStream(state.getRecordIdentifier(), inputStream,
+                    new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8)));
         }
     }
 }

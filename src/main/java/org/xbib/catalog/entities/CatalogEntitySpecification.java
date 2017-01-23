@@ -3,6 +3,7 @@ package org.xbib.catalog.entities;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.xbib.marc.MarcField;
+import org.xbib.marc.label.RecordLabel;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +23,9 @@ public class CatalogEntitySpecification {
 
     private static final Logger logger = Logger.getLogger(CatalogEntitySpecification.class.getName());
 
-    private static final long serialVersionUID = 905552856037880666L;
+    static final String LEADER = "_LEADER";
+
+    //private static final long serialVersionUID = 905552856037880666L;
 
     private final Map<String, CatalogEntity> map;
 
@@ -33,24 +36,30 @@ public class CatalogEntitySpecification {
     private final String packageName;
 
     public CatalogEntitySpecification() throws IOException {
-        this(null, new HashMap<>(), new HashMap<>(), "org.xbib.catalog.entities.marc.bib");
+        this((InputStream) null, new HashMap<>(), new HashMap<>(), "org.xbib.catalog.entities.marc.bib");
     }
 
     @SuppressWarnings("unchecked")
     public CatalogEntitySpecification(URL url, Map<String, CatalogEntity> entities, Map<String, Object> params,
                                       String packageName) throws IOException {
+        this(url.openStream(), entities, params, packageName);
+    }
+
+    @SuppressWarnings("unchecked")
+    public CatalogEntitySpecification(InputStream inputStream, Map<String, CatalogEntity> entities, Map<String, Object> params,
+                String packageName) throws IOException {
         this.entities = entities;
         this.params = params;
         this.packageName = packageName;
         this.map = new HashMap<>();
-        InputStream inputStream = url != null ? url.openStream() : null;
-        Map<String, Map<String, Object>> defs = new HashMap<>();
         if (inputStream != null) {
-            defs = new ObjectMapper().configure(JsonParser.Feature.ALLOW_COMMENTS, true).readValue(inputStream, Map.class);
-            inputStream.close();
+            Map<String, Map<String, Object>> defs =
+                    new ObjectMapper().configure(JsonParser.Feature.ALLOW_COMMENTS, true).readValue(inputStream, Map.class);
+            if (defs.isEmpty()) {
+                throw new IllegalArgumentException("no spec given, this will not work at all");
+            }
+            init(defs, packageName);
         }
-
-        init(defs, packageName);
     }
 
     public Map<String, CatalogEntity> getMap() {
@@ -131,6 +140,10 @@ public class CatalogEntitySpecification {
 
     public CatalogEntity retrieve(MarcField marcField) {
         return retrieve(marcField.toTagKey());
+    }
+
+    public CatalogEntity retrieve(RecordLabel recordLabel) {
+        return map.get(LEADER);
     }
 
     public CatalogEntity retrieve(String key) {

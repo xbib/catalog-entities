@@ -26,6 +26,7 @@ apply plugin: "jacoco"
 apply plugin: 'org.xbib.gradle.plugin.asciidoctor'
 
 configurations {
+    asciidoclet
     wagon
 }
 
@@ -40,6 +41,7 @@ dependencies {
     testCompile 'org.apache.logging.log4j:log4j-core:2.7'
     testCompile 'org.apache.logging.log4j:log4j-jul:2.7'
     testCompile "org.xbib:bibliographic-character-sets:1.0.0"
+    asciidoclet 'org.asciidoctor:asciidoclet:1.5.4'
     wagon 'org.apache.maven.wagon:wagon-ssh-external:2.10'
 }
 
@@ -72,6 +74,12 @@ asciidoctor {
 }
 
 javadoc {
+    options.docletpath = configurations.asciidoclet.files.asType(List)
+    options.doclet = 'org.asciidoctor.Asciidoclet'
+    options.overview = "src/docs/asciidoclet/overview.adoc"
+    options.addStringOption "-base-dir", "${projectDir}"
+    options.addStringOption "-attribute",
+            "name=${project.name},version=${project.version},title-link=https://github.com/xbib/${project.name}"
     options.destinationDirectory(file("${projectDir}/docs/javadoc"))
     configure(options) {
         noTimestamp = true
