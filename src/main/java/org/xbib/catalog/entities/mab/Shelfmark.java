@@ -8,6 +8,8 @@ import org.xbib.content.resource.IRI;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,8 +34,8 @@ public class Shelfmark extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) {
         CatalogEntityWorkerState state = worker.getWorkerState();
         if ("Shelfmark".equals(predicate) && prefix != null && !prefix.isEmpty()) {
             resource.add("identifier", prefix);
@@ -42,6 +44,6 @@ public class Shelfmark extends CatalogEntity {
                     .curie("uid:" + state.getRecordIdentifier() + "/" + state.getISIL() + "/" + value)
                     .build());
         }
-        return value;
+        return Collections.singletonList(value);
     }
 }

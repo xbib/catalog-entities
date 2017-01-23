@@ -4,6 +4,8 @@ import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.content.rdf.Resource;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,8 +18,8 @@ public class CustomIdentifier extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) {
         if ("IdentifierZDB".equals(predicate) && "value".equals(property)) {
             resource.add("identifierZDB", value.replaceAll("\\-", "").toLowerCase());
             return null;
@@ -27,6 +29,6 @@ public class CustomIdentifier extends CatalogEntity {
                 return null;
             }
         }
-        return value;
+        return Collections.singletonList(value);
     }
 }

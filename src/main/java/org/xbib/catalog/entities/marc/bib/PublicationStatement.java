@@ -5,6 +5,8 @@ import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.catalog.entities.matching.endeavor.AuthoredWork;
 import org.xbib.content.rdf.Resource;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,12 +19,12 @@ public class PublicationStatement extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) {
         if ("dateOfPublication".equals(property)) {
             AuthoredWork authoredWork = worker.getWorkerState().getAuthoredWorkKey();
             authoredWork.year(value);
         }
-        return value;
+        return Collections.singletonList(value);
     }
 }

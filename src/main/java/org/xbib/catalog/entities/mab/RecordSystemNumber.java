@@ -6,6 +6,8 @@ import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,9 +38,9 @@ public class RecordSystemNumber extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) {
         resource.add("systemNumber", prefix + value);
-        return value;
+        return Collections.singletonList(value);
     }
 }

@@ -95,8 +95,8 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         this.settings = settings;
         this.unmapped = Collections.synchronizedSet(new TreeSet<>());
         this.mapped = Collections.synchronizedMap(new TreeMap<>());
-        this.checksum = new AtomicLong();
         this.invalid = Collections.synchronizedSet(new TreeSet<>());
+        this.checksum = new AtomicLong();
         this.isMapped = settings.containsSetting("elements");
         if (isMapped) {
             String packageName = settings.get("package");

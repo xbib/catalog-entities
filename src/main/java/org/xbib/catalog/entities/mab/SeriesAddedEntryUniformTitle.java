@@ -2,8 +2,11 @@ package org.xbib.catalog.entities.mab;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
+import org.xbib.catalog.entities.matching.title.RAK;
 import org.xbib.content.rdf.Resource;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,22 +28,17 @@ public class SeriesAddedEntryUniformTitle extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) {
         if ("title".equals(property)) {
-            resource.add("title", value
-                    //.replace('\u0098', '\u00ac')
-                    //.replace('\u009c', '\u00ac')
-                    .replaceAll("<<(.*?)>>", "¬$1¬")
-                    .replaceAll("<(.*?)>", "[$1]")
-                    .replaceAll("¬(.*?)¬", "$1"));
+            resource.add("title", RAK.clean(value));
             return null;
         }
         if ("designation".equals(property)) {
             resource.add("designation", prefix + value);
             return null;
         }
-        return value;
+        return Collections.singletonList(value);
     }
 
 }

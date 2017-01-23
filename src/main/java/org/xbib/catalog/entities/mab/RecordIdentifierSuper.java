@@ -4,6 +4,8 @@ import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.content.rdf.Resource;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,13 +27,13 @@ public class RecordIdentifierSuper extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) {
         if ("RecordIdentifierSuper".equals(predicate)) {
             // trim important for MAB 010 having an indicator which is not possible in ISO 2709
             resource.add("recordIdentifierSuper", prefix + value.trim());
             return null;
         }
-        return value;
+        return Collections.singletonList(value);
     }
 }

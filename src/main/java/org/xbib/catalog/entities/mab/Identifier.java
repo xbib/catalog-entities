@@ -4,6 +4,8 @@ import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.content.rdf.Resource;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,8 +18,8 @@ public class Identifier extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String string) {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String string) {
         String value = string;
         if ("IdentifierZDB".equals(predicate) && "identifierZDB".equals(property)) {
             if (value.startsWith("(DE-599)")) {
@@ -34,6 +36,6 @@ public class Identifier extends CatalogEntity {
                 return null;
             }
         }
-        return value;
+        return Collections.singletonList(value);
     }
 }

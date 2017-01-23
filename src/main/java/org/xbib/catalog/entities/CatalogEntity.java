@@ -5,6 +5,8 @@ import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,19 +39,19 @@ public class CatalogEntity {
     }
 
     /**
-     * Transform value.
+     * Transform or split value.
      *
      * @param worker            the worker
      * @param resourcePredicate the resource predicate
      * @param resource          the resource
      * @param property          the property
      * @param value             the value
-     * @return the transformed value
+     * @return the transformed value(s) as a list
      * @throws IOException if transformation fails
      */
-    public String transform(CatalogEntityWorker worker, String resourcePredicate,
-                            Resource resource, String property, String value) throws IOException {
-        return value;
+    public List<String> transform(CatalogEntityWorker worker, String resourcePredicate,
+                                  Resource resource, String property, String value) throws IOException {
+        return Collections.singletonList(value);
     }
 
     @SuppressWarnings("unchecked")

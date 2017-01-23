@@ -150,13 +150,13 @@ extends <a href="../../../../../../../org/xbib/catalog/entities/CatalogEntity.ht
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colFirst"><code>java.util.List&lt;java.lang.String&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../org/xbib/catalog/entities/marc/zdb/bib/ClassificationNumber.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-org.xbib.content.rdf.Resource-java.lang.String-java.lang.String-">transform</a></span>(<a href="../../../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
          java.lang.String&nbsp;predicate,
          org.xbib.content.rdf.Resource&nbsp;resource,
          java.lang.String&nbsp;property,
          java.lang.String&nbsp;value)</code>
-<div class="block">Transform value.</div>
+<div class="block">Transform or split value.</div>
 </td>
 </tr>
 </table>
@@ -211,14 +211,14 @@ extends <a href="../../../../../../../org/xbib/catalog/entities/CatalogEntity.ht
 <ul class="blockListLast">
 <li class="blockList">
 <h4>transform</h4>
-<pre>public&nbsp;java.lang.String&nbsp;transform(<a href="../../../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
-                                  java.lang.String&nbsp;predicate,
-                                  org.xbib.content.rdf.Resource&nbsp;resource,
-                                  java.lang.String&nbsp;property,
-                                  java.lang.String&nbsp;value)
-                           throws java.io.IOException</pre>
+<pre>public&nbsp;java.util.List&lt;java.lang.String&gt;&nbsp;transform(<a href="../../../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
+                                                  java.lang.String&nbsp;predicate,
+                                                  org.xbib.content.rdf.Resource&nbsp;resource,
+                                                  java.lang.String&nbsp;property,
+                                                  java.lang.String&nbsp;value)
+                                           throws java.io.IOException</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-org.xbib.content.rdf.Resource-java.lang.String-java.lang.String-">CatalogEntity</a></code></span></div>
-<div class="block"><p>Transform value.</p></div>
+<div class="block"><p>Transform or split value.</p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-org.xbib.content.rdf.Resource-java.lang.String-java.lang.String-">transform</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a></code></dd>
@@ -229,7 +229,7 @@ extends <a href="../../../../../../../org/xbib/catalog/entities/CatalogEntity.ht
 <dd><code>property</code> - the property</dd>
 <dd><code>value</code> - the value</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the transformed value</dd>
+<dd>the transformed value(s) as a list</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - if transformation fails</dd>
 </dl>

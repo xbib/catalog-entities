@@ -150,7 +150,7 @@ extends <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html" ti
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colFirst"><code>java.util.List&lt;java.lang.String&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/xbib/catalog/entities/mab/CorporateBody.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-org.xbib.content.rdf.Resource-java.lang.String-java.lang.String-">transform</a></span>(<a href="../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
          java.lang.String&nbsp;predicate,
          org.xbib.content.rdf.Resource&nbsp;resource,
@@ -211,11 +211,11 @@ extends <a href="../../../../../org/xbib/catalog/entities/CatalogEntity.html" ti
 <ul class="blockListLast">
 <li class="blockList">
 <h4>transform</h4>
-<pre>public&nbsp;java.lang.String&nbsp;transform(<a href="../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
-                                  java.lang.String&nbsp;predicate,
-                                  org.xbib.content.rdf.Resource&nbsp;resource,
-                                  java.lang.String&nbsp;property,
-                                  java.lang.String&nbsp;value)</pre>
+<pre>public&nbsp;java.util.List&lt;java.lang.String&gt;&nbsp;transform(<a href="../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
+                                                  java.lang.String&nbsp;predicate,
+                                                  org.xbib.content.rdf.Resource&nbsp;resource,
+                                                  java.lang.String&nbsp;property,
+                                                  java.lang.String&nbsp;value)</pre>
 <div class="block"><p>Documentation.
 &lt;code&gt;
 e = Name Konferenz
@@ -251,7 +251,7 @@ n = Zählung
 <dd><code>property</code> - the property</dd>
 <dd><code>value</code> - the value</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the transformed value</dd>
+<dd>the transformed value(s) as a list</dd>
 </dl>
 </li>
 </ul>

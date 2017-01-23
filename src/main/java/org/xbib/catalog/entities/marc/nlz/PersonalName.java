@@ -6,6 +6,8 @@ import org.xbib.content.rdf.Resource;
 import org.xbib.content.resource.IRI;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,8 +24,9 @@ public class PersonalName extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String resourcePredicate, Resource resource, String property, String value) throws IOException {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String resourcePredicate, Resource resource, String property, String value)
+            throws IOException {
         Resource r = worker.getWorkerState().getResource();
         if ("personalName".equals(property)) {
             String name = capitalize(value.toLowerCase().substring(0, value.length() - 1), " -");
@@ -32,7 +35,7 @@ public class PersonalName extends CatalogEntity {
                     .add(FOAF_NAME, name);
             worker.getWorkerState().getAuthoredWorkKey().authorName(name);
         }
-        return value;
+        return Collections.singletonList(value);
     }
 
     private String capitalize(final String str, String delimiters) {

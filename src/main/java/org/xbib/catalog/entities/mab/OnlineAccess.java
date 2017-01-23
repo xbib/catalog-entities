@@ -13,6 +13,8 @@ import org.xbib.content.resource.IRI;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,11 +37,8 @@ public class OnlineAccess extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
-        if (value == null) {
-            return null;
-        }
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) {
         CatalogEntityWorkerState state = worker.getWorkerState();
         String isil = value;
         if ("uri".equals(property)) {
@@ -77,6 +76,6 @@ public class OnlineAccess extends CatalogEntity {
                 }
             }
         }
-        return isil;
+        return Collections.singletonList(isil);
     }
 }

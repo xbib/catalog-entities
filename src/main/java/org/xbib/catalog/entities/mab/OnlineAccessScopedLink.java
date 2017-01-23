@@ -12,6 +12,8 @@ import org.xbib.content.resource.IRI;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,11 +42,8 @@ public class OnlineAccessScopedLink extends OnlineAccess {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
-        if (value == null) {
-            return null;
-        }
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) {
         CatalogEntityWorkerState state = worker.getWorkerState();
         if ("url".equals(property)) {
             // create synthetic local record identifier
@@ -72,8 +71,8 @@ public class OnlineAccessScopedLink extends OnlineAccess {
                     }
                 }
             }
-            return isil;
+            return Collections.singletonList(isil);
         }
-        return value;
+        return Collections.singletonList(value);
     }
 }

@@ -7,7 +7,9 @@ import org.xbib.content.resource.IRI;
 import org.xbib.content.resource.Node;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -64,8 +66,9 @@ public class HostItemEntry extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String resourcePredicate, Resource resource, String property, String value) throws IOException {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String resourcePredicate, Resource resource, String property, String value)
+            throws IOException {
         Resource r = worker.getWorkerState().getResource();
         switch (property) {
             case "relatedParts": {
@@ -160,7 +163,7 @@ public class HostItemEntry extends CatalogEntity {
             default:
                 break;
         }
-        return value;
+        return Collections.singletonList(value);
     }
 
 }

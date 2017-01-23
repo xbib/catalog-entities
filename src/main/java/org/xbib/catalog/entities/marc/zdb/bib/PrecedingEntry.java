@@ -4,6 +4,8 @@ import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.content.rdf.Resource;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,8 +18,8 @@ public class PrecedingEntry extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) {
         if ("id".equals(property)) {
             if (value.startsWith("(DE-600)")) {
                 resource.add("identifierZDB", value.substring(8).replaceAll("\\-", "").toLowerCase());
@@ -26,10 +28,10 @@ public class PrecedingEntry extends CatalogEntity {
                 resource.add("identifierDNB", value.substring(8).replaceAll("\\-", "").toLowerCase());
                 return null;
             }
-            return value.replaceAll("\\-", "").toLowerCase();
+            return Collections.singletonList(value.replaceAll("\\-", "").toLowerCase());
         } else if ("title".equals(property)) {
-            return value.replace('\u0098', '\u00ac').replace('\u009c', '\u00ac');
+            return Collections.singletonList(value);
         }
-        return value;
+        return Collections.singletonList(value);
     }
 }

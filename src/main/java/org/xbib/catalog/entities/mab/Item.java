@@ -14,6 +14,7 @@ import org.xbib.content.resource.IRI;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +46,7 @@ public class Item extends CatalogEntity {
 
     @SuppressWarnings("unchecked")
     @Override
-    public String transform(CatalogEntityWorker worker,
+    public List<String> transform(CatalogEntityWorker worker,
                             String predicate, Resource resource, String property, String value) {
         CatalogEntityWorkerState state = worker.getWorkerState();
         if ("identifier".equals(property)) {
@@ -80,7 +81,7 @@ public class Item extends CatalogEntity {
                             }
                         }
                     }
-                    return isil;
+                    return Collections.singletonList(isil);
                 }
             }
         } else if ("callnumber".equals(property)) {
@@ -116,6 +117,6 @@ public class Item extends CatalogEntity {
                 }
             }
         }
-        return value;
+        return Collections.singletonList(value);
     }
 }

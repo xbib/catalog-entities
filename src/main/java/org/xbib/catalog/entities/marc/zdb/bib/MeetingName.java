@@ -4,6 +4,8 @@ import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.content.rdf.Resource;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,8 +18,8 @@ public class MeetingName extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) {
         if ("identifier".equals(property)) {
             if (value.startsWith("(DE-588)")) {
                 resource.add("identifierGND", value.substring(8).replaceAll("\\-", "").toLowerCase());
@@ -29,8 +31,8 @@ public class MeetingName extends CatalogEntity {
                 resource.add("identifierDNB", value.substring(8).replaceAll("\\-", "").toLowerCase());
                 return null;
             }
-            return value.replaceAll("\\-", "").toLowerCase();
+            return Collections.singletonList(value.replaceAll("\\-", "").toLowerCase());
         }
-        return value;
+        return Collections.singletonList(value);
     }
 }

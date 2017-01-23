@@ -8,6 +8,8 @@ import org.xbib.content.resource.IRI;
 
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,11 +32,11 @@ public class Title extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String resourcePredicate, Resource resource, String property, String value) throws IOException {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String resourcePredicate, Resource resource, String property, String value) throws IOException {
         Resource r = worker.getWorkerState().getResource();
         IRI type = null;
-        if ("titleMain".equals(property)) {
+        if ("title".equals(property)) {
             String s = value;
             if (s.endsWith(".")) {
                 s = s.substring(0, s.length() - 1);
@@ -72,7 +74,7 @@ public class Title extends CatalogEntity {
                         worker.getWorkerState().getIdentifier(), cleanTitle));
             }
         }
-        return value;
+        return Collections.singletonList(value);
     }
 
 }

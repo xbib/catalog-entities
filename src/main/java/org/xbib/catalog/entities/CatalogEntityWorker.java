@@ -287,27 +287,36 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
                         }
                     }
                 }
-                // transform value v
+                // transform/split value v
+                List<String> transformed = null;
                 if (v != null) {
-                    v = entity.transform(this, predicate, newResource, me.getKey(), v);
+                    transformed = entity.transform(this, predicate, newResource, me.getKey(), v);
                 }
                 // is this the predicate field or a value?
                 if (me.getKey().equals(predicate)) {
                     predicate = v;
                     overridePredicate = true;
-                } else {
-                    newResource.add(me.getKey(), v);
+                } else if (transformed != null) {
+                    for (String t : transformed) {
+                        newResource.add(me.getKey(), t);
+                    }
                 }
             } else {
                 // no decoder, simple add field data
                 String subfieldId = subfield.getId();
                 if (subfieldId.isEmpty()) {
-                    subfieldId = " "; // there are no empty subfield IDs except in MAB. Replace with space.
+                    // "empty" subfield IDs exist in MAB. Replace with space. Maybe "_" or "|"?
+                    subfieldId = " ";
                 }
                 if (subfields.containsKey(subfieldId)) {
                     String property = (String) subfields.get(subfieldId);
-                    newResource.add(property, entity.transform(this, predicate, newResource, property,
-                            subfield.getValue()));
+                    List<String> transformed = entity.transform(this, predicate, newResource, property,
+                            subfield.getValue());
+                    if (transformed != null) {
+                        for (String t : transformed) {
+                            newResource.add(property, t);
+                        }
+                    }
                 } else {
                     entityBuilder.unmapped(getWorkerState().getRecordIdentifier(), field,
                             "field " + field + " missing definition for subfield '" + subfieldId

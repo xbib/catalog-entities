@@ -4,6 +4,8 @@ import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.content.rdf.Resource;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,8 +48,8 @@ public class CorporateBody extends CatalogEntity {
      */
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) {
         if ("identifier".equals(property)) {
             resource.add("identifier", value);
             if (value.startsWith("(DE-588)")) {
@@ -59,13 +61,13 @@ public class CorporateBody extends CatalogEntity {
             } else if (value.startsWith("(DE-600)")) {
                 // ZDB-ID does not matter at all, we use lower case without hyphen
                 resource.add("identifierZDB", value.substring(8).replaceAll("\\-", "").toLowerCase());
-                return value.replaceAll("\\-", "").toLowerCase();
+                return Collections.singletonList(value.replaceAll("\\-", "").toLowerCase());
             }
             return null;
         }
-        return value
+        return Collections.singletonList(value
                 .replaceAll("<<(.*?)>>", "\u0098$1\u009C")
                 .replaceAll("<(.*?)>", "[$1]")
-                .replaceAll("¬(.*?)¬", "\u0098$1\u009C");
+                .replaceAll("¬(.*?)¬", "\u0098$1\u009C"));
     }
 }

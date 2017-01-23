@@ -5,6 +5,8 @@ import org.xbib.catalog.entities.CatalogEntityWorker;
 import org.xbib.content.rdf.Resource;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,11 +23,11 @@ public class ClassificationNumber extends CatalogEntity {
     }
 
     @Override
-    public String transform(CatalogEntityWorker worker,
-                            String predicate, Resource resource, String property, String value) throws IOException {
+    public List<String> transform(CatalogEntityWorker worker,
+                                  String predicate, Resource resource, String property, String value) throws IOException {
         if (ddc != null && ddc.containsKey(value)) {
             resource.add(property + "Text", (String) ddc.get(value));
         }
-        return value;
+        return Collections.singletonList(value);
     }
 }
