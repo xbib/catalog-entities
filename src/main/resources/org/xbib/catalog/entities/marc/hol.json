@@ -1,807 +1,766 @@
 {
-    "RecordFormat" : {
-        "tags" : [
-        "_FORMAT"
-        ]  
-    },
-    "RecordType" : {
-        "tags" : [
-        "_TYPE"
-        ]  
-    },
-    "RecordLeader" : {
-        "tags": [
-            "_LEADER"
-        ],
-        "codes": {
-            "5": {
-                "_predicate": "recordStatus",
-                "a": "Increase in encoding level",
-                "c": "Corrected or revised",
-                "d": "Deleted",
-                "n": "New",
-                "p": "Increase in encoding level from prepublication"
-            },
-            "6": {
-                "_predicate": "typeOfRecord",
-                "a": "Language material",
-                "c": "Notated music",
-                "d": "Manuscript notated music",
-                "e": "Cartographic material",
-                "f": "Manuscript cartographic material",
-                "g": "Projected medium",
-                "i": "Nonmusical sound recording",
-                "j": "Musical sound recording",
-                "k": "Two-dimensional nonprojectable graphic",
-                "m": "Computer file",
-                "o": "Kit",
-                "p": "Mixed materials",
-                "r": "Three-dimensional artifact or naturally occurring object",
-                "t": "Manuscript language material"
-            },
-            "7": {
-                "_predicate": "bibliographicLevel",
-                "a" : "Monographic component part",
-                "b" : "Serial component part",
-                "c" : "Collection",
-                "d" : "Subunit",
-                "i" : "Integrating resource",
-                "m" : "Monograph/Item",
-                "s" : "Serial"
-            },
-            "8" : {
-                "_predicate": "typeOfControl",
-                " ": "unspecified",
-                "a": "Archival",
-                "0": null
-            },
-            "9": {
-                "_predicate": "characterEncoding",
-                " ": "MARC-8",
-                "a": "Unicode"
-            },
-            "17": {
-                "_predicate": "encodingLevel",
-                " ": "Full level",
-                "1": "Full level, material not examined",
-                "2": "Less-than-full level, material not examined",
-                "3": "Abbreviated level",
-                "4": "Core level",
-                "5": "Partial (preliminary) level",
-                "7": "Minimal level",
-                "8": "Prepublication level",
-                "u": "Unknown",
-                "z": "Not applicable"
-            },
-            "18": {
-                "_predicate": "descriptiveCatalogingForm",
-                " ": "Non-ISBD",
-                "a": "AACR 2",
-                "c": "ISBD punctuation omitted",
-                "i": "ISBD punctuation included",
-                "n": "Non-ISBD punctuation omitted",
-                "u": "Unknown"
-            },
-            "19": {
-                "_predicate": "multipartResourceRecordLevel",
-                " ": "Not specified",
-                "a": "Set",
-                "b": "Part with independent title",
-                "c": "Part with dependent title"
-            }
-        }
-    },
-    "RecordIdentifier" : {
-        "tags" : [
-        "001"
-        ],
-        "_predicate" : "identifierRecord"
-    },
-    "ParentRecordIdentifier" : {
-        "tags" : [
-        "004"
-        ],
-        "_predicate" : "identifierParent"
-    },
-    "PhysicalDescriptionCode" : {
-        "tags" : {
-            "007" : "physicalDescription"
-        },
-        "codes" : {
-            "0" : {
-                "a" : { /* Map (007/00=a) */
-                    "_predicate" : "physicalDescriptionMap",
-                    "1" : { /* Specific material designation */
-                        "d" : "Atlas",
-                        "g" : "Diagram",
-                        "j" : "Map",
-                        "k" : "Profile",
-                        "q" : "Model",
-                        "r" : "Remote-sensing image",
-                        "s" : "Section",
-                        "u" : null,
-                        "y" : "View",
-                        "z" : "Other"
-                    },
-                    "3" : { /* Color */
-                        "a" : "One color",
-                        "c" : "Multicolored"
-                    },
-                    "4" : { /* Physical medium */
-                        "a" : "Paper",
-                        "b" : "Wood",
-                        "c" : "Stone",
-                        "d" : "Metal",
-                        "e" : "Synthetic",
-                        "f" : "Skin",
-                        "g" : "Textiles",
-                        "i" : "Plastic",
-                        "j" : "Glass",
-                        "l" : "Vinyl",
-                        "n" : "Vellum",
-                        "p" : "Plaster",
-                        "q" : "Flexible base photographic, positive",
-                        "r" : "Flexible base photographic, negative",
-                        "s" : "Non-flexible base photographic, positive",
-                        "t" : "Non-flexible base photographic, negative",
-                        "u" : "Unknown",
-                        "v" : "Leather",
-                        "w" : "Parchment",
-                        "y" : "Other photographic medium",
-                        "z" : "Other"
-                    },
-                    "5" : { /* Type of reproduction */
-                        "f" : "Facsimile",
-                        "n" : "Not applicable",
-                        "u" : "Unknown",
-                        "z" : "Other"
-                    },
-                    "6" : { /* Production/reproduction details */
-                        "a" : "Photocopy, blueline print",
-                        "b" : "Photocopy",
-                        "c" : "Pre-production",
-                        "d" : "Film",
-                        "u" : "Unknown",
-                        "z" : "Other"
-                    },
-                    "7" : { /* Positive/negative aspect */
-                        "a" : "Positive",
-                        "b" : "Negative",
-                        "m" : "Mixed polarity",
-                        "n" : "Not applicable"
-                    }
-                },
-                "c" : { /* 007/00=c Electronic resource */
-                    "_predicate" : "physicalDescriptionElectronicResource",
-                    "1" : { /* Specific material designation */
-                        "a" : "Tape cartridge",
-                        "b" : "Chip cartridge",
-                        "c" : "Computer optical disc cartridge",
-                        "d" : "Computer disc",
-                        "e" : "Computer disc cartridge",
-                        "f" : "Tape cassette",
-                        "h" : "Tape reel",
-                        "j" : "Magnetic disk",
-                        "k" : "Computer card",
-                        "m" : "Magneto-optical disc",
-                        "o" : "Optical disc",
-                        "r" : "Remote",
-                        "u" : null,
-                        "z" : "Other"
-                    },
-                    "3" : { /* Color */
-                        "a" : "One color",
-                        "b" : "Black-and-white",
-                        "c" : "Multicolored",
-                        "g" : "Gray scale",
-                        "m" : "Mixed",
-                        "n" : "Not applicable",
-                        "u" : "Unknown",
-                        "z" : "Other"
-                    },
-                    "4" : { /* Dimensions */
-                        "a" : "3 1/2 in.",
-                        "e" : "12 in.",
-                        "g" : "4 3/4 in. or 12 cm.",
-                        "i" : "1 1/8 x 2 3/8 in.",
-                        "j" : "3 7/8 x 2 1/2 in.",
-                        "n" : "Not applicable",
-                        "o" : "5 1/4 in.",
-                        "u" : "Unknown",
-                        "v" : "8 in.",
-                        "z" : "Other"
-                    },
-                    "5" : { /* Sound */
-                        "a" : "Sound",
-                        "u" : "Unknown"
-                    },
-                    "10" : { /* Quality assurance target(s) */
-                        "a" : "Absent",
-                        "n" : "Not applicable",
-                        "p" : "Present",
-                        "u" : "Unknown"
-                    }
-                },
-                "d" : {
-                    "_predicate" : "physicalDescriptionGlobe"
-                },
-                "f" : {
-                    "_predicate" : "physicalDescriptionTactileMaterial",
-                    "1" : {  /* Specific material designation */
-                        "a" : "Moon",
-                        "b" : "Braille",
-                        "c" : "Combination",
-                        "d" : "Tactile, with no writing system",
-                        "u" : null,
-                        "z" : "Other"
-                    },
-                    "3" : { /* Class of braille writing */
-                        "a" : "Literary braille",
-                        "b" : "Format code braille",
-                        "c" : "Mathematics and scientific braille",
-                        "d" : "Computer braille",
-                        "e" : "Music braille",
-                        "m" : "Multiple braille types",
-                        "n" : "Not applicable",
-                        "u" : "Unknown",
-                        "z" : "Other"
-                    },
-                    "4" : { /* Class of braille writing */
-                        "a" : "Literary braille",
-                        "b" : "Format code braille",
-                        "c" : "Mathematics and scientific braille",
-                        "d" : "Computer braille",
-                        "e" : "Music braille",
-                        "m" : "Multiple braille types",
-                        "n" : "Not applicable",
-                        "u" : "Unknown",
-                        "z" : "Other"
-                    },
-                    "5": { /* Level of contraction */
-                        "a" : "Uncontracted",
-                        "b" : "Contracted",
-                        "m" : "Combination",
-                        "n" : "Not applicable",
-                        "u" : "Unknown",
-                        "z" : "Other"
-                    },
-                    "6" : {  /* Braille music format */
-                        "a" : "Bar over bar",
-                        "b" : "Bar by bar",
-                        "c" : "Line over line",
-                        "d" : "Paragraph",
-                        "e" : "Single line",
-                        "f" : "Section by section",
-                        "g" : "Line by line",
-                        "h" : "Open score",
-                        "i" : "Spanner short form scoring",
-                        "j" : "Short form scoring",
-                        "k" : "Outline",
-                        "l" : "Vertical score",
-                        "n" : "Not applicable",
-                        "u" : "Unknown",
-                        "z" : "Other"
-                    },
-                    "7" : {  /* Braille music format */
-                        "a" : "Bar over bar",
-                        "b" : "Bar by bar",
-                        "c" : "Line over line",
-                        "d" : "Paragraph",
-                        "e" : "Single line",
-                        "f" : "Section by section",
-                        "g" : "Line by line",
-                        "h" : "Open score",
-                        "i" : "Spanner short form scoring",
-                        "j" : "Short form scoring",
-                        "k" : "Outline",
-                        "l" : "Vertical score",
-                        "n" : "Not applicable",
-                        "u" : "Unknown",
-                        "z" : "Other"
-                    },
-                    "8" : {  /* Braille music format */
-                        "a" : "Bar over bar",
-                        "b" : "Bar by bar",
-                        "c" : "Line over line",
-                        "d" : "Paragraph",
-                        "e" : "Single line",
-                        "f" : "Section by section",
-                        "g" : "Line by line",
-                        "h" : "Open score",
-                        "i" : "Spanner short form scoring",
-                        "j" : "Short form scoring",
-                        "k" : "Outline",
-                        "l" : "Vertical score",
-                        "n" : "Not applicable",
-                        "u" : "Unknown",
-                        "z" : "Other"
-                    },
-                    "9" : { /* Special physical characteristics */
-                        "a" : "Print/braille",
-                        "b" : "Jumbo or enlarged braille",
-                        "n" : "Not applicable",
-                        "u" : "Unknown",
-                        "z" : "Other"
-                    }
-                },
-                "g" : {
-                    "_predicate" : "physicalDescriptionProjectedGraphic"
-                },
-                "h" : {
-                    "_predicate" : "physicalDescriptionMicroform",
-                    "1" : { /* Specific material designation */
-                    "a" : "Aperture card",
-                    "b" : "Microfilm cartridge",
-                    "c" : "Microfilm cassette",
-                    "d" : "Microfilm reel",
-                    "e" : "Microfiche",
-                    "f" : "Microfiche cassette",
-                    "g" : "Microopaque",
-                    "h" : "Microfilm slip",
-                    "j" : "Microfilm roll",
-                    "u" : "Unspecified",
-                    "z" : "Other"
-                    },
-                    "3" : { /* Positive/negative aspect */
-                    "a" : "Positive",
-                    "b" : "Negative",
-                    "m" : "Mixed polarity",
-                    "u" : "Unknown"
-                    },
-                    "4" : { /* Dimensions */
-                    "a" : "8 mm",
-                    "d" : "16 mm",
-                    "f" : "35 mm",
-                    "g" : "70 mm",
-                    "h" : "105 mm",
-                    "l" : "3x5 in (8x13 cm)",
-                    "m" : "4x6 in (11x15 cm)",
-                    "o" : "6x9 in (16x23 cm)",
-                    "p" : "3 1/4 x 7 3/8 in (9x19 cm)",
-                    "u" : "Unknown",
-                    "z" : "Other"
-                    },
-                    "5" : { /* Reduction ratio range */
-                    "a" : "Low reduction ratio",
-                    "b" : "Normal reduction",
-                    "c" : "High reduction",
-                    "d" : "Very high reduction",
-                    "e" : "Ultra high reduction",
-                    "u" : "Unknown",
-                    "v" : "Reduction rate varies"
-                    },
-                    "9" : { /* Color */
-                    "b" : "Black-and-white",
-                    "c" : "Multicolored",
-                    "m" : "Mixed",
-                    "u" : "Unknown",
-                    "z" : "Other"
-                    },
-                    "10" : { /* Emulsion on film */
-                    "a" : "Silver halide",
-                    "b" : "Diazo",
-                    "c" : "Vesicular",
-                    "m" : "Mixed emulsion",
-                    "n" : "Not applicable",
-                    "u" : "Unknown",
-                    "z" : "Other"
-                    },
-                    "11" : { /* Generation */
-                    "a" : "First generation (master)",
-                    "b" : "Printing master",
-                    "c" : "Service copy",
-                    "m" : "Mixed generation",
-                    "u" : "Unknown"
-                    },
-                    "12" : {  /* Base of film */
-                    "a" : "Safety base, undetermined",
-                    "c" : "Safety base, acetate undetermined",
-                    "d" : "Safety base, diacetate",
-                    "i" : "Nitrate base",
-                    "m" : "Mixed base (nitrate and safety)",
-                    "n" : "Not applicable",
-                    "p" : "Safety base, polyester",
-                    "r" : "Safety base, mixed",
-                    "t" : "Safety base, triacetate",
-                    "u" : "Unknown",
-                    "z" : "Other"
-                    }
-                },
-                "k" : {
-                    "_predicate" : "physicalDescriptionNonprojectedGraphic"
-                },
-                "m" : {
-                    "_predicate" : "physicalDescriptionMotionPicture"
-                },
-                "o" : {
-                    "_predicate" : "physicalDescriptionKit"
-                },
-                "q" : {
-                    "_predicate" : "physicalDescriptionNotatedMusic"
-                },
-                "r" : {
-                    "_predicate" : "physicalDescriptionRemoteSensingImage"
-                },
-                "s" : {
-                    "_predicate" : "physicalDescriptionSoundRecording"
-                },
-                "t" : {
-                    "_predicate" : "physicalDescriptionText",
-                    "1" : {
-                       "a" : "Regular print",
-                       "b" : "Large print",
-                       "c" : "Braille",
-                       "d" : "Loose-leaf",
-                       "u" : null,
-                       "z" : "Other"
-                    }
-                },
-                "v" : {
-                    "_predicate" : "physicalDescriptionVideorecording"
-                },
-                "z" : {
-                    "_predicate" : "physicalDescriptionUnspecified"
-                }
-            }
-        }
-    },
-    "Identifier" : {
-        "tags" : {
-            "035" : "IdentifierZDB"
-        },
-        "subfields" : {
-            "a" : "value",
-            "b" : "price",
-            "c" : "termsOfAvailability",
-            "y" : "invalidValue",
-            "2" : "type"
-        },
-        "type" : {
-            "DE-101" : "IdentifierDNB",
-            "DE-600" : "IdentifierZDB"
-        }
-    },
-    "CustomIdentifier" : {
-        "tags" : [
-            /* NBN */
-            "015",
-            /* NBN control number */
-            "016",
-            /* 024 - Other Standard Identifier */
-            "024"
-        ],
-        "_predicate" : "type",
-        "subfields" : {
-            "a" : "value",
-            "2" : "type"
-        },
-        "type" : {
-            "DE-101" : "IdentifierDNB",
-            "DE-600" : "IdentifierZDB",
-            "dnb" : "IdentifierNBN"
-        }
-    },
-    "Codes" : {
-        "tags" : {
-          "090" : "otherCodes"
-        },
-        "subfields" : {
-            "a" : "value",
-            "n" : "genre"
-        },
-        "otherCodes" : {
-              "a" : "papertype",
-              "n" : "genre"
-        },
-        "papertype" :{
-              "a" : "paper",
-              "b" : "paper-acidfree",
-              "c" : "paper-nonacidfree",
-              "d" : "paper-deacidified"
-        },
-        "genre" : {
-                "ab" : "abstract",
-                "ag" : "aggregator-database",
-                "am" : "law",
-                "ao" : "public-newspaper",
-                "az" : "advertisement",
-                "bi" : "bibliography",
-                "da" : "database",
-                "di" : "directory",
-                "dm" : "digitization-master",
-                "eo" : "non-public-newspaper",
-                "es" : "law-reports",
-                "fb" : "progress-report",
-                "fp" : "former-periodical",
-                "fr" : "former-series",
-                "ft" : "subject-paper",
-                "fz" : "company-paper",
-                "fn" : "former-newspaper",
-                "ha" : "budget-plan",
-                "il" : "illustrated-paper",
-                "in" : "index",
-                "ko" : "conference-paper",
-                "kt" : "catalog",
-                "la" : "longterm-archival",
-                "ld" : "layout-digitization",
-                "lp" : "local-newspaper",
-                "mg" : "magazine",
-                "me" : "exhibition-journal",
-                "mw" : "multipart-work",
-                "nt" : "music-notes",
-                "nl" : "national-license",
-                "pa" : "parliament",
-                "pu" : "pay-per-use",
-                "re" : "report",
-                "rf" : "dictionary",
-                "rp" : "regional-newspaper",
-                "rs" : "restitution",
-                "sc" : "school",
-                "sm" : "secondary-microform",
-                "st" : "statistics",
-                "sw" : "software",
-                "tt" : "audio",
-                "ub" : "translator-journal",
-                "up" : "universal-newspaper",
-                "vi" : "video",
-                "wl" : "weblog",
-                "ws" : "website"
-        }
-    },
-    "Service" : {
-        "tags" : [
-            "092"
-        ],
-        "_predicate": "service",
-        "subfields" : {
-            "a" : "bik", /* MAB 071 b BIK */
-            "b" : "dbs", /* MAB 071 c DBS-ID */
-            "c" : "localid", /* MAB 071 d Regionales Bibliothekskennzeichen */
-            "d" : "organization", /* MAB 071 a Kennzeichen der besitzenden Institution (Sigel) */
-            "e" : "isil", /* MAB 071 d ISIL */
-            "k" : "region", /* MAB 072 Leihverkehrsregion */
-            "l" : "servicetype", /* MAB 072 leihverkehrsrelevante Bibliothek */
-            "m" : "loancode", /* Auseihindikator (loakl/regional) */
-            "o" : "servicemode", /* Fernleihindikator */
-            "p" : "servicedistribution", /* Distributions-Einschränkungen: Inland, Postversand */
-            "q" : "servicecomment", /* Kommentar zum Fernleihindikator */
-            "u" : "ssgnumber", /* SSG Nummer */
-            "w" : "ssgnotation", /* SSG Notation */
-            "y" : "zdbprio", /* ZDB Prioritätszahl */
-            "z" : "funding" /* Finanzierung des Bestandes */
-        },
-        "servicetype" : {
-                "a" : "interlibraryloan",
-                "b" : "none",
-                "c" : "unknown",
-                "m" : "loancode",
-                "n" : null,
-                "o" : null
-        },
-        "servicemode" : {
-                "a" : "loan",
-                "b" : "copy",
-                "c" : "copy-loan",
-                "d" : "none",
-                "e" : "electronic"
-        },
-        "servicedistribution" : {
-                "a" : "domestic-only",
-                "b" : "postal-only"
-        },
-        "funding" : {
-                "a" : "dfg",
-                "b" : "self",
-                "c" : "none"
-        }
-    },
-    "LicenseInformation" : {
-        "tags": [
-            "093"
-        ],
-        "_predicate" : "license",
-        "subfields": {
-            "a" : "origin", /* Herkunft, Erfassungsrichtung */
-            "b" : "access", /* Angaben zu den Zugriffsrechten */
-            "e" : "type", /* Angaben zum Dokumenttyp */
-            "f" : "scope", /* Angaben zum Lizenztyp */
-            "g" : "charge" /* Angaben zum Preistyp */
-        },
-        "origin" : {
-                "a" : "EZB",
-                "b" : "ZDB",
-                "c" : "library-service",
-                "d" : "other"
-        },
-        "access" : {
-                "a" : "restricted-to-domain",
-                "b" : "unrestricted",
-                "c" : "blocked",
-                "d" : "restricted-to-domain"
-        },
-        "type" : {
-                "a" : "online",
-                "b" : "online-and-print",
-                "c" : "self-hosted",
-                "d" : "digitalization"
-        },
-        "scope" : {
-                "a" : "national",
-                "b" : "consortia",
-                "c" : "stand-alone"
-        },
-        "charge" : {
-                "a" : "no",
-                "b" : "no-with-print",
-                "c" : "yes"
-        }
-    },
-    "SourceOfAcquisition" : {
-        "tags" : [
-        "541"/* accession number */
-        ],
-        "subfields" : {
-            "e" : "accessionNumber"
-        }
-    },
-    "ReproductionNote" : {
-        "tags" : [
-            /* 843 = Fußnote zur Sekundärausgabe */
-            "843"
-        ],
-        "subfields" : {
-        "a" : "type",
-        "b" : "place",
-        "c" : "agency",
-        "d" : "dateOfReproduction",
-        "e" : "description",
-        "f" : "series",
-        "m" : "dates",
-        "n" : "note",
-        "3" : "materials",
-        "5" : "institution",
-        "6" : "link",
-        "7" : "data",
-            /*0 - Type of date/Publication status
-             1-4 - Date 1
-             5-8 - Date 2
-             9-11 - Place of publication, production, or execution
-             12 - Frequency
-             13 - Regularity
-             14 - Form of item */
-        "8" : "seqNumber"
-        }
-    },
-    "FormattedEnumerationAndChronology" : {
-      "tags" : [
-        "852"
-      ],
-      "indicators" : {
-        "852" : {
-          "  ": "Location",
-          "00": "begingroup",
-          "01": "opengroup",
-          "10": "endgroup"
-        }
+  "RecordFormat" : {
+    "tags" : [
+      "_FORMAT"
+    ]
+  },
+  "RecordType" : {
+    "tags" : [
+      "_TYPE"
+    ]
+  },
+  "RecordLeader" : {
+    "tags": [
+      "_LEADER"
+    ],
+    "codes": {
+      "5": {
+        "_predicate": "recordStatus",
+        "c": "Corrected or revised",
+        "d": "Deleted",
+        "n": "New"
       },
-      "subfields" : {
-        "a" : "volume",
-        "i" : "date",
-        "8" : "sequenceNumber"
+      "6": {
+        "_predicate": "typeOfRecord",
+        "u": "Unknown",
+        "v": "Multipart item holdings",
+        "x": "Single-part item holdings",
+        "y": "Serial item holdings"
       },
-      "Location" : {
-        "3" : "enumerationAndChronology",
-        "6" : "",
-        "9" : "name",
-        "a" : "marcorg",
-        "b" : "collection",
-        "c" : "shelvinglocation",
-        "m" : "loancode",
-        "z" : "publicnote",
-        "=" : "custom" /* ZDB Erweiterung für Fernleihindikator */
+      "9": {
+        "_predicate": "characterEncoding",
+        " ": "MARC-8",
+        "a": "Unicode"
       },
-      "custom" : {
-        "a" : "loan",
-        "n" : "none",
-        "k" : "copy",
-        "l" : "copyloan"
+      "17": {
+        "_predicate": "encodingLevel",
+        "1": "Holdings Level 1",
+        "2": "Holdings Level 2",
+        "3": "Holdings Level 3",
+        "4": "Holdings Level 4",
+        "5": "Holdings Level 4 with piece designation",
+        "m": "Mixed level",
+        "u": "Unknown",
+        "z": "Other level"
+      },
+      "18": {
+        "_predicate": "itemInformationInRecord",
+        "i": "Item information",
+        "n": "No item information"
+      }
+    }
+  },
+  "RecordIdentifier" : {
+    "tags" : [
+      "001"
+    ],
+    "_predicate" : "identifierRecord"
+  },
+  "ParentRecordIdentifier" : {
+    "tags" : [
+      "004"
+    ],
+    "_predicate" : "identifierParent"
+  },
+  "PhysicalDescriptionCode" : {
+    "tags" : {
+      "007" : "physicalDescription"
+    },
+    "codes" : {
+      "0" : {
+        "a" : { /* Map (007/00=a) */
+          "_predicate" : "physicalDescriptionMap",
+          "1" : { /* Specific material designation */
+            "d" : "Atlas",
+            "g" : "Diagram",
+            "j" : "Map",
+            "k" : "Profile",
+            "q" : "Model",
+            "r" : "Remote-sensing image",
+            "s" : "Section",
+            "u" : null,
+            "y" : "View",
+            "z" : "Other"
+          },
+          "3" : { /* Color */
+            "a" : "One color",
+            "c" : "Multicolored"
+          },
+          "4" : { /* Physical medium */
+            "a" : "Paper",
+            "b" : "Wood",
+            "c" : "Stone",
+            "d" : "Metal",
+            "e" : "Synthetic",
+            "f" : "Skin",
+            "g" : "Textiles",
+            "i" : "Plastic",
+            "j" : "Glass",
+            "l" : "Vinyl",
+            "n" : "Vellum",
+            "p" : "Plaster",
+            "q" : "Flexible base photographic, positive",
+            "r" : "Flexible base photographic, negative",
+            "s" : "Non-flexible base photographic, positive",
+            "t" : "Non-flexible base photographic, negative",
+            "u" : "Unknown",
+            "v" : "Leather",
+            "w" : "Parchment",
+            "y" : "Other photographic medium",
+            "z" : "Other"
+          },
+          "5" : { /* Type of reproduction */
+            "f" : "Facsimile",
+            "n" : "Not applicable",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "6" : { /* Production/reproduction details */
+            "a" : "Photocopy, blueline print",
+            "b" : "Photocopy",
+            "c" : "Pre-production",
+            "d" : "Film",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "7" : { /* Positive/negative aspect */
+            "a" : "Positive",
+            "b" : "Negative",
+            "m" : "Mixed polarity",
+            "n" : "Not applicable"
+          }
+        },
+        "c" : { /* 007/00=c Electronic resource */
+          "_predicate" : "physicalDescriptionElectronicResource",
+          "1" : { /* Specific material designation */
+            "a" : "Tape cartridge",
+            "b" : "Chip cartridge",
+            "c" : "Computer optical disc cartridge",
+            "d" : "Computer disc",
+            "e" : "Computer disc cartridge",
+            "f" : "Tape cassette",
+            "h" : "Tape reel",
+            "j" : "Magnetic disk",
+            "k" : "Computer card",
+            "m" : "Magneto-optical disc",
+            "o" : "Optical disc",
+            "r" : "Remote",
+            "u" : null,
+            "z" : "Other"
+          },
+          "3" : { /* Color */
+            "a" : "One color",
+            "b" : "Black-and-white",
+            "c" : "Multicolored",
+            "g" : "Gray scale",
+            "m" : "Mixed",
+            "n" : "Not applicable",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "4" : { /* Dimensions */
+            "a" : "3 1/2 in.",
+            "e" : "12 in.",
+            "g" : "4 3/4 in. or 12 cm.",
+            "i" : "1 1/8 x 2 3/8 in.",
+            "j" : "3 7/8 x 2 1/2 in.",
+            "n" : "Not applicable",
+            "o" : "5 1/4 in.",
+            "u" : "Unknown",
+            "v" : "8 in.",
+            "z" : "Other"
+          },
+          "5" : { /* Sound */
+            "a" : "Sound",
+            "u" : "Unknown"
+          },
+          "10" : { /* Quality assurance target(s) */
+            "a" : "Absent",
+            "n" : "Not applicable",
+            "p" : "Present",
+            "u" : "Unknown"
+          }
+        },
+        "d" : {
+          "_predicate" : "physicalDescriptionGlobe"
+        },
+        "f" : {
+          "_predicate" : "physicalDescriptionTactileMaterial",
+          "1" : {  /* Specific material designation */
+            "a" : "Moon",
+            "b" : "Braille",
+            "c" : "Combination",
+            "d" : "Tactile, with no writing system",
+            "u" : null,
+            "z" : "Other"
+          },
+          "3" : { /* Class of braille writing */
+            "a" : "Literary braille",
+            "b" : "Format code braille",
+            "c" : "Mathematics and scientific braille",
+            "d" : "Computer braille",
+            "e" : "Music braille",
+            "m" : "Multiple braille types",
+            "n" : "Not applicable",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "4" : { /* Class of braille writing */
+            "a" : "Literary braille",
+            "b" : "Format code braille",
+            "c" : "Mathematics and scientific braille",
+            "d" : "Computer braille",
+            "e" : "Music braille",
+            "m" : "Multiple braille types",
+            "n" : "Not applicable",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "5": { /* Level of contraction */
+            "a" : "Uncontracted",
+            "b" : "Contracted",
+            "m" : "Combination",
+            "n" : "Not applicable",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "6" : {  /* Braille music format */
+            "a" : "Bar over bar",
+            "b" : "Bar by bar",
+            "c" : "Line over line",
+            "d" : "Paragraph",
+            "e" : "Single line",
+            "f" : "Section by section",
+            "g" : "Line by line",
+            "h" : "Open score",
+            "i" : "Spanner short form scoring",
+            "j" : "Short form scoring",
+            "k" : "Outline",
+            "l" : "Vertical score",
+            "n" : "Not applicable",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "7" : {  /* Braille music format */
+            "a" : "Bar over bar",
+            "b" : "Bar by bar",
+            "c" : "Line over line",
+            "d" : "Paragraph",
+            "e" : "Single line",
+            "f" : "Section by section",
+            "g" : "Line by line",
+            "h" : "Open score",
+            "i" : "Spanner short form scoring",
+            "j" : "Short form scoring",
+            "k" : "Outline",
+            "l" : "Vertical score",
+            "n" : "Not applicable",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "8" : {  /* Braille music format */
+            "a" : "Bar over bar",
+            "b" : "Bar by bar",
+            "c" : "Line over line",
+            "d" : "Paragraph",
+            "e" : "Single line",
+            "f" : "Section by section",
+            "g" : "Line by line",
+            "h" : "Open score",
+            "i" : "Spanner short form scoring",
+            "j" : "Short form scoring",
+            "k" : "Outline",
+            "l" : "Vertical score",
+            "n" : "Not applicable",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "9" : { /* Special physical characteristics */
+            "a" : "Print/braille",
+            "b" : "Jumbo or enlarged braille",
+            "n" : "Not applicable",
+            "u" : "Unknown",
+            "z" : "Other"
+          }
+        },
+        "g" : {
+          "_predicate" : "physicalDescriptionProjectedGraphic"
+        },
+        "h" : {
+          "_predicate" : "physicalDescriptionMicroform",
+          "1" : { /* Specific material designation */
+            "a" : "Aperture card",
+            "b" : "Microfilm cartridge",
+            "c" : "Microfilm cassette",
+            "d" : "Microfilm reel",
+            "e" : "Microfiche",
+            "f" : "Microfiche cassette",
+            "g" : "Microopaque",
+            "h" : "Microfilm slip",
+            "j" : "Microfilm roll",
+            "u" : "Unspecified",
+            "z" : "Other"
+          },
+          "3" : { /* Positive/negative aspect */
+            "a" : "Positive",
+            "b" : "Negative",
+            "m" : "Mixed polarity",
+            "u" : "Unknown"
+          },
+          "4" : { /* Dimensions */
+            "a" : "8 mm",
+            "d" : "16 mm",
+            "f" : "35 mm",
+            "g" : "70 mm",
+            "h" : "105 mm",
+            "l" : "3x5 in (8x13 cm)",
+            "m" : "4x6 in (11x15 cm)",
+            "o" : "6x9 in (16x23 cm)",
+            "p" : "3 1/4 x 7 3/8 in (9x19 cm)",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "5" : { /* Reduction ratio range */
+            "a" : "Low reduction ratio",
+            "b" : "Normal reduction",
+            "c" : "High reduction",
+            "d" : "Very high reduction",
+            "e" : "Ultra high reduction",
+            "u" : "Unknown",
+            "v" : "Reduction rate varies"
+          },
+          "9" : { /* Color */
+            "b" : "Black-and-white",
+            "c" : "Multicolored",
+            "m" : "Mixed",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "10" : { /* Emulsion on film */
+            "a" : "Silver halide",
+            "b" : "Diazo",
+            "c" : "Vesicular",
+            "m" : "Mixed emulsion",
+            "n" : "Not applicable",
+            "u" : "Unknown",
+            "z" : "Other"
+          },
+          "11" : { /* Generation */
+            "a" : "First generation (master)",
+            "b" : "Printing master",
+            "c" : "Service copy",
+            "m" : "Mixed generation",
+            "u" : "Unknown"
+          },
+          "12" : {  /* Base of film */
+            "a" : "Safety base, undetermined",
+            "c" : "Safety base, acetate undetermined",
+            "d" : "Safety base, diacetate",
+            "i" : "Nitrate base",
+            "m" : "Mixed base (nitrate and safety)",
+            "n" : "Not applicable",
+            "p" : "Safety base, polyester",
+            "r" : "Safety base, mixed",
+            "t" : "Safety base, triacetate",
+            "u" : "Unknown",
+            "z" : "Other"
+          }
+        },
+        "k" : {
+          "_predicate" : "physicalDescriptionNonprojectedGraphic"
+        },
+        "m" : {
+          "_predicate" : "physicalDescriptionMotionPicture"
+        },
+        "o" : {
+          "_predicate" : "physicalDescriptionKit"
+        },
+        "q" : {
+          "_predicate" : "physicalDescriptionNotatedMusic"
+        },
+        "r" : {
+          "_predicate" : "physicalDescriptionRemoteSensingImage"
+        },
+        "s" : {
+          "_predicate" : "physicalDescriptionSoundRecording"
+        },
+        "t" : {
+          "_predicate" : "physicalDescriptionText",
+          "1" : {
+            "a" : "Regular print",
+            "b" : "Large print",
+            "c" : "Braille",
+            "d" : "Loose-leaf",
+            "u" : null,
+            "z" : "Other"
+          }
+        },
+        "v" : {
+          "_predicate" : "physicalDescriptionVideorecording"
+        },
+        "z" : {
+          "_predicate" : "physicalDescriptionUnspecified"
+        }
+      }
+    }
+  },
+  "Identifier" : {
+    "tags" : {
+      "035" : "IdentifierZDB"
+    },
+    "subfields" : {
+      "a" : "value",
+      "b" : "price",
+      "c" : "termsOfAvailability",
+      "y" : "invalidValue",
+      "2" : "type"
+    },
+    "type" : {
+      "DE-101" : "IdentifierDNB",
+      "DE-600" : "IdentifierZDB"
+    }
+  },
+  "CustomIdentifier" : {
+    "tags" : [
+      /* NBN */
+      "015",
+      /* NBN control number */
+      "016",
+      /* 024 - Other Standard Identifier */
+      "024"
+    ],
+    "_predicate" : "type",
+    "subfields" : {
+      "a" : "value",
+      "2" : "type"
+    },
+    "type" : {
+      "DE-101" : "IdentifierDNB",
+      "DE-600" : "IdentifierZDB",
+      "dnb" : "IdentifierNBN"
+    }
+  },
+  "Codes" : {
+    "tags" : {
+      "090" : "otherCodes"
+    },
+    "subfields" : {
+      "a" : "value",
+      "n" : "genre"
+    },
+    "otherCodes" : {
+      "a" : "papertype",
+      "n" : "genre"
+    },
+    "papertype" :{
+      "a" : "paper",
+      "b" : "paper-acidfree",
+      "c" : "paper-nonacidfree",
+      "d" : "paper-deacidified"
+    },
+    "genre" : {
+      "ab" : "abstract",
+      "ag" : "aggregator-database",
+      "am" : "law",
+      "ao" : "public-newspaper",
+      "az" : "advertisement",
+      "bi" : "bibliography",
+      "da" : "database",
+      "di" : "directory",
+      "dm" : "digitization-master",
+      "eo" : "non-public-newspaper",
+      "es" : "law-reports",
+      "fb" : "progress-report",
+      "fp" : "former-periodical",
+      "fr" : "former-series",
+      "ft" : "subject-paper",
+      "fz" : "company-paper",
+      "fn" : "former-newspaper",
+      "ha" : "budget-plan",
+      "il" : "illustrated-paper",
+      "in" : "index",
+      "ko" : "conference-paper",
+      "kt" : "catalog",
+      "la" : "longterm-archival",
+      "ld" : "layout-digitization",
+      "lp" : "local-newspaper",
+      "mg" : "magazine",
+      "me" : "exhibition-journal",
+      "mw" : "multipart-work",
+      "nt" : "music-notes",
+      "nl" : "national-license",
+      "pa" : "parliament",
+      "pu" : "pay-per-use",
+      "re" : "report",
+      "rf" : "dictionary",
+      "rp" : "regional-newspaper",
+      "rs" : "restitution",
+      "sc" : "school",
+      "sm" : "secondary-microform",
+      "st" : "statistics",
+      "sw" : "software",
+      "tt" : "audio",
+      "ub" : "translator-journal",
+      "up" : "universal-newspaper",
+      "vi" : "video",
+      "wl" : "weblog",
+      "ws" : "website"
+    }
+  },
+  "Service" : {
+    "tags" : [
+      "092"
+    ],
+    "_predicate": "service",
+    "subfields" : {
+      "a" : "bik", /* MAB 071 b BIK */
+      "b" : "dbs", /* MAB 071 c DBS-ID */
+      "c" : "localid", /* MAB 071 d Regionales Bibliothekskennzeichen */
+      "d" : "organization", /* MAB 071 a Kennzeichen der besitzenden Institution (Sigel) */
+      "e" : "isil", /* MAB 071 d ISIL */
+      "k" : "region", /* MAB 072 Leihverkehrsregion */
+      "l" : "servicetype", /* MAB 072 leihverkehrsrelevante Bibliothek */
+      "m" : "loancode", /* Auseihindikator (loakl/regional) */
+      "o" : "servicemode", /* Fernleihindikator */
+      "p" : "servicedistribution", /* Distributions-Einschränkungen: Inland, Postversand */
+      "q" : "servicecomment", /* Kommentar zum Fernleihindikator */
+      "u" : "ssgnumber", /* SSG Nummer */
+      "w" : "ssgnotation", /* SSG Notation */
+      "y" : "zdbprio", /* ZDB Prioritätszahl */
+      "z" : "funding" /* Finanzierung des Bestandes */
+    },
+    "servicetype" : {
+      "a" : "interlibraryloan",
+      "b" : "none",
+      "c" : "unknown",
+      "m" : "loancode",
+      "n" : null,
+      "o" : null
+    },
+    "servicemode" : {
+      "a" : "loan",
+      "b" : "copy",
+      "c" : "copy-loan",
+      "d" : "none",
+      "e" : "electronic"
+    },
+    "servicedistribution" : {
+      "a" : "domestic-only",
+      "b" : "postal-only"
+    },
+    "funding" : {
+      "a" : "dfg",
+      "b" : "self",
+      "c" : "none"
+    }
+  },
+  "LicenseInformation" : {
+    "tags": [
+      "093"
+    ],
+    "_predicate" : "license",
+    "subfields": {
+      "a" : "origin", /* Herkunft, Erfassungsrichtung */
+      "b" : "access", /* Angaben zu den Zugriffsrechten */
+      "e" : "type", /* Angaben zum Dokumenttyp */
+      "f" : "scope", /* Angaben zum Lizenztyp */
+      "g" : "charge" /* Angaben zum Preistyp */
+    },
+    "origin" : {
+      "a" : "EZB",
+      "b" : "ZDB",
+      "c" : "library-service",
+      "d" : "other"
+    },
+    "access" : {
+      "a" : "restricted-to-domain",
+      "b" : "unrestricted",
+      "c" : "blocked",
+      "d" : "restricted-to-domain"
+    },
+    "type" : {
+      "a" : "online",
+      "b" : "online-and-print",
+      "c" : "self-hosted",
+      "d" : "digitalization"
+    },
+    "scope" : {
+      "a" : "national",
+      "b" : "consortia",
+      "c" : "stand-alone"
+    },
+    "charge" : {
+      "a" : "no",
+      "b" : "no-with-print",
+      "c" : "yes"
+    }
+  },
+  "SourceOfAcquisition" : {
+    "tags" : [
+      "541"/* accession number */
+    ],
+    "subfields" : {
+      "e" : "accessionNumber"
+    }
+  },
+  "ReproductionNote" : {
+    "tags" : [
+      /* 843 = Fußnote zur Sekundärausgabe */
+      "843"
+    ],
+    "subfields" : {
+      "a" : "type",
+      "b" : "place",
+      "c" : "agency",
+      "d" : "dateOfReproduction",
+      "e" : "description",
+      "f" : "series",
+      "m" : "dates",
+      "n" : "note",
+      "3" : "materials",
+      "5" : "institution",
+      "6" : "link",
+      "7" : "data",
+      /*0 - Type of date/Publication status
+       1-4 - Date 1
+       5-8 - Date 2
+       9-11 - Place of publication, production, or execution
+       12 - Frequency
+       13 - Regularity
+       14 - Form of item */
+      "8" : "seqNumber"
+    }
+  },
+  "FormattedEnumerationAndChronology" : {
+    "tags" : [
+      "852"
+    ],
+    "indicators" : {
+      "852" : {
+        "  ": "Location",
+        "00": "begingroup",
+        "01": "opengroup",
+        "10": "endgroup"
       }
     },
-    "Product" : {
-        "tags" : [
-              /* 912 = Produktsigel für Nationallizenzen und digitale Sammlungen */
-            "912"
-        ],
-        "subfields" : {
-            "a" : "value",
-          "9" : "name"
-        }
+    "subfields" : {
+      "a" : "volume",
+      "i" : "date",
+      "8" : "sequenceNumber"
     },
-    "TextualHoldings" : {
-        "tags": [
-        "866" /* non-public note/public note, exemplarbezogener Kommentar */
-        ],
-      "subfields" : {
-        "a" : "value",
-        "i" : "date",
-        "9" : "name"
-      },
-        "movingwall" : [
-            "Letzte (\\d+) Jg."
-        ],
-        "currentissue" : [
-            "Nur neueste Ausgabe",
-            "Nur neueste Ausg. vorhanden"
-        ],
-        "currentyear" : [
-            "Nur der laufende Jahrgang vorhanden"
-        ]
+    "Location" : {
+      "3" : "enumerationAndChronology",
+      "6" : "",
+      "9" : "name",
+      "a" : "marcorg",
+      "b" : "collection",
+      "c" : "shelvinglocation",
+      "m" : "loancode",
+      "z" : "publicnote",
+      "=" : "custom" /* ZDB Erweiterung für Fernleihindikator */
     },
-    "NormalizedHoldings" : {
-        "tags": [
-            "869"
-         ],
-         "subfields" : {
-            "a" : "volume",
-            "b" : "issue",
-            "i" : "date",
-            "y" : "movingwall",
-            "8" : "sequenceNumber",
-            "9" : "number"
-         }
-    },
-    "PhysicalDescription" : {
-        "tags" : {
-            "300" : "extent"
-        },
-        "subfields" : {
-            "a" : "value"
-        }
-    },
-    "ElectronicLocationAndAccess" : {
-        "tags" : [
-        "856"
-        ],
-        "subfields" : {
-            "2" : "accessmode",
-            "3" : "relatedto",
-            "6" : "linkage",
-            "8" : "pos",
-            "9" : "prefix",
-            "a" : "hostname",
-            "b" : "accessnumber",
-            "c" : "compression",
-            "d" : "path",
-            "f" : "electronicname",
-            "h" : "processor",
-            "i" : "instruction",
-            "j" : "bitspersecond",
-            "k" : "password",
-            "l" : "logon",
-            "m" : "contact",
-            "n" : "locationofhost",
-            "o" : "operatingsystem",
-            "p" : "port",
-            "q" : "format",
-            "r" : "settings",
-            "s" : "size",
-            "t" : "terminal",
-            "u" : "uri",
-            "v" : "hoursaccess",
-            "w" : "controlnumber",
-            "x" : "nonpublicnote",
-            "y" : "label",
-            "z" : "publicnote"
-        }
-    },
-    "Ignore" : {
-        /* known, but ignored by intent */
-        "tags" : [
-            "003",
-            "005",
-            "008",
-            /* 094 = Notation eines Klassifikationssystems (lokale Notation) */
-            "094"
-            ]
+    "custom" : {
+      "a" : "loan",
+      "n" : "none",
+      "k" : "copy",
+      "l" : "copyloan"
     }
+  },
+  "Product" : {
+    "tags" : [
+      /* 912 = Produktsigel für Nationallizenzen und digitale Sammlungen */
+      "912"
+    ],
+    "subfields" : {
+      "a" : "value",
+      "9" : "name"
+    }
+  },
+  "TextualHoldings" : {
+    "tags": [
+      "866" /* non-public note/public note, exemplarbezogener Kommentar */
+    ],
+    "subfields" : {
+      "a" : "value",
+      "i" : "date",
+      "9" : "name"
+    },
+    "movingwall" : [
+      "Letzte (\\d+) Jg."
+    ],
+    "currentissue" : [
+      "Nur neueste Ausgabe",
+      "Nur neueste Ausg. vorhanden"
+    ],
+    "currentyear" : [
+      "Nur der laufende Jahrgang vorhanden"
+    ]
+  },
+  "NormalizedHoldings" : {
+    "tags": [
+      "869"
+    ],
+    "subfields" : {
+      "a" : "volume",
+      "b" : "issue",
+      "i" : "date",
+      "y" : "movingwall",
+      "8" : "sequenceNumber",
+      "9" : "number"
+    }
+  },
+  "PhysicalDescription" : {
+    "tags" : {
+      "300" : "extent"
+    },
+    "subfields" : {
+      "a" : "value"
+    }
+  },
+  "ElectronicLocationAndAccess" : {
+    "tags" : [
+      "856"
+    ],
+    "subfields" : {
+      "2" : "accessmode",
+      "3" : "relatedto",
+      "6" : "linkage",
+      "8" : "pos",
+      "9" : "prefix",
+      "a" : "hostname",
+      "b" : "accessnumber",
+      "c" : "compression",
+      "d" : "path",
+      "f" : "electronicname",
+      "h" : "processor",
+      "i" : "instruction",
+      "j" : "bitspersecond",
+      "k" : "password",
+      "l" : "logon",
+      "m" : "contact",
+      "n" : "locationofhost",
+      "o" : "operatingsystem",
+      "p" : "port",
+      "q" : "format",
+      "r" : "settings",
+      "s" : "size",
+      "t" : "terminal",
+      "u" : "uri",
+      "v" : "hoursaccess",
+      "w" : "controlnumber",
+      "x" : "nonpublicnote",
+      "y" : "label",
+      "z" : "publicnote"
+    }
+  },
+  "Ignore" : {
+    /* known, but ignored by intent */
+    "tags" : [
+      "003",
+      "005",
+      "008",
+      /* 094 = Notation eines Klassifikationssystems (lokale Notation) */
+      "094"
+    ]
+  }
 }

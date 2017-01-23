@@ -11,6 +11,7 @@ import org.xbib.content.rdf.internal.DefaultLiteral;
 import org.xbib.content.rdf.internal.DefaultRdfGraph;
 import org.xbib.content.rdf.internal.DefaultResource;
 import org.xbib.content.resource.IRI;
+import org.xbib.content.resource.Node;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -233,19 +234,30 @@ public class CatalogEntityWorkerState {
         sequences.clear();
 
         // collect facets, if any
-        Map<String, String> facetElements = builder.getFacetElements();
+        Map<String, Object> facetElements = builder.getFacetElements();
         if (facetElements != null && !facetElements.isEmpty()) {
-            for (Map.Entry<String, String> entry : facetElements.entrySet()) {
+            for (Map.Entry<String, Object> entry : facetElements.entrySet()) {
                 String facetName = entry.getKey();
-                String facetClass = entry.getValue();
+                String facetSpec = entry.getValue().toString();
                 TermFacet facet = facets.get(facetName);
+                // facet is null, check for a default value
                 if (facet == null) {
                     CatalogEntity entity =
-                            builder.getEntitySpecification().getEntities().get(packageName + "." + facetClass);
+                            builder.getEntitySpecification().getEntities().get(packageName + "." + facetSpec);
                     if (entity != null) {
                         facet = entity.getDefaultFacet();
                         if (facet != null) {
                             facets.put(facetName, facet);
+                        }
+                    } else {
+                        // no class specified. Look up in resource for collected values and transfer them into facet.
+                        List<Node> nodes = find(resource, facetSpec);
+                        if (nodes != null) {
+                            for (Node node : nodes) {
+                                facets.putIfAbsent(facetName, new TermFacet().setName(facetName).setType(Literal.STRING));
+                                String s = node instanceof Literal ? ((Literal) node).object().toString() : node.toString();
+                                facets.get(facetName).addValue(s);
+                            }
                         }
                     }
                 }
@@ -293,5 +305,20 @@ public class CatalogEntityWorkerState {
                 }
             }
         }
+    }
+
+    private List<Node> find(Resource resource, String path) {
+        String[] p = path.split("\\.");
+        String obj = path;
+        if (p.length > 1) {
+            for (int i = 0; i < p.length - 1; i++) {
+                List<Node> list = resource.objects(p[i]);
+                if (!list.isEmpty()) {
+                    resource = (Resource) list.get(0);
+                }
+            }
+            obj = p[p.length - 1];
+        }
+        return resource.objects(obj);
     }
 }

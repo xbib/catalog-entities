@@ -17,12 +17,12 @@ public class ValueMapper {
 
     private static final Logger logger = Logger.getLogger(ValueMapper.class.getName());
 
-    private static final Map<String, Object> maps = new HashMap<>();
+    private final Map<String, Object> maps = new HashMap<>();
 
     private final ClassLoader classLoader;
 
     public ValueMapper() {
-        this.classLoader = getClass().getClassLoader();
+        this.classLoader = ValueMapper.class.getClassLoader();
     }
 
     public ValueMapper(ClassLoader classLoader) {
@@ -30,7 +30,7 @@ public class ValueMapper {
     }
 
     @SuppressWarnings("unchecked")
-    public synchronized Map<String, Object> getMap(String path, String key) throws IOException {
+    public Map<String, Object> getMap(String path, String key) throws IOException {
         if (!maps.containsKey(key)) {
             URL url = classLoader.getResource(path);
             if (url != null) {

@@ -124,8 +124,8 @@ implements <a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="type">class</span> <span class="class">MyBuilder</span> <span class="directive">extends</span> CatalogEntityBuilder {
 
-  MyBuilder(<span class="predefined-type">String</span> packageName, <span class="predefined-type">InputStream</span> inputStream) <span class="directive">throws</span> <span class="exception">Exception</span> {
-     <span class="local-variable">super</span>(packageName, inputStream, listener);
+  MyBuilder(Setting settings) <span class="directive">throws</span> <span class="exception">IOException</span> {
+     <span class="local-variable">super</span>(settings, listener);
   }
 
   <span class="annotation">@Override</span>
@@ -160,6 +160,10 @@ implements <a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected org.xbib.content.settings.Settings</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#settings">settings</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.util.Set&lt;java.lang.String&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#unmapped">unmapped</a></span></code>&nbsp;</td>
 </tr>
@@ -178,62 +182,7 @@ implements <a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-java.io.InputStream-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder</a></span>(java.lang.String&nbsp;packageName,
-                    java.io.InputStream&nbsp;inputStream,
-                    <a href="../../../../org/xbib/catalog/entities/WorkerPoolListener.html" title="interface in org.xbib.catalog.entities">WorkerPoolListener</a>&lt;<a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title="interface in org.xbib.catalog.entities">WorkerPool</a>&lt;org.xbib.marc.MarcRecord&gt;&gt;&nbsp;listener)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.io.InputStream-java.util.Map-boolean-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder</a></span>(java.lang.String&nbsp;packageName,
-                    int&nbsp;workers,
-                    java.io.InputStream&nbsp;inputStream,
-                    java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;params,
-                    boolean&nbsp;isMapped,
-                    <a href="../../../../org/xbib/catalog/entities/WorkerPoolListener.html" title="interface in org.xbib.catalog.entities">WorkerPoolListener</a>&lt;<a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title="interface in org.xbib.catalog.entities">WorkerPool</a>&lt;org.xbib.marc.MarcRecord&gt;&gt;&nbsp;listener)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.net.URL-">CatalogEntityBuilder</a></span>(java.lang.String&nbsp;packageName,
-                    int&nbsp;workers,
-                    java.net.URL&nbsp;url)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.net.URL-boolean-">CatalogEntityBuilder</a></span>(java.lang.String&nbsp;packageName,
-                    int&nbsp;workers,
-                    java.net.URL&nbsp;url,
-                    boolean&nbsp;mapped)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.net.URL-java.util.Map-boolean-">CatalogEntityBuilder</a></span>(java.lang.String&nbsp;packageName,
-                    int&nbsp;workers,
-                    java.net.URL&nbsp;url,
-                    java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;params,
-                    boolean&nbsp;isMapped)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.net.URL-java.util.Map-boolean-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder</a></span>(java.lang.String&nbsp;packageName,
-                    int&nbsp;workers,
-                    java.net.URL&nbsp;url,
-                    java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;params,
-                    boolean&nbsp;isMapped,
-                    <a href="../../../../org/xbib/catalog/entities/WorkerPoolListener.html" title="interface in org.xbib.catalog.entities">WorkerPoolListener</a>&lt;<a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title="interface in org.xbib.catalog.entities">WorkerPool</a>&lt;org.xbib.marc.MarcRecord&gt;&gt;&nbsp;listener)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.net.URL-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder</a></span>(java.lang.String&nbsp;packageName,
-                    int&nbsp;workers,
-                    java.net.URL&nbsp;url,
-                    <a href="../../../../org/xbib/catalog/entities/WorkerPoolListener.html" title="interface in org.xbib.catalog.entities">WorkerPoolListener</a>&lt;<a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title="interface in org.xbib.catalog.entities">WorkerPool</a>&lt;org.xbib.marc.MarcRecord&gt;&gt;&nbsp;listener)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-java.net.URL-">CatalogEntityBuilder</a></span>(java.lang.String&nbsp;packageName,
-                    java.net.URL&nbsp;url)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-java.net.URL-boolean-">CatalogEntityBuilder</a></span>(java.lang.String&nbsp;packageName,
-                    java.net.URL&nbsp;url,
-                    boolean&nbsp;mapped)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-java.net.URL-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder</a></span>(java.lang.String&nbsp;packageName,
-                    java.net.URL&nbsp;url,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-org.xbib.content.settings.Settings-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder</a></span>(org.xbib.content.settings.Settings&nbsp;settings,
                     <a href="../../../../org/xbib/catalog/entities/WorkerPoolListener.html" title="interface in org.xbib.catalog.entities">WorkerPoolListener</a>&lt;<a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title="interface in org.xbib.catalog.entities">WorkerPool</a>&lt;org.xbib.marc.MarcRecord&gt;&gt;&nbsp;listener)</code>&nbsp;</td>
 </tr>
 </table>
@@ -320,7 +269,7 @@ implements <a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#getEntitySpecification--">getEntitySpecification</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i16" class="altColor">
-<td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
+<td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#getFacetElements--">getFacetElements</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i17" class="rowColor">
@@ -391,7 +340,7 @@ implements <a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#setEnableChecksum-boolean-">setEnableChecksum</a></span>(boolean&nbsp;enableChecksum)</code>&nbsp;</td>
 </tr>
 <tr id="i33" class="rowColor">
-<td class="colFirst"><code>protected java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
+<td class="colFirst"><code>protected java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/xbib/catalog/entities/CatalogEntityBuilder.html#setupFacets-java.util.Map-">setupFacets</a></span>(java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;params)</code>&nbsp;</td>
 </tr>
 <tr id="i34" class="altColor">
@@ -448,6 +397,15 @@ implements <a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title
 <!--   -->
 </a>
 <h3>Field Detail</h3>
+<a name="settings">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>settings</h4>
+<pre>protected final&nbsp;org.xbib.content.settings.Settings settings</pre>
+</li>
+</ul>
 <a name="unmapped">
 <!--   -->
 </a>
@@ -465,167 +423,13 @@ implements <a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="CatalogEntityBuilder-java.lang.String-java.net.URL-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CatalogEntityBuilder</h4>
-<pre>public&nbsp;CatalogEntityBuilder(java.lang.String&nbsp;packageName,
-                            java.net.URL&nbsp;url)
-                     throws java.io.IOException</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
-</dl>
-</li>
-</ul>
-<a name="CatalogEntityBuilder-java.lang.String-java.net.URL-org.xbib.catalog.entities.WorkerPoolListener-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CatalogEntityBuilder</h4>
-<pre>public&nbsp;CatalogEntityBuilder(java.lang.String&nbsp;packageName,
-                            java.net.URL&nbsp;url,
-                            <a href="../../../../org/xbib/catalog/entities/WorkerPoolListener.html" title="interface in org.xbib.catalog.entities">WorkerPoolListener</a>&lt;<a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title="interface in org.xbib.catalog.entities">WorkerPool</a>&lt;org.xbib.marc.MarcRecord&gt;&gt;&nbsp;listener)
-                     throws java.io.IOException</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
-</dl>
-</li>
-</ul>
-<a name="CatalogEntityBuilder-java.lang.String-java.io.InputStream-org.xbib.catalog.entities.WorkerPoolListener-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CatalogEntityBuilder</h4>
-<pre>public&nbsp;CatalogEntityBuilder(java.lang.String&nbsp;packageName,
-                            java.io.InputStream&nbsp;inputStream,
-                            <a href="../../../../org/xbib/catalog/entities/WorkerPoolListener.html" title="interface in org.xbib.catalog.entities">WorkerPoolListener</a>&lt;<a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title="interface in org.xbib.catalog.entities">WorkerPool</a>&lt;org.xbib.marc.MarcRecord&gt;&gt;&nbsp;listener)
-                     throws java.io.IOException</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
-</dl>
-</li>
-</ul>
-<a name="CatalogEntityBuilder-java.lang.String-int-java.net.URL-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CatalogEntityBuilder</h4>
-<pre>public&nbsp;CatalogEntityBuilder(java.lang.String&nbsp;packageName,
-                            int&nbsp;workers,
-                            java.net.URL&nbsp;url)
-                     throws java.io.IOException</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
-</dl>
-</li>
-</ul>
-<a name="CatalogEntityBuilder-java.lang.String-int-java.net.URL-org.xbib.catalog.entities.WorkerPoolListener-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CatalogEntityBuilder</h4>
-<pre>public&nbsp;CatalogEntityBuilder(java.lang.String&nbsp;packageName,
-                            int&nbsp;workers,
-                            java.net.URL&nbsp;url,
-                            <a href="../../../../org/xbib/catalog/entities/WorkerPoolListener.html" title="interface in org.xbib.catalog.entities">WorkerPoolListener</a>&lt;<a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title="interface in org.xbib.catalog.entities">WorkerPool</a>&lt;org.xbib.marc.MarcRecord&gt;&gt;&nbsp;listener)
-                     throws java.io.IOException</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
-</dl>
-</li>
-</ul>
-<a name="CatalogEntityBuilder-java.lang.String-java.net.URL-boolean-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CatalogEntityBuilder</h4>
-<pre>public&nbsp;CatalogEntityBuilder(java.lang.String&nbsp;packageName,
-                            java.net.URL&nbsp;url,
-                            boolean&nbsp;mapped)
-                     throws java.io.IOException</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
-</dl>
-</li>
-</ul>
-<a name="CatalogEntityBuilder-java.lang.String-int-java.net.URL-boolean-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CatalogEntityBuilder</h4>
-<pre>public&nbsp;CatalogEntityBuilder(java.lang.String&nbsp;packageName,
-                            int&nbsp;workers,
-                            java.net.URL&nbsp;url,
-                            boolean&nbsp;mapped)
-                     throws java.io.IOException</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
-</dl>
-</li>
-</ul>
-<a name="CatalogEntityBuilder-java.lang.String-int-java.net.URL-java.util.Map-boolean-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CatalogEntityBuilder</h4>
-<pre>public&nbsp;CatalogEntityBuilder(java.lang.String&nbsp;packageName,
-                            int&nbsp;workers,
-                            java.net.URL&nbsp;url,
-                            java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;params,
-                            boolean&nbsp;isMapped)
-                     throws java.io.IOException</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
-</dl>
-</li>
-</ul>
-<a name="CatalogEntityBuilder-java.lang.String-int-java.net.URL-java.util.Map-boolean-org.xbib.catalog.entities.WorkerPoolListener-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CatalogEntityBuilder</h4>
-<pre>public&nbsp;CatalogEntityBuilder(java.lang.String&nbsp;packageName,
-                            int&nbsp;workers,
-                            java.net.URL&nbsp;url,
-                            java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;params,
-                            boolean&nbsp;isMapped,
-                            <a href="../../../../org/xbib/catalog/entities/WorkerPoolListener.html" title="interface in org.xbib.catalog.entities">WorkerPoolListener</a>&lt;<a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title="interface in org.xbib.catalog.entities">WorkerPool</a>&lt;org.xbib.marc.MarcRecord&gt;&gt;&nbsp;listener)
-                     throws java.io.IOException</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
-</dl>
-</li>
-</ul>
-<a name="CatalogEntityBuilder-java.lang.String-int-java.io.InputStream-java.util.Map-boolean-org.xbib.catalog.entities.WorkerPoolListener-">
+<a name="CatalogEntityBuilder-org.xbib.content.settings.Settings-org.xbib.catalog.entities.WorkerPoolListener-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>CatalogEntityBuilder</h4>
-<pre>public&nbsp;CatalogEntityBuilder(java.lang.String&nbsp;packageName,
-                            int&nbsp;workers,
-                            java.io.InputStream&nbsp;inputStream,
-                            java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;params,
-                            boolean&nbsp;isMapped,
+<pre>public&nbsp;CatalogEntityBuilder(org.xbib.content.settings.Settings&nbsp;settings,
                             <a href="../../../../org/xbib/catalog/entities/WorkerPoolListener.html" title="interface in org.xbib.catalog.entities">WorkerPoolListener</a>&lt;<a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title="interface in org.xbib.catalog.entities">WorkerPool</a>&lt;org.xbib.marc.MarcRecord&gt;&gt;&nbsp;listener)
                      throws java.io.IOException</pre>
 <dl>
@@ -902,7 +706,7 @@ implements <a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>getFacetElements</h4>
-<pre>public&nbsp;java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;getFacetElements()</pre>
+<pre>public&nbsp;java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;getFacetElements()</pre>
 </li>
 </ul>
 <a name="getSerialsMap--">
@@ -1062,7 +866,12 @@ implements <a href="../../../../org/xbib/catalog/entities/WorkerPool.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>setupFacets</h4>
-<pre>protected&nbsp;java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;setupFacets(java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;params)</pre>
+<pre>protected&nbsp;java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;setupFacets(java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;params)
+                                                                throws java.io.IOException</pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd>
+</dl>
 </li>
 </ul>
 <a name="setupSerialsMap-java.util.Map-">

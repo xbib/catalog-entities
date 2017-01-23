@@ -74,7 +74,7 @@ public class GeneralInformation extends CatalogEntity {
                 Map<String, Object> values = (Map<String, Object>) entry.getValue();
                 String v = value.substring(from, to);
                 String predicate = (String) values.get("_predicate");
-                if (predicate != null && !"|".equals(v) && !"||".equals(v) && !"|||".equals(v)) {
+                if (predicate != null && !"|".equals(v) && !"||".equals(v) && !"|||".equals(v) && !"|| ".equals(v)) {
                     if (values.containsKey(v)) {
                         info.add(predicate, (String) values.get(v));
                     } else {
@@ -94,10 +94,6 @@ public class GeneralInformation extends CatalogEntity {
         }
         try {
             int d = Integer.parseInt(date);
-            if (d < 1450) {
-                logger.log(Level.WARNING, () -> MessageFormat.format("very early date ignored: {0}", d));
-                return null;
-            }
             if (d == 9999) {
                 return null;
             }

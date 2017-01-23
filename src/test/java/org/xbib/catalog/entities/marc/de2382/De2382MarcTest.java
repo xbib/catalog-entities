@@ -11,6 +11,7 @@ import org.xbib.catalog.entities.WorkerPool;
 import org.xbib.catalog.entities.WorkerPoolListener;
 import org.xbib.content.rdf.RdfContentBuilder;
 import org.xbib.content.rdf.RdfXContentParams;
+import org.xbib.content.settings.Settings;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcRecord;
 
@@ -23,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,9 +51,12 @@ public class De2382MarcTest {
             };
 
     @Test
-    public void testCatpfile() throws Exception {
-        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.marc.bib",
-                getClass().getResourceAsStream("/org/xbib/catalog/entities/marc/bib.json"))) {
+    public void testCatpfile() throws IOException {
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.marc.bib")
+                .put("elements", "/org/xbib/catalog/entities/marc/bib.json")
+                .build();
+        try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()
                     .setInputStream(getClass().getResource("test-catpfile.book.marc21").openStream())
                     .setMarcListener(myBuilder)
@@ -68,8 +73,8 @@ public class De2382MarcTest {
 
     private static class MyBuilder extends CatalogEntityBuilder {
 
-        MyBuilder(String packageName, InputStream inputStream) throws Exception {
-            super(packageName, inputStream, listener);
+        MyBuilder(Settings settings) throws IOException {
+            super(settings, listener);
         }
 
         @Override
@@ -79,7 +84,6 @@ public class De2382MarcTest {
             builder.receive(state.getResource());
             String content = params.getGenerator().get();
             if (content != null) {
-                logger.log(Level.FINE, "rdf=" + content);
                 /*Path path = Paths.get(state.getRecordIdentifier() + ".json");
                 try (BufferedWriter writer = Files.newBufferedWriter(path)) {
                     writer.write(content);

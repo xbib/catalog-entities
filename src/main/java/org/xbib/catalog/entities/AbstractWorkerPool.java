@@ -3,6 +3,8 @@ package org.xbib.catalog.entities;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CancellationException;
@@ -38,7 +40,7 @@ public abstract class AbstractWorkerPool<R> implements WorkerPool<R>, AutoClosea
 
     private final int waitSeconds;
 
-    private final AtomicBoolean closed;
+    private final AtomicBoolean isClosed;
 
     private final CountDownLatch latch;
 
@@ -66,7 +68,7 @@ public abstract class AbstractWorkerPool<R> implements WorkerPool<R>, AutoClosea
         this.listener = listener;
         this.queue = new SynchronousQueue<>(true);
         this.executor = new ThreadPoolWorkerExecutor(workerCount);
-        this.closed = new AtomicBoolean(true);
+        this.isClosed = new AtomicBoolean(true);
         this.latch = new CountDownLatch(workerCount);
         this.exceptions = new ConcurrentHashMap<>();
         this.counter = new AtomicLong();
@@ -74,7 +76,7 @@ public abstract class AbstractWorkerPool<R> implements WorkerPool<R>, AutoClosea
 
     @Override
     public WorkerPool<R> open() {
-        if (closed.compareAndSet(true, false)) {
+        if (isClosed.compareAndSet(true, false)) {
             for (int i = 0; i < workerCount; i++) {
                 Worker<R> worker = newWorker();
                 Wrapper wrapper = new Wrapper(worker);
@@ -96,16 +98,16 @@ public abstract class AbstractWorkerPool<R> implements WorkerPool<R>, AutoClosea
 
     @Override
     public void submit(R request) {
-        if (closed.get()) {
-            throw new UncheckedIOException(new IOException("closed"));
+        if (request.equals(getPoison())) {
+            return;
+        }
+        if (isClosed.get()) {
+            throw new UncheckedIOException(new IOException("closed, request " + request + " rejected"));
+        }
+        if (latch.getCount() == 0) {
+            throw new UncheckedIOException(new IOException("no worker available"));
         }
         try {
-            if (latch.getCount() == 0) {
-                throw new UncheckedIOException(new IOException("no worker available"));
-            }
-            if (request.equals(getPoison())) {
-                throw new UncheckedIOException(new IOException("ignoring poison"));
-            }
             queue.put(request);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -115,7 +117,7 @@ public abstract class AbstractWorkerPool<R> implements WorkerPool<R>, AutoClosea
 
     @Override
     public void close() {
-        if (closed.compareAndSet(false, true)) {
+        if (isClosed.compareAndSet(false, true)) {
             while (latch.getCount() > 0) {
                 try {
                     queue.put(getPoison());
@@ -222,11 +224,11 @@ public abstract class AbstractWorkerPool<R> implements WorkerPool<R>, AutoClosea
                 Thread.currentThread().interrupt();
                 logger.log(Level.WARNING, e.getMessage(), e);
                 exceptions.put(this, e);
-            } catch (Exception e) {
+            } catch (Exception | AssertionError e) {
                 // catch unexpected exception. Throwables, Errors are examined in afterExecute.
                 logger.log(Level.SEVERE, e.getMessage(), e);
                 exceptions.put(this, e);
-                if (closed.get()) {
+                if (isClosed.get()) {
                     try {
                         getQueue().poll(1, TimeUnit.MINUTES);
                     } catch (InterruptedException e2) {
@@ -237,11 +239,16 @@ public abstract class AbstractWorkerPool<R> implements WorkerPool<R>, AutoClosea
                 throw new UncheckedIOException(new IOException(e));
             } finally {
                 latch.countDown();
+                if (exceptions.containsKey(this) && latch.getCount() == 0) {
+                    logger.log(Level.INFO, "last worker exited with error, draining queue");
+                    Collection<R> collection = new ArrayList<R>();
+                    getQueue().drainTo(collection);
+                }
                 if (getPoison().equals(request)) {
                     logger.log(Level.INFO, () -> MessageFormat.format("end of worker {0} {1}",
                             worker, "(completed, " + counter + " requests)"));
                 } else {
-                    logger.log(Level.WARNING, () -> MessageFormat.format("end of worker {0} {1}",
+                    logger.log(Level.SEVERE, () -> MessageFormat.format("end of worker {0} {1}",
                             worker, "(abnormal termination after " + counter + " requests)"));
                 }
             }

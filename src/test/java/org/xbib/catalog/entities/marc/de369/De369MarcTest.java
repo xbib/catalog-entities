@@ -11,6 +11,7 @@ import org.xbib.catalog.entities.WorkerPool;
 import org.xbib.catalog.entities.WorkerPoolListener;
 import org.xbib.content.rdf.RdfContentBuilder;
 import org.xbib.content.rdf.RdfXContentParams;
+import org.xbib.content.settings.Settings;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcRecord;
 
@@ -49,9 +50,12 @@ public class De369MarcTest {
             };
 
     @Test
-    public void testStbBonn() throws Exception {
-        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.marc.bib",
-                getClass().getResourceAsStream("/org/xbib/catalog/entities/marc/bib.json"))) {
+    public void testStbBonn() throws IOException {
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.marc.bib")
+                .put("elements", "/org/xbib/catalog/entities/marc/bib.json")
+                .build();
+        try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()
                     .setInputStream(getClass().getResource("stb-bonn.mrc").openStream())
                     .setMarcListener(myBuilder)
@@ -68,8 +72,8 @@ public class De369MarcTest {
 
     private static class MyBuilder extends CatalogEntityBuilder {
 
-        MyBuilder(String packageName, InputStream inputStream) throws Exception {
-            super(packageName, inputStream, listener);
+        MyBuilder(Settings settings) throws IOException {
+            super(settings, listener);
         }
 
         @Override
@@ -80,7 +84,7 @@ public class De369MarcTest {
             String content = params.getGenerator().get();
             // we have state.getRecordIdentifier() == null for many cases...
             if (state.getRecordIdentifier() != null && content != null) {
-                logger.log(Level.FINE, "rdf=" + content);
+                //logger.log(Level.FINE, "rdf=" + content);
                 /*Path path = Paths.get(state.getRecordIdentifier() + ".json");
                 try (BufferedWriter writer = Files.newBufferedWriter(path)) {
                     writer.write(content);

@@ -6,11 +6,11 @@ import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
 import org.xbib.catalog.entities.WorkerPool;
 import org.xbib.catalog.entities.WorkerPoolListener;
+import org.xbib.content.settings.Settings;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcRecord;
 
 import java.io.StringWriter;
-import java.net.URL;
 import java.text.MessageFormat;
 import java.util.Map;
 import java.util.logging.Level;
@@ -39,8 +39,11 @@ public class UnimarcTest extends Assert {
 
     @Test
     public void testUnimarcSetup() throws Exception {
-        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.unimarc.bib",
-                getClass().getResource("bib.json"))) {
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.unimarc.bib")
+                .put("elements", "/org/xbib/catalog/entities/unimarc/bib.json")
+                .build();
+        try (MyBuilder myBuilder = new MyBuilder(settings)) {
             StringWriter writer = new StringWriter();
             myBuilder.getEntitySpecification().dump(writer);
         }
@@ -49,8 +52,11 @@ public class UnimarcTest extends Assert {
     @Test
     @Ignore
     public void testUnimarc() throws Exception {
-        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.unimarc.bib",
-                getClass().getResource("bib.json"))) {
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.unimarc.bib")
+                .put("elements", "/org/xbib/catalog/entities/unimarc/bib.json")
+                .build();
+        try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()
                     .setInputStream(getClass().getResourceAsStream("serres.mrc"))
                     .setMarcListener(myBuilder)
@@ -62,8 +68,8 @@ public class UnimarcTest extends Assert {
 
     private static class MyBuilder extends CatalogEntityBuilder {
 
-        MyBuilder(String packageName, URL url) throws Exception {
-            super(packageName, url, listener);
+        MyBuilder(Settings settings) throws Exception {
+            super(settings, listener);
         }
 
     }

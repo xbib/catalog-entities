@@ -298,25 +298,7 @@
 <dd>
 <div class="block">The catalog entity builder is a worker pool for generating bibliographic entities.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-java.net.URL-">CatalogEntityBuilder(String, URL)</a></span> - Constructor for class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-java.net.URL-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder(String, URL, WorkerPoolListener&lt;WorkerPool&lt;MarcRecord&gt;&gt;)</a></span> - Constructor for class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-java.io.InputStream-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder(String, InputStream, WorkerPoolListener&lt;WorkerPool&lt;MarcRecord&gt;&gt;)</a></span> - Constructor for class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.net.URL-">CatalogEntityBuilder(String, int, URL)</a></span> - Constructor for class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.net.URL-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder(String, int, URL, WorkerPoolListener&lt;WorkerPool&lt;MarcRecord&gt;&gt;)</a></span> - Constructor for class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-java.net.URL-boolean-">CatalogEntityBuilder(String, URL, boolean)</a></span> - Constructor for class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.net.URL-boolean-">CatalogEntityBuilder(String, int, URL, boolean)</a></span> - Constructor for class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.net.URL-java.util.Map-boolean-">CatalogEntityBuilder(String, int, URL, Map&lt;String, Object&gt;, boolean)</a></span> - Constructor for class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.net.URL-java.util.Map-boolean-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder(String, int, URL, Map&lt;String, Object&gt;, boolean, WorkerPoolListener&lt;WorkerPool&lt;MarcRecord&gt;&gt;)</a></span> - Constructor for class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-java.lang.String-int-java.io.InputStream-java.util.Map-boolean-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder(String, int, InputStream, Map&lt;String, Object&gt;, boolean, WorkerPoolListener&lt;WorkerPool&lt;MarcRecord&gt;&gt;)</a></span> - Constructor for class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
+<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#CatalogEntityBuilder-org.xbib.content.settings.Settings-org.xbib.catalog.entities.WorkerPoolListener-">CatalogEntityBuilder(Settings, WorkerPoolListener&lt;WorkerPool&lt;MarcRecord&gt;&gt;)</a></span> - Constructor for class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/xbib/catalog/entities/CatalogEntitySpecification.html" title="class in org.xbib.catalog.entities"><span class="typeNameLink">CatalogEntitySpecification</span></a> - Class in <a href="org/xbib/catalog/entities/package-summary.html">org.xbib.catalog.entities</a></dt>
 <dd>&nbsp;</dd>
@@ -2253,6 +2235,8 @@ return value is Object rather than String.</div>
 <dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityWorkerState.html#setRecordIdentifier-java.lang.String-">setRecordIdentifier(String)</a></span> - Method in class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityWorkerState.html" title="class in org.xbib.catalog.entities">CatalogEntityWorkerState</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityWorkerState.html#setRecordLabel-java.lang.String-">setRecordLabel(String)</a></span> - Method in class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityWorkerState.html" title="class in org.xbib.catalog.entities">CatalogEntityWorkerState</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityBuilder.html#settings">settings</a></span> - Variable in class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityBuilder.html" title="class in org.xbib.catalog.entities">CatalogEntityBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/xbib/catalog/entities/CatalogEntityWorkerState.html#setType-java.lang.String-">setType(String)</a></span> - Method in class org.xbib.catalog.entities.<a href="org/xbib/catalog/entities/CatalogEntityWorkerState.html" title="class in org.xbib.catalog.entities">CatalogEntityWorkerState</a></dt>
 <dd>&nbsp;</dd>

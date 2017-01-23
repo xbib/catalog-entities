@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
 import org.xbib.catalog.entities.WorkerPool;
 import org.xbib.catalog.entities.WorkerPoolListener;
+import org.xbib.content.settings.Settings;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcRecord;
 import org.xbib.marc.dialects.pica.PicaXMLContentHandler;
@@ -14,7 +15,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.Map;
@@ -45,9 +45,12 @@ public class NatLizPicaTest extends Assert {
     public void testNatLizPicaSetup() throws Exception {
         File file = File.createTempFile("natliz-pica-bib-entities.", ".json");
         file.deleteOnExit();
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.pica.natliz.bib")
+                .put("elements", "/org/xbib/catalog/entities/pica/bib.json")
+                .build();
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
-             NatLizPicaBuilder builder = new NatLizPicaBuilder("org.xbib.catalog.entities.pica.natliz.bib",
-                getClass().getResource("bib.json"))) {
+             NatLizPicaBuilder builder = new NatLizPicaBuilder(settings)) {
             assertFalse(builder.getEntitySpecification().getEntities().isEmpty());
             builder.getEntitySpecification().dump(writer);
         }
@@ -56,9 +59,12 @@ public class NatLizPicaTest extends Assert {
     @Test
     public void testNatLizPica() throws Exception {
         CountingPicaXMLContentHandler contentHandler = new CountingPicaXMLContentHandler();
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.pica.natliz.bib")
+                .put("elements", "/org/xbib/catalog/entities/pica/bib.json")
+                .build();
         try (InputStream inputStream = getClass().getResource("natliz.xml").openStream();
-                NatLizPicaBuilder builder = new NatLizPicaBuilder("org.xbib.catalog.entities.pica.natliz.bib",
-                getClass().getResource("bib.json"))) {
+                NatLizPicaBuilder builder = new NatLizPicaBuilder(settings)) {
             contentHandler.addNamespace("info:srw/schema/5/picaXML-v1.0");
             contentHandler.setMarcListener(builder);
             Marc.builder()
@@ -90,8 +96,8 @@ public class NatLizPicaTest extends Assert {
 
     private static class NatLizPicaBuilder extends CatalogEntityBuilder {
 
-        NatLizPicaBuilder(String packageName, URL url) throws Exception {
-            super(packageName, 1, url, listener);
+        NatLizPicaBuilder(Settings settings) throws Exception {
+            super(settings, listener);
         }
     }
 }

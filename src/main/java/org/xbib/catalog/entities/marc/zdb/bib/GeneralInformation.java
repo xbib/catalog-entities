@@ -32,7 +32,8 @@ public class GeneralInformation extends CatalogEntity {
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
         if (value.length() != 40) {
-            logger.log(Level.WARNING, "broken GeneralInformation field, length is not 40");
+            logger.log(Level.WARNING,
+                    "broken GeneralInformation field, length is not 40, but " + value.length() + " field=" + field);
         }
         Resource info = worker.getWorkerState().getResource().newResource("GeneralInformation");
         examine(codes, info, value);
@@ -70,9 +71,9 @@ public class GeneralInformation extends CatalogEntity {
                 }
             } else if (entry.getValue() instanceof Map) {
                 Map<String, Object> values = (Map<String, Object>) entry.getValue();
-                String v = value.substring(from, to);
+                String v = value.length() >= to ? value.substring(from, to) : "|";
                 String predicate = (String) values.get("_predicate");
-                if (predicate != null && !"|".equals(v) && !"||".equals(v) && !"|||".equals(v)) {
+                if (predicate != null && !"|".equals(v) && !"||".equals(v) && !"|||".equals(v) && !"|| ".equals(v)) {
                     if (values.containsKey(v)) {
                         info.add(predicate, (String) values.get(v));
                     } else {

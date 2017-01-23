@@ -11,6 +11,7 @@ import org.xbib.catalog.entities.WorkerPool;
 import org.xbib.catalog.entities.WorkerPoolListener;
 import org.xbib.content.rdf.RdfContentBuilder;
 import org.xbib.content.rdf.RdfXContentParams;
+import org.xbib.content.settings.Settings;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcRecord;
 
@@ -50,38 +51,41 @@ public class HolTest {
             };
 
     @Test
-    public void testHol() throws Exception {
-        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.marc.zdb.hol",
-                getClass().getResource("hol.json"))) {
+    public void testHol() throws IOException {
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.marc.zdb.hol")
+                .put("elements", "/org/xbib/catalog/entities/marc/zdb/hol.json")
+                .build();
+        try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()
                     .setInputStream(getClass().getResource("zdblokutf8.mrc").openStream())
                     .setMarcRecordListener(myBuilder)
                     .build()
                     .writeRecords();
-            logger.log(Level.INFO, MessageFormat.format("unmapped ZDB Hol fields = {0}", myBuilder.getUnmapped()));
+            logger.log(Level.INFO, MessageFormat.format("unmapped fields = {0}", myBuilder.getUnmapped()));
         }
     }
 
     private static class MyBuilder extends CatalogEntityBuilder {
 
-        MyBuilder(String packageName, URL url) throws Exception {
-            super(packageName, url, listener);
+        MyBuilder(Settings settings) throws IOException {
+            super(settings, listener);
         }
 
         @Override
         protected void afterFinishState(CatalogEntityWorkerState state) throws IOException {
-                RdfXContentParams params = new RdfXContentParams();
-                RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
-                builder.receive(state.getResource());
-                String content = params.getGenerator().get();
-                /*Path path = Paths.get(state.getRecordIdentifier() + ".hol.json");
-                try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-                    writer.write(content);
-                }*/
-                InputStream inputStream = getClass().getResource(state.getRecordIdentifier() + ".hol.json").openStream();
-                assertStream("" + state.getRecordIdentifier(),
-                        inputStream,
-                        new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
+            RdfXContentParams params = new RdfXContentParams();
+            RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
+            builder.receive(state.getResource());
+            String content = params.getGenerator().get();
+            /*Path path = Paths.get(state.getRecordIdentifier() + ".hol.json");
+            try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+                writer.write(content);
+            }*/
+            InputStream inputStream = getClass().getResource(state.getRecordIdentifier() + ".hol.json").openStream();
+            assertStream("" + state.getRecordIdentifier(),
+                    inputStream,
+                    new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
         }
     }
 }

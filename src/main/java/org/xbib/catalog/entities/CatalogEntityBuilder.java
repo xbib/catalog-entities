@@ -3,6 +3,7 @@ package org.xbib.catalog.entities;
 import org.xbib.content.rdf.RdfContentBuilderProvider;
 import org.xbib.content.rdf.Resource;
 import org.xbib.content.resource.IRI;
+import org.xbib.content.settings.Settings;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcField;
 import org.xbib.marc.MarcListener;
@@ -12,6 +13,7 @@ import org.xbib.marc.label.RecordLabel;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.util.Collections;
@@ -32,8 +34,8 @@ import java.util.zip.CRC32;
  * --
  * class MyBuilder extends CatalogEntityBuilder {
  *
- *   MyBuilder(String packageName, InputStream inputStream) throws Exception {
- *      super(packageName, inputStream, listener);
+ *   MyBuilder(Setting settings) throws IOException {
+ *      super(settings, listener);
  *   }
  *
  *   @Override
@@ -57,77 +59,59 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
 
     private static final MarcRecord poison = MarcRecord.EMPTY;
 
+    protected final Settings settings;
+
     protected final Set<String> unmapped;
+
     private final Map<String, Integer> mapped;
+
     private final AtomicLong checksum;
+
     private final Set<String> invalid;
+
     private final boolean isMapped;
+
     private CatalogEntitySpecification entitySpecification;
+
     private Marc.Builder marcBuilder;
+
     private IdentifierMapper identifierMapper;
+
     private ValueMapper valueMapper;
+
     private Classifier classifier;
-    private Map<String, String> facetElements;
+
+    private Map<String, Object> facetElements;
+
     private Map<String, Resource> serialsMap;
+
     private Map<String, Boolean> missingSerials;
+
     private boolean enableChecksum;
-    private volatile boolean errorstate;
 
-    public CatalogEntityBuilder(String packageName, URL url) throws IOException {
-        this(packageName, Runtime.getRuntime().availableProcessors(), url, Collections.emptyMap(), true);
-    }
-
-    public CatalogEntityBuilder(String packageName, URL url, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
+    public CatalogEntityBuilder(Settings settings, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
             throws IOException {
-        this(packageName, Runtime.getRuntime().availableProcessors(), url, Collections.emptyMap(), true, listener);
-    }
-
-    public CatalogEntityBuilder(String packageName, InputStream inputStream,
-                                WorkerPoolListener<WorkerPool<MarcRecord>> listener)
-            throws IOException {
-        this(packageName, Runtime.getRuntime().availableProcessors(), inputStream, Collections.emptyMap(), true, listener);
-    }
-
-    public CatalogEntityBuilder(String packageName, int workers, URL url) throws IOException {
-        this(packageName, workers, url, Collections.emptyMap(), true);
-    }
-
-    public CatalogEntityBuilder(String packageName, int workers, URL url,
-                                WorkerPoolListener<WorkerPool<MarcRecord>> listener) throws IOException {
-        this(packageName, workers, url, Collections.emptyMap(), true, listener);
-    }
-
-    public CatalogEntityBuilder(String packageName, URL url, boolean mapped) throws IOException {
-        this(packageName, Runtime.getRuntime().availableProcessors(), url, Collections.emptyMap(), mapped);
-    }
-
-    public CatalogEntityBuilder(String packageName, int workers, URL url, boolean mapped) throws IOException {
-        this(packageName, workers, url, Collections.emptyMap(), mapped);
-    }
-
-    public CatalogEntityBuilder(String packageName, int workers, URL url, Map<String, Object> params, boolean isMapped)
-            throws IOException {
-        this(packageName, workers, url, params, isMapped, null);
-    }
-
-    public CatalogEntityBuilder(String packageName, int workers, URL url, Map<String, Object> params,
-                                boolean isMapped, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
-            throws IOException {
-        this(packageName, workers, url.openStream(), params, isMapped, listener);
-        logger.log(Level.INFO, () -> MessageFormat.format("workers:{1} mapped:{2} package:{0} spec:{3}",
-                packageName, workers, isMapped, url));
-    }
-
-    public CatalogEntityBuilder(String packageName, int workers, InputStream inputStream, Map<String, Object> params,
-        boolean isMapped, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
-            throws IOException {
-        super(workers, listener);
+        super(settings.getAsInt("workers", Runtime.getRuntime().availableProcessors()), listener);
+        this.settings = settings;
         this.unmapped = Collections.synchronizedSet(new TreeSet<>());
         this.mapped = Collections.synchronizedMap(new TreeMap<>());
         this.checksum = new AtomicLong();
         this.invalid = Collections.synchronizedSet(new TreeSet<>());
-        this.isMapped = isMapped;
+        this.isMapped = settings.containsSetting("elements");
         if (isMapped) {
+            String packageName = settings.get("package");
+            String elements = settings.get("elements");
+            InputStream inputStream = null;
+            try {
+                URL url = new URL(elements);
+                inputStream = url.openStream();
+            } catch (MalformedURLException e) {
+                logger.log(Level.FINER, e.getMessage(), e);
+                inputStream = getClass().getResourceAsStream(elements);
+            }
+            Map<String, Object> params = settings.getAsStructuredMap();
+            logger.log(Level.INFO, () -> MessageFormat.format("package:{0} elements:{1}",
+                    packageName, elements));
             this.entitySpecification = new CatalogEntitySpecification(inputStream, new HashMap<>(), params, packageName);
             for (String key : entitySpecification.getMap().keySet()) {
                 mapped.put(key, 0);
@@ -146,7 +130,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
             }
             this.facetElements = setupFacets(params);
             if (!getFacetElements().isEmpty()) {
-                logger.log(Level.INFO, () -> MessageFormat.format("facets: {0} entries",
+                logger.log(Level.INFO, () -> MessageFormat.format("facets: {0}",
                         getFacetElements()));
             }
             this.serialsMap = setupSerialsMap(params);
@@ -158,13 +142,6 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     @Override
     public CatalogEntityWorker newWorker() {
         return isMapped ? new CatalogEntityWorker(this) : new CatalogUnmappedEntityWorker(this);
-    }
-
-    @Override
-    public void close() {
-        logger.info("closing");
-        super.close();
-        logger.info("closed");
     }
 
     @Override
@@ -208,14 +185,10 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
 
     @Override
     public void record(MarcRecord marcRecord) {
-        if (errorstate) {
-            return;
-        }
         try {
             submit(marcRecord);
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
-            errorstate = true;
             close();
         }
     }
@@ -288,7 +261,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         return classifier;
     }
 
-    public Map<String, String> getFacetElements() {
+    public Map<String, Object> getFacetElements() {
         return facetElements;
     }
 
@@ -377,14 +350,12 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     }
 
     @SuppressWarnings("unchecked")
-    protected Map<String, String> setupFacets(Map<String, Object> params) {
-        Map<String, String> map =  (Map<String, String>) params.get("facets");
+    protected Map<String, Object> setupFacets(Map<String, Object> params) throws IOException {
+        ValueMapper valueMapper = new ValueMapper();
+        valueMapper.getMap(settings.get("facets", "org/xbib/catalog/entities/marc/facets.json"), "facets");
+        Map<String, Object> map = valueMapper.getMap("facets");
         if (map == null) {
-            map = new HashMap<>();
-            map.put("dc.language", "Language");
-            map.put("dc.format", "FormatCarrier");
-            map.put("dc.type", "TypeMonograph");
-            map.put("dc.date", "Date");
+            map = Collections.emptyMap();
         }
         return map;
     }

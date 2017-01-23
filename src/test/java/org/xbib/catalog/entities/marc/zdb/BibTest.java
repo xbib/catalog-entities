@@ -14,6 +14,7 @@ import org.xbib.catalog.entities.WorkerPoolListener;
 import org.xbib.content.rdf.RdfContentBuilder;
 import org.xbib.content.rdf.RdfXContentParams;
 import org.xbib.content.rdf.RouteRdfXContentParams;
+import org.xbib.content.settings.Settings;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcRecord;
 import org.xbib.marc.MarcXchangeConstants;
@@ -54,9 +55,12 @@ public class BibTest {
     };
 
     @Test
-    public void testBibFromMarc() throws Exception {
-        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.marc.zdb.bib",
-                getClass().getResource("bib.json"), listener)) {
+    public void testBibFromMarc() throws IOException {
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.marc.zdb.bib")
+                .put("elements", "/org/xbib/catalog/entities/marc/zdb/bib.json")
+                .build();
+        try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()
                     .setInputStream(getClass().getResource("zdbtitutf8.mrc").openStream())
                     .setMarcRecordListener(myBuilder)
@@ -67,9 +71,12 @@ public class BibTest {
     }
 
     @Test
-    public void testOAIFromXML() throws Exception {
-        try (MyBuilder myBuilder = new MyBuilder("org.xbib.catalog.entities.marc.zdb.bib",
-                getClass().getResource("bib.json"), listener)) {
+    public void testOAIFromXML() throws IOException {
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.marc.zdb.bib")
+                .put("elements", "/org/xbib/catalog/entities/marc/zdb/bib.json")
+                .build();
+        try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()
                     .setInputStream(getClass().getResource("zdb-oai-marc.xml").openStream())
                     .setFormat("MARC21")
@@ -83,9 +90,12 @@ public class BibTest {
     }
 
     @Test
-    public void testBibRecords() throws Exception {
-        try (MyRouteBuilder myBuilder = new MyRouteBuilder("org.xbib.catalog.entities.marc.zdb.bib",
-                getClass().getResource("bib.json"), listener)) {
+    public void testBibRecords() throws IOException {
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.marc.zdb.bib")
+                .put("elements", "/org/xbib/catalog/entities/marc/zdb/bib.json")
+                .build();
+        try (MyRouteBuilder myBuilder = new MyRouteBuilder(settings)) {
             Marc.builder()
                     .setInputStream(getClass().getResource("zdbtitutf8.mrc").openStream())
                     .setMarcRecordListener(myBuilder)
@@ -97,36 +107,31 @@ public class BibTest {
 
     private static class MyBuilder extends CatalogEntityBuilder {
 
-        MyBuilder(String packageName, URL url, WorkerPoolListener<WorkerPool<MarcRecord>> listener) throws Exception {
-            super(packageName, url, listener);
+        MyBuilder(Settings settings) throws IOException {
+            super(settings, listener);
         }
 
         @Override
-        protected void afterFinishState(CatalogEntityWorkerState state) {
-            try {
-                RdfXContentParams params = new RdfXContentParams();
-                RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
-                builder.receive(state.getResource());
-                String content = params.getGenerator().get();
-                /*Path path = Paths.get(state.getRecordIdentifier() + ".json");
-                try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-                    writer.write(content);
-                }*/
-                InputStream inputStream = getClass().getResource(state.getRecordIdentifier() + ".json").openStream();
-                assertStream("" + state.getRecordIdentifier(),
-                        inputStream,
-                        new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
-
-            } catch (IOException e) {
-                logger.log(Level.SEVERE, e.getMessage(), e);
-            }
+        protected void afterFinishState(CatalogEntityWorkerState state) throws IOException {
+            RdfXContentParams params = new RdfXContentParams();
+            RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
+            builder.receive(state.getResource());
+            String content = params.getGenerator().get();
+            /*Path path = Paths.get(state.getRecordIdentifier() + ".json");
+            try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+                writer.write(content);
+            }*/
+            InputStream inputStream = getClass().getResource(state.getRecordIdentifier() + ".json").openStream();
+            assertStream("" + state.getRecordIdentifier(),
+                    inputStream,
+                    new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
         }
     }
 
     private static class MyRouteBuilder extends CatalogEntityBuilder {
 
-        MyRouteBuilder(String packageName, URL url, WorkerPoolListener<WorkerPool<MarcRecord>> listener) throws Exception {
-            super(packageName, url, listener);
+        MyRouteBuilder(Settings settings) throws IOException {
+            super(settings, listener);
         }
 
         @Override
