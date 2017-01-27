@@ -7,6 +7,7 @@ import org.xbib.marc.MarcField;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -41,7 +42,8 @@ public class RecordLeader extends CatalogEntity {
             if (v.containsKey(code)) {
                 resource.add(v.get("_predicate"), v.get(code));
             } else {
-                logger.warning("key=" + k + " code not configured: '" + code + "'");
+                logger.log(Level.WARNING, "key=%s code not configured: '%s'",
+                        new Object[] { k, code });
             }
         }
         char ch5 = value.charAt(5);

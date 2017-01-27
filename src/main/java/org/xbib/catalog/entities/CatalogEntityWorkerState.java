@@ -307,7 +307,8 @@ public class CatalogEntityWorkerState {
         }
     }
 
-    private List<Node> find(Resource resource, String path) {
+    private List<Node> find(Resource res, String path) {
+        Resource resource = res;
         String[] p = path.split("\\.");
         String obj = path;
         if (p.length > 1) {

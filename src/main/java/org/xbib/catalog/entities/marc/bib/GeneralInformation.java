@@ -60,8 +60,8 @@ public class GeneralInformation extends CatalogEntity {
             int pos = key.indexOf('-');
             String fromStr = pos > 0 ? key.substring(0, pos) : key;
             String toStr = pos > 0 ? key.substring(pos + 1) : key;
-            int from = Integer.valueOf(fromStr);
-            int to = fromStr.equals(toStr) ? from + 1 : Integer.valueOf(toStr) + 1;
+            int from = Integer.parseInt(fromStr);
+            int to = fromStr.equals(toStr) ? from + 1 : Integer.parseInt(toStr) + 1;
             if (entry.getValue() instanceof String) {
                 String pred = entry.getValue().toString();
                 String v = value.substring(from, to);
