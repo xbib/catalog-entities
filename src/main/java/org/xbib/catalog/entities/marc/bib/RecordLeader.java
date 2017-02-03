@@ -42,8 +42,9 @@ public class RecordLeader extends CatalogEntity {
             if (v.containsKey(code)) {
                 resource.add(v.get("_predicate"), v.get(code));
             } else {
-                logger.log(Level.WARNING, "key=%s code not configured: '%s'",
-                        new Object[] { k, code });
+                if (logger.isLoggable(Level.WARNING)) {
+                    logger.log(Level.WARNING, "key=" + k + " code not configured: '" + code + "'");
+                }
             }
         }
         char ch5 = value.charAt(5);

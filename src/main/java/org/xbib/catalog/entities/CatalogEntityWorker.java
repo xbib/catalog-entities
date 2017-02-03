@@ -261,28 +261,36 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
                     // default subfield map
                     String fieldName = me.getKey();
                     if (params.containsKey(fieldName)) {
-                        Map<String, Object> vm = (Map<String, Object>) params.get(fieldName);
-                        int pos = v.indexOf(' ');
-                        String vv = pos > 0 ? v.substring(0, pos) : v;
-                        if (vm.containsKey(v)) {
-                            v = (String) vm.get(v);
-                        } else if (vm.containsKey(vv)) {
-                            v = (String) vm.get(vv);
-                        } else {
-                            // relation by pattern?
-                            List<Map<String, String>> patterns =
-                                    (List<Map<String, String>>) params.get(fieldName + "pattern");
-                            if (patterns != null) {
-                                for (Map<String, String> pattern : patterns) {
-                                    Map.Entry<String, String> mme = pattern.entrySet().iterator().next();
-                                    String p = mme.getKey();
-                                    String rel = mme.getValue();
-                                    Matcher m = Pattern.compile(p, Pattern.CASE_INSENSITIVE).matcher(v);
-                                    if (m.matches()) {
-                                        v = rel;
-                                        break;
+                        Object o = params.get(fieldName);
+                        if (o instanceof Map) {
+                            Map<String, Object> vm = (Map<String, Object>) o;
+                            int pos = v.indexOf(' ');
+                            String vv = pos > 0 ? v.substring(0, pos) : v;
+                            if (vm.containsKey(v)) {
+                                v = (String) vm.get(v);
+                            } else if (vm.containsKey(vv)) {
+                                v = (String) vm.get(vv);
+                            } else {
+                                // relation by pattern?
+                                List<Map<String, String>> patterns =
+                                        (List<Map<String, String>>) params.get(fieldName + "pattern");
+                                if (patterns != null) {
+                                    for (Map<String, String> pattern : patterns) {
+                                        Map.Entry<String, String> mme = pattern.entrySet().iterator().next();
+                                        String p = mme.getKey();
+                                        String rel = mme.getValue();
+                                        Matcher m = Pattern.compile(p, Pattern.CASE_INSENSITIVE).matcher(v);
+                                        if (m.matches()) {
+                                            v = rel;
+                                            break;
+                                        }
                                     }
                                 }
+                            }
+                        } else {
+                            if (logger.isLoggable(Level.FINE)) {
+                                logger.log(Level.FINE,
+                                        "entity=" + entity + ": not a map found in params for key '" + fieldName + "'");
                             }
                         }
                     }

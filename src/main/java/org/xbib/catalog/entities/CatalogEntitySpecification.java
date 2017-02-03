@@ -53,12 +53,12 @@ public class CatalogEntitySpecification {
         this.packageName = packageName;
         this.map = new HashMap<>();
         if (inputStream != null) {
-            Map<String, Map<String, Object>> defs =
+            Map<String, Map<String, Object>> jsonSpec =
                     new ObjectMapper().configure(JsonParser.Feature.ALLOW_COMMENTS, true).readValue(inputStream, Map.class);
-            if (defs.isEmpty()) {
+            if (jsonSpec.isEmpty()) {
                 throw new IllegalArgumentException("no spec given, this will not work at all");
             }
-            init(defs, packageName);
+            addElements(jsonSpec, packageName);
         }
     }
 
@@ -80,8 +80,8 @@ public class CatalogEntitySpecification {
     }
 
     @SuppressWarnings("unchecked")
-    private void init(Map<String, Map<String, Object>> defs, String packageName) throws IOException {
-        for (Map.Entry<String, Map<String, Object>> entry : defs.entrySet()) {
+    public void addElements(Map<String, Map<String, Object>> jsonSpec, String packageName) throws IOException {
+        for (Map.Entry<String, Map<String, Object>> entry : jsonSpec.entrySet()) {
             String key = entry.getKey();
             Map<String, Object> struct = entry.getValue();
             // allow override static struct map from json with given params

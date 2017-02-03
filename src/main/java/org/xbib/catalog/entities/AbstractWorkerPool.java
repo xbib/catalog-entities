@@ -102,7 +102,7 @@ public abstract class AbstractWorkerPool<R> implements WorkerPool<R>, AutoClosea
             return;
         }
         if (isClosed.get()) {
-            throw new UncheckedIOException(new IOException("closed, request " + request + " rejected"));
+            return;
         }
         if (latch.getCount() == 0) {
             throw new UncheckedIOException(new IOException("no worker available"));

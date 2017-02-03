@@ -16,6 +16,7 @@
     "codes": {
       "5": {
         "_predicate": "recordStatus",
+        "0": "Unknown",
         "a": "Increase in encoding level",
         "c": "Corrected or revised",
         "d": "Deleted",
@@ -24,23 +25,29 @@
       },
       "6": {
         "_predicate": "typeOfRecord",
+        "0": "Unknown",
         "a": "Language material",
+        "b": "Archival and manuscripts control ",
         "c": "Notated music",
         "d": "Manuscript notated music",
         "e": "Cartographic material",
         "f": "Manuscript cartographic material",
         "g": "Projected medium",
+        "h": null, /* microform? */
         "i": "Nonmusical sound recording",
         "j": "Musical sound recording",
         "k": "Two-dimensional nonprojectable graphic",
         "m": "Computer file",
+        "n": "Special instructional material",
         "o": "Kit",
         "p": "Mixed materials",
         "r": "Three-dimensional artifact or naturally occurring object",
-        "t": "Manuscript language material"
+        "t": "Manuscript language material",
+        "u": null
       },
       "7": {
         "_predicate": "bibliographicLevel",
+        "0": "Unknown",
         "a" : "Monographic component part",
         "b" : "Serial component part",
         "c" : "Collection",
@@ -53,16 +60,19 @@
         "_predicate": "typeOfControl",
         " ": "unspecified",
         "a": "Archival",
-        "0": null
+        "0": "Unknown"
       },
       "9": {
         "_predicate": "characterEncoding",
         " ": "MARC-8",
-        "a": "Unicode"
+        "a": "Unicode",
+        "n": "n"
       },
       "17": {
         "_predicate": "encodingLevel",
         " ": "Full level",
+        "0" : "Unknown",
+        "|": "Unknown",
         "1": "Full level, material not examined",
         "2": "Less-than-full level, material not examined",
         "3": "Abbreviated level",
@@ -76,6 +86,8 @@
       "18": {
         "_predicate": "descriptiveCatalogingForm",
         " ": "Non-ISBD",
+        "0": "Unknown",
+        "|": "Unknown",
         "a": "AACR 2",
         "c": "ISBD punctuation omitted",
         "i": "ISBD punctuation included",
@@ -85,6 +97,7 @@
       "19": {
         "_predicate": "multipartResourceRecordLevel",
         " ": "Not specified",
+        "0": "Unknown",
         "a": "Set",
         "b": "Part with independent title",
         "c": "Part with dependent title"
@@ -1902,6 +1915,7 @@
       "010" : "IdentifierLCCN",
       "020" : "IdentifierISBN",
       "022" : "IdentifierISSN",
+      "028" : "PublisherOrDistributorNumber",
       "029" : "OtherIdentfier",
       /* 030 = CODEN */
       "030" : "IdentifierCODEN",
@@ -1943,6 +1957,13 @@
     "IdentifierISIL" : {
       "a" : "value"
     },
+    "PublisherOrdDistributorNumber" : {
+      "a" : "value",
+      "b" : "source",
+      "q" : "qualifyingInformation",
+      "6" : null,
+      "8" : null
+    },
     "subfields" : {
       "a" : "value",
       "b" : "price",
@@ -1955,13 +1976,20 @@
       "DE-600" : "IdentifierZDB",
       "doi" : "IdentifierDOI",
       "urn" : "IdentifierURI",
-      "local" : "IdentifierLocal"
+      "local" : "IdentifierLocal",
+      "OCoL C": "IdentifierOCLC"
     }
   },
   "IdentifierOther" : {
-    "tags" : [ "024" ],
+    "tags" : [
+      "024"
+    ],
     "subfields" : {
-      "a" : "value"
+      "a": "value",
+      "c": "termsOfAvailablity",
+      "z": null,
+      "2": "source",
+      "9": null
     },
     "indicators" : {
       "024" : {
@@ -1984,7 +2012,8 @@
     "_predicate" : "type",
     "subfields" : {
       "a" : "value",
-      "2" : "type"
+      "2" : "type",
+      "z" : null
     },
     "type" : {
       "DE-101" : "IdentifierDNB",
@@ -2967,116 +2996,14 @@
       "sub" : "ClassificationNumberSUB"
     }
   },
-  "Codes" : {
-    "tags" : {
-      "090" : "OtherCodes"
-    },
-    "subfields" : {
-      "a" : "paper",
-      "b" : "b",
-      "c" : "c",
-      "f" : "f",
-      "i" : "i",
-      "n" : "genre",
-      "t" : "t",
-      "w" : "w",
-      "0" : "0",
-      "5" : "5",
-      "D" : "D"
-    },
-    "OtherCodes" : {
-      "a" : "paper",
-      "b" : "b",
-      "c" : "c",
-      "f" : "f",
-      "i" : "i",
-      "n" : "genre",
-      "t" : "t",
-      "w" : "w",
-      "0" : "0",
-      "5" : "5",
-      "D" : "D"
-    },
-    "paper" :{
-      "b" : "paper-acidfree",
-      "c" : "paper-nonacidfree",
-      "d" : "paper-deacidified"
-    },
-    "genre" : { /*
-                 http://www.zeitschriftendatenbank.de/erschliessung/arbeitsunterlagen/zeta/0600/
-                 http://support.d-nb.de/iltis/katricht/zdb/1140.pdf
-                 */
-      "ab" : "abstract",
-      "ad" : "dfg-alliance-license",
-      "ag" : "aggregator-database",
-      "al" : "alliance-license",
-      "am" : "law",
-      "ao" : "public-newspaper",
-      "az" : "advertisement",
-      "bi" : "bibliography",
-      "da" : "database",
-      "di" : "directory",
-      "dm" : "digitization-master",
-      "ee" : "publication-terminated",
-      "eo" : "non-public-newspaper",
-      "es" : "acid-free-aging",
-      "fb" : "progress-report",
-      "fp" : "former-periodical",
-      "fr" : "former-series",
-      "ft" : "subject-paper",
-      "fz" : "company-paper",
-      "fn" : "former-newspaper",
-      "ha" : "budget-plan",
-      "il" : "illustrated-paper",
-      "in" : "index",
-      "ko" : "conference-paper",
-      "ks" : "acid-paper",
-      "kt" : "map",
-      "la" : "longterm-perservation",
-      "ld" : "layout-retention-digitization",
-      "lp" : "local-newspaper",
-      "mg" : "merged",
-      "me" : "exhibition-journal",
-      "mm" : "microform-master",
-      "mt" : "music",
-      "mw" : "multipart-work",
-      "nt" : "music-notes",
-      "nk" : "national-consortia",
-      "nl" : "national-license",
-      "nw" : "new",
-      "pa" : "parliament",
-      "pu" : "pay-per-use",
-      "pt" : "packet-import",
-      "ra" : "dnb-series-a",
-      "rb" : "dnb-series-b",
-      "rc" : "dnb-series-c",
-      "rg" : "dnb-series-g",
-      "re" : "report",
-      "rf" : "dictionary",
-      "rp" : "regional-newspaper",
-      "ro" : "dnb-series-o",
-      "rs" : "restitution",
-      "sc" : "school",
-      "sm" : "secondary-microform",
-      "st" : "statistics",
-      "sw" : "software",
-      "tt" : "audio",
-      "ub" : "translator-journal",
-      "up" : "universal-newspaper",
-      "vi" : "video",
-      "vt" : "filmed-newspaper",
-      "wk" : "webclient-record",
-      "wl" : "weblog",
-      "ws" : "website",
-      "zt" : "newspaper"
-    }
-  },
   "PersonalName" : {
     "tags" : [
       /* preferred name */
       "100",
       /* 700 = added entry - personal name */
-      "700"
+      "700",
+      /* 800 = series added entry - personal name */
+      "800"
     ],
     "subfields" : {
       " " : "personalName",
@@ -3095,10 +3022,12 @@
   },
   "CorporateName" : {
     "tags" : [
-      /* 110 = main entry / corporate name */
+      /* 110 = main entry - corporate name */
       "110",
       /* 710 = added entry - corporate name */
-      "710"
+      "710",
+      /* 810 = series added entry - corporate name */
+      "810"
     ],
     "subfields" : {
       "a" : "corporateName",
@@ -3120,7 +3049,9 @@
     "tags" : [
       "111",
       /* 711 = added entry - meeting name */
-      "711"
+      "711",
+      /* 811 - Series Added Entry - Meeting Name */
+      "811"
     ],
     "subfields": {
       "a" : "meetingName",
@@ -3132,7 +3063,7 @@
       "j" : "relatorTerm",
       "k" : "formSubheading",
       "l" : "languageOfWork",
-      "n" : "numberOfPart",
+      "n" : "partNumber",
       "p" : "nameOfPart",
       "q" : "nameOfMeetingFollowingJurisdictionName",
       "t" : "titleofWork",
@@ -3153,6 +3084,7 @@
       "210": "AbbreviatedTitle",
       /* 222 = key title */
       "222": "KeyTitle",
+      "240": "UniformTitle",
       /* 242 = translation of title */
       "242": "TranslatedTitle",
       /* 243 = collective uniform title */
@@ -3189,19 +3121,35 @@
       "5": "institution",
       "6": "linkage"
     },
+    "UniformTitle": {
+      "a" : "title",
+      "d" : "titleDateOfTreatySigning",
+      "g" : "miscellaneous",
+      "h" : "medium",
+      "l" : "language",
+      "m" : "mediumOfPerformance",
+      "n" : "partNumber",
+      "o" : "arrangedStatement",
+      "p" : "partName",
+      "r" : "key",
+      "s" : "version",
+      "0" : "identifier",
+      "6" : null,
+      "8" : null
+    },
     "subfields" : {
       "a" : "title",
-      "b" : "titleRemainder",
-      "c" : "titleStatement",
-      "f" : "titleInclusiveDates",
-      "g" : "titleBulkDates",
-      "h" : "titleMedium",
-      "i" : "titleParallel",
-      "k" : "titleForm",
-      "n" : "titlePartNumber",
-      "p" : "titlePartName",
-      "s" : "titleVersion",
-      "y" : "titleLanguageCode",
+      "b" : "remainder",
+      "c" : "statement",
+      "f" : "dates",
+      "g" : "bulkDates",
+      "h" : "medium",
+      "i" : "parallel",
+      "k" : "form",
+      "n" : "partNumber",
+      "p" : "partName",
+      "s" : "version",
+      "y" : "languageCode",
       "5" : "institution",
       "6" : null
     }
@@ -3211,15 +3159,22 @@
       "250"
     ],
     "subfields" : {
-      "a" : "edition"
+      "a" : "edition",
+      "b" : "remainder",
+      "c" : null,
+      "3" : "materialsSpecified",
+      "6" : null,
+      "8" : null
     }
   },
   "PublicationStatement" : {
-    "tags" : [
+    "tags" : {
       /* 260 = imprint */
-      "260",
-      "264"
-    ],
+      "260": "PublicationStatement",
+      "263": "ProjectedPublicationDate",
+      "264": "PublicationStatement",
+      "270": "Address"
+    },
     "subfields" : {
       "a" : "placeOfPublication",
       "b" : "publisherName",
@@ -3227,6 +3182,34 @@
       "e" : "placeOfManufacture",
       "f" : "manufacturerName",
       "n" : null /* "[s.n.]" */
+    },
+    "ProjectedPublicationDate" : {
+      "a" : "projectedPublicationDate",
+      "6" : null,
+      "8" : null
+    },
+    "Address" : {
+      "a": "address",
+      "b": "city",
+      "c": "stateOrProvince",
+      "d": "country",
+      "e": "postalCode",
+      "f": "termsPrecedingAttentionName",
+      "g": "attentionName",
+      "h": "attentionPosition",
+      "i": "typeOfAddress",
+      "j": "specializedTelephoneNumber",
+      "k": "telephoneNumber",
+      "l": "faxNumber",
+      "m": "electronicMailAddress",
+      "n": "ttyNumber",
+      "p": "contactPerson",
+      "q": "titleOfContactPerson",
+      "r": "hours",
+      "z": "publicNote",
+      "4": "relatorCode",
+      "6": null,
+      "8": "sequenceNumber"
     }
   },
   "PhysicalDescription" : {
@@ -3241,9 +3224,10 @@
       "e" : "accompanyingMaterial",
       "f" : "typeOfUnit",
       "g" : "sizeOfUnit",
+      "w" : null,
       "3" : "materialsSpecified",
       "6" : null,
-      "8" : "sequenceNumber"
+      "8" : null
     }
   },
   "ContentType": {
@@ -3349,35 +3333,28 @@
   "Note" : {
     "tags" : {
       "500": "Note",
-      /* 501 = with note */
       "501" : "WithNote",
-      /* 502 = dissertation note */
       "502" : "DissertationNote",
-      /* 515 = numbering peculiarities note */
+      "511" : "ParticipantOrPerformerNote",
       "515" : "NumberingNote",
-      /* type of computer file or data note */
       "516" : "ComputerFileNote",
-      /* 520 = summary */
       "520" : "SummaryNote",
-      /* 530 = additional physical form available */
       "530" : "AdditionalPhysicalFormNote",
-      /* 533 = production note */
       "533" : "ProductionNote",
-      /* 538 = system details note */
       "538" : "SystemDetailsNote",
-      /* 546 = language note */
+      "542" : "CopyrightStatusNote",
       "546" : "LanguageNote",
-      /* 550 = issuing body note */
       "550" : "IssuingBodyNote",
       /* 555 = cumulative index/finding aids */
       "555" : "IndexNote",
-      /* 583 = action note */
       "583" : "ActionNote",
-      /* 591 = local notes */
       "591" : "LocalNote"
     },
     "subfields" : {
-      "a" : "value"
+      "a" : "value",
+      "4" : null,
+      "6" : null,
+      "8" : null
     },
     "ActionNote" : {
       "a" : "action",
@@ -3423,6 +3400,19 @@
          14 - Form of item */
       "6" : null,
       "8" : "sequenceNumber"
+    },
+    "CopyrightStatusNote" : {
+      "a" : "personalCreator",
+      "b" : "personalCreatorDeathDate",
+      "c" : "corporateCreator",
+      "d" : "copyrightHolder",
+      "e" : "copyrightHolderContactInformation",
+      "f" : "copyrightStatement",
+      "g" : "copyrightDate",
+      "h" : "copyrightRenewalDate",
+      "i" : "publicationDate",
+      "j" : "creationDate",
+      "k" : "publisher"
     }
   },
   "Subject" : {
@@ -3603,7 +3593,8 @@
       "w" : "controlnumber",
       "x" : "nonpublicnote",
       "y" : "label",
-      "z" : "publicnote"
+      "z" : "publicnote",
+      "A" : "label"
     }
   },
   "AlternateGraphicRepresentation" : {
@@ -3630,6 +3621,7 @@
     "tags" : [
       /*  Control Number Identifier */
       "003",
+      "004",
       /* Date and Time of Latest Transaction */
       "005",
       /*Fixed-Length Data Elements - Additional Material Characteristics  */
@@ -3640,24 +3632,38 @@
       "040",
       /* 043 = geographic area */
       "043",
+      "087",
       /* 088 = ???? */
       "088",
+      "090",
+      "092",
+      "093",
+      "094",
       /* ??? */
       "200",
+      "249",
       /* 255 = cartographic mathematical data */
       "255",
       /* ? */
       "259",
       /* 365 = trade price */
       "365",
+      "541",
+      "561",
       /* RSWK */
       "689",
       /* ??? */
       "801",
       /* 882 = replacement record information */
       "882",
+      "843",
+      "852",
+      "859",
+      "866",
+      "869",
       /* 889 = Angaben zum umgelenkten Datensatz */
       "889",
+      "920",
       /* ??? */
       "925",
       /* 930 = Unterreihenangabe in strukturierter Form
@@ -3677,18 +3683,16 @@
       "931",
       /* 932 = OLC Ausschnittskennung */
       "932",
-      "004",
-      "092",
-      "093",
-      "094",
-      "541",
-      "561",
-      "843",
-      "852",
-      "859",
-      "866",
-      "869",
-      "920"
+      "979",
+      "990",
+      "991",
+      "992",
+      "993",
+      "994",
+      "995",
+      "996",
+      "997",
+      "998"
     ]
   }
 }

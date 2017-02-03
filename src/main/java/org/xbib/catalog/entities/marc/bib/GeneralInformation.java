@@ -7,6 +7,7 @@ import org.xbib.marc.MarcField;
 
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -21,10 +22,13 @@ public class GeneralInformation extends CatalogEntity {
 
     private final Map<String, Object> codes;
 
+    private final Map<String, Object> undefinedCodes;
+
     @SuppressWarnings("unchecked")
     public GeneralInformation(Map<String, Object> params) {
         super(params);
         this.codes = (Map<String, Object>) params.get("codes");
+        this.undefinedCodes = new HashMap<>();
     }
 
     /**
@@ -34,9 +38,6 @@ public class GeneralInformation extends CatalogEntity {
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
-        if (value.length() != 40) {
-            logger.log(Level.WARNING, "broken GeneralInformation field, length is not 40");
-        }
         Resource info = worker.getWorkerState().getResource().newResource("GeneralInformation");
         examine(codes, info, value);
         List<String> resourceTypes = worker.getWorkerState().getResourceType();
@@ -62,6 +63,9 @@ public class GeneralInformation extends CatalogEntity {
             String toStr = pos > 0 ? key.substring(pos + 1) : key;
             int from = Integer.parseInt(fromStr);
             int to = fromStr.equals(toStr) ? from + 1 : Integer.parseInt(toStr) + 1;
+            if (to > value.length()) {
+                continue;
+            }
             if (entry.getValue() instanceof String) {
                 String pred = entry.getValue().toString();
                 String v = value.substring(from, to);
@@ -78,9 +82,12 @@ public class GeneralInformation extends CatalogEntity {
                     if (values.containsKey(v)) {
                         info.add(predicate, (String) values.get(v));
                     } else {
-                        logger.log(Level.WARNING, () ->
-                                MessageFormat.format("undefined general information code {0}, key {1}, in field {2}",
-                                v, predicate, value));
+                        if (!undefinedCodes.containsKey(key + "_" + v)) {
+                            undefinedCodes.put(key + "_" + v, true);
+                            logger.log(Level.WARNING, () ->
+                                    MessageFormat.format("undefined general information code {0}, key {1}, in field {2}",
+                                            v, predicate, value));
+                        }
                     }
                 }
             }

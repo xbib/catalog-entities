@@ -93,6 +93,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         this(CatalogEntityBuilder.class.getClassLoader(), settings, listener);
     }
 
+    @SuppressWarnings("unchecked")
     public CatalogEntityBuilder(ClassLoader classLoader, Settings settings, WorkerPoolListener<WorkerPool<MarcRecord>> listener)
             throws IOException {
         super(settings.getAsInt("workers", Runtime.getRuntime().availableProcessors()), listener);
@@ -114,6 +115,11 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
             Map<String, Object> params = settings.getAsStructuredMap();
             try (InputStream inputStream = url.openStream()) {
                 this.entitySpecification = new CatalogEntitySpecification(inputStream, new HashMap<>(), params, packageName);
+            }
+            if (settings.containsSetting("additional-elements")) {
+                Map<String, Map<String, Object>> map =
+                        (Map<String, Map<String, Object>>) settings.getAsStructuredMap().get("additional-elements");
+                entitySpecification.addElements(map, packageName);
             }
             for (String key : entitySpecification.getMap().keySet()) {
                 mapped.put(key, 0);
@@ -175,9 +181,6 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     @Override
     public void field(MarcField field) {
         marcBuilder.addField(field);
-        if (logger.isLoggable(Level.FINE)) {
-            logger.fine("field=" + field);
-        }
     }
 
     @Override
