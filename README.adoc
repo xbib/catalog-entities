@@ -28,6 +28,8 @@ can be indexed into Elasticsearch per minute.
 
 image:http://adbu.fr/wp-content/uploads/2015/01/What_Catalogue_card_tell_us_CC_by_Char_Booth_via_flickr.jpg[What_Catalogue_card_tell_us_CC_by_Char_Booth_via_flickr taken from link:http://adbu.fr/cataloguer-demain-conduire-le-changement/]
 
+Taken from https://infomational.wordpress.com/2011/10/03/content-container-or-concept-what-the-catalog-card-tells-us/
+
 == Documentation
 
 Documentation with many examples is available at the link:https://jprante.github.io/catalog-entities[documentation]
