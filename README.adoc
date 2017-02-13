@@ -26,6 +26,8 @@ The creation of the RDF graphs are in-memory and currently focused on a per-reco
 in future versions. Parallel processing offers high performance - on ordinary hardware, a million MARC records
 can be indexed into Elasticsearch per minute.
 
+link:http://adbu.fr/wp-content/uploads/2015/01/What_Catalogue_card_tell_us_CC_by_Char_Booth_via_flickr.jpg["What_Catalogue_card_tell_us_CC_by_Char_Booth_via_flickr" taken from http://adbu.fr/cataloguer-demain-conduire-le-changement/]
+
 == Documentation
 
 Documentation with many examples is available at the link:https://jprante.github.io/catalog-entities[documentation]
