@@ -800,18 +800,18 @@
     "subfields": {
       "a": "volume",
       "i": "date",
-      "8": "sequenceNumber"
+      "8": null
     },
     "Location": {
       " ": "location",
       "3": "enumerationAndChronology",
       /* materialsSpecified ? */
       "6": "linkage",
-      "8": "sequenceNumber",
+      "8": null,
       "9": "number",
       /* ZDB sequence number */
       "a": "location",
-      "b": "collection",
+      "b": "collectionname",
       "c": "shelvinglocation",
       "m": "loancode",
       /* ZDB */
@@ -829,7 +829,7 @@
     "AdditionalLocation": {
       "9": "number",
       "a": "marcorg",
-      "b": "collection",
+      "b": "collectionname",
       "c": "shelvinglocation",
       "z": "publicnote",
       "=": "custom"
@@ -954,14 +954,6 @@
     "tags": [
       "562"
     ]
-  },
-  "LicenseInformation": {
-    "tags": [
-      "933"
-    ],
-    "subfields": {
-      "a": "code"
-    }
   },
   "Ignore": {
     /* known, but ignored by intent */

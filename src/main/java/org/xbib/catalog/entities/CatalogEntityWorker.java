@@ -253,8 +253,11 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
                         }
                     } else {
                         if (params.containsKey(me.getKey())) {
-                            Map<String, Object> vm = (Map<String, Object>) params.get(me.getKey());
-                            v = vm.containsKey(v) ? vm.get(v).toString() : v;
+                            Object o = params.get(me.getKey());
+                            if (o instanceof Map) {
+                                Map<String, Object> vm = (Map<String, Object>) o;
+                                v = vm.containsKey(v) ? vm.get(v).toString() : v;
+                            }
                         }
                     }
                 } else {
