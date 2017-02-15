@@ -44,7 +44,11 @@ public class GeneralInformation extends CatalogEntity {
         if (resourceTypes != null && !resourceTypes.isEmpty()) {
             for (String resourceType : resourceTypes) {
                 Map<String, Object> map = (Map<String, Object>) getParams().get(resourceType);
-                examine(map, info, value);
+                if (map != null) {
+                    examine(map, info, value);
+                } else {
+                    logger.warning("no codes for resource type '" + resourceType + "'");
+                }
             }
         }
         return super.transform(worker, field);
@@ -52,9 +56,6 @@ public class GeneralInformation extends CatalogEntity {
 
     @SuppressWarnings("unchecked")
     private void examine(Map<String, Object> codes, Resource info, String value) throws IOException {
-        if (codes == null) {
-            return;
-        }
         for (Map.Entry<String, Object> entry : codes.entrySet()) {
             String key = entry.getKey();
             // from-to

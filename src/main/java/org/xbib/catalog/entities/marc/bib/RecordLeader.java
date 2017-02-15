@@ -49,6 +49,7 @@ public class RecordLeader extends CatalogEntity {
         }
         char ch5 = value.charAt(5);
         if (ch5 == 'd') {
+            worker.getWorkerState().getResource().setDeleted(true);
             worker.getWorkerState().getResource().add("deleted", "true");
         }
 

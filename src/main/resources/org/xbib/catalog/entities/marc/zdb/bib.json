@@ -1836,6 +1836,7 @@
       "24": {
         /* Nature of entire work (006/07) */
         "_predicate" : "natureOfWork",
+        " ": null,
         "a": "Abstracts/summaries",
         "b": "Bibliographies",
         "c": "Catalogs",
@@ -1866,6 +1867,7 @@
       "25": {
         /* Nature of contents (006/08-10) */
         "_predicate" : "natureOfContent",
+        " ": null,
         "a": "Abstracts/summaries",
         "b": "Bibliographies",
         "c": "Catalogs",
@@ -1896,6 +1898,7 @@
       "28": {
         /* Government publication (006/11) */
         "_predicate" : "governmentPublication",
+        " ": null,
         "a": "Autonomous or semi-autonomous component",
         "c": "Multilocal",
         "f": "Federal/national",

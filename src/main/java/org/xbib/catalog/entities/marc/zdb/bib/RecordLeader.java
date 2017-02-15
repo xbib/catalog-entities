@@ -42,6 +42,7 @@ public class RecordLeader extends CatalogEntity {
         // deleted record?
         char ch5 = value.charAt(5);
         if (ch5 == 'd') {
+            worker.getWorkerState().getResource().setDeleted(true);
             worker.getWorkerState().getResource().add("deleted", "true");
         }
 
@@ -51,37 +52,44 @@ public class RecordLeader extends CatalogEntity {
         boolean isBook = (ch6 == 'a' || ch6 == 't') &&
                 (ch7 == 'a' || ch7 == 'c' || ch7 == 'd' || ch7 == 'm');
         if (isBook) {
+            worker.getWorkerState().addResourceType("book");
             worker.getWorkerState().getResource().add("type", "book");
         }
 
         boolean isComputerFile = ch6 == 'm';
         if (isComputerFile) {
+            worker.getWorkerState().addResourceType("computerfile");
             worker.getWorkerState().getResource().add("type", "computerfile");
         }
 
         boolean isMap = (ch6 == 'e' || ch6 == 'f');
         if (isMap) {
+            worker.getWorkerState().addResourceType("map");
             worker.getWorkerState().getResource().add("type", "map");
         }
 
         boolean isMusic = (ch6 == 'c' || ch6 == 'd' || ch6 == 'i' || ch6 == 'j');
         if (isMusic) {
+            worker.getWorkerState().addResourceType("music");
             worker.getWorkerState().getResource().add("type", "music");
         }
 
         boolean isContinuingResource = ch6 == 'a' &&
                 (ch7 == 'b' || ch7 == 'i' || ch7 == 's');
         if (isContinuingResource) {
+            worker.getWorkerState().addResourceType("continuingresource");
             worker.getWorkerState().getResource().add("type", "continuingresource");
         }
 
         boolean isVisualMaterial = (ch6 == 'g' || ch6 == 'k' || ch6 == 'o' || ch6 == 'r');
         if (isVisualMaterial) {
+            worker.getWorkerState().addResourceType("visualmaterial");
             worker.getWorkerState().getResource().add("type", "visualmaterial");
         }
 
         boolean isMixedMaterial = ch6 == 'p';
         if (isMixedMaterial) {
+            worker.getWorkerState().addResourceType("mixedmaterial");
             worker.getWorkerState().getResource().add("type", "mixedmaterial");
         }
         return super.transform(worker, fields);
