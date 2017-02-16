@@ -3040,9 +3040,7 @@
       /* 110 = main entry - corporate name */
       "110",
       /* 710 = added entry - corporate name */
-      "710",
-      /* 810 = series added entry - corporate name */
-      "810"
+      "710"
     ],
     "subfields" : {
       "a" : "corporateName",

@@ -84,7 +84,6 @@ public class De369MarcTest {
             String content = params.getGenerator().get();
             // we have state.getRecordIdentifier() == null for many cases...
             if (state.getRecordIdentifier() != null && content != null) {
-                //logger.log(Level.FINE, "rdf=" + content);
                 /*Path path = Paths.get(state.getRecordIdentifier() + ".json");
                 try (BufferedWriter writer = Files.newBufferedWriter(path)) {
                     writer.write(content);
