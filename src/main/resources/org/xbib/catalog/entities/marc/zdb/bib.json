@@ -1770,6 +1770,7 @@
       "18": {
         /* Frequency (006/01) */
         "_predicate" : "frequency",
+        " ": null,
         "a": "Annual",
         "b": "Bimonthly",
         "c": "Semiweekly",
@@ -1792,6 +1793,7 @@
       "19": {
         /* Regularity (006/02) */
         "_predicate" : "regularity",
+        " ": null,
         "n": "Normalized irregular",
         "r": "Regular",
         "u": "Unknown",
@@ -1800,6 +1802,7 @@
       "21": {
         /* Type of continuing resource (006/04) */
          "_predicate" : "typeOfContinuingResource",
+        " ": null,
         "d": "Updating database",
         "l": "Updating loose-leaf",
         "m": "Monographic series",
@@ -1810,6 +1813,7 @@
       "22": {
         /* Form of original item (006/05) */
         "_predicate" : "formOfOriginalItem",
+        " ": null,
         "a": "Microfilm",
         "b": "Microfiche",
         "c": "Microopaque",
@@ -1823,6 +1827,7 @@
       "23": {
         /* Form of item (006/06) */
         "_predicate" : "formOfItem",
+        " ": null,
         "a": "Microfilm",
         "b": "Microfiche",
         "c": "Microopaque",
@@ -1913,12 +1918,14 @@
       "29": {
         /* Conference publication (006/12) */
         "_predicate" : "conferencePublication",
+        " ": null,
         "0": "Not a conference publication",
         "1": "Conference publication"
       },
       "33": {
         /* Original alphabet or script of title (006/16) */
         "_predicate" : "scriptOfTitle",
+        " ": null,
         "a": "Basic Roman",
         "b": "Extended Roman",
         "c": "Cyrillic",
@@ -1937,6 +1944,7 @@
       "34": {
         /* Entry convention (006/17) */
         "_predicate" : "entryConvention",
+        " ": null,
         "0": "Successive entry",
         "1": "Latest entry",
         "2": "Integrated entry"
