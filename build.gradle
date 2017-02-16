@@ -35,14 +35,14 @@ repositories {
 }
 
 dependencies {
-    compile 'org.xbib:marc:1.0.9'
-    compile "org.xbib:content-rdf:1.0.7"
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.apache.logging.log4j:log4j-core:2.7'
-    testCompile 'org.apache.logging.log4j:log4j-jul:2.7'
-    testCompile "org.xbib:bibliographic-character-sets:1.0.0"
-    asciidoclet 'org.asciidoctor:asciidoclet:1.5.4'
-    wagon 'org.apache.maven.wagon:wagon-ssh-external:2.10'
+    compile "org.xbib:marc:${project.property('marc.version')}"
+    compile "org.xbib:content-rdf:${project.property('content-rdf.version')}"
+    testCompile "junit:junit:${project.property('junit.version')}"
+    testCompile "org.apache.logging.log4j:log4j-core:${project.property('log4j.version')}"
+    testCompile "org.apache.logging.log4j:log4j-jul:${project.property('log4j.version')}"
+    testCompile "org.xbib:bibliographic-character-sets:${project.property('bibliographic-character-sets.version')}"
+    asciidoclet "org.asciidoctor:asciidoclet:${project.property('asciidoclet.version')}"
+    wagon "org.apache.maven.wagon:wagon-ssh-external:${project.property('wagon-ssh-external.version')}"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
