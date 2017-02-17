@@ -158,7 +158,7 @@
     "Location": {
       " ": "location",
       "3": "enumerationAndChronology",
-      "6": "linkage",
+      "6": null,
       "8": null,
       "9": "number",
       "=": "custom",
@@ -316,14 +316,14 @@
     },
     "scope": {
       "a": "national",
-      "b": "consortial",
-      "c": "solitary"
+      "b": "consortia",
+      "c": "stand-alone"
     },
     "subfields": {
       "a": "origin",
       "b": "access",
-      "c": "accessparallel",
-      "d": "accesscomment",
+      "c": "access-in-parallel",
+      "d": "access-comment",
       "e": "type",
       "f": "scope",
       "g": "charge",
@@ -798,6 +798,7 @@
   },
   "Product": {
     "subfields": {
+      "9": "name",
       "a": "value"
     },
     "tags": [
@@ -891,8 +892,8 @@
       "c": "none"
     },
     "servicedistribution": {
-      "a": "domestic",
-      "b": "postal",
+      "a": "domestic-only",
+      "b": "postal-only",
       "n": "domestic",
       "p": "postal"
     },

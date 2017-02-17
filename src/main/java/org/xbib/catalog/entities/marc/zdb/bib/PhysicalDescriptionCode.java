@@ -29,13 +29,11 @@ public class PhysicalDescriptionCode extends CatalogEntity {
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         Map<String, Object> subcodes = null;
         if (codes != null) {
-            // position 0 is the selector
             subcodes = (Map<String, Object>) codes.get("0");
         }
         if (subcodes != null) {
             String data = getValue(field);
             Map<String, Object> m = (Map<String, Object>) subcodes.get(data.substring(0, 1));
-            // transform all codes except position 0
             if (m != null) {
                 Resource resource = worker.getWorkerState().getResource().newResource(getClass().getSimpleName());
                 for (int i = 1; i < data.length(); i++) {

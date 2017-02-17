@@ -30,10 +30,6 @@ public class GeneralInformation extends CatalogEntity {
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
-        if (value.length() != 40) {
-            logger.log(Level.WARNING,
-                    "broken GeneralInformation field, length is not 40, but " + value.length() + " field=" + field);
-        }
         Resource info = worker.getWorkerState().getResource().newResource("GeneralInformation");
         examine(codes, info, value);
         return super.transform(worker, field);

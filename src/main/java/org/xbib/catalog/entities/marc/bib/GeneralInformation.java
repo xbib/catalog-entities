@@ -31,13 +31,14 @@ public class GeneralInformation extends CatalogEntity {
         this.undefinedCodes = new HashMap<>();
     }
 
-    /**
-     * Example "991118d19612006xx z||p|r ||| 0||||0ger c".
-     */
     @SuppressWarnings("unchecked")
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
+        if (value.length() != 40) {
+            logger.log(Level.WARNING,
+                    "broken GeneralInformation field, length is not 40, but " + value.length() + " field=" + field);
+        }
         Resource info = worker.getWorkerState().getResource().newResource("GeneralInformation");
         examine(codes, info, value);
         List<String> resourceTypes = worker.getWorkerState().getResourceType();
@@ -58,7 +59,6 @@ public class GeneralInformation extends CatalogEntity {
     private void examine(Map<String, Object> codes, Resource info, String value) throws IOException {
         for (Map.Entry<String, Object> entry : codes.entrySet()) {
             String key = entry.getKey();
-            // from-to
             int pos = key.indexOf('-');
             String fromStr = pos > 0 ? key.substring(0, pos) : key;
             String toStr = pos > 0 ? key.substring(pos + 1) : key;

@@ -45,7 +45,7 @@
     "ClassificationNumber": {
       "6": null,
       "8": "sortkey",
-      "a": "classificatioNumber",
+      "a": "classificationNumber",
       "b": "baseNumber",
       "c": "endingNumber",
       "f": "facetDesignator",
@@ -62,22 +62,35 @@
       "2": "editionNumber",
       "6": null,
       "8": "sequenceNumber",
-      "a": "classificatioNumber",
+      "a": "classificationNumber",
       "b": "itemNumber",
       "m": "designation",
       "q": "agency"
+    },
+    "LCCN": {
+      "a": "classificationNumber",
+      "b": "itemNumber"
     },
     "NBN": {
       "2": "type",
       "6": null,
       "8": "sequenceNumber",
-      "a": "classificatioNumber",
+      "a": "classificationNumber",
       "b": "itemNumber",
       "q": "agency"
     },
+    "NLM": {
+      "a": "classificationNumber",
+      "b": "itemNumber"
+    },
     "OfficialClassificationNumber": {
       "2": "type",
-      "a": "classificatioNumber"
+      "a": "classificationNumber"
+    },
+    "UDC": {
+      "a": "classificationNumber",
+      "b": "itemNumber",
+      "x": "subDivision"
     },
     "ddc": {
       "000": "Informatik, Wissen, Systeme",
@@ -183,10 +196,13 @@
     },
     "subfields": {
       "2": "type",
-      "a": "classificatioNumber",
+      "a": "classificationNumber",
       "q": "agency"
     },
     "tags": {
+      "050": "LCCN",
+      "060": "NLM",
+      "080": "UDC",
       "082": "DDC",
       "083": "DDC",
       "084": "NBN",
@@ -711,7 +727,8 @@
     "_predicate": "type",
     "subfields": {
       "2": "type",
-      "a": "value"
+      "a": "value",
+      "z": null
     },
     "tags": [
       "015",
@@ -725,8 +742,12 @@
   },
   "EditionStatement": {
     "subfields": {
+      "3": "materialsSpecified",
+      "6": null,
+      "8": null,
       "a": "edition",
-      "b": "editor"
+      "b": "editor",
+      "c": null
     },
     "tags": [
       "250"
@@ -739,6 +760,7 @@
       "6": null,
       "8": "pos",
       "9": "prefix",
+      "A": "label",
       "a": "hostname",
       "b": "accessnumber",
       "c": "compression",
@@ -791,6 +813,22 @@
       "363": "NormalizedDatesOfPublication"
     }
   },
+  "Event": {
+    "subfields": {
+      "0": "number",
+      "2": "source",
+      "3": "materials",
+      "6": null,
+      "8": "sequence",
+      "a": "formattedDateTime",
+      "b": "geographicClassificationAreaCode",
+      "c": "geographicClassificationSubareaCode",
+      "p": "placeOfEvent"
+    },
+    "tags": [
+      "033"
+    ]
+  },
   "FormattedContentsNote": {
     "subfields": {
       "6": null,
@@ -806,7 +844,7 @@
   "GeneralInformation": {
     "book": {
       "18": {
-        " ": "No illustrations",
+        " ": null,
         "_predicate": "illustrations",
         "a": "Illustrations",
         "b": "Maps",
@@ -825,7 +863,7 @@
         "p": "Illuminations"
       },
       "19": {
-        " ": "No illustrations",
+        " ": null,
         "_predicate": "illustrations",
         "a": "Illustrations",
         "b": "Maps",
@@ -844,7 +882,7 @@
         "p": "Illuminations"
       },
       "20": {
-        " ": "No illustrations",
+        " ": null,
         "_predicate": "illustrations",
         "a": "Illustrations",
         "b": "Maps",
@@ -863,7 +901,7 @@
         "p": "Illuminations"
       },
       "21": {
-        " ": "No illustrations",
+        " ": null,
         "_predicate": "illustrations",
         "a": "Illustrations",
         "b": "Maps",
@@ -882,7 +920,7 @@
         "p": "Illuminations"
       },
       "22": {
-        " ": "Unknown or not specified",
+        " ": null,
         "_predicate": "targetAudience",
         "a": "Preschool",
         "b": "Primary",
@@ -894,7 +932,7 @@
         "j": "Juvenile"
       },
       "23": {
-        " ": "none",
+        " ": null,
         "_predicate": "formOfItem",
         "a": "Microfilm",
         "b": "Microfiche",
@@ -907,7 +945,7 @@
         "s": "Electronic"
       },
       "24": {
-        " ": "No specified nature of content",
+        " ": null,
         "2": "Offprints",
         "5": "Calendars",
         "6": "Comics/graphic novels",
@@ -938,7 +976,7 @@
         "z": "Treaties"
       },
       "25": {
-        " ": "No specified nature of content",
+        " ": null,
         "2": "Offprints",
         "5": "Calendars",
         "6": "Comics/graphic novels",
@@ -969,7 +1007,7 @@
         "z": "Treaties"
       },
       "26": {
-        " ": "No specified nature of content",
+        " ": null,
         "2": "Offprints",
         "5": "Calendars",
         "6": "Comics/graphic novels",
@@ -1000,7 +1038,7 @@
         "z": "Treaties"
       },
       "27": {
-        " ": "No specified nature of content",
+        " ": null,
         "2": "Offprints",
         "5": "Calendars",
         "6": "Comics/graphic novels",
@@ -1031,7 +1069,7 @@
         "z": "Treaties"
       },
       "28": {
-        " ": "Not a government publication",
+        " ": null,
         "_predicate": "governmentPublication",
         "a": "Autonomous or semi-autonomous component",
         "c": "Multilocal",
@@ -1045,22 +1083,26 @@
         "z": "Other"
       },
       "29": {
-        "0": "Not a conference publication",
+        " ": null,
+        "0": null,
         "1": "Conference publication",
         "_predicate": "conferencePublication"
       },
       "30": {
-        "0": "Not a festschrift",
+        " ": null,
+        "0": null,
         "1": "Festschrift",
         "_predicate": "festschriftPublication"
       },
       "31": {
-        "0": "No index",
+        " ": null,
+        "0": null,
         "1": "Index present",
         "_predicate": "indexPresence"
       },
       "33": {
-        "0": "Not fiction",
+        " ": null,
+        "0": null,
         "1": "Fiction",
         "_predicate": "literaryForm",
         "d": "Dramas",
@@ -1075,7 +1117,7 @@
         "u": "Unknown"
       },
       "34": {
-        " ": "No biographical material",
+        " ": null,
         "_predicate": "biography",
         "a": "Autobiography",
         "b": "Individual biography",
@@ -1084,7 +1126,7 @@
       }
     },
     "codes": {
-      "0-5": "date",
+      "0-5": "dateEntered",
       "11-14": "date2",
       "15-17": {
         "_predicate": "place",
@@ -1987,7 +2029,7 @@
         "zza": "Zaza"
       },
       "38": {
-        " ": "not modified",
+        " ": null,
         "_predicate": "modifiedRecord",
         "d": "Dashed-on information omitted",
         "e": null,
@@ -2018,7 +2060,13 @@
         "i": "Inclusive dates of collection",
         "k": "Range of years of bulk of collection",
         "m": "Multiple dates",
-        "n": "Dates unknown"
+        "n": "Dates unknown",
+        "p": "Date of distribution/release/issue and production/recording session when different",
+        "q": "Questionable date",
+        "r": "Reprint/reissue date and original date",
+        "s": "Single known date/probable date",
+        "t": "Publication date and copyright date",
+        "u": "Continuing resource status unknown"
       },
       "7-10": "date1"
     },
@@ -2061,6 +2109,7 @@
         "m": "Monographic series",
         "n": "Newspaper",
         "p": "Periodical",
+        "u": "Unknown",
         "w": "Updating Web site"
       },
       "22": {
@@ -2171,6 +2220,7 @@
       },
       "33": {
         " ": null,
+        "0": null,
         "_predicate": "scriptOfTitle",
         "a": "Basic Roman",
         "b": "Extended Roman",
@@ -2207,6 +2257,17 @@
       "850"
     ]
   },
+  "HostItemEntry": {
+    "subfields": {
+      "g": "relatedParts",
+      "i": "relationshipInformation",
+      "t": "title",
+      "w": "identifier"
+    },
+    "tags": [
+      "773"
+    ]
+  },
   "Identifier": {
     "IdentifierISBN": {
       "6": null,
@@ -2236,6 +2297,13 @@
       "d": "other",
       "z": "canceled"
     },
+    "PublisherOrdDistributorNumber": {
+      "6": null,
+      "8": null,
+      "a": "value",
+      "b": "source",
+      "q": "qualifyingInformation"
+    },
     "sourceISSN": {
       "6": "Nationales ISSN-Zentrum für Deutschland"
     },
@@ -2250,6 +2318,7 @@
       "010": "IdentifierLCCN",
       "020": "IdentifierISBN",
       "022": "IdentifierISSN",
+      "028": "PublisherOrDistributorNumber",
       "029": "OtherIdentfier",
       "030": "IdentifierCODEN",
       "032": "IdentifierPostal",
@@ -2259,6 +2328,7 @@
     "type": {
       "DE-101": "IdentifierDNB",
       "DE-600": "IdentifierZDB",
+      "OCoL C": "IdentifierOCLC",
       "doi": "IdentifierDOI",
       "local": "IdentifierLocal",
       "urn": "IdentifierURI"
@@ -2276,8 +2346,11 @@
       }
     },
     "subfields": {
-      "2": "customType",
-      "a": "value"
+      "2": "source",
+      "9": null,
+      "a": "value",
+      "c": "termsOfAvailablity",
+      "z": null
     },
     "tags": [
       "024"
@@ -2286,34 +2359,54 @@
   "Ignore": {
     "tags": [
       "003",
+      "004",
       "005",
       "006",
       "012",
       "028",
+      "040",
       "043",
+      "087",
       "088",
+      "090",
+      "092",
+      "093",
+      "094",
+      "200",
+      "249",
       "255",
       "259",
       "365",
       "366",
       "521",
+      "541",
+      "561",
       "689",
       "801",
+      "843",
+      "852",
+      "859",
+      "866",
+      "869",
       "882",
       "883",
       "889",
+      "920",
       "925",
       "926",
       "930",
       "931",
       "932",
-      "004",
-      "541",
-      "561",
-      "843",
-      "859",
-      "866",
-      "869"
+      "979",
+      "990",
+      "991",
+      "992",
+      "993",
+      "994",
+      "995",
+      "996",
+      "997",
+      "998"
     ]
   },
   "Language": {
@@ -2858,7 +2951,7 @@
       "s": "uniformTitle",
       "t": "title",
       "u": "standardTechnicalReportNumber",
-      "w": "id",
+      "w": "identifier",
       "x": "issn",
       "y": "coden",
       "z": "isbn"
@@ -2885,7 +2978,7 @@
       "s": "uniformTitle",
       "t": "title",
       "u": "standardTechnicalReportNumber",
-      "w": "id",
+      "w": "identifier",
       "x": "issn",
       "y": "coden",
       "z": "isbn"
@@ -3910,7 +4003,7 @@
       "n": "note",
       "q": "sort",
       "t": "title",
-      "w": "id",
+      "w": "identifier",
       "x": "issn"
     },
     "tags": {
@@ -3936,7 +4029,7 @@
   },
   "MeetingName": {
     "subfields": {
-      "0": "meetingIdentifier",
+      "0": "identifier",
       "4": "relatorCode",
       "6": null,
       "7": "unknown",
@@ -3951,15 +4044,16 @@
       "j": "relatorTerm",
       "k": "formSubheading",
       "l": "languageOfWork",
-      "n": "numberOfPart",
-      "p": "nameOfPart",
+      "n": "partNumber",
+      "p": "partName",
       "q": "nameOfMeetingFollowingJurisdictionName",
       "t": "titleofWork",
       "u": "affiliation"
     },
     "tags": [
       "111",
-      "711"
+      "711",
+      "811"
     ]
   },
   "Note": {
@@ -3986,6 +4080,19 @@
       "x": "nonpublicNote",
       "z": "publicNote"
     },
+    "CopyrightStatusNote": {
+      "a": "personalCreator",
+      "b": "personalCreatorDeathDate",
+      "c": "corporateCreator",
+      "d": "copyrightHolder",
+      "e": "copyrightHolderContactInformation",
+      "f": "copyrightStatement",
+      "g": "copyrightDate",
+      "h": "copyrightRenewalDate",
+      "i": "publicationDate",
+      "j": "creationDate",
+      "k": "publisher"
+    },
     "ProductionNote": {
       "3": "materialsSpecified",
       "5": "institution",
@@ -4002,19 +4109,23 @@
       "n": "noteAboutReproduction"
     },
     "subfields": {
+      "4": null,
       "6": null,
+      "8": null,
       "a": "value"
     },
     "tags": {
       "500": "Note",
       "501": "WithNote",
       "502": "DissertationNote",
+      "511": "ParticipantOrPerformerNote",
       "515": "NumberingNote",
       "516": "ComputerFileNote",
       "520": "SummaryNote",
       "530": "AdditionalPhysicalFormNote",
       "533": "ProductionNote",
       "538": "SystemDetailsNote",
+      "542": "CopyrightStatusNote",
       "546": "LanguageNote",
       "550": "IssuingBodyNote",
       "555": "IndexNote",
@@ -4024,11 +4135,12 @@
   },
   "PersonalName": {
     "subfields": {
-      "0": "personalIdentifier",
+      " ": "personalName",
+      "0": "identifier",
       "4": "roleTerm",
       "6": null,
       "7": "unknown",
-      "9": "prefix",
+      "9": null,
       "a": "personalName",
       "b": "personalNumeration",
       "c": "personalTitle",
@@ -4046,7 +4158,7 @@
     "subfields": {
       "3": "materialsSpecified",
       "6": null,
-      "8": "sequenceNumber",
+      "8": null,
       "a": "value",
       "b": "physicalDetails",
       "c": "dimensions",
@@ -4703,7 +4815,7 @@
       "i": "relation",
       "n": "number",
       "t": "title",
-      "w": "id",
+      "w": "identifier",
       "x": "issn"
     },
     "tags": [
@@ -4711,6 +4823,34 @@
     ]
   },
   "PublicationStatement": {
+    "Address": {
+      "4": "relatorCode",
+      "6": null,
+      "8": "sequenceNumber",
+      "a": "address",
+      "b": "city",
+      "c": "stateOrProvince",
+      "d": "country",
+      "e": "postalCode",
+      "f": "termsPrecedingAttentionName",
+      "g": "attentionName",
+      "h": "attentionPosition",
+      "i": "typeOfAddress",
+      "j": "specializedTelephoneNumber",
+      "k": "telephoneNumber",
+      "l": "faxNumber",
+      "m": "electronicMailAddress",
+      "n": "ttyNumber",
+      "p": "contactPerson",
+      "q": "titleOfContactPerson",
+      "r": "hours",
+      "z": "publicNote"
+    },
+    "ProjectedPublicationDate": {
+      "6": null,
+      "8": null,
+      "a": "projectedPublicationDate"
+    },
     "subfields": {
       "6": null,
       "a": "placeOfPublication",
@@ -4720,10 +4860,12 @@
       "f": "manufacturerName",
       "n": null
     },
-    "tags": [
-      "260",
-      "264"
-    ]
+    "tags": {
+      "260": "PublicationStatement",
+      "263": "ProjectedPublicationDate",
+      "264": "PublicationStatement",
+      "270": "Address"
+    }
   },
   "RecordFormat": {
     "tags": [
@@ -4742,6 +4884,7 @@
     "codes": {
       "17": {
         " ": "Full level",
+        "0": null,
         "1": "Full level, material not examined",
         "2": "Less-than-full level, material not examined",
         "3": "Abbreviated level",
@@ -4751,25 +4894,30 @@
         "8": "Prepublication level",
         "_predicate": "encodingLevel",
         "u": "Unknown",
-        "z": "Not applicable"
+        "z": "Not applicable",
+        "|": "Unknown"
       },
       "18": {
         " ": "Non-ISBD",
+        "0": null,
         "_predicate": "descriptiveCatalogingForm",
         "a": "AACR 2",
         "c": "ISBD punctuation omitted",
         "i": "ISBD punctuation included",
         "n": "Non-ISBD punctuation omitted",
-        "u": "Unknown"
+        "u": "Unknown",
+        "|": "Unknown"
       },
       "19": {
-        " ": "Not specified",
+        " ": null,
+        "0": null,
         "_predicate": "multipartResourceRecordLevel",
         "a": "Set",
         "b": "Part with independent title",
         "c": "Part with dependent title"
       },
       "5": {
+        "0": null,
         "_predicate": "recordStatus",
         "a": "Increase in encoding level",
         "c": "Corrected or revised",
@@ -4778,23 +4926,29 @@
         "p": "Increase in encoding level from prepublication"
       },
       "6": {
+        "0": null,
         "_predicate": "typeOfRecord",
         "a": "Language material",
+        "b": "Archival and manuscripts control ",
         "c": "Notated music",
         "d": "Manuscript notated music",
         "e": "Cartographic material",
         "f": "Manuscript cartographic material",
         "g": "Projected medium",
+        "h": null,
         "i": "Nonmusical sound recording",
         "j": "Musical sound recording",
         "k": "Two-dimensional nonprojectable graphic",
         "m": "Computer file",
+        "n": "Special instructional material",
         "o": "Kit",
         "p": "Mixed materials",
         "r": "Three-dimensional artifact or naturally occurring object",
-        "t": "Manuscript language material"
+        "t": "Manuscript language material",
+        "u": null
       },
       "7": {
+        "0": null,
         "_predicate": "bibliographicLevel",
         "a": "Monographic component part",
         "b": "Serial component part",
@@ -4805,7 +4959,7 @@
         "s": "Serial"
       },
       "8": {
-        " ": "unspecified",
+        " ": null,
         "0": null,
         "_predicate": "typeOfControl",
         "a": "Archival"
@@ -4813,7 +4967,8 @@
       "9": {
         " ": "MARC-8",
         "_predicate": "characterEncoding",
-        "a": "Unicode"
+        "a": "Unicode",
+        "n": "n"
       }
     },
     "tags": [
@@ -4854,7 +5009,7 @@
   },
   "Subject": {
     "subfields": {
-      "0": "subjectIdentifier",
+      "0": "identifier",
       "2": "source",
       "3": "material",
       "4": "relatorCode",
@@ -5088,7 +5243,7 @@
       "i": "relation",
       "n": "number",
       "t": "title",
-      "w": "id",
+      "w": "identifier",
       "x": "issn"
     },
     "tags": [
@@ -5122,21 +5277,37 @@
       "s": "titleVersion",
       "y": "titleLanguageCode"
     },
+    "UniformTitle": {
+      "0": "identifier",
+      "6": null,
+      "8": null,
+      "a": "title",
+      "d": "titleDateOfTreatySigning",
+      "g": "miscellaneous",
+      "h": "medium",
+      "l": "language",
+      "m": "mediumOfPerformance",
+      "n": "partNumber",
+      "o": "arrangedStatement",
+      "p": "partName",
+      "r": "key",
+      "s": "version"
+    },
     "subfields": {
       "5": "institution",
       "6": null,
       "a": "title",
-      "b": "titleRemainder",
-      "c": "titleStatement",
-      "f": "titleInclusiveDates",
-      "g": "titleBulkDates",
-      "h": "titleMedium",
-      "i": "titleParallel",
-      "k": "titleForm",
-      "n": "titlePartNumber",
-      "p": "titlePartName",
-      "s": "titleVersion",
-      "y": "titleLanguageCode"
+      "b": "remainder",
+      "c": "statement",
+      "f": "dates",
+      "g": "bulkDates",
+      "h": "medium",
+      "i": "parallel",
+      "k": "form",
+      "n": "partNumber",
+      "p": "partName",
+      "s": "version",
+      "y": "languageCode"
     },
     "tags": {
       "130": "UniformTitle",
@@ -5144,6 +5315,7 @@
       "222": "KeyTitle",
       "240": "UniformTitle",
       "242": "TranslatedTitle",
+      "243": "CollectiveUniformTitle",
       "245": "TitleStatement",
       "246": "VaryingTitle",
       "247": "FormerTitle"

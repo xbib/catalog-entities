@@ -82,7 +82,6 @@ public class De369MarcTest {
             RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
             builder.receive(state.getResource());
             String content = params.getGenerator().get();
-            // we have state.getRecordIdentifier() == null for many cases...
             if (state.getRecordIdentifier() != null && content != null) {
                 /*Path path = Paths.get(state.getRecordIdentifier() + ".json");
                 try (BufferedWriter writer = Files.newBufferedWriter(path)) {
