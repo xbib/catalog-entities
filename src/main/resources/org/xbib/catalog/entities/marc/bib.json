@@ -347,20 +347,20 @@
   },
   "CorporateName": {
     "subfields": {
-      "0": "corporateIdentifier",
+      "0": "identifier",
       "4": "roleTerm",
       "6": null,
       "7": "unknown",
       "8": "sequenceNumber",
       "9": "formatted",
-      "a": "corporateName",
-      "b": "corporateUnit",
+      "a": "name",
+      "b": "unit",
       "c": "locationOfMeeting",
-      "d": "corporateDate",
+      "d": "date",
       "e": "relatorTerm",
       "f": "dateOfWork",
-      "g": "corporatePlace",
-      "n": "corporateNumber"
+      "g": "place",
+      "n": "number"
     },
     "tags": [
       "110",
@@ -2363,8 +2363,6 @@
       "005",
       "006",
       "012",
-      "028",
-      "040",
       "043",
       "087",
       "088",
@@ -2946,7 +2944,7 @@
       "k": "seriesDataForRelatedItem",
       "m": "materialSpecificDetails",
       "n": "note",
-      "o": "otherItemIdentifier",
+      "o": "otherIdentifier",
       "r": "reportNumber",
       "s": "uniformTitle",
       "t": "title",
@@ -2973,7 +2971,7 @@
       "k": "seriesDataForRelatedItem",
       "m": "materialSpecificDetails",
       "n": "note",
-      "o": "otherItemIdentifier",
+      "o": "otherIdentifier",
       "r": "reportNumber",
       "s": "uniformTitle",
       "t": "title",
@@ -4167,7 +4165,7 @@
       "g": "sizeOfUnit",
       "i": "intro",
       "t": "title",
-      "w": "workIdentifier"
+      "w": "identifier"
     },
     "tags": {
       "300": "Extent"
@@ -4868,13 +4866,16 @@
     }
   },
   "RecordFormat": {
+    "subfields": {
+      " ": "format"
+    },
     "tags": [
       "_FORMAT"
     ]
   },
   "RecordIdentifier": {
     "subfields": {
-      "": "identifierForTheRecord"
+      " ": "identifierForTheRecord"
     },
     "tags": [
       "001"
@@ -4976,6 +4977,9 @@
     ]
   },
   "RecordType": {
+    "subfields": {
+      " ": "format"
+    },
     "tags": [
       "_TYPE"
     ]

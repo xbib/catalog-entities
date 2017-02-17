@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -40,6 +41,8 @@ public class CatalogEntityWorkerState {
     private final Map<String, TermFacet> facets;
 
     private final Map<String, Sequence<Resource>> sequences;
+
+    private final Map<String, String> scratch;
 
     private final String packageName;
 
@@ -72,6 +75,7 @@ public class CatalogEntityWorkerState {
         this.sequences = new HashMap<>();
         this.authoredWorkKey = new AuthoredWork();
         this.resourceType = new ArrayList<>();
+        this.scratch = new LinkedHashMap<>();
     }
 
     public AuthoredWork getAuthoredWorkKey() {
@@ -196,6 +200,10 @@ public class CatalogEntityWorkerState {
 
     public Map<String, Sequence<Resource>> getSequences() {
         return sequences;
+    }
+
+    public Map<String, String> getScratch() {
+        return scratch;
     }
 
     public void finish() throws IOException {

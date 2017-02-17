@@ -18,9 +18,9 @@ public class CustomIdentifier extends CatalogEntity {
     }
 
     /**
-     * Construct purified ZDB-ID for fast term search.
+     * Construct ZDB-ID identifier from multiple subfields.
      *
-     * Type flag DE-600 is after the value:
+     * Challenge: type flag (here: DE-600) is after the value (here: 13-9):
      *
      * tag=016 ind=7  subf=a data=13-9
      * tag=016 ind=7  subf=2 data=DE-600
@@ -31,10 +31,20 @@ public class CustomIdentifier extends CatalogEntity {
     @Override
     public List<String> transform(CatalogEntityWorker worker,
                                   String predicate, Resource resource, String property, String value) {
-        if ("IdentifierZDB".equals(value) && "type".equals(property)) {
-            String v = resource.objects("value").get(0).toString();
-            resource.add("identifierZDB", v.replaceAll("\\-", "").toLowerCase());
-            return Collections.singletonList(value);
+        if ("value".equals(property)) {
+            worker.getWorkerState().getScratch().put("value", value);
+            return null;
+        } else {
+            if ("type".equals(property)) {
+                if ("IdentifierZDB".equals(value)) {
+                    String v = worker.getWorkerState().getScratch().get("value");
+                    resource.add("identifierZDB", v.replaceAll("\\-", "").toLowerCase());
+                } else if ("IdentifierDNB".equals(value)) {
+                    String v = worker.getWorkerState().getScratch().get("value");
+                    resource.add("identifierDNB", v.replaceAll("\\-", "").toLowerCase());
+                }
+                return null;
+            }
         }
         return Collections.singletonList(value);
     }

@@ -6,20 +6,27 @@ import org.xbib.content.rdf.Resource;
 
 import java.text.MessageFormat;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Transform identifiers to their namespace.
+ * Skipped because not in libraryland:
+ * (NL-LiSWE) = Swets & Zeitlinger
  */
 public class Identifier extends CatalogEntity {
 
     private static final Logger logger = Logger.getLogger(Identifier.class.getName());
 
+    private final Set<String> unrecognized;
+
     public Identifier(Map<String, Object> params) {
         super(params);
+        this.unrecognized = new HashSet<>();
     }
 
     @Override
@@ -33,12 +40,10 @@ public class Identifier extends CatalogEntity {
                 resource.add("identifierOCLC", value.substring(7).replaceAll("\\-", "").toLowerCase());
                 return null;
             } else {
-                //(NL-LiSWE) = Swets & Zeitlinger
-                /*int pos = value.indexOf(')');
-                String prefix = pos > 0 ? value.substring(1,pos).replaceAll("\\-", "").toUpperCase() : "";
-                value = pos > 0 ? value.substring(pos + 1) : value;
-                resource.add("identifier" + prefix, value.replaceAll("\\-", "").toLowerCase());*/
-                logger.log(Level.WARNING, () -> MessageFormat.format("unprocessed identifier: {0}", value));
+                if (!unrecognized.contains(value)) {
+                    unrecognized.add(value);
+                    logger.log(Level.WARNING, () -> MessageFormat.format("unprocessed identifier: {0}", value));
+                }
                 return null;
             }
         }

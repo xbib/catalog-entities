@@ -41,49 +41,6 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
         this.crc32 = new CRC32();
     }
 
-    @SuppressWarnings("unchecked")
-    private static Map.Entry<String, Object> subfieldDecoderMap(Map<String, Object> subfields, MarcField.Subfield field) {
-        String k = null;
-        Object v = field.getValue();
-        Object subfieldDef = subfields.get(field.getId());
-        if (subfieldDef instanceof Map) {
-            // key/value mapping
-            Map<String, Object> subfieldmap = (Map<String, Object>) subfieldDef;
-            if (subfieldmap.containsKey(v.toString())) {
-                Object o = subfieldmap.get(v.toString());
-                if (o instanceof Map) {
-                    Map.Entry<String, Object> me = (Map.Entry<String, Object>) ((Map) o).entrySet().iterator().next();
-                    k = me.getKey();
-                    v = me.getValue();
-                } else {
-                    v = o;
-                }
-            }
-        } else {
-            // new key (may be null to skip the value)
-            k = (String) subfieldDef;
-        }
-        // create result map entry
-        final String newKey = k;
-        final Object newValue = v;
-        return new Map.Entry<String, Object>() {
-            @Override
-            public String getKey() {
-                return newKey;
-            }
-
-            @Override
-            public Object getValue() {
-                return newValue;
-            }
-
-            @Override
-            public Object setValue(Object value) {
-                return null;
-            }
-        };
-    }
-
     @Override
     public void execute(MarcRecord marcRecord) throws IOException {
         this.marcRecord = marcRecord;
@@ -187,7 +144,7 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
             return resource;
         }
         Map<MarcField, String> fieldNames = new HashMap<>();
-        // create another anoymous resource, will be linked late if predicate is determined
+        // create another anoymous resource, will be linked later after real predicate is determined
         Resource newResource = resource.newResource(tempPredicate);
         // default predicate is the name of the class
         String predicate = entity.getClass().getSimpleName();
@@ -195,150 +152,203 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
         if (params.containsKey("_predicate")) {
             predicate = (String) params.get("_predicate");
         }
-        boolean overridePredicate = false;
-        // put all found fields with configured subfield names to this resource
-        for (MarcField.Subfield subfield : field.getSubfields()) {
-            Map<String, Object> subfields = defaultSubfields;
-            if (params.containsKey("tags")) {
-                Object o = params.get("tags");
-                if (o instanceof Map) {
-                    Map<String, Object> tags = (Map<String, Object>) o;
-                    if (tags.containsKey(field.getTag())) {
-                        if (!overridePredicate) {
-                            predicate = (String) tags.get(field.getTag());
-                        }
-                        subfields = (Map<String, Object>) params.get(predicate);
-                        if (subfields == null) {
-                            subfields = defaultSubfields;
-                        }
+        // for each subfield, navigate by tag/indicator to real subfield definition
+        String tag = field.getTag();
+        Map<String, Object> subfields = defaultSubfields;
+        if (params.containsKey("tags")) {
+            Object o = params.get("tags");
+            if (o instanceof Map) {
+                Map<String, Object> tags = (Map<String, Object>) o;
+                if (tags.containsKey(tag)) {
+                    predicate = (String) tags.get(tag);
+                    subfields = (Map<String, Object>) params.get(predicate);
+                    if (subfields == null) {
+                        subfields = defaultSubfields;
                     }
-                }
-            }
-            // indicator-based predicate defined?
-            if (params.containsKey("indicators")) {
-                Map<String, Object> indicators = (Map<String, Object>) params.get("indicators");
-                if (indicators.containsKey(field.getTag())) {
-                    Map<String, Object> indicatorMap = (Map<String, Object>) indicators.get(field.getTag());
-                    if (indicatorMap.containsKey(field.getIndicator())) {
-                        if (!overridePredicate) {
-                            predicate = (String) indicatorMap.get(field.getIndicator());
-                            fieldNames.put(field, predicate);
-                        }
-                        subfields = (Map<String, Object>) params.get(predicate);
-                        if (subfields == null) {
-                            subfields = defaultSubfields;
-                        }
-                    }
-                }
-            }
-            // is there a subfield value decoder?
-            Map.Entry<String, Object> me = subfieldDecoderMap(subfields, subfield);
-            if (me.getKey() != null && me.getValue() != null) {
-                String v = me.getValue().toString();
-                if (fieldNames.containsKey(field)) {
-                    // field-specific subfield map
-                    String fieldName = fieldNames.get(field);
-                    List<Map<String, String>> patterns =
-                            (List<Map<String, String>>) params.get(fieldName + "pattern");
-                    if (patterns != null) {
-                        for (Map<String, String> pattern : patterns) {
-                            Map.Entry<String, String> mme = pattern.entrySet().iterator().next();
-                            String p = mme.getKey();
-                            String rel = mme.getValue();
-                            Matcher m = Pattern.compile(p, Pattern.CASE_INSENSITIVE).matcher(v);
-                            if (m.matches()) {
-                                v = rel;
-                                break;
-                            }
-                        }
-                    } else {
-                        if (params.containsKey(me.getKey())) {
-                            Object o = params.get(me.getKey());
-                            if (o instanceof Map) {
-                                Map<String, Object> vm = (Map<String, Object>) o;
-                                v = vm.containsKey(v) ? vm.get(v).toString() : v;
-                            }
-                        }
-                    }
-                } else {
-                    // default subfield map
-                    String fieldName = me.getKey();
-                    if (params.containsKey(fieldName)) {
-                        Object o = params.get(fieldName);
-                        if (o instanceof Map) {
-                            Map<String, Object> vm = (Map<String, Object>) o;
-                            int pos = v.indexOf(' ');
-                            String vv = pos > 0 ? v.substring(0, pos) : v;
-                            if (vm.containsKey(v)) {
-                                v = (String) vm.get(v);
-                            } else if (vm.containsKey(vv)) {
-                                v = (String) vm.get(vv);
-                            } else {
-                                // relation by pattern?
-                                List<Map<String, String>> patterns =
-                                        (List<Map<String, String>>) params.get(fieldName + "pattern");
-                                if (patterns != null) {
-                                    for (Map<String, String> pattern : patterns) {
-                                        Map.Entry<String, String> mme = pattern.entrySet().iterator().next();
-                                        String p = mme.getKey();
-                                        String rel = mme.getValue();
-                                        Matcher m = Pattern.compile(p, Pattern.CASE_INSENSITIVE).matcher(v);
-                                        if (m.matches()) {
-                                            v = rel;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            if (logger.isLoggable(Level.FINE)) {
-                                logger.log(Level.FINE,
-                                        "entity=" + entity + ": not a map found in params for key '" + fieldName + "'");
-                            }
-                        }
-                    }
-                }
-                // transform/split value v
-                List<String> transformed = null;
-                if (v != null) {
-                    transformed = entity.transform(this, predicate, newResource, me.getKey(), v);
-                }
-                // is this the predicate field or a value?
-                if (me.getKey().equals(predicate)) {
-                    predicate = v;
-                    overridePredicate = true;
-                } else if (transformed != null) {
-                    for (String t : transformed) {
-                        newResource.add(me.getKey(), t);
-                    }
-                }
-            } else {
-                // no decoder, simple add field data
-                String subfieldId = subfield.getId();
-                if (subfieldId.isEmpty()) {
-                    // "empty" subfield IDs exist in MAB. Replace with space. Maybe "_" or "|"?
-                    subfieldId = " ";
-                }
-                if (subfields.containsKey(subfieldId)) {
-                    String property = (String) subfields.get(subfieldId);
-                    List<String> transformed = entity.transform(this, predicate, newResource, property,
-                            subfield.getValue());
-                    if (transformed != null) {
-                        for (String t : transformed) {
-                            newResource.add(property, t);
-                        }
-                    }
-                } else {
-                    entityBuilder.unmapped(getWorkerState().getRecordIdentifier(), field,
-                            "field " + field + " missing definition for subfield '" + subfieldId
-                                    + "' subfields=" + subfields);
                 }
             }
         }
-        // rename, now that we know the predicate
+        // indicator-based predicate defined?
+        String indicator = field.getIndicator();
+        if (params.containsKey("indicators")) {
+            Map<String, Object> indicators = (Map<String, Object>) params.get("indicators");
+            if (indicators.containsKey(tag)) {
+                Map<String, Object> indicatorMap = (Map<String, Object>) indicators.get(tag);
+                if (indicatorMap.containsKey(indicator)) {
+                    predicate = (String) indicatorMap.get(indicator);
+                    fieldNames.put(field, predicate);
+                    subfields = (Map<String, Object>) params.get(predicate);
+                    if (subfields == null) {
+                        subfields = defaultSubfields;
+                    }
+                }
+            }
+        }
+        if (field.isControl()) {
+            predicate = append(newResource, entity, field,
+                    "", field.getValue(), fieldNames, subfields, predicate);
+        }
+        for (MarcField.Subfield subfield : field.getSubfields()) {
+            predicate = append(newResource, entity, field,
+                    subfield.getId(), subfield.getValue(), fieldNames, subfields, predicate);
+        }
+        // rename resource now that we know the real predicate. Can be null, which means drop it.
         if (predicate != null) {
             resource.rename(tempPredicate, IRI.builder().curie(predicate).build());
         }
         return newResource;
     }
+
+    @SuppressWarnings("unchecked")
+    protected String append(Resource newResource, CatalogEntity entity, MarcField field,
+                          String subfieldId, String value,
+                          Map<MarcField, String> fieldNames, Map<String, Object> subfields,
+                          String predicate) throws IOException {
+        Map<String, Object> params = entity.getParams();
+        Map.Entry<String, Object> me = subfieldDecoderMap(subfields, subfieldId, value);
+        if (me.getKey() != null && me.getValue() != null) {
+            String v = me.getValue().toString();
+            if (fieldNames.containsKey(field)) {
+                // field-specific subfield map
+                String fieldName = fieldNames.get(field);
+                List<Map<String, String>> patterns =
+                        (List<Map<String, String>>) params.get(fieldName + "pattern");
+                if (patterns != null) {
+                    for (Map<String, String> pattern : patterns) {
+                        Map.Entry<String, String> mme = pattern.entrySet().iterator().next();
+                        String p = mme.getKey();
+                        String rel = mme.getValue();
+                        Matcher m = Pattern.compile(p, Pattern.CASE_INSENSITIVE).matcher(v);
+                        if (m.matches()) {
+                            v = rel;
+                            break;
+                        }
+                    }
+                } else {
+                    if (params.containsKey(me.getKey())) {
+                        Object o = params.get(me.getKey());
+                        if (o instanceof Map) {
+                            Map<String, Object> vm = (Map<String, Object>) o;
+                            v = vm.containsKey(v) ? vm.get(v).toString() : v;
+                        }
+                    }
+                }
+            } else {
+                // default subfield map
+                String fieldName = me.getKey();
+                if (params.containsKey(fieldName)) {
+                    Object o = params.get(fieldName);
+                    if (o instanceof Map) {
+                        Map<String, Object> vm = (Map<String, Object>) o;
+                        int pos = v.indexOf(' ');
+                        String vv = pos > 0 ? v.substring(0, pos) : v;
+                        if (vm.containsKey(v)) {
+                            v = (String) vm.get(v);
+                        } else if (vm.containsKey(vv)) {
+                            v = (String) vm.get(vv);
+                        } else {
+                            // relation by pattern?
+                            List<Map<String, String>> patterns =
+                                    (List<Map<String, String>>) params.get(fieldName + "pattern");
+                            if (patterns != null) {
+                                for (Map<String, String> pattern : patterns) {
+                                    Map.Entry<String, String> mme = pattern.entrySet().iterator().next();
+                                    String p = mme.getKey();
+                                    String rel = mme.getValue();
+                                    Matcher m = Pattern.compile(p, Pattern.CASE_INSENSITIVE).matcher(v);
+                                    if (m.matches()) {
+                                        v = rel;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if (logger.isLoggable(Level.FINE)) {
+                            logger.log(Level.FINE,
+                                    "entity=" + entity + ": not a map found in params for key '" + fieldName + "'");
+                        }
+                    }
+                }
+            }
+            // transform/split value v
+            List<String> transformed = null;
+            if (v != null) {
+                transformed = entity.transform(this, predicate, newResource, me.getKey(), v);
+            }
+            // is this the predicate field or a value?
+            if (me.getKey().equals(predicate)) {
+                predicate = v;
+            } else if (transformed != null) {
+                for (String t : transformed) {
+                    newResource.add(me.getKey(), t);
+                }
+            }
+        } else {
+            // no decoder for subfield codes, it means we simply add field data
+            if (subfieldId.isEmpty()) {
+                // "empty" subfield IDs exist in MARC dialects (MAB). Replace with space.
+                subfieldId = " ";
+            }
+            if (subfields.containsKey(subfieldId)) {
+                String property = (String) subfields.get(subfieldId);
+                List<String> transformed = entity.transform(this, predicate, newResource, property, value);
+                if (transformed != null) {
+                    for (String t : transformed) {
+                        newResource.add(property, t);
+                    }
+                }
+            } else {
+                entityBuilder.unmapped(getWorkerState().getRecordIdentifier(), field,
+                        "field " + field + " missing definition for subfield '" + subfieldId
+                                + "' subfields=" + subfields);
+            }
+        }
+        return predicate;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Map.Entry<String, Object> subfieldDecoderMap(Map<String, Object> subfields,
+                                                                String subfieldID, String value) {
+        String k = null;
+        Object v = value;
+        Object subfieldDef = subfields.get(subfieldID);
+        if (subfieldDef instanceof Map) {
+            // key/value mapping
+            Map<String, Object> subfieldmap = (Map<String, Object>) subfieldDef;
+            if (subfieldmap.containsKey(v.toString())) {
+                Object o = subfieldmap.get(v.toString());
+                if (o instanceof Map) {
+                    Map.Entry<String, Object> me = (Map.Entry<String, Object>) ((Map) o).entrySet().iterator().next();
+                    k = me.getKey();
+                    v = me.getValue();
+                } else {
+                    v = o;
+                }
+            }
+        } else {
+            // new key (may be null to skip the value)
+            k = (String) subfieldDef;
+        }
+        // create result map entry
+        final String newKey = k;
+        final Object newValue = v;
+        return new Map.Entry<String, Object>() {
+            @Override
+            public String getKey() {
+                return newKey;
+            }
+
+            @Override
+            public Object getValue() {
+                return newValue;
+            }
+
+            @Override
+            public Object setValue(Object value) {
+                return null;
+            }
+        };
+    }
+
 }
