@@ -47,7 +47,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../../org/xbib/catalog/entities/marc/hol/NormalizedHoldings.html" title="class in org.xbib.catalog.entities.marc.hol"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../../../org/xbib/catalog/entities/marc/hol/Ownership.html" title="class in org.xbib.catalog.entities.marc.hol"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../../org/xbib/catalog/entities/marc/hol/PhysicalDescription.html" title="class in org.xbib.catalog.entities.marc.hol"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -101,12 +101,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">org.xbib.catalog.entities.CatalogEntity</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../../org/xbib/catalog/entities/marc/bib/Identifier.html" title="class in org.xbib.catalog.entities.marc.bib">org.xbib.catalog.entities.marc.bib.Identifier</a></li>
-<li>
-<ul class="inheritance">
 <li>org.xbib.catalog.entities.marc.hol.ParentRecordIdentifier</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -118,7 +113,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">ParentRecordIdentifier</span>
-extends <a href="../../../../../../org/xbib/catalog/entities/marc/bib/Identifier.html" title="class in org.xbib.catalog.entities.marc.bib">Identifier</a></pre>
+extends <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a></pre>
 </li>
 </ul>
 </div>
@@ -155,10 +150,13 @@ extends <a href="../../../../../../org/xbib/catalog/entities/marc/bib/Identifier
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/xbib/catalog/entities/marc/hol/ParentRecordIdentifier.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField-">transform</a></span>(<a href="../../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
-         org.xbib.marc.MarcField&nbsp;field)</code>
-<div class="block">Transform field.</div>
+<td class="colFirst"><code>java.util.List&lt;java.lang.String&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/xbib/catalog/entities/marc/hol/ParentRecordIdentifier.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-org.xbib.content.rdf.Resource-java.lang.String-java.lang.String-">transform</a></span>(<a href="../../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
+         java.lang.String&nbsp;predicate,
+         org.xbib.content.rdf.Resource&nbsp;resource,
+         java.lang.String&nbsp;property,
+         java.lang.String&nbsp;value)</code>
+<div class="block">Transform or split value.</div>
 </td>
 </tr>
 </table>
@@ -167,7 +165,7 @@ extends <a href="../../../../../../org/xbib/catalog/entities/marc/bib/Identifier
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.xbib.catalog.entities.<a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a></h3>
-<code><a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#facetize-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-">facetize</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getCodes--">getCodes</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getDefaultFacet--">getDefaultFacet</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getFacetCodes--">getFacetCodes</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getFacetName--">getFacetName</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getParams--">getParams</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getRegexes--">getRegexes</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getResource-org.xbib.catalog.entities.CatalogEntityWorker-">getResource</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getValue-org.xbib.marc.MarcField-">getValue</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-org.xbib.content.rdf.Resource-java.lang.String-java.lang.String-">transform</a></code></li>
+<code><a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#facetize-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-">facetize</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getCodes--">getCodes</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getDefaultFacet--">getDefaultFacet</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getFacetCodes--">getFacetCodes</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getFacetName--">getFacetName</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getParams--">getParams</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getRegexes--">getRegexes</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getResource-org.xbib.catalog.entities.CatalogEntityWorker-">getResource</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#getValue-org.xbib.marc.MarcField-">getValue</a>, <a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField-">transform</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -207,26 +205,31 @@ extends <a href="../../../../../../org/xbib/catalog/entities/marc/bib/Identifier
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="transform-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField-">
+<a name="transform-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-org.xbib.content.rdf.Resource-java.lang.String-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>transform</h4>
-<pre>public&nbsp;<a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a>&nbsp;transform(<a href="../../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
-                               org.xbib.marc.MarcField&nbsp;field)
-                        throws java.io.IOException</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField-">CatalogEntity</a></code></span></div>
-<div class="block"><p>Transform field.</p></div>
+<pre>public&nbsp;java.util.List&lt;java.lang.String&gt;&nbsp;transform(<a href="../../../../../../org/xbib/catalog/entities/CatalogEntityWorker.html" title="class in org.xbib.catalog.entities">CatalogEntityWorker</a>&nbsp;worker,
+                                                  java.lang.String&nbsp;predicate,
+                                                  org.xbib.content.rdf.Resource&nbsp;resource,
+                                                  java.lang.String&nbsp;property,
+                                                  java.lang.String&nbsp;value)
+                                           throws java.io.IOException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-org.xbib.content.rdf.Resource-java.lang.String-java.lang.String-">CatalogEntity</a></code></span></div>
+<div class="block"><p>Transform or split value.</p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-org.xbib.marc.MarcField-">transform</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a></code></dd>
+<dd><code><a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html#transform-org.xbib.catalog.entities.CatalogEntityWorker-java.lang.String-org.xbib.content.rdf.Resource-java.lang.String-java.lang.String-">transform</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/xbib/catalog/entities/CatalogEntity.html" title="class in org.xbib.catalog.entities">CatalogEntity</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>worker</code> - the worker</dd>
-<dd><code>field</code> - the field</dd>
+<dd><code>predicate</code> - the resource predicate</dd>
+<dd><code>resource</code> - the resource</dd>
+<dd><code>property</code> - the property</dd>
+<dd><code>value</code> - the value</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>null if processing has been completed and should not continue at this point,
-another entity if processing should continue</dd>
+<dd>the transformed value(s) as a list</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - if transformation fails</dd>
 </dl>
@@ -259,7 +262,7 @@ another entity if processing should continue</dd>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../../org/xbib/catalog/entities/marc/hol/NormalizedHoldings.html" title="class in org.xbib.catalog.entities.marc.hol"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../../../org/xbib/catalog/entities/marc/hol/Ownership.html" title="class in org.xbib.catalog.entities.marc.hol"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../../org/xbib/catalog/entities/marc/hol/PhysicalDescription.html" title="class in org.xbib.catalog.entities.marc.hol"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
