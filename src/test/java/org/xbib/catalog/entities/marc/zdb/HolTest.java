@@ -4,6 +4,7 @@ import static org.junit.Assert.fail;
 import static org.xbib.content.rdf.RdfXContentFactory.rdfXContentBuilder;
 import static org.xbib.helper.StreamMatcher.assertStream;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
@@ -28,6 +29,7 @@ import java.text.MessageFormat;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.GZIPInputStream;
 
 /**
  *
@@ -53,8 +55,8 @@ public class HolTest {
     @Test
     public void testHol() throws IOException {
         Settings settings = Settings.settingsBuilder()
-                .put("package", "org.xbib.catalog.entities.marc.zdb.hol")
-                .put("elements", "org/xbib/catalog/entities/marc/zdb/hol.json")
+                .put("package", "org.xbib.catalog.entities.marc.hol")
+                .put("elements", "org/xbib/catalog/entities/marc/hol.json")
                 .build();
         try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()
@@ -63,6 +65,37 @@ public class HolTest {
                     .build()
                     .writeRecords();
             logger.log(Level.INFO, MessageFormat.format("unmapped fields = {0}", myBuilder.getUnmapped()));
+        }
+    }
+
+    @Test
+    @Ignore
+    public void testAllRecords() throws IOException {
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.marc.hol")
+                .put("elements", "org/xbib/catalog/entities/marc/hol.json")
+                .build();
+        try (MySimpleBuilder myBuilder = new MySimpleBuilder(settings)) {
+            Marc.builder()
+                    .setInputStream(new GZIPInputStream(Files.newInputStream(Paths.get("/data/zdb/1609zdbgesamtlokutf8.mrc.gz"))))
+                    .setMarcRecordListener(myBuilder)
+                    .build()
+                    .writeRecords();
+            logger.log(Level.INFO, MessageFormat.format("unmapped ZDB Hol fields = {0}", myBuilder.getUnmapped()));
+        }
+    }
+
+    private static class MySimpleBuilder extends CatalogEntityBuilder {
+
+        MySimpleBuilder(Settings settings) throws IOException {
+            super(settings, listener);
+        }
+
+        @Override
+        protected void afterFinishState(CatalogEntityWorkerState state) throws IOException {
+            RdfXContentParams params = new RdfXContentParams();
+            RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
+            builder.receive(state.getResource());
         }
     }
 

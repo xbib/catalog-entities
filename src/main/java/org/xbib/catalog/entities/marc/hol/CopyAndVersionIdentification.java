@@ -1,4 +1,4 @@
-package org.xbib.catalog.entities.marc.zdb.hol;
+package org.xbib.catalog.entities.marc.hol;
 
 import org.xbib.catalog.entities.CatalogEntity;
 

@@ -7,9 +7,9 @@ import java.util.Map;
 /**
  *
  */
-public class TextualHoldingsPrefix extends CatalogEntity {
+public class Ownership extends CatalogEntity {
 
-    public TextualHoldingsPrefix(Map<String, Object> params) {
+    public Ownership(Map<String, Object> params) {
         super(params);
     }
 }

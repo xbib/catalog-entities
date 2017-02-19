@@ -811,7 +811,7 @@ public class EnumerationAndChronologyHelper {
                         logger.log(Level.WARNING,
                                 MessageFormat.format("{0} {1} future dates: {2},{3} (from {4},{5})",
                                 id, marcField, beginNumber, endNumber, begindate, enddate));
-                    } else if (endNumber - beginNumber > 250) {
+                    } else if (endNumber - beginNumber > 500) {
                         logger.log(Level.WARNING,
                                 MessageFormat.format("{0} {1} too many years: {2},{3} (from {4},{5})",
                                 id, marcField, beginNumber, endNumber, begindate, enddate));
@@ -827,7 +827,7 @@ public class EnumerationAndChronologyHelper {
                         }
                     }
                 }
-                if (dates.size() > 250) {
+                if (dates.size() > 500) {
                     logger.log(Level.WARNING, MessageFormat.format("{0} {1} too many dates: {2}",
                             id, marcField, dates.size()));
                 }

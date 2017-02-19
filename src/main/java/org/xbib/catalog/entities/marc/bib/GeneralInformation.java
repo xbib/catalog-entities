@@ -10,6 +10,8 @@ import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,11 +26,14 @@ public class GeneralInformation extends CatalogEntity {
 
     private final Map<String, Object> undefinedCodes;
 
+    private final Set<String> undefinedResourceTypes;
+
     @SuppressWarnings("unchecked")
     public GeneralInformation(Map<String, Object> params) {
         super(params);
         this.codes = (Map<String, Object>) params.get("codes");
         this.undefinedCodes = new HashMap<>();
+        this.undefinedResourceTypes = new TreeSet<>();
     }
 
     @SuppressWarnings("unchecked")
@@ -48,7 +53,10 @@ public class GeneralInformation extends CatalogEntity {
                 if (map != null) {
                     examine(map, info, value);
                 } else {
-                    logger.warning("no codes for resource type '" + resourceType + "'");
+                    if (!undefinedResourceTypes.contains(resourceType)) {
+                        undefinedResourceTypes.add(resourceType);
+                        logger.warning("no codes for resource type '" + resourceType + "'");
+                    }
                 }
             }
         }
@@ -77,7 +85,7 @@ public class GeneralInformation extends CatalogEntity {
                 }
             } else if (entry.getValue() instanceof Map) {
                 Map<String, Object> values = (Map<String, Object>) entry.getValue();
-                String v = value.substring(from, to);
+                String v = value.length() >= to ? value.substring(from, to) : "|";
                 String predicate = (String) values.get("_predicate");
                 if (predicate != null && !"|".equals(v) && !"||".equals(v) && !"|||".equals(v) && !"|| ".equals(v)) {
                     if (values.containsKey(v)) {

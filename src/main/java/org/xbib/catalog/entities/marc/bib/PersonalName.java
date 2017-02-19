@@ -25,6 +25,19 @@ public class PersonalName extends CatalogEntity {
             AuthoredWork authoredWork = worker.getWorkerState().getAuthoredWorkKey();
             authoredWork.authorName(value);
         }
+        if ("identifier".equals(property)) {
+            if (value.startsWith("(DE-588)")) {
+                resource.add("identifierGND", value.substring(8).replaceAll("\\-", "").toLowerCase());
+                return null;
+            } else if (value.startsWith("(DE-600)")) {
+                resource.add("identifierZDB", value.substring(8).replaceAll("\\-", "").toLowerCase());
+                return null;
+            } else if (value.startsWith("(DE-101)")) {
+                resource.add("identifierDNB", value.substring(8).replaceAll("\\-", "").toLowerCase());
+                return null;
+            }
+            return Collections.singletonList(value.replaceAll("\\-", "").toLowerCase());
+        }
         return Collections.singletonList(value);
     }
 }

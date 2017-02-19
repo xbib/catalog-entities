@@ -1,7 +1,0 @@
-{
-  "dc.type": "type",
-  "dc.format": "RecordLeader.typeOfRecord",
-  "dc.date": "GeneralInformation.date1",
-  "dc.language": "GeneralInformation.language",
-  "dc.coverage": "GeneralInformation.place"
-}

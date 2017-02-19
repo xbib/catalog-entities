@@ -121,6 +121,7 @@
       "b": "accessnumber",
       "c": "compression",
       "d": "path",
+      "e": null,
       "f": "electronicname",
       "h": "processor",
       "i": "instruction",
@@ -153,6 +154,7 @@
       "a": "marcorg",
       "b": "collectionname",
       "c": "shelvinglocation",
+      "m": "loancode",
       "z": "publicnote"
     },
     "Location": {
@@ -166,6 +168,7 @@
       "b": "collectionname",
       "c": "shelvinglocation",
       "m": "loancode",
+      "p": null,
       "x": "nonPublicNote",
       "z": "publicnote"
     },
@@ -289,7 +292,8 @@
   "Ignore": {
     "tags": [
       "003",
-      "005"
+      "005",
+      "933"
     ]
   },
   "LicenseInformation": {
@@ -826,6 +830,7 @@
         "3": "Holdings Level 3",
         "4": "Holdings Level 4",
         "5": "Holdings Level 4 with piece designation",
+        "9": null,
         "_predicate": "encodingLevel",
         "m": "Mixed level",
         "u": "Unknown",

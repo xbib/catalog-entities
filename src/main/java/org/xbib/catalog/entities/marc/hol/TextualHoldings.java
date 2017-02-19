@@ -7,21 +7,16 @@ import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
-import java.text.MessageFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
  *
  */
 public class TextualHoldings extends CatalogEntity {
-
-    private static final Logger logger = Logger.getLogger(TextualHoldings.class.getName());
 
     private List<Pattern> movingwallPatterns;
 
@@ -61,8 +56,6 @@ public class TextualHoldings extends CatalogEntity {
                     for (Integer date : dates) {
                         worker.getWorkerState().getResource().add("dates", date);
                     }
-                } else {
-                    logger.log(Level.WARNING, () -> MessageFormat.format("no dates found in field {0}", field));
                 }
             }
         }

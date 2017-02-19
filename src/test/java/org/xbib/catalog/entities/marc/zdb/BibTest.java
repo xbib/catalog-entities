@@ -6,6 +6,7 @@ import static org.xbib.content.rdf.RdfXContentFactory.rdfXContentBuilder;
 import static org.xbib.content.rdf.RdfXContentFactory.routeRdfXContentBuilder;
 import static org.xbib.helper.StreamMatcher.assertStream;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
@@ -32,6 +33,7 @@ import java.text.MessageFormat;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.GZIPInputStream;
 
 /**
  *
@@ -57,8 +59,8 @@ public class BibTest {
     @Test
     public void testBibFromMarc() throws IOException {
         Settings settings = Settings.settingsBuilder()
-                .put("package", "org.xbib.catalog.entities.marc.zdb.bib")
-                .put("elements", "org/xbib/catalog/entities/marc/zdb/bib.json")
+                .put("package", "org.xbib.catalog.entities.marc.bib")
+                .put("elements", "org/xbib/catalog/entities/marc/bib.json")
                 .build();
         try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()
@@ -73,8 +75,8 @@ public class BibTest {
     @Test
     public void testOAIFromXML() throws IOException {
         Settings settings = Settings.settingsBuilder()
-                .put("package", "org.xbib.catalog.entities.marc.zdb.bib")
-                .put("elements", "org/xbib/catalog/entities/marc/zdb/bib.json")
+                .put("package", "org.xbib.catalog.entities.marc.bib")
+                .put("elements", "org/xbib/catalog/entities/marc/bib.json")
                 .build();
         try (MyBuilder myBuilder = new MyBuilder(settings)) {
             Marc.builder()
@@ -92,8 +94,8 @@ public class BibTest {
     @Test
     public void testBibRecords() throws IOException {
         Settings settings = Settings.settingsBuilder()
-                .put("package", "org.xbib.catalog.entities.marc.zdb.bib")
-                .put("elements", "org/xbib/catalog/entities/marc/zdb/bib.json")
+                .put("package", "org.xbib.catalog.entities.marc.bib")
+                .put("elements", "org/xbib/catalog/entities/marc/bib.json")
                 .build();
         try (MyRouteBuilder myBuilder = new MyRouteBuilder(settings)) {
             Marc.builder()
@@ -102,6 +104,37 @@ public class BibTest {
                     .build()
                     .writeRecords();
             logger.log(Level.INFO, MessageFormat.format("unmapped ZDB Bib fields = {0}", myBuilder.getUnmapped()));
+        }
+    }
+
+    @Test
+    @Ignore
+    public void testAllRecords() throws IOException {
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.marc.bib")
+                .put("elements", "org/xbib/catalog/entities/marc/bib.json")
+                .build();
+        try (MySimpleBuilder myBuilder = new MySimpleBuilder(settings)) {
+            Marc.builder()
+                    .setInputStream(new GZIPInputStream(Files.newInputStream(Paths.get("/data/zdb/1609zdbtitgesamtutf8.mrc.gz"))))
+                    .setMarcRecordListener(myBuilder)
+                    .build()
+                    .writeRecords();
+            logger.log(Level.INFO, MessageFormat.format("unmapped ZDB Bib fields = {0}", myBuilder.getUnmapped()));
+        }
+    }
+
+    private static class MySimpleBuilder extends CatalogEntityBuilder {
+
+        MySimpleBuilder(Settings settings) throws IOException {
+            super(settings, listener);
+        }
+
+        @Override
+        protected void afterFinishState(CatalogEntityWorkerState state) throws IOException {
+            RdfXContentParams params = new RdfXContentParams();
+            RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
+            builder.receive(state.getResource());
         }
     }
 
