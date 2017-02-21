@@ -25,8 +25,6 @@ public class CatalogEntitySpecification {
 
     static final String LEADER = "_LEADER";
 
-    //private static final long serialVersionUID = 905552856037880666L;
-
     private final Map<String, CatalogEntity> map;
 
     private final Map<String, CatalogEntity> entities;

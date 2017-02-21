@@ -357,10 +357,17 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     @SuppressWarnings("unchecked")
     protected Map<String, Object> setupFacets(Map<String, Object> params) throws IOException {
         ValueMapper valueMapper = new ValueMapper();
-        valueMapper.getMap(settings.get("facets", "org/xbib/catalog/entities/marc/facets.json"), "facets");
-        Map<String, Object> map = valueMapper.getMap("facets");
-        if (map == null) {
-            map = Collections.emptyMap();
+        // embedded values?
+        Map<String, Object> map = params;
+        if (map.containsKey("facets")) {
+            Object object = map.get("facets");
+            if (object instanceof Map) {
+                map = valueMapper.getMap(settings.getAsSettings("facets").getAsMap(), "facets");
+            } else {
+                map = valueMapper.getMap(settings.get("facets", "org/xbib/catalog/entities/marc/facets.json"), "facets");
+            }
+        } else {
+            map = valueMapper.getMap(settings.get("facets", "org/xbib/catalog/entities/marc/facets.json"), "facets");
         }
         return map;
     }

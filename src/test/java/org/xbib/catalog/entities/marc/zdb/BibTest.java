@@ -30,6 +30,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -93,9 +94,16 @@ public class BibTest {
 
     @Test
     public void testBibRecords() throws IOException {
+        Map<String, String> facets = new HashMap<>();
+        facets.put("facets.dc.type", "type");
+        facets.put("facets.dc.date", "GeneralInformation.date1");
+        facets.put("facets.dc.format", "GeneralInformation.formOfItem");
+        facets.put("facets.dc.language", "GeneralInformation.language");
+        facets.put("facets.dc.coverage", "GeneralInformation.place");
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.marc.bib")
                 .put("elements", "org/xbib/catalog/entities/marc/bib.json")
+                .put(facets)
                 .build();
         try (MyRouteBuilder myBuilder = new MyRouteBuilder(settings)) {
             Marc.builder()
@@ -116,7 +124,8 @@ public class BibTest {
                 .build();
         try (MySimpleBuilder myBuilder = new MySimpleBuilder(settings)) {
             Marc.builder()
-                    .setInputStream(new GZIPInputStream(Files.newInputStream(Paths.get("/data/zdb/1609zdbtitgesamtutf8.mrc.gz"))))
+                    .setInputStream(new GZIPInputStream(
+                            Files.newInputStream(Paths.get("/data/zdb/1609zdbtitgesamtutf8.mrc.gz"))))
                     .setMarcRecordListener(myBuilder)
                     .build()
                     .writeRecords();

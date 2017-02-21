@@ -43,7 +43,7 @@ public class Identifier extends CatalogEntity {
                 // extract prefix
                 int begin = value.indexOf('(');
                 int end = value.lastIndexOf(')');
-                if (end > begin && begin >=0) {
+                if (end > begin && begin >= 0) {
                     String prefix = value.substring(begin + 1, end - 1);
                     if (!unrecognized.contains(prefix)) {
                         unrecognized.add(prefix);

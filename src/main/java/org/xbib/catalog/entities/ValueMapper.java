@@ -30,6 +30,14 @@ public class ValueMapper {
     }
 
     @SuppressWarnings("unchecked")
+    public Map<String, Object> getMap(Map<String, String> map, String key) {
+        if (!maps.containsKey(key)) {
+            maps.put(key, map);
+        }
+        return (Map<String, Object>) maps.get(key);
+    }
+
+    @SuppressWarnings("unchecked")
     public Map<String, Object> getMap(String path, String key) throws IOException {
         if (!maps.containsKey(key)) {
             URL url = classLoader.getResource(path);

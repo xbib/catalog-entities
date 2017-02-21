@@ -77,7 +77,8 @@ public class HolTest {
                 .build();
         try (MySimpleBuilder myBuilder = new MySimpleBuilder(settings)) {
             Marc.builder()
-                    .setInputStream(new GZIPInputStream(Files.newInputStream(Paths.get("/data/zdb/1609zdbgesamtlokutf8.mrc.gz"))))
+                    .setInputStream(new GZIPInputStream(
+                            Files.newInputStream(Paths.get("/data/zdb/1609zdbgesamtlokutf8.mrc.gz"))))
                     .setMarcRecordListener(myBuilder)
                     .build()
                     .writeRecords();
