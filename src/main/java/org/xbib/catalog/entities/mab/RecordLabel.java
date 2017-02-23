@@ -25,11 +25,7 @@ public class RecordLabel extends CatalogEntity {
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
         worker.getWorkerState().setRecordLabel(value.trim());
-        if (value.length() == 24) {
-            char satztyp = value.charAt(23);
-            worker.getWorkerState().getResource().add("type", String.valueOf(satztyp));
-            worker.getWorkerState().getResource().add("boost", satztyp == 'u' ? "0.1" : "1.0");
-        } else {
+        if (value.length() != 24) {
             logger.log(Level.WARNING,
                     () -> MessageFormat.format("the length of this record label is {0} characters and was skipped: {1}",
                             value.length(), value));

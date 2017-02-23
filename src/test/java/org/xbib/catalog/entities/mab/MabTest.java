@@ -15,12 +15,12 @@ import org.xbib.content.rdf.RdfXContentParams;
 import org.xbib.content.settings.Settings;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcRecord;
+import org.xbib.marc.json.MarcXchangeJSONLinesReader;
 
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -59,7 +59,7 @@ public class MabTest {
                 .put("elements", "org/xbib/catalog/entities/mab/titel.json")
                 .put("facets", "org/xbib/catalog/entities/mab/facets.json")
                 .build();
-        try (MyBuilder builder = new MyBuilder(settings)) {
+        try (MyHbzBuilder builder = new MyHbzBuilder(settings)) {
             // update these values if you extend MAB specification
             assertEquals(752, builder.getEntitySpecification().getMap().size());
             assertEquals(99, builder.getEntitySpecification().getEntities().size());
@@ -67,15 +67,16 @@ public class MabTest {
     }
 
     @Test
+    @org.junit.Ignore
     public void testZDBMAB() throws IOException {
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.mab")
                 .put("elements", "org/xbib/catalog/entities/mab/titel.json")
                 .put("facets", "org/xbib/catalog/entities/mab/facets.json")
                 .build();
-        try (MyBuilder myBuilder = new MyBuilder(settings)) {
+        try (MyZdbBuilder myBuilder = new MyZdbBuilder(settings)) {
             Marc.builder()
-                    .setInputStream(getClass().getResource("1217zdbtit.dat").openStream())
+                    .setInputStream(getClass().getResource("zdb/1217zdbtit.dat").openStream())
                     .setCharset(Charset.forName("x-MAB"))
                     .setRecordLabelFixer(recordLabel ->
                             org.xbib.marc.label.RecordLabel.builder().from(recordLabel).setSubfieldIdentifierLength(0).build())
@@ -95,9 +96,33 @@ public class MabTest {
         }
     }
 
-    private static class MyBuilder extends CatalogEntityBuilder {
+    @Test
+    public void testHbzMAB() throws IOException {
+        Settings settings = Settings.settingsBuilder()
+                .put("package", "org.xbib.catalog.entities.mab")
+                .put("elements", "org/xbib/catalog/entities/mab/titel.json")
+                .put("facets", "org/xbib/catalog/entities/mab/facets.json")
+                .build();
+        try (MyHbzBuilder myBuilder = new MyHbzBuilder(settings);
+             InputStream inputStream = getClass().getResource( "hbz/DE-605-aleph-baseline.jsonl").openStream();
+             MarcXchangeJSONLinesReader reader = new MarcXchangeJSONLinesReader(inputStream, myBuilder)) {
+            reader.parse();
+            logger.log(Level.INFO, MessageFormat.format("count fields = {0}",
+                    myBuilder.getCounter()));
+            logger.log(Level.INFO, MessageFormat.format("checksum fields = {0}",
+                    myBuilder.getChecksum()));
+            logger.log(Level.INFO, MessageFormat.format("mapped fields = {0}",
+                    myBuilder.getMapped()));
+            logger.log(Level.INFO, MessageFormat.format("unmapped fields = {0}",
+                    myBuilder.getUnmapped()));
+            logger.log(Level.INFO, MessageFormat.format("invalid fields = {0}",
+                    myBuilder.getInvalid()));
+        }
+    }
 
-        MyBuilder(Settings settings) throws IOException {
+    private static class MyHbzBuilder extends CatalogEntityBuilder {
+
+        MyHbzBuilder(Settings settings) throws IOException {
             super(settings, listener);
         }
 
@@ -111,10 +136,33 @@ public class MabTest {
                 try (BufferedWriter writer = Files.newBufferedWriter(path)) {
                     writer.write(content);
                 }*/
-            /*InputStream inputStream =
-                    getClass().getResource("" + state.getRecordIdentifier() + ".json").openStream();
+            InputStream inputStream =
+                    getClass().getResource("hbz/" + state.getRecordIdentifier() + ".json").openStream();
             assertStream(state.getRecordIdentifier(), inputStream,
-                    new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));*/
+                    new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
+        }
+    }
+
+    private static class MyZdbBuilder extends CatalogEntityBuilder {
+
+        MyZdbBuilder(Settings settings) throws IOException {
+            super(settings, listener);
+        }
+
+        @Override
+        protected void afterFinishState(CatalogEntityWorkerState state) throws IOException {
+            RdfXContentParams params = new RdfXContentParams();
+            RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
+            builder.receive(state.getResource());
+            String content = params.getGenerator().get();
+            /*Path path = Paths.get(state.getRecordIdentifier() + ".json");
+                try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+                    writer.write(content);
+                }*/
+            InputStream inputStream =
+                    getClass().getResource( "zdb/" + state.getRecordIdentifier() + ".json").openStream();
+            assertStream(state.getRecordIdentifier(), inputStream,
+                    new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
         }
     }
 }

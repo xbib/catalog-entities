@@ -51,7 +51,6 @@ public class CorporateBody extends CatalogEntity {
     public List<String> transform(CatalogEntityWorker worker,
                                   String predicate, Resource resource, String property, String value) {
         if ("identifier".equals(property)) {
-            resource.add("identifier", value);
             if (value.startsWith("(DE-588)")) {
                 // GND-ID: upper case, with hyphen
                 resource.add("identifierGND", value.substring(8));
@@ -62,6 +61,8 @@ public class CorporateBody extends CatalogEntity {
                 // ZDB-ID does not matter at all, we use lower case without hyphen
                 resource.add("identifierZDB", value.substring(8).replaceAll("\\-", "").toLowerCase());
                 return Collections.singletonList(value.replaceAll("\\-", "").toLowerCase());
+            } else {
+                resource.add("identifier", value);
             }
             return null;
         }

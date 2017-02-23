@@ -22,9 +22,7 @@ public class Person extends CatalogEntity {
     @Override
     public List<String> transform(CatalogEntityWorker worker,
                                   String predicate, Resource resource, String property, String value) {
-        if ("personIdentifier".equals(property)) {
-            // add at first the unchanged identifier
-            resource.add("personIdentifier", value);
+        if ("identifier".equals(property)) {
             if (value.startsWith("(DE-588)")) {
                 // GND-ID: upper case, with hyphen
                 resource.add("identifierGND", value.substring(8));
@@ -35,6 +33,9 @@ public class Person extends CatalogEntity {
                 // ZDB-ID does not matter at all
                 resource.add("identifierZDB", value.substring(8).replaceAll("\\-", "").toLowerCase());
                 return Collections.singletonList(value.replaceAll("\\-", "").toLowerCase());
+            } else {
+                // add at first the unchanged identifier
+                resource.add("personIdentifier", value);
             }
             // returning null is very important for GND referencing
             return null;

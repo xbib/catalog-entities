@@ -31,7 +31,7 @@ public class RecordIdentifierSuper extends CatalogEntity {
                                   String predicate, Resource resource, String property, String value) {
         if ("RecordIdentifierSuper".equals(predicate)) {
             // trim important for MAB 010 having an indicator which is not possible in ISO 2709
-            resource.add("recordIdentifierSuper", prefix + value.trim());
+            resource.add("identifier", prefix + value.trim());
             return null;
         }
         return Collections.singletonList(value);

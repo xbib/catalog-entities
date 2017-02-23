@@ -34,7 +34,7 @@ public class RecordIdentifierLocal extends CatalogEntity {
         }
         if ("RecordIdentifierLocal".equals(predicate)) {
             // trim important for MAB 010 having an indicator which is not possible in ISO 2709
-            resource.add("recordIdentifierLocal", prefix + value.trim());
+            resource.add("identifier", prefix + value.trim());
             return null;
         }
         return Collections.singletonList(value);

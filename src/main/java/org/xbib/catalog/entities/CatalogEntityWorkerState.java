@@ -220,6 +220,7 @@ public class CatalogEntityWorkerState {
         }
 
         // create sequences
+
         for (Sequence<Resource> sequence : sequences.values()) {
             String sequenceName = sequence.getName();
             if (sequenceName == null) {

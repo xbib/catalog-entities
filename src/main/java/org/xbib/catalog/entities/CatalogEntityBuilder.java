@@ -56,7 +56,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
 
     private static final Logger logger = Logger.getLogger(CatalogEntityBuilder.class.getName());
 
-    private static final MarcRecord poison = MarcRecord.EMPTY;
+    private static final MarcRecord poison = MarcRecord.emptyRecord();
 
     protected final Settings settings;
 

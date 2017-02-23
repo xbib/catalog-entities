@@ -25,8 +25,7 @@ public class RSWK extends CatalogEntity {
     @Override
     public List<String> transform(CatalogEntityWorker worker,
                                   String predicate, Resource resource, String property, String value) {
-        if ("subjectIdentifier".equals(property)) {
-            resource.add("subjectIdentifier", value);
+        if ("identifier".equals(property)) {
             if (value.startsWith("(DE-588)")) {
                 // GND-ID: upper case, with hyphen
                 resource.add("identifierGND", value.substring(8));
@@ -36,7 +35,8 @@ public class RSWK extends CatalogEntity {
             } else if (value.startsWith("(DE-600)")) {
                 // ZDB-ID does not matter at all
                 resource.add("identifierZDB", value.substring(8).replaceAll("\\-", "").toLowerCase());
-                return Collections.singletonList(value.replaceAll("\\-", "").toLowerCase());
+            } else {
+                resource.add("identifier", value);
             }
             return null;
         }

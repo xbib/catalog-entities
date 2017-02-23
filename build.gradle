@@ -19,10 +19,10 @@ printf "Host: %s\nOS: %s %s %s\nJVM: %s %s %s %s\nGroovy: %s\nGradle: %s\n" +
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
-apply plugin: 'findbugs'
-apply plugin: 'pmd'
-apply plugin: 'checkstyle'
-apply plugin: "jacoco"
+//apply plugin: 'findbugs'
+//apply plugin: 'pmd'
+//apply plugin: 'checkstyle'
+//apply plugin: "jacoco"
 apply plugin: 'org.xbib.gradle.plugin.asciidoctor'
 
 configurations {
@@ -59,12 +59,10 @@ test {
         exceptionFormat = 'full'
     }
     systemProperty 'java.util.logging.manager', 'org.apache.logging.log4j.jul.LogManager'
-    reports.html.destination = file("${projectDir}/docs/test")
 }
 
 asciidoctor {
     backends 'html5'
-    outputDir = file("${projectDir}/docs")
     separateOutputDirs = false
     attributes 'source-highlighter': 'coderay',
             toc                 : '',
@@ -80,7 +78,6 @@ javadoc {
     options.addStringOption "-base-dir", "${projectDir}"
     options.addStringOption "-attribute",
             "name=${project.name},version=${project.version},title-link=https://github.com/xbib/${project.name}"
-    options.destinationDirectory(file("${projectDir}/docs/javadoc"))
     configure(options) {
         noTimestamp = true
     }
@@ -104,4 +101,4 @@ if (project.hasProperty('signing.keyId')) {
 
 apply from: 'gradle/ext.gradle'
 apply from: 'gradle/publish.gradle'
-apply from: 'gradle/sonarqube.gradle'
+//apply from: 'gradle/sonarqube.gradle'
