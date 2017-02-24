@@ -3069,22 +3069,6 @@
       "439"
     ]
   },
-  "PrecedingEntry": {
-    "subfields": {
-      "6": "linkage",
-      "a": "author",
-      "d": "publisherStatement",
-      "h": "physicalDescription",
-      "i": "relation",
-      "n": "number",
-      "t": "title",
-      "w": "id",
-      "x": "issn"
-    },
-    "tags": [
-      "780"
-    ]
-  },
   "PublicationStatement": {
     "PrinterName": {
       "2": null,
@@ -4054,21 +4038,36 @@
       "947": "SubjectRSWK"
     }
   },
-  "SucceedingEntry": {
+  "LinkingEntry": {
     "subfields": {
-      "6": "linkage",
+      "6": null,
       "a": "author",
       "d": "publisherStatement",
       "h": "physicalDescription",
       "i": "relation",
-      "n": "number",
+      "n": "note",
+      "q": "sort",
       "t": "title",
-      "w": "id",
+      "w": "identifier",
       "x": "issn"
     },
-    "tags": [
-      "785"
-    ]
+    "tags": {
+      "760": "MainSeriesEntry",
+      "762": "SubSeriesEntry",
+      "765": "OriginalLanguageEntry",
+      "767": "TranslationEntry",
+      "770": "SupplementSpecialIssueEntry",
+      "772": "SupplementParentEntry",
+      "773": "HostItemEntry",
+      "774": "ConstituentUnitEntry",
+      "775": "OtherEditionEntry",
+      "776": "AdditionalPhysicalFormEntry",
+      "777": "IssuedWithEntry",
+      "780": "PrecedingEntry",
+      "785": "SucceedingEntry",
+      "786": "DataSourceEntry",
+      "787": "NonspecificRelationshipEntry"
+    }
   },
   "Time": {
     "subfields": {
@@ -4098,18 +4097,18 @@
       "z": "creatorStatement"
     },
     "EmbodiedTitle": {
-      " ": "titleMain",
+      " ": "title",
       "6": "script",
       "Z": null,
-      "a": "titleMain",
+      "a": "title",
       "v": "titleAddendum"
     },
     "TitleStatement": {
-      " ": "titleMain",
+      " ": "title",
       "0": null,
       "1": null,
       "6": "script",
-      "a": "titleMain",
+      "a": "title",
       "b": null,
       "q": null,
       "s": null

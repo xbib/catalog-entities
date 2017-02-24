@@ -4595,13 +4595,18 @@
     },
     "tags": {
       "760": "MainSeriesEntry",
+      "762": "SubSeriesEntry",
+      "765": "OriginalLanguageEntry",
+      "767": "TranslationEntry",
       "770": "SupplementSpecialIssueEntry",
       "772": "SupplementParentEntry",
       "773": "HostItemEntry",
+      "774": "ConstituentUnitEntry",
       "775": "OtherEditionEntry",
       "776": "AdditionalPhysicalFormEntry",
       "777": "IssuedWithEntry",
-      "787": "OtherRelationshipEntry"
+      "786": "DataSourceEntry",
+      "787": "NonspecificRelationshipEntry"
     }
   },
   "MediaType": {
@@ -5401,7 +5406,7 @@
       "d": "publisherStatement",
       "h": "physicalDescription",
       "i": "relation",
-      "n": "number",
+      "n": "note",
       "t": "title",
       "w": "identifier",
       "x": "issn"
@@ -5835,7 +5840,7 @@
       "d": "publisherStatement",
       "h": "physicalDescription",
       "i": "relation",
-      "n": "number",
+      "n": "note",
       "t": "title",
       "w": "identifier",
       "x": "issn"

@@ -61,13 +61,12 @@ public class MabTest {
                 .build();
         try (MyHbzBuilder builder = new MyHbzBuilder(settings)) {
             // update these values if you extend MAB specification
-            assertEquals(752, builder.getEntitySpecification().getMap().size());
-            assertEquals(99, builder.getEntitySpecification().getEntities().size());
+            assertEquals(765, builder.getEntitySpecification().getMap().size());
+            assertEquals(98, builder.getEntitySpecification().getEntities().size());
         }
     }
 
     @Test
-    @org.junit.Ignore
     public void testZDBMAB() throws IOException {
         Settings settings = Settings.settingsBuilder()
                 .put("package", "org.xbib.catalog.entities.mab")

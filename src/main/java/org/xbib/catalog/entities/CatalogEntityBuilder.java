@@ -137,7 +137,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
                         valueMapper.getMap("status").size()));
             }
             this.facetElements = setupFacets(params);
-            if (!getFacetElements().isEmpty()) {
+            if (facetElements != null && !facetElements.isEmpty()) {
                 logger.log(Level.INFO, () -> MessageFormat.format("facets: {0}",
                         getFacetElements()));
             }
