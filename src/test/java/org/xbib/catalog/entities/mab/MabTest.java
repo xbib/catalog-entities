@@ -104,7 +104,7 @@ public class MabTest {
                 .put("facets", "org/xbib/catalog/entities/mab/facets.json")
                 .build();
         try (MyHbzBuilder myBuilder = new MyHbzBuilder(settings);
-             InputStream inputStream = getClass().getResource( "hbz/DE-605-aleph-baseline.jsonl").openStream();
+             InputStream inputStream = getClass().getResource( "hbz/DE-605-aleph.jsonl").openStream();
              MarcXchangeJSONLinesReader reader = new MarcXchangeJSONLinesReader(inputStream, myBuilder)) {
             reader.parse();
             logger.log(Level.INFO, MessageFormat.format("count fields = {0}",
