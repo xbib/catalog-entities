@@ -61,7 +61,7 @@ public class MabTest {
                 .build();
         try (MyHbzBuilder builder = new MyHbzBuilder(settings)) {
             // update these values if you extend MAB specification
-            assertEquals(765, builder.getEntitySpecification().getMap().size());
+            assertEquals(771, builder.getEntitySpecification().getMap().size());
             assertEquals(98, builder.getEntitySpecification().getEntities().size());
         }
     }
