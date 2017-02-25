@@ -35,7 +35,7 @@ public class Person extends CatalogEntity {
                 return Collections.singletonList(value.replaceAll("\\-", "").toLowerCase());
             } else {
                 // add at first the unchanged identifier
-                resource.add("personIdentifier", value);
+                resource.add("identifier", value);
             }
             // returning null is very important for GND referencing
             return null;
