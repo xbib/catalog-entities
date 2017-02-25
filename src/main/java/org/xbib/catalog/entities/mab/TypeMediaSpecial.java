@@ -50,7 +50,11 @@ public class TypeMediaSpecial extends CatalogEntity {
 
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
-        String value = field.getSubfields().getFirst().getValue();
+        LinkedList<MarcField.Subfield> subfields = field.getSubfields();
+        if (subfields == null || subfields.isEmpty()) {
+            return null;
+        }
+        String value = subfields.getFirst().getValue();
         if (!value.isEmpty()) {
             List<String> list = findCodes(value);
             if (list.isEmpty()) {
