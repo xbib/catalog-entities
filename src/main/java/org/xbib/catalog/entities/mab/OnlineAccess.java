@@ -55,8 +55,8 @@ public class OnlineAccess extends CatalogEntity {
                 IRI uid = state.getUID();
                 if (uid != null) {
                     // update UID to correct value
-                    state.setUID(IRI.builder().curie("uid:" + state.getRecordIdentifier() +
-                            "/" + state.getISIL() + "/" + uid.getSchemeSpecificPart()).build());
+                    state.setUID(IRI.builder().curie("uid:" + state.getISIL() + "/" +
+                            uid.getSchemeSpecificPart()).build());
                 }
             }
             resource.add("identifier", isil);
@@ -75,6 +75,8 @@ public class OnlineAccess extends CatalogEntity {
                     }
                 }
             }
+        } else if ("publicnote".equals(property) && "Frei zugänglich".equals(value)) {
+            state.setUID(IRI.builder().curie("green").build());
         }
         return Collections.singletonList(isil);
     }

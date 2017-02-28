@@ -2,6 +2,7 @@ package org.xbib.catalog.entities.mab;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
+import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
@@ -24,8 +25,6 @@ public class TypeMediaSpecial extends CatalogEntity {
 
     private String facet = "dc.format";
 
-    private String predicate;
-
     private Map<Pattern, String> patterns;
 
     @SuppressWarnings("unchecked")
@@ -33,10 +32,6 @@ public class TypeMediaSpecial extends CatalogEntity {
         super(params);
         if (params.containsKey("_facet")) {
             this.facet = params.get("_facet").toString();
-        }
-        this.predicate = this.getClass().getSimpleName();
-        if (params.containsKey("_predicate")) {
-            this.predicate = params.get("_predicate").toString();
         }
         Map<String, Object> regexes = (Map<String, Object>) getParams().get("regexes");
         if (regexes != null) {
@@ -61,11 +56,13 @@ public class TypeMediaSpecial extends CatalogEntity {
                 logger.log(Level.WARNING,
                         () -> MessageFormat.format("no media type detected from value: \"{0}\" in field {1}",
                         value, field));
-            }
-            for (String code : list) {
-                worker.getWorkerState().getResource().add(predicate, code);
-                // facetize here, so we have to find codes only once
-                facetize(worker, code);
+            } else {
+                Resource resource = worker.getWorkerState().getResource().newResource("TypeMediaSpecial");
+                for (String code : list) {
+                    resource.add("value", code);
+                    // facetize here, so we have to find codes only once
+                    facetize(worker, code);
+                }
             }
         }
         return null; // done!

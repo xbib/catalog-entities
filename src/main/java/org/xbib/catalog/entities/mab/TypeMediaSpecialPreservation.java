@@ -2,6 +2,7 @@ package org.xbib.catalog.entities.mab;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
+import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
@@ -17,16 +18,10 @@ import java.util.regex.Pattern;
  */
 public class TypeMediaSpecialPreservation extends CatalogEntity {
 
-    private String predicate;
-
     private Map<Pattern, String> patterns;
 
     public TypeMediaSpecialPreservation(Map<String, Object> params) {
         super(params);
-        this.predicate = this.getClass().getSimpleName();
-        if (params.containsKey("_predicate")) {
-            this.predicate = params.get("_predicate").toString();
-        }
         Map<String, Object> regexes = getRegexes();
         if (regexes != null) {
             patterns = new HashMap<>();
@@ -40,8 +35,9 @@ public class TypeMediaSpecialPreservation extends CatalogEntity {
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
+        Resource resource = worker.getWorkerState().getResource().newResource("TypeMediaSpecialPreservation");
         for (String code : findCodes(value)) {
-            worker.getWorkerState().getResource().add(predicate, code);
+            resource.add("value", code);
         }
         return null; // done!
     }

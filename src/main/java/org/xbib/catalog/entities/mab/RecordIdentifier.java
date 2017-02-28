@@ -11,11 +11,15 @@ import org.xbib.marc.MarcField;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  */
 public class RecordIdentifier extends CatalogEntity {
+
+    private static final Logger logger = Logger.getLogger(RecordIdentifier.class.getName());
 
     private static final String taxonomyFacet = "xbib.taxonomy";
 
@@ -39,9 +43,13 @@ public class RecordIdentifier extends CatalogEntity {
         String value = getValue(field);
         CatalogEntityWorkerState state = worker.getWorkerState();
         String v = prefix + value.trim();
-        state.setIdentifier(v);
-        state.setRecordIdentifier(v);
-        state.getResource().newResource("xbib").add("uid", v);
+        if (state.getRecordIdentifier() == null) {
+            state.setIdentifier(v);
+            state.setRecordIdentifier(v);
+            state.getResource().newResource("xbib").add("uid", v);
+        } else {
+            logger.log(Level.WARNING, "record identifier already set, skipping " + value);
+        }
         // check for classifier
         Classifier classifier = worker.getClassifier();
         if (classifier != null) {

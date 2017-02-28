@@ -7,6 +7,7 @@ import java.util.Map;
 /**
  */
 public class UpdateAndAccess extends CatalogEntity {
+
     public UpdateAndAccess(Map<String, Object> params) {
         super(params);
     }

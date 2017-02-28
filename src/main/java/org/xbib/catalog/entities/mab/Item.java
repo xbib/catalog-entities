@@ -28,6 +28,7 @@ public class Item extends CatalogEntity {
     private static final Logger logger = Logger.getLogger(Item.class.getName());
 
     private static final String taxonomyFacet = "xbib.taxonomy";
+
     private static final String identifierFacet = "xbib.identifier";
 
     public Item(Map<String, Object> params) {
@@ -114,6 +115,8 @@ public class Item extends CatalogEntity {
                     }
                 }
             }
+        } else if ("publicnote".equals(property) && "Frei zugänglich".equals(value)) {
+            state.setUID(IRI.builder().curie("green").build());
         }
         return Collections.singletonList(value);
     }

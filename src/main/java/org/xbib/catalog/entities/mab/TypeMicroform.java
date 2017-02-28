@@ -2,6 +2,7 @@ package org.xbib.catalog.entities.mab;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
+import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
@@ -32,10 +33,7 @@ public class TypeMicroform extends CatalogEntity {
         if (codes == null) {
             throw new IllegalStateException("no codes section for " + field);
         }
-        String predicate = (String) codes.get("_predicate");
-        if (predicate == null) {
-            predicate = this.getClass().getSimpleName();
-        }
+        Resource resource = worker.getWorkerState().getResource().newResource("TypeMicroform");
         for (int i = 0; i < value.length(); i++) {
             Map<String, Object> q = (Map<String, Object>) codes.get(Integer.toString(i));
             if (q != null) {
@@ -44,7 +42,7 @@ public class TypeMicroform extends CatalogEntity {
                     // two letters?
                     code = (String) q.get(value.substring(i, i + 2));
                 }
-                worker.getWorkerState().getResource().add(predicate, code);
+                resource.add("value", code);
             }
         }
         if (facetcodes != null) {

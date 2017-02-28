@@ -399,16 +399,244 @@
     }
   },
   "Country": {
-    "codes": {
-      "_predicate" : "Country",
-      " ": "isoCountryCodes",
-      "a": "isoCountryCodes",
-      "b": "isoCountryCodes",
-      "g": "country",
-      "s": "country",
-      "z": "country"
-    },
-    "isoCountryCodes": {
+    "_default": "keine Angabe",
+    "countryCode": {
+      "AD": "Andorra",
+      "AE": "Vereinigte Emirate",
+      "AF": "Afganistan",
+      "AG": "Antigua und Barbuda",
+      "AI": "Anquilla",
+      "AL": "Albanien",
+      "AM": "Armenien",
+      "AN": "Niederländische Antillen",
+      "AO": "Angola",
+      "AQ": "Polargebiete",
+      "AR": "Argentinien",
+      "AS": "Amerikanisch Ozeanien (Samoa)",
+      "AT": "Österreich",
+      "AU": "Australien",
+      "AW": "Aruba",
+      "AZ": "Aserbeidschan",
+      "BA": "Bosnien und Herzegowina",
+      "BB": "Barbados",
+      "BD": "Bangladesch",
+      "BE": "Belgien",
+      "BF": "Burkina Faso",
+      "BG": "Bulgarien",
+      "BH": "Bahrain",
+      "BI": "Burundi",
+      "BJ": "Benin",
+      "BM": "Bermuda",
+      "BN": "Brunei",
+      "BO": "Bolivien",
+      "BR": "Brasilien",
+      "BS": "Bahamas",
+      "BT": "Bhutan",
+      "BV": "Polargebiete (Bouvet)",
+      "BW": "Botswana",
+      "BY": "Weissrussland",
+      "BZ": "Belize",
+      "CA": "Kanada",
+      "CC": "Australisch-Ozeanien (Keeling)",
+      "CD": "Kongo, demokratische Republik",
+      "CF": "Zentralafrikanische Republik",
+      "CG": "Kongo",
+      "CH": "Schweiz",
+      "CI": "Elfenbeinküste",
+      "CK": "Neuseeländisch-Ozeanien (Cook-Inseln)",
+      "CL": "Chile",
+      "CM": "Kamerun",
+      "CN": "China",
+      "CO": "Kolumbien",
+      "CR": "Costa Rica",
+      "CU": "Kuba",
+      "CV": "Kapverdische Inseln",
+      "CX": "Australisch-Ozeanien (Christmas-Inseln)",
+      "CY": "Zypern",
+      "CZ": "Tschechische Republik",
+      "DE": "Deutschland",
+      "DJ": "Dschibuti",
+      "DK": "Dänemark",
+      "DM": "Dominica",
+      "DO": "Dominikanische Republik",
+      "DZ": "Algerien",
+      "EC": "Ecuador",
+      "EE": "Estland",
+      "EG": "Ägypten",
+      "EH": "West-Sahara",
+      "ER": "Eritrea",
+      "ES": "Spanien",
+      "ET": "Athiopien",
+      "EU": "Europäische Gemeinschaft",
+      "FI": "Finnland",
+      "FJ": "Fidschi",
+      "FK": "Falkland Inseln",
+      "FM": "Mikronesien",
+      "FO": "Färöer",
+      "FR": "Frankreich",
+      "GA": "Gabun",
+      "GB": "Grossbritannien",
+      "GD": "Grenada",
+      "GE": "Georgien",
+      "GF": "Französisch-Guayana",
+      "GH": "Ghana",
+      "GI": "Gibraltar",
+      "GM": "Gambia",
+      "GN": "Guinea",
+      "GP": "Guadeloupe",
+      "GQ": "Äquatorial-Guinea",
+      "GR": "Griechenland",
+      "GS": "Polargebiete (Georgien/Sandwich-Inseln)",
+      "GT": "Guatemala",
+      "GU": "Guam",
+      "GW": "Guinea-Bissau",
+      "GY": "Guyana",
+      "HK": "Hongkong",
+      "HM": "Australisch-Ozenaien (Heard- und McDonald-Inseln)",
+      "HN": "Honduras",
+      "HR": "Kroatien",
+      "HT": "Haiti",
+      "HU": "Ungarn",
+      "ID": "Indonesien",
+      "IE": "Irland",
+      "IL": "Israel",
+      "IN": "Indien",
+      "IO": "Britische Gebiete im indischen Ozean",
+      "IQ": "Irak",
+      "IR": "Iran",
+      "IS": "Island",
+      "IT": "Italien",
+      "JM": "Jamaika",
+      "JO": "Jordanien",
+      "JP": "Japan",
+      "KE": "Kenia",
+      "KG": "Kirgistan",
+      "KH": "Kambodscha",
+      "KI": "Kiribati",
+      "KM": "Komoren",
+      "KN": "St. Christoph",
+      "KP": "Nordkorea",
+      "KR": "Südkorea",
+      "KS": "Kosovo",
+      "KW": "Kuwait",
+      "KY": "Kaiman-Inseln",
+      "KZ": "Kasachstan",
+      "LA": "Laos",
+      "LB": "Libanon",
+      "LC": "St. Lucia",
+      "LI": "Liechtenstein",
+      "LK": "Sri Lanka",
+      "LR": "Liberia",
+      "LS": "Lesotho",
+      "LT": "Litauen",
+      "LU": "Luxemburg",
+      "LV": "Lettland",
+      "LY": "Libyen",
+      "MA": "Marokko",
+      "MC": "Monaco",
+      "MD": "Moldavien",
+      "ME": "Montenegro",
+      "MG": "Madagaskar",
+      "MH": "Marshall-Inseln",
+      "MK": "Mazedonien",
+      "ML": "Mali",
+      "MM": "Myanmar",
+      "MN": "Mongolei",
+      "MO": "Macau",
+      "MP": "Amerikanisch Ozeanien (nördliche Marianen-Inseln)",
+      "MQ": "Martinique",
+      "MR": "Mauretanien",
+      "MS": "Montserat",
+      "MT": "Malta",
+      "MU": "Mauritius",
+      "MV": "Malediven",
+      "MW": "Malawi",
+      "MX": "Mexiko",
+      "MY": "Malaysia",
+      "MZ": "Mosambik",
+      "NA": "Namibia",
+      "NC": "Neukaledonien und zugehörige Gebiete",
+      "NE": "Niger",
+      "NF": "Australisch-Ozeanien (Norfolk-Inseln)",
+      "NG": "Nigeria",
+      "NI": "Nicaragua",
+      "NL": "Niederlande",
+      "NO": "Norwegen",
+      "NP": "Nepal",
+      "NR": "Nauru",
+      "NU": "Njemen",
+      "NZ": "Neuseeland",
+      "OM": "Oman",
+      "PA": "Panama",
+      "PE": "Peru",
+      "PF": "Französisch-Polynesien",
+      "PG": "Papua-Neuguinea",
+      "PH": "Philippinen",
+      "PK": "Pakistan",
+      "PL": "Polen",
+      "PM": "St. Pierre und Miquelon",
+      "PN": "Pitcairn",
+      "PR": "Puerto Rico",
+      "PS": "Palästinensische Gegend, besetzt",
+      "PT": "Portugal",
+      "PW": "Palau",
+      "PY": "Paraguay",
+      "QA": "Katar",
+      "RE": "Reunion",
+      "RO": "Rumänien",
+      "RS": "Serbien",
+      "RU": "Russische Föderation",
+      "RW": "Ruanda",
+      "SA": "Saudi Arabien",
+      "SB": "Salomonen",
+      "SC": "Seychellen",
+      "SD": "Sudan",
+      "SE": "Schweden",
+      "SG": "Singapur",
+      "SH": "St. Helena",
+      "SI": "Slowenien",
+      "SJ": "Spitzbergen",
+      "SK": "Slowakei",
+      "SL": "Sierra Leone",
+      "SM": "San Marino",
+      "SN": "Senegal",
+      "SO": "Somalia",
+      "SR": "Surinam",
+      "ST": "Sao Tome und Principe",
+      "SV": "El Salvador",
+      "SY": "Syrien",
+      "SZ": "Swasiland",
+      "TC": "Turks- und Caicosinseln",
+      "TD": "Tschad",
+      "TF": "Französisch-Südterritorium",
+      "TG": "Togo",
+      "TH": "Thailand",
+      "TJ": "Tadschikistan",
+      "TK": "Neuseeländisch-Ozeanien (Tokelau-Inseln)",
+      "TM": "Turkmenistan",
+      "TN": "Tunesien",
+      "TO": "Tonga",
+      "TP": "Ost-Timor",
+      "TR": "Türkei",
+      "TT": "Trinidad und Tobago",
+      "TV": "Tuvalu",
+      "TW": "Taiwan",
+      "TZ": "Tansania",
+      "UA": "Ukraine",
+      "UG": "Uganda",
+      "UM": "Föderierte Staaten von Mikronesien",
+      "US": "USA",
+      "UY": "Uruguay",
+      "UZ": "Usbekistan",
+      "VA": "Vatikan",
+      "VC": "St. Vincent",
+      "VE": "Venezuela",
+      "VG": "Britische Jungferninseln",
+      "VI": "Jungferninseln (Amerika)",
+      "VN": "Vietnam",
+      "VU": "Vanuatu",
+      "WF": "Wallis und Futuna",
+      "WS": "Samoa",
       "XA": "Europa",
       "XA-AAAT": "Österreich <Monarchie>",
       "XA-AD": "Andorra",
@@ -746,19 +974,26 @@
       "XM-NU": "Niue",
       "XM-PN": "Pitcairn",
       "XM-UM": "Amerikanische Überseeinseln",
-      "XM-WKUM": "Wake Island"
+      "XM-WKUM": "Wake Island",
+      "YE": "Jemen",
+      "YT": "Mayotte",
+      "YU": "Jugoslawien",
+      "ZA": "Südafrika",
+      "ZM": "Sambia",
+      "ZR": "Zaire",
+      "ZW": "Simbabwe"
     },
     "subfields": {
-      " ": "isoCountryCodes",
+      " ": "countryCode",
       "D": null,
-      "a": "isoCountryCodes",
-      "b": "isoCountryCodes",
+      "a": "countryCode",
+      "b": "countryCode",
       "g": "country",
       "s": "country",
       "z": "country"
     },
     "tags": {
-      "036": "codes"
+      "036": "Country"
     }
   },
   "CustomCode": {
@@ -1145,15 +1380,6 @@
       "437"
     ]
   },
-  "FormOfWork": {
-    "subvalues": {
-      "9": "number",
-      "a": "formOfWork"
-    },
-    "tags": [
-      "380"
-    ]
-  },
   "FormatCarrier": {
     "_default": "keine Angabe",
     "codes": {
@@ -1177,7 +1403,7 @@
       "3": {
         "a": "Mikroform",
         "b": "Mikroform-Master",
-        "c": "Sekundärform"
+        "c": "Mikroform-Sekundärform"
       },
       "4": {
         "a": "Blindenschrifträger"
@@ -1235,6 +1461,35 @@
       },
       "9": {
         "a": "Spiele"
+      }
+    },
+    "rda": {
+      "Druckschrift": {
+        "CarrierType.typeCode": "nc",
+        "ContentType.typeCode": "txt",
+        "MediaType.typeCode": "n"
+      },
+      "Handschrift": {
+        "CarrierType.typeCode": "nc",
+        "ContentType.typeCode": "txt",
+        "MediaType.typeCode": "n"
+      },
+      "Landkarten": {
+        "CarrierType.typeCode": "nc",
+        "ContentType.typeCode": "cri",
+        "MediaType.typeCode": "n"
+      },
+      "Mikroform": {
+        "CarrierType.typeCode": "he"
+      },
+      "Mikroform-Master": {
+        "CarrierType.typeCode": "he"
+      },
+      "Mikroform-Sekundärform": {
+        "CarrierType.typeCode": "he"
+      },
+      "Blindenschrifträger": {
+        "ContentType.typeCode": "tct"
       }
     },
     "facetcodes": {
@@ -1372,6 +1627,15 @@
       "435"
     ]
   },
+  "FormOfWork": {
+    "subvalues": {
+      "9": "number",
+      "a": "formOfWork"
+    },
+    "tags": [
+      "380"
+    ]
+  },
   "Identifier": {
     "Identifier": {
       " ": "identifier",
@@ -1471,28 +1735,6 @@
       "070",
       "077"
     ]
-  },
-  "IdentifierISBN": {
-    "subfields": {
-      " ": "identifierISBN",
-      "a": "identifierISBN",
-      "b": "extra",
-      "c": "identifierISBN",
-      "d": "identifierISBN",
-      "e": "identifierISBN",
-      "h": "identifierISBN",
-      "n": "identifierISBN",
-      "p": "identifierISBN",
-      "q": "identifierISBN",
-      "s": "identifierISBN",
-      "u": null,
-      "z": "comment"
-    },
-    "tags": {
-      "086": "IdentifierISBNParallel",
-      "540": "IdentifierISBN",
-      "634": "IdentifierISBNSecondaryForm"
-    }
   },
   "IdentifierLocal": {
     "IdentifierNorm": {
@@ -2380,6 +2622,39 @@
       "037"
     ]
   },
+  "LinkingEntry": {
+    "subfields": {
+      "6": null,
+      "9": "identifier",
+      "A": null,
+      "a": "author",
+      "d": "publisherStatement",
+      "h": "physicalDescription",
+      "i": "relation",
+      "n": "note",
+      "q": "sort",
+      "t": "title",
+      "w": "identifier",
+      "x": "issn"
+    },
+    "tags": {
+      "760": "MainSeriesEntry",
+      "762": "SubSeriesEntry",
+      "765": "OriginalLanguageEntry",
+      "767": "TranslationEntry",
+      "770": "SupplementSpecialIssueEntry",
+      "772": "SupplementParentEntry",
+      "773": "HostItemEntry",
+      "774": "ConstituentUnitEntry",
+      "775": "OtherEditionEntry",
+      "776": "AdditionalPhysicalFormEntry",
+      "777": "IssuedWithEntry",
+      "780": "PrecedingEntry",
+      "785": "SucceedingEntry",
+      "786": "DataSourceEntry",
+      "787": "NonspecificRelationshipEntry"
+    }
+  },
   "MediumOfPerformance": {
     "subfields": {
       "2": "source",
@@ -2486,21 +2761,8 @@
       "y": "label",
       "z": "publicnote"
     },
-    "tags": [
-      "655"
-    ]
-  },
-  "OnlineAccessScopedLink": {
-    "OnlineAccessScope": {
-      "a": "scope"
-    },
-    "OnlineAccessScopedLink": {
-      "a": "url"
-    },
-    "subfields": {
-      "a": "url"
-    },
     "tags": {
+      "655": "OnlineAccess",
       "662": "OnlineAccessScopedLink",
       "663": "OnlineAccessScope"
     }
@@ -3496,8 +3758,8 @@
       "012"
     ]
   },
-  "RecordIdentifierSuper": {
-    "RecordIdentifierSuper": {
+  "RecordIdentifierParent": {
+    "RecordIdentifierParent": {
       " ": "identifier",
       "a": "identifier"
     },
@@ -3506,7 +3768,7 @@
       "a": "identifier"
     },
     "tags": {
-      "010": "RecordIdentifierSuper"
+      "010": "RecordIdentifierParent"
     }
   },
   "RecordLabel": {
@@ -3558,16 +3820,16 @@
       "618": "SecondaryFormSecondCreator",
       "619": "SecondaryFormPublicationDate",
       "620": "SecondaryFormComment",
-      "621": "SecondaryFormTitleSuper",
+      "621": "SecondaryFormTitleParent",
       "622": "SecondaryFormStandardNumber",
-      "623": "SecondaryFormIdentifierOfTitleSuper",
-      "624": "SecondaryFormTitleSuper",
+      "623": "SecondaryFormIdentifierOfTitleParent",
+      "624": "SecondaryFormTitleParent",
       "625": "SecondaryFormVolume",
       "626": "SecondaryFormSortableVolume",
-      "627": "SecondaryFormTitleSuper",
+      "627": "SecondaryFormTitleParent",
       "628": "SecondaryFormStandardNumber",
-      "629": "SecondaryFormIdentifierOfTitleSuper",
-      "630": "SecondaryFormTitleSuper",
+      "629": "SecondaryFormIdentifierOfTitleParent",
+      "630": "SecondaryFormTitleParent",
       "631": "SecondaryFormVolume",
       "632": "SecondaryFormSortableVolume",
       "633": "SecondaryFormTitleAlternative",
@@ -3676,6 +3938,22 @@
     ]
   },
   "StandardNumber": {
+    "IdentifierISBN": {
+      " ": "identifierISBN",
+      "a": "identifierISBN",
+      "b": "identifierISBNElectronicMedia",
+      "c": "identifierISBNOnline",
+      "d": "identifierISBNPrint",
+      "e": "identifierISBNOther"
+    },
+    "IdentifierISBNParallel": {
+      " ": "identifierISBN",
+      "a": "identifierISBN",
+      "b": "identifierISBNElectronicMedia",
+      "c": "identifierISBNOnline",
+      "d": "identifierISBNPrint",
+      "e": "identifierISBNOther"
+    },
     "IdentifierISMN": {
       " ": "identifierISMN",
       "a": "identifierISMN",
@@ -3726,9 +4004,12 @@
       " ": "standardNumber",
       "a": "standardNumber",
       "b": "standardNumber",
+      "d": "standardNumber",
       "p": "standardNumber"
     },
     "tags": {
+      "086": "IdentifierISBNParallel",
+      "540": "IdentifierISBN",
       "541": "IdentifierISMN",
       "542": "IdentifierISSN",
       "543": "IdentifierISRN",
@@ -3750,6 +4031,7 @@
       "576": "LegalDepositNumber",
       "578": "Fingerprint",
       "580": "IdentifierOther",
+      "634": "IdentifierISBNSecondaryForm",
       "635": "IdentifierISSNSecondaryForm"
     }
   },
@@ -4052,38 +4334,6 @@
       "947": "SubjectRSWK"
     }
   },
-  "LinkingEntry": {
-    "subfields": {
-      "6": null,
-      "A": null,
-      "a": "author",
-      "d": "publisherStatement",
-      "h": "physicalDescription",
-      "i": "relation",
-      "n": "note",
-      "q": "sort",
-      "t": "title",
-      "w": "identifier",
-      "x": "issn"
-    },
-    "tags": {
-      "760": "MainSeriesEntry",
-      "762": "SubSeriesEntry",
-      "765": "OriginalLanguageEntry",
-      "767": "TranslationEntry",
-      "770": "SupplementSpecialIssueEntry",
-      "772": "SupplementParentEntry",
-      "773": "HostItemEntry",
-      "774": "ConstituentUnitEntry",
-      "775": "OtherEditionEntry",
-      "776": "AdditionalPhysicalFormEntry",
-      "777": "IssuedWithEntry",
-      "780": "PrecedingEntry",
-      "785": "SucceedingEntry",
-      "786": "DataSourceEntry",
-      "787": "NonspecificRelationshipEntry"
-    }
-  },
   "Time": {
     "subfields": {
       " ": "time",
@@ -4229,8 +4479,8 @@
       "C51": "TitleParallelOther"
     }
   },
-  "TitleSuper": {
-    "TitleSuperIdentifier": {
+  "TitleParent": {
+    "TitleParentIdentifier": {
       " ": "identifier",
       "1": null,
       "3": null,
@@ -4238,7 +4488,7 @@
       "9": null,
       "a": "identifier"
     },
-    "TitleSuperSortableVolumeDesignation": {
+    "TitleParentSortableVolumeDesignation": {
       " ": "sortableVolumeDesignation",
       "1": null,
       "2": null,
@@ -4250,18 +4500,18 @@
       "q": null,
       "s": null
     },
-    "TitleSuperStandardNumber": {
+    "TitleParentStandardNumber": {
       " ": "standardNumber",
       "6": "script",
       "a": "standardNumber"
     },
-    "TitleSuperUniform": {
+    "TitleParentUniform": {
       " ": "uniformTitle",
       "6": "script",
       "a": "uniformTitle",
       "b": null
     },
-    "TitleSuperVolumeDesignation": {
+    "TitleParentVolumeDesignation": {
       " ": "volumeDesignation",
       "1": null,
       "6": "script",
@@ -4270,56 +4520,56 @@
       "s": null
     },
     "subfields": {
-      " ": "titleSuper",
+      " ": "title",
       "1": null,
       "3": null,
       "6": "script",
-      "A": "titleSuper",
-      "a": "titleSuper",
-      "b": "titleSuper",
-      "e": "titleSuper",
-      "g": "titleSuper",
-      "i": "titleSuper",
-      "p": "titleSuper",
-      "s": "titleSuper"
+      "A": "title",
+      "a": "title",
+      "b": "title",
+      "e": "title",
+      "g": "title",
+      "i": "title",
+      "p": "title",
+      "s": "title"
     },
     "tags": {
-      "451": "TitleSuper",
-      "452": "TitleSuperStandardNumber",
-      "453": "TitleSuperIdentifier",
-      "454": "TitleSuperUniform",
-      "455": "TitleSuperVolumeDesignation",
-      "456": "TitleSuperSortableVolumeDesignation",
-      "461": "TitleSuper",
-      "462": "TitleSuperStandardNumber",
-      "463": "TitleSuperIdentifier",
-      "464": "TitleSuperUniform",
-      "465": "TitleSuperVolumeDesignation",
-      "466": "TitleSuperSortableVolumeDesignation",
-      "471": "TitleSuper",
-      "472": "TitleSuperStandardNumber",
-      "473": "TitleSuperIdentifier",
-      "474": "TitleSuperUniform",
-      "475": "TitleSuperVolumeDesignation",
-      "476": "TitleSuperSortableVolumeDesignation",
-      "481": "TitleSuper",
-      "482": "TitleSuperStandardNumber",
-      "483": "TitleSuperIdentifier",
-      "484": "TitleSuperUniform",
-      "485": "TitleSuperVolumeDesignation",
-      "486": "TitleSuperSortableVolumeDesignation",
-      "491": "TitleSuper",
-      "492": "TitleSuperStandardNumber",
-      "493": "TitleSuperIdentifier",
-      "494": "TitleSuperUniform",
-      "495": "TitleSuperVolumeDesignation",
-      "496": "TitleSuperSortableVolumeDesignation",
-      "D51": "TitleSuper",
-      "D55": "TitleSuperVolumeDesignation",
-      "D61": "TitleSuper",
-      "D65": "TitleSuperVolumeDesignation",
-      "D71": "TitleSuper",
-      "D81": "TitleSuper"
+      "451": "TitleParent",
+      "452": "TitleParentStandardNumber",
+      "453": "TitleParentIdentifier",
+      "454": "TitleParentUniform",
+      "455": "TitleParentVolumeDesignation",
+      "456": "TitleParentSortableVolumeDesignation",
+      "461": "TitleParent",
+      "462": "TitleParentStandardNumber",
+      "463": "TitleParentIdentifier",
+      "464": "TitleParentUniform",
+      "465": "TitleParentVolumeDesignation",
+      "466": "TitleParentSortableVolumeDesignation",
+      "471": "TitleParent",
+      "472": "TitleParentStandardNumber",
+      "473": "TitleParentIdentifier",
+      "474": "TitleParentUniform",
+      "475": "TitleParentVolumeDesignation",
+      "476": "TitleParentSortableVolumeDesignation",
+      "481": "TitleParent",
+      "482": "TitleParentStandardNumber",
+      "483": "TitleParentIdentifier",
+      "484": "TitleParentUniform",
+      "485": "TitleParentVolumeDesignation",
+      "486": "TitleParentSortableVolumeDesignation",
+      "491": "TitleParent",
+      "492": "TitleParentStandardNumber",
+      "493": "TitleParentIdentifier",
+      "494": "TitleParentUniform",
+      "495": "TitleParentVolumeDesignation",
+      "496": "TitleParentSortableVolumeDesignation",
+      "D51": "TitleParent",
+      "D55": "TitleParentVolumeDesignation",
+      "D61": "TitleParent",
+      "D65": "TitleParentVolumeDesignation",
+      "D71": "TitleParent",
+      "D81": "TitleParent"
     }
   },
   "TitleUniform": {

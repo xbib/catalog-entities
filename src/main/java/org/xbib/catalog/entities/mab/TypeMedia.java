@@ -2,6 +2,7 @@ package org.xbib.catalog.entities.mab;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
+import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
@@ -23,16 +24,11 @@ public class TypeMedia extends CatalogEntity {
     private static final Logger logger = Logger.getLogger(TypeMedia.class.getName());
     private final Map<Pattern, String> patterns = new HashMap<>();
     private String facet = "dc.format";
-    private String predicate;
 
     public TypeMedia(Map<String, Object> params) {
         super(params);
         if (params.containsKey("_facet")) {
             this.facet = params.get("_facet").toString();
-        }
-        this.predicate = this.getClass().getSimpleName();
-        if (params.containsKey("_predicate")) {
-            this.predicate = params.get("_predicate").toString();
         }
         Map<String, Object> regexes = getRegexes();
         if (regexes != null) {
@@ -48,8 +44,9 @@ public class TypeMedia extends CatalogEntity {
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
+        Resource resource = worker.getWorkerState().getResource().newResource("TypeMedia");
         for (String code : findCodes(value)) {
-            worker.getWorkerState().getResource().add(predicate, code);
+            resource.add("value", code);
             // facetize here, so we have to find codes only once
             facetize(worker, code);
         }

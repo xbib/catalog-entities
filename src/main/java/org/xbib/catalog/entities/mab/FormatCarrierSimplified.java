@@ -2,9 +2,9 @@ package org.xbib.catalog.entities.mab;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.catalog.entities.TermFacet;
 import org.xbib.content.rdf.Literal;
+import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
@@ -17,14 +17,8 @@ public class FormatCarrierSimplified extends CatalogEntity {
 
     public static final String FACET = "dc.format";
 
-    private String predicate;
-
     public FormatCarrierSimplified(Map<String, Object> params) {
         super(params);
-        this.predicate = getClass().getSimpleName();
-        if (params.containsKey("_predicate")) {
-            this.predicate = params.get("_predicate").toString();
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -38,6 +32,7 @@ public class FormatCarrierSimplified extends CatalogEntity {
         if (facetcodes == null) {
             return super.transform(worker, field);
         }
+        Resource resource = worker.getWorkerState().getResource().newResource("FormatCarrierSimplified");
         for (MarcField.Subfield subfield : field.getSubfields()) {
             String value = subfield.getValue();
             for (int i = 0; i < value.length(); i++) {
@@ -47,22 +42,17 @@ public class FormatCarrierSimplified extends CatalogEntity {
                     // two letters?
                     code = (String) codes.get(value.substring(i, i + 2));
                 }
-                worker.getWorkerState().getResource().add(predicate, code);
+                resource.add("value", code);
                 // faceting
                 code = (String) facetcodes.get(value.substring(i, i + 1));
                 if (code == null && (i + 1 < value.length())) {
                     // two letters?
                     code = (String) facetcodes.get(value.substring(i, i + 2));
                 }
-                facetize(worker.getWorkerState(), code);
+                worker.getWorkerState().getFacets().putIfAbsent(FACET, new TermFacet().setName(FACET).setType(Literal.STRING));
+                worker.getWorkerState().getFacets().get(FACET).addValue(code);
             }
         }
         return super.transform(worker, field); // done!
     }
-
-    private void facetize(CatalogEntityWorkerState state, String value) {
-        state.getFacets().putIfAbsent(FACET, new TermFacet().setName(FACET).setType(Literal.STRING));
-        state.getFacets().get(FACET).addValue(value);
-    }
-
 }
