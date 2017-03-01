@@ -18,6 +18,7 @@ public class FieldMapper {
 
     private final Map<String, Object> target;
 
+    @SuppressWarnings("unchecked")
     public FieldMapper(Settings settings) throws IOException {
         String resource = settings.get("fieldMapperSource");
         this.source = resource.endsWith(".json") ?

@@ -92,8 +92,7 @@ public class ZdbMabTest {
             RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
             builder.receive(state.getResource());
             String content = params.getGenerator().get();
-            /*Path path = Paths.get(state.getRecordIdentifier() + ".json");
-            try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+            /*try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".json"))) {
                 writer.write(content);
             }*/
             InputStream inputStream =

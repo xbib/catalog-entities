@@ -74,7 +74,7 @@ public class HbzMabTest {
                 .build();
         try (MyHbzBuilder builder = new MyHbzBuilder(settings)) {
             // update these values if you extend MAB specification
-            assertEquals(771, builder.getEntitySpecification().getMap().size());
+            assertEquals(774, builder.getEntitySpecification().getMap().size());
             assertEquals(96, builder.getEntitySpecification().getEntities().size());
         }
     }
@@ -182,8 +182,8 @@ public class HbzMabTest {
             RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
             builder.receive(state.getResource());
             String string = params.getGenerator().get();
-            /*
-            try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".json"))) {
+
+            /*try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".json"))) {
                 writer.write(string);
             }*/
             InputStream inputStream =
