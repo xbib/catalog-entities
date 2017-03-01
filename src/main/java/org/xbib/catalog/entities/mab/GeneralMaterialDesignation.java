@@ -19,23 +19,18 @@ import java.util.regex.Pattern;
 /**
  *
  */
-public class TypeMediaSpecial extends CatalogEntity {
+public class GeneralMaterialDesignation extends CatalogEntity {
 
-    private static final Logger logger = Logger.getLogger(TypeMediaSpecial.class.getName());
+    private static final Logger logger = Logger.getLogger(GeneralMaterialDesignation.class.getName());
 
-    private String facet = "dc.format";
+    private static final String facet = "dc.format";
 
-    private Map<Pattern, String> patterns;
+    private final Map<Pattern, String> patterns = new HashMap<>();
 
-    @SuppressWarnings("unchecked")
-    public TypeMediaSpecial(Map<String, Object> params) {
+    public GeneralMaterialDesignation(Map<String, Object> params) {
         super(params);
-        if (params.containsKey("_facet")) {
-            this.facet = params.get("_facet").toString();
-        }
-        Map<String, Object> regexes = (Map<String, Object>) getParams().get("regexes");
+        Map<String, Object> regexes = getRegexes();
         if (regexes != null) {
-            patterns = new HashMap<>();
             for (Map.Entry<String, Object> entry : regexes.entrySet()) {
                 String key = entry.getKey();
                 patterns.put(Pattern.compile(Pattern.quote(key), Pattern.CASE_INSENSITIVE), (String) regexes.get(key));
@@ -45,37 +40,26 @@ public class TypeMediaSpecial extends CatalogEntity {
 
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
-        LinkedList<MarcField.Subfield> subfields = field.getSubfields();
-        if (subfields == null || subfields.isEmpty()) {
-            return null;
-        }
-        String value = subfields.getFirst().getValue();
-        if (!value.isEmpty()) {
-            List<String> list = findCodes(value);
-            if (list.isEmpty()) {
-                logger.log(Level.WARNING,
-                        () -> MessageFormat.format("no media type detected from value: \"{0}\" in field {1}",
-                        value, field));
-            } else {
-                Resource resource = worker.getWorkerState().getResource().newResource("TypeMediaSpecial");
-                for (String code : list) {
-                    resource.add("value", code);
-                    // facetize here, so we have to find codes only once
-                    facetize(worker, code);
-                }
-            }
+        String value = getValue(field);
+        Resource resource = worker.getWorkerState().getResource().newResource("MaterialDesignation");
+        for (String code : findCodes(value)) {
+            resource.add("value", code);
+            // facetize here, so we have to find codes only once
+            facetize(worker, code);
         }
         return null; // done!
     }
 
     @SuppressWarnings("unchecked")
     private List<String> findCodes(String value) {
+        boolean isRAK = false;
         List<String> list = new LinkedList<>();
         Map<String, Object> rak = (Map<String, Object>) getParams().get("rak");
         if (rak != null && rak.containsKey(value)) {
             list.add((String) rak.get(value));
+            isRAK = true;
         }
-        if (patterns != null) {
+        synchronized (patterns) {
             // pattern matching
             for (Map.Entry<Pattern, String> entry : patterns.entrySet()) {
                 Pattern p = entry.getKey();
@@ -87,6 +71,15 @@ public class TypeMediaSpecial extends CatalogEntity {
                     }
                 }
             }
+        }
+        if (!isRAK && !list.isEmpty()) {
+            logger.log(Level.WARNING,
+                    () -> MessageFormat.format("additional media types {0} detected from value: \"{1}\"",
+                    list, value));
+        }
+        if (list.isEmpty()) {
+            logger.log(Level.WARNING,
+                    () -> MessageFormat.format("no media type detected from value: \"{0}\"", value));
         }
         return list;
     }

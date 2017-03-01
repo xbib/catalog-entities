@@ -182,8 +182,8 @@ public class HbzMabTest {
             RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
             builder.receive(state.getResource());
             String string = params.getGenerator().get();
-            /*Path path = Paths.get(state.getRecordIdentifier() + ".json");
-            try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+            /*
+            try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".json"))) {
                 writer.write(string);
             }*/
             InputStream inputStream =
@@ -203,8 +203,8 @@ public class HbzMabTest {
                 builder.receive(resource);
                 string = params.getGenerator().get();
                 String name = URLEncoder.encode(state.getRecordIdentifier() + resource.id(), "UTF-8");
-                /*Path path = Paths.get(name + ".hol.json");
-                try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+                /*
+                try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(name + ".hol.json"))) {
                     writer.write(string);
                 }*/
                 InputStream holInputStream = getClass().getResource("hbz/" + name + ".hol.json").openStream();

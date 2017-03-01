@@ -1253,7 +1253,7 @@
       "E33": "DescriptionOfContinuingEditionsOrVolumes"
     }
   },
-  "DescriptionMediaTypeElectronic": {
+  "DescriptionElectronicCarrier": {
     "subfields": {
       " ": "description",
       "2": null,
@@ -1380,7 +1380,7 @@
       "437"
     ]
   },
-  "FormatCarrier": {
+  "Carrier": {
     "_default": "keine Angabe",
     "codes": {
       "0": {
@@ -1461,35 +1461,6 @@
       },
       "9": {
         "a": "Spiele"
-      }
-    },
-    "rda": {
-      "Druckschrift": {
-        "CarrierType.typeCode": "nc",
-        "ContentType.typeCode": "txt",
-        "MediaType.typeCode": "n"
-      },
-      "Handschrift": {
-        "CarrierType.typeCode": "nc",
-        "ContentType.typeCode": "txt",
-        "MediaType.typeCode": "n"
-      },
-      "Landkarten": {
-        "CarrierType.typeCode": "nc",
-        "ContentType.typeCode": "cri",
-        "MediaType.typeCode": "n"
-      },
-      "Mikroform": {
-        "CarrierType.typeCode": "he"
-      },
-      "Mikroform-Master": {
-        "CarrierType.typeCode": "he"
-      },
-      "Mikroform-Sekundärform": {
-        "CarrierType.typeCode": "he"
-      },
-      "Blindenschrifträger": {
-        "ContentType.typeCode": "tct"
       }
     },
     "facetcodes": {
@@ -1577,7 +1548,7 @@
       "050"
     ]
   },
-  "FormatCarrierSimplified": {
+  "SimpleCarrier": {
     "codes": {
       "g": "Computerdatei(en) im Fernzugriff"
     },
@@ -1585,10 +1556,10 @@
       "g": "Online-Ressource"
     },
     "tags": {
-      "807": "FormatCarrierSimplified"
+      "807": "SimpleCarrier"
     }
   },
-  "FormatComputer": {
+  "ComputerCarrier": {
     "subfields": {
       " ": "processor",
       "a": "processor",
@@ -1602,7 +1573,7 @@
       "654"
     ]
   },
-  "FormatElectronic": {
+  "ElectronicCarrier": {
     "subfields": {
       " ": "format",
       "3": null,
@@ -1618,10 +1589,10 @@
       "653"
     ]
   },
-  "FormatExtent": {
+  "Dimensions": {
     "subfields": {
-      " ": "extent",
-      "a": "extent"
+      " ": "dimension",
+      "a": "dimension"
     },
     "tags": [
       "435"
@@ -3446,108 +3417,8 @@
     }
   },
   "RSWK": {
-    "indicators": {
-      "00": "RSWK",
-      "01": "RSWK",
-      "02": "RSWK",
-      "03": "RSWK",
-      "04": "RSWK",
-      "05": "RSWK",
-      "06": "RSWK",
-      "07": "RSWK",
-      "08": "RSWK",
-      "09": "RSWK",
-      "10": "RSWK",
-      "11": "RSWK",
-      "12": "RSWK",
-      "13": "RSWK",
-      "14": "RSWK",
-      "15": "RSWK",
-      "16": "RSWK",
-      "17": "RSWK",
-      "18": "RSWK",
-      "19": "RSWK",
-      "20": "RSWK",
-      "21": "RSWK",
-      "22": "RSWK",
-      "23": "RSWK",
-      "24": "RSWK",
-      "25": "RSWK",
-      "26": "RSWK",
-      "27": "RSWK",
-      "28": "RSWK",
-      "29": "RSWK",
-      "30": "RSWK",
-      "31": "RSWK",
-      "32": "RSWK",
-      "33": "RSWK",
-      "34": "RSWK",
-      "35": "RSWK",
-      "36": "RSWK",
-      "37": "RSWK",
-      "38": "RSWK",
-      "39": "RSWK",
-      "40": "RSWK",
-      "41": "RSWK",
-      "42": "RSWK",
-      "43": "RSWK",
-      "44": "RSWK",
-      "45": "RSWK",
-      "46": "RSWK",
-      "47": "RSWK",
-      "48": "RSWK",
-      "49": "RSWK",
-      "50": "RSWK",
-      "51": "RSWK",
-      "52": "RSWK",
-      "53": "RSWK",
-      "54": "RSWK",
-      "55": "RSWK",
-      "56": "RSWK",
-      "57": "RSWK",
-      "58": "RSWK",
-      "59": "RSWK",
-      "60": "RSWK",
-      "61": "RSWK",
-      "62": "RSWK",
-      "63": "RSWK",
-      "64": "RSWK",
-      "65": "RSWK",
-      "66": "RSWK",
-      "67": "RSWK",
-      "68": "RSWK",
-      "69": "RSWK",
-      "70": "RSWK",
-      "71": "RSWK",
-      "72": "RSWK",
-      "73": "RSWK",
-      "74": "RSWK",
-      "75": "RSWK",
-      "76": "RSWK",
-      "77": "RSWK",
-      "78": "RSWK",
-      "79": "RSWK",
-      "80": "RSWK",
-      "81": "RSWK",
-      "82": "RSWK",
-      "83": "RSWK",
-      "84": "RSWK",
-      "85": "RSWK",
-      "86": "RSWK",
-      "87": "RSWK",
-      "88": "RSWK",
-      "89": "RSWK",
-      "90": "RSWK",
-      "91": "RSWK",
-      "92": "RSWK",
-      "93": "RSWK",
-      "94": "RSWK",
-      "95": "RSWK",
-      "96": "RSWK",
-      "97": "RSWK",
-      "98": "RSWK",
-      "99": "RSWK"
-    },
+    "comment": "same as SubjectRSWK, but mapped to MARC 689 for sequences of subject chains",
+    "_predicate": "SubjectRSWK",
     "subfields": {
       " ": "name",
       "0": "identifier",
@@ -3640,6 +3511,7 @@
         "h": "VD 16",
         "i": "VD 17",
         "k": "maschinelle Umsetzung aus AACR",
+        "r": "RDA",
         "z": "sonstiges Regelwerk"
       },
       "5": {
@@ -4001,11 +3873,21 @@
       "e": "identifierISSNOther"
     },
     "subfields": {
-      " ": "standardNumber",
-      "a": "standardNumber",
-      "b": "standardNumber",
-      "d": "standardNumber",
-      "p": "standardNumber"
+      " ": "identifier",
+      "a": "identifier",
+      "b": "identifier",
+      "d": "identifier",
+      "p": "identifier"
+    },
+    "indicators" : {
+      "552": {
+        "a ": "IdentifierDOI",
+        "a1": "IdentifierDOI",
+        "b ": "IdentifierURN",
+        "b1": "IdentifierURN",
+        "c ": "IdentifierHandle",
+        "c1": "IdentifierHandle"
+      }
     },
     "tags": {
       "086": "IdentifierISBNParallel",
@@ -4506,9 +4388,9 @@
       "a": "standardNumber"
     },
     "TitleParentUniform": {
-      " ": "uniformTitle",
+      " ": "title",
       "6": "script",
-      "a": "uniformTitle",
+      "a": "title",
       "b": null
     },
     "TitleParentVolumeDesignation": {
@@ -4610,7 +4492,7 @@
       "062": "CarrierType"
     }
   },
-  "TypeMedia": {
+  "GeneralMaterialDesignation": {
     "rak": {
       "Bildliche Darstellung": "Bild",
       "Bildtonträger": "Film, Dia, Video",
@@ -4655,7 +4537,7 @@
       "334"
     ]
   },
-  "TypeMediaSpecial": {
+  "SpecificMaterialDesignation": {
     "rak": {
       "Bildliche Darstellung": "Bild",
       "Bildtonträger": "Video",
@@ -4736,7 +4618,7 @@
       "652"
     ]
   },
-  "TypeMediaSpecialPreservation": {
+  "Preservation": {
     "subfields": {
       " ": "mediaType",
       "a": "mediaType",
@@ -4746,7 +4628,7 @@
       "659"
     ]
   },
-  "TypeMicroform": {
+  "CarrierMicroform": {
     "codes": {
       "0": {
         "a": "Mikrofilm-Lochkarte",
@@ -4897,7 +4779,7 @@
       "057"
     ]
   },
-  "TypeMonograph": {
+  "MonographType": {
     "_default": "keine Angabe",
     "codes": {
       "0": {
@@ -5134,7 +5016,7 @@
       "051"
     ]
   },
-  "TypePeriodical": {
+  "SerialType": {
     "codes": {
       "0": {
         "a": "unselbständig erschienenes Werk",

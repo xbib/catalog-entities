@@ -1,0 +1,34 @@
+{
+  "FormatCarrier": {
+    "Druckschrift": {
+      "CarrierType.typeCode": "nc",
+      "ContentType.typeCode": "txt",
+      "MediaType.typeCode": "n"
+    },
+    "Handschrift": {
+      "CarrierType.typeCode": "nc",
+      "ContentType.typeCode": "txt",
+      "MediaType.typeCode": "n"
+    },
+    "Landkarten": {
+      "CarrierType.typeCode": "nc",
+      "ContentType.typeCode": "cri",
+      "MediaType.typeCode": "n"
+    },
+    "Mikroform": {
+      "CarrierType.typeCode": "he"
+    },
+    "Mikroform-Master": {
+      "CarrierType.typeCode": "he"
+    },
+    "Mikroform-Sekundärform": {
+      "CarrierType.typeCode": "he"
+    },
+    "Blindenschrifträger": {
+      "ContentType.typeCode": "tct"
+    },
+    "Medienkombination": {
+    }
+  },
+  "TypeMedia"
+}

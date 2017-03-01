@@ -1,7 +1,13 @@
 {
   "dc.language": "Language",
-  "dc.format": "FormatCarrier",
-  "dc.type": "TypeMonograph",
+  "dc.format": "Carrier",
+  "dc.type": "MonographType",
   "dc.date": "Date",
-  "dc.coverage": "Country"
+  "dc.coverage": "Country",
+  "rak.carrier": "Carrier.value",
+  "rak.format": "MaterialDesignation.value",
+  "rak.type": "Type.value",
+  "rda.carrier": "CarrierType.typeName",
+  "rda.content": "ContentType.typeName",
+  "rda.media": "MediaType.typeName"
 }

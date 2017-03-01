@@ -2,6 +2,7 @@ package org.xbib.catalog.entities.mab;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
+import org.xbib.catalog.entities.CatalogEntityWorkerState;
 import org.xbib.catalog.entities.Sequence;
 import org.xbib.catalog.entities.matching.title.RAK;
 import org.xbib.content.rdf.Resource;
@@ -46,11 +47,12 @@ public class RSWK extends CatalogEntity {
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) {
         try {
-            Resource res = worker.append(worker.getWorkerState().getResource(), field, this);
+            CatalogEntityWorkerState state = worker.getWorkerState();
+            Resource res = worker.append(state.getResource(), field, this);
             // sequence name is first indicator
-            String sequence = "SubjectHeadingSequence.number" + field.getIndicator().charAt(0);
-            worker.getWorkerState().getSequences().putIfAbsent(sequence, new Sequence<Resource>().setName(sequence));
-            worker.getWorkerState().getSequences().get(sequence).add(res);
+            String sequence = "SubjectHeadingSequence.position" + field.getIndicator().charAt(0);
+            state.getSequences().putIfAbsent(sequence, new Sequence<Resource>().setName(sequence));
+            state.getSequences().get(sequence).add(res);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

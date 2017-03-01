@@ -11,19 +11,16 @@ import java.util.Map;
 /**
  *
  */
-public class TypePeriodical extends CatalogEntity {
+public class SerialType extends CatalogEntity {
 
-    private String facet = "dc.type";
+    private static final String FACET_NAME = "dc.type";
 
     private Map<String, Object> codes;
 
     private Map<String, Object> facetcodes;
 
-    public TypePeriodical(Map<String, Object> params) {
+    public SerialType(Map<String, Object> params) {
         super(params);
-        if (params.containsKey("_facet")) {
-            this.facet = params.get("_facet").toString();
-        }
         this.codes = getCodes();
         this.facetcodes = getFacetCodes();
     }
@@ -33,7 +30,7 @@ public class TypePeriodical extends CatalogEntity {
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
         if (codes != null) {
-            Resource resource = worker.getWorkerState().getResource().newResource("TypeMonograph");
+            Resource resource = worker.getWorkerState().getResource().newResource("Type");
             for (int i = 0; i < value.length(); i++) {
                 Map<String, Object> q = (Map<String, Object>) codes.get(Integer.toString(i));
                 if (q != null) {
@@ -66,7 +63,7 @@ public class TypePeriodical extends CatalogEntity {
 
     @Override
     protected String getFacetName() {
-        return facet;
+        return FACET_NAME;
     }
 }
 

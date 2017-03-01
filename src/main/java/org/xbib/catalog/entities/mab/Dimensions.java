@@ -7,9 +7,9 @@ import java.util.Map;
 /**
  *
  */
-public class FormatExtent extends CatalogEntity {
+public class Dimensions extends CatalogEntity {
 
-    public FormatExtent(Map<String, Object> params) {
+    public Dimensions(Map<String, Object> params) {
         super(params);
     }
 }

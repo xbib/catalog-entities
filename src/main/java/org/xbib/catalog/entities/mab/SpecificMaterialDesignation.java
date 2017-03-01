@@ -6,23 +6,31 @@ import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  *
  */
-public class TypeMediaSpecialPreservation extends CatalogEntity {
+public class SpecificMaterialDesignation extends CatalogEntity {
+
+    private static final Logger logger = Logger.getLogger(SpecificMaterialDesignation.class.getName());
+
+    private static final  String facet = "dc.format";
 
     private Map<Pattern, String> patterns;
 
-    public TypeMediaSpecialPreservation(Map<String, Object> params) {
+    @SuppressWarnings("unchecked")
+    public SpecificMaterialDesignation(Map<String, Object> params) {
         super(params);
-        Map<String, Object> regexes = getRegexes();
+        Map<String, Object> regexes = (Map<String, Object>) getParams().get("regexes");
         if (regexes != null) {
             patterns = new HashMap<>();
             for (Map.Entry<String, Object> entry : regexes.entrySet()) {
@@ -34,10 +42,25 @@ public class TypeMediaSpecialPreservation extends CatalogEntity {
 
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
-        String value = getValue(field);
-        Resource resource = worker.getWorkerState().getResource().newResource("TypeMediaSpecialPreservation");
-        for (String code : findCodes(value)) {
-            resource.add("value", code);
+        LinkedList<MarcField.Subfield> subfields = field.getSubfields();
+        if (subfields == null || subfields.isEmpty()) {
+            return null;
+        }
+        String value = subfields.getFirst().getValue();
+        if (!value.isEmpty()) {
+            List<String> list = findCodes(value);
+            if (list.isEmpty()) {
+                logger.log(Level.WARNING,
+                        () -> MessageFormat.format("no material detected from value: \"{0}\" in field {1}",
+                        value, field));
+            } else {
+                Resource resource = worker.getWorkerState().getResource().newResource("MaterialDesignation");
+                for (String code : list) {
+                    resource.add("value", code);
+                    // facetize here, so we have to find codes only once
+                    facetize(worker, code);
+                }
+            }
         }
         return null; // done!
     }
@@ -61,9 +84,13 @@ public class TypeMediaSpecialPreservation extends CatalogEntity {
                     }
                 }
             }
-        } else if (list.isEmpty()) {
-            list.add(value);
         }
         return list;
     }
+
+    @Override
+    protected String getFacetName() {
+        return facet;
+    }
+
 }

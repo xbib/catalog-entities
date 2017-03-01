@@ -7,9 +7,9 @@ import java.util.Map;
 /**
  *
  */
-public class FormatComputer extends CatalogEntity {
+public class ElectronicCarrier extends CatalogEntity {
 
-    public FormatComputer(Map<String, Object> params) {
+    public ElectronicCarrier(Map<String, Object> params) {
         super(params);
     }
 }

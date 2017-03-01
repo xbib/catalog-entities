@@ -2,6 +2,8 @@ package org.xbib.catalog.entities.mab;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
+import org.xbib.catalog.entities.TermFacet;
+import org.xbib.content.rdf.Literal;
 import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
@@ -11,51 +13,44 @@ import java.util.Map;
 /**
  *
  */
-public class TypeMonographSimplified extends CatalogEntity {
+public class SimpleCarrier extends CatalogEntity {
 
-    private static final String FACET_NAME = "dc.type";
+    public static final String FACET = "dc.format";
 
     private Map<String, Object> codes;
 
     private Map<String, Object> facetcodes;
 
-    public TypeMonographSimplified(Map<String, Object> params) {
+    public SimpleCarrier(Map<String, Object> params) {
         super(params);
         this.codes = getCodes();
         this.facetcodes = getFacetCodes();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
         if (codes != null) {
-            Resource resource = worker.getWorkerState().getResource().newResource("TypeMonographSimplified");
+            Resource resource = worker.getWorkerState().getResource().newResource("Carrier");
             for (int i = 0; i < value.length(); i++) {
+                // mapped codes
                 String code = (String) codes.get(value.substring(i, i + 1));
                 if (code == null && (i + 1 < value.length())) {
                     // two letters?
                     code = (String) codes.get(value.substring(i, i + 2));
                 }
                 resource.add("value", code);
-            }
-        }
-        if (facetcodes != null) {
-            for (int i = 0; i < value.length(); i++) {
-                String code = (String) facetcodes.get(value.substring(i, i + 1));
+                // faceting
+                code = (String) facetcodes.get(value.substring(i, i + 1));
                 if (code == null && (i + 1 < value.length())) {
                     // two letters?
                     code = (String) facetcodes.get(value.substring(i, i + 2));
                 }
-                facetize(worker, code);
+                worker.getWorkerState().getFacets().putIfAbsent(FACET, new TermFacet().setName(FACET).setType(Literal.STRING));
+                worker.getWorkerState().getFacets().get(FACET).addValue(code);
             }
         }
-        return null; // done!
+        return super.transform(worker, field); // done!
     }
-
-    @Override
-    protected String getFacetName() {
-        return FACET_NAME;
-    }
-
-
 }

@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  *
  */
-public class TypeMonograph extends CatalogEntity {
+public class MonographType extends CatalogEntity {
 
     private static final String FACET_NAME = "dc.type";
 
@@ -19,7 +19,7 @@ public class TypeMonograph extends CatalogEntity {
 
     private Map<String, Object> facetcodes;
 
-    public TypeMonograph(Map<String, Object> params) {
+    public MonographType(Map<String, Object> params) {
         super(params);
         this.codes = getCodes();
         this.facetcodes = getFacetCodes();
@@ -29,8 +29,8 @@ public class TypeMonograph extends CatalogEntity {
     @SuppressWarnings("unchecked")
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
-        Resource resource = worker.getWorkerState().getResource().newResource("TypeMonograph");
         if (codes != null) {
+            Resource resource = worker.getWorkerState().getResource().newResource("Type");
             for (int i = 0; i < value.length(); i++) {
                 Map<String, Object> q = (Map<String, Object>) codes.get(Integer.toString(i));
                 if (q != null) {
