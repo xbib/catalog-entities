@@ -1,0 +1,243 @@
+{
+  "Carrier.value": {
+    "Druckschrift": [
+      "n",
+      "nc",
+      "txt"
+    ],
+    "Handschrift": [
+      "n",
+      "txt"
+    ],
+    "Landkarten": [
+      "n",
+      "nc",
+      "cri"
+    ],
+    "Papier": [
+      "n"
+    ],
+    "säurefreies, alterungsbeständiges Papier": [
+      "n"
+    ],
+    "kein säurefreies, kein alterungsbeständiges Papier": [
+      "n"
+    ],
+    "entsäuertes Papier": [
+      "n"
+    ],
+    "Pergament": [
+      "n"
+    ],
+    "sonstiges Papiermaterial": [
+      "n"
+    ],
+    "Mikroform": [
+      "h",
+      "he"
+    ],
+    "Mikroform-Master": [
+      "h",
+      "he"
+    ],
+    "Mikroform-Sekundärform": [
+      "h",
+      "he"
+    ],
+    "Blindenschrifträger": [
+      "n",
+      "tct"
+    ],
+    "CD-DA": [
+      "c",
+      "cd"
+    ],
+    "CD-Bildplatte": [
+      "c",
+      "cd",
+      "v",
+      "vd"
+    ],
+    "Tonband": [
+      "s",
+      "st"
+    ],
+    "Compact-Cassette": [
+      "s",
+      "ss"
+    ],
+    "Micro-Cassette": [
+      "s",
+      "ss"
+    ],
+    "Digital Audio Tape": [
+      "s",
+      "ss"
+    ],
+    "Digital Compact Cassette": [
+      "s",
+      "ss"
+    ],
+    "Cartridge (8-Track Cartridge)": [
+      "s",
+      "sg"
+    ],
+    "Drahtton (Stahlband)": [
+      "s",
+      "st"
+    ],
+    "Schallplatte": [
+      "s",
+      "sd",
+      "snd"
+    ],
+    "Walze (Zylinder)": [
+      "s",
+      "se"
+    ],
+    "Klavierrolle": [
+      "s",
+      "sq"
+    ],
+    "Filmtonspur": [
+      "s",
+      "si"
+    ],
+    "Tonbildreihe": [
+      "s",
+      "g",
+      "mz",
+      "sti"
+    ],
+    "Filmspulen": [
+      "g",
+      "mr"
+    ],
+    "Film-Cartridge": [
+      "g",
+      "mc"
+    ],
+    "Film-Cassette": [
+      "g",
+      "mf"
+    ],
+    "Anderes Filmmedium": [
+      "g",
+      "mz"
+    ],
+    "Filmstreifen": [
+      "g",
+      "gf"
+    ],
+    "Filmstreifen-Cartridge": [
+      "g",
+      "gc"
+    ],
+    "Filmstreifen-Rolle": [
+      "g",
+      "mo"
+    ],
+    "Anderer Filmstreifentyp": [
+      "g",
+      "gd"
+    ],
+    "Diapositiv, Diaset, Stereograph": [
+      "e",
+      "ez"
+    ],
+    "Arbeitstransparent": [
+      "g",
+      "gt"
+    ],
+    "Arbeitstransparentstreifen": [
+      "g",
+      "gt"
+    ],
+    "Videobandcassette": [
+      "v",
+      "vf"
+    ],
+    "Videobandcartridge": [
+      "v",
+      "vc"
+    ],
+    "Videobandspulen": [
+      "v",
+      "vr"
+    ],
+    "Bildplatte (Videodisc)": [
+      "v",
+      "vd"
+    ],
+    "Anderer Videotyp": [
+      "v",
+      "vz"
+    ],
+    "Foto": [
+      "n",
+      "sti"
+    ],
+    "Kunstblatt": [
+      "n",
+      "nb",
+      "sti"
+    ],
+    "Plakat": [
+      "n",
+      "nb",
+      "sti"
+    ],
+    "unbekannt": [
+      "z"
+    ],
+    "nicht spezifiziertes audiovisuelles Medium": [
+      "s",
+      "v"
+    ],
+    "sonstige audiovisuelle Medien": [
+      "s",
+      "sz",
+      "v",
+      "vz"
+    ],
+    "nicht spezifiziertes Computermedium": [
+      "c",
+      "cz"
+    ],
+    "Diskette": [
+      "c",
+      "cd"
+    ],
+    "Magnetbandkassette": [
+      "c",
+      "cf",
+      "cod"
+    ],
+    "Optische Speicherplatte": [
+       "c",
+       "cd",
+       "cod"
+    ],
+    "Einsteckmodul": [
+      "c",
+      "cb"
+    ],
+    "Magnetband": [
+      "c",
+      "cf"
+    ],
+    "Computerdatei im Fernzugriff": [
+      "c",
+      "cr"
+    ],
+    "sonstige Computerdatei": [
+      "c",
+      "cz"
+    ],
+    "Spiel": [
+      "n",
+      "nr",
+      "tcf"
+    ]
+  }
+}

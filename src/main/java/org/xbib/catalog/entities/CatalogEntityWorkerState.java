@@ -304,6 +304,8 @@ public class CatalogEntityWorkerState {
             getResource().newResource("xbib").add("authoredWorkKey", getAuthoredWorkKey().createIdentifier());
         }
 
+        // consolidation
+
         // output
         if (builders != null && graph.getResources() != null) {
             Iterator<Resource> it = graph.getResources();

@@ -22,7 +22,7 @@ public class ValueMapper {
     private final ClassLoader classLoader;
 
     public ValueMapper() {
-        this.classLoader = ValueMapper.class.getClassLoader();
+        this(ValueMapper.class.getClassLoader());
     }
 
     public ValueMapper(ClassLoader classLoader) {

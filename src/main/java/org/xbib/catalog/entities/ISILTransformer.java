@@ -28,8 +28,12 @@ public class ISILTransformer implements MarcValueTransformer {
         Map<String, Object> sigel2isil = valueMapper.getMap(settings.get("sigel2isil",
                 "org/xbib/catalog/entities/mab/sigel2isil.json"), "sigel2isil");
         identifierMapper.add(sigel2isil);
-        identifierMapper.load(new URL(settings.get("tab_sigel",
-                "http://index.hbz-nrw.de/alephxml/tab_sigel")).openStream());
+        try {
+            identifierMapper.load(new URL(settings.get("tab_sigel",
+                    "http://index.hbz-nrw.de/alephxml/tab_sigel")).openStream());
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "unable to load tab_sigel from hbz. This is harmless.");
+        }
     }
 
     @Override

@@ -288,7 +288,8 @@
       "e": "address",
       "f": "date",
       "j": "date",
-      "k": "comment"
+      "k": "comment",
+      "u": "uri"
     },
     "tags": [
       "444"
@@ -307,6 +308,7 @@
       "c": "name",
       "d": "date",
       "e": "conferenceName",
+      "f": "date",
       "g": "geoName",
       "h": "other",
       "k": "name",
@@ -1125,6 +1127,7 @@
       "2": "date",
       "6": "script",
       "9": "date",
+      "A": "date",
       "a": "date",
       "b": "firstDate",
       "c": "lastDate",
@@ -1170,11 +1173,15 @@
     },
     "subfields": {
       " ": "description",
+      "1": null,
+      "2": null,
+      "5": null,
       "6": "script",
       "8": "link",
       "9": "identifier",
       "A": null,
       "E": null,
+      "M": "description",
       "P": "prefix",
       "S": null,
       "a": "description",
@@ -1322,6 +1329,7 @@
       "h": "place",
       "k": "coporateBody",
       "l": "exemplar",
+      "n": "name",
       "p": "personName",
       "s": "status",
       "v": "comment",
@@ -1332,7 +1340,8 @@
       "B85",
       "B86",
       "B87",
-      "B88"
+      "B88",
+      "B97"
     ]
   },
   "Extent": {
@@ -1398,7 +1407,7 @@
         "c": "kein säurefreies, kein alterungsbeständiges Papier",
         "d": "entsäuertes Papier",
         "e": "Pergament",
-        "z": "sonstiges Material"
+        "z": "sonstiges Papiermaterial"
       },
       "3": {
         "a": "Mikroform",
@@ -1415,12 +1424,12 @@
         "ad": "Compact-Cassette",
         "ae": "Micro-Cassette",
         "af": "Digital Audio Tape",
-        "ag": "Digital Compact Cassette (DCC-Cassette)",
+        "ag": "Digital Compact Cassette",
         "ah": "Cartridge (8-Track Cartridge)",
         "ai": "Drahtton (Stahlband)",
         "aj": "Schallplatte",
         "ak": "Walze (Zylinder)",
-        "al": "Klavierrolle (Mechanisches Klavier)",
+        "al": "Klavierrolle",
         "am": "Filmtonspur",
         "an": "Tonbildreihe",
         "ba": "Filmspulen",
@@ -1443,24 +1452,24 @@
         "db": "Kunstblatt",
         "dc": "Plakat",
         "uu": "unbekannt",
-        "yy": "nicht spezifiziert",
+        "yy": "nicht spezifiziertes audiovisuelles Medium",
         "zz": "sonstige audiovisuelle Medien"
       },
       "7": {
         "a": "Medienkombination"
       },
       "8": {
-        "a": "nicht spezifiziert",
-        "b": "Diskette(n)",
-        "c": "Magnetbandkassette(n)",
-        "d": "Optische Speicherplatte(n)",
-        "e": "Einsteckmodul(e)",
-        "f": "Magnetband, Magnetbänder",
-        "g": "Computerdatei(en) im Fernzugriff",
-        "z": "sonstige Computerdatei(en)"
+        "a": "nicht spezifiziertes Computermedium",
+        "b": "Diskette",
+        "c": "Magnetbandkassette",
+        "d": "Optische Speicherplatte",
+        "e": "Einsteckmodul",
+        "f": "Magnetband",
+        "g": "Computerdatei im Fernzugriff",
+        "z": "sonstige Computerdatei"
       },
       "9": {
-        "a": "Spiele"
+        "a": "Spiel"
       }
     },
     "facetcodes": {
@@ -1914,6 +1923,7 @@
       "H04",
       "H05",
       "H10",
+      "H11",
       "H12",
       "H17",
       "H18",
@@ -2073,7 +2083,8 @@
       "b": "shelfmark",
       "c": "callnumber",
       "d": "collection",
-      "e": "status"
+      "e": "status",
+      "$": null
     },
     "tags": [
       "088"
@@ -2599,6 +2610,7 @@
       "9": "identifier",
       "A": null,
       "a": "author",
+      "b": "addendum",
       "d": "publisherStatement",
       "h": "physicalDescription",
       "i": "relation",
@@ -2606,7 +2618,8 @@
       "q": "sort",
       "t": "title",
       "w": "identifier",
-      "x": "issn"
+      "x": "issn",
+      "z": "standardNumber"
     },
     "tags": {
       "760": "MainSeriesEntry",
@@ -2842,6 +2855,7 @@
       "k": "corporateBody",
       "n": "numbering",
       "p": "name",
+      "r": null,
       "s": null,
       "t": "title",
       "u": "name",
@@ -3304,6 +3318,7 @@
       "b": "value",
       "d": "value",
       "f": "value",
+      "k": "value",
       "m": "value",
       "o": "value"
     },
@@ -3326,6 +3341,7 @@
     "PublicationPlace": {
       " ": "printingPlace",
       "F": null,
+      "0": "printingPlace",
       "6": "script",
       "a": "printingPlace",
       "b": "salesPlace",
@@ -3359,6 +3375,7 @@
       "g": "geoName",
       "h": "place",
       "k": "corporateBody",
+      "n": "name",
       "p": "name"
     },
     "PublisherAddress": {
@@ -3426,6 +3443,7 @@
       "9": "identifier",
       "H": "name",
       "U": "script",
+      "V": null,
       "a": "name",
       "b": "corporateBodyUnit",
       "c": "nameAddendum",
@@ -3812,6 +3830,8 @@
   "StandardNumber": {
     "IdentifierISBN": {
       " ": "identifierISBN",
+      "-": null,
+      "(": null,
       "a": "identifierISBN",
       "b": "identifierISBNElectronicMedia",
       "c": "identifierISBNOnline",
@@ -3862,6 +3882,7 @@
       " ": "identifierOther",
       "2": null,
       "a": "identifierOther",
+      "p": "identifierOther",
       "s": "identifierOther"
     },
     "IdentifierSerial": {
@@ -3874,6 +3895,7 @@
     },
     "subfields": {
       " ": "identifier",
+      "0": null,
       "a": "identifier",
       "b": "identifier",
       "d": "identifier",
@@ -3903,6 +3925,7 @@
       "552": "IdentifierDOI",
       "553": "IdentifierArticle",
       "554": "IdentifierThesis",
+      "555": "IdentifierPublication",
       "556": "IdentifierReport",
       "562": "IdentifierPatent",
       "564": "IdentifierNorm",
@@ -3946,6 +3969,7 @@
     "indicators": {
       "700": {
         " ": "SubjectClassification",
+        " 1": "SubjectClassification",
         "01": "SubjectGHB",
         "02": "SubjectGHB",
         "03": "SubjectGHB",
@@ -4078,6 +4102,7 @@
     "subfields": {
       " ": "subjectHeading",
       "2": "source",
+      "4": null,
       "6": "script",
       "A": null,
       "C": null,
@@ -4228,7 +4253,11 @@
   "Title": {
     "CreatorStatement": {
       " ": "creatorStatement",
+      ".": null,
+      "A": null,
+      "N": "creatorStatement",
       "6": "script",
+      "9": null,
       "a": "creatorStatement",
       "b": "creatorStatement",
       "g": "creatorStatement",
@@ -4377,6 +4406,7 @@
       "3": null,
       "4": null,
       "6": "script",
+      "9": "sortableVolumeDesignation",
       "a": "sortableVolumeDesignation",
       "b": null,
       "q": null,
