@@ -14,6 +14,7 @@ import org.xbib.content.resource.IRI;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class Item extends CatalogEntity {
             if (mapper != null) {
                 String isil = mapper.lookup(value);
                 if (isil == null) {
-                    logger.log(Level.WARNING, "ISIL lookup failed for " + value);
+                    logger.log(Level.WARNING, () -> MessageFormat.format("ISIL lookup failed for {0}", value));
                 } else {
                     resource.add("identifier", isil);
                     state.setUID(IRI.builder().curie(isil).build());

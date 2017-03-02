@@ -87,6 +87,6 @@ public class MemberComponent extends LinkedHashSet<String>
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return toString().hashCode();
     }
 }

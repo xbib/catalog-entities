@@ -9,6 +9,7 @@ import org.xbib.content.resource.Node;
 import org.xbib.content.settings.Settings;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -40,9 +41,8 @@ public class FieldConsolidationMapper {
                 new ObjectMapper().readValue(getClass().getClassLoader().getResource(resource).openStream(), Map.class) :
                 settings.getAsSettings("field_mapping_target").getAsStructuredMap();
         this.targetKeys = Arrays.asList(settings.getAsArray("field_mapping_target_keys"));
-        logger.log(Level.INFO, "field mapper source: " + source.size() +
-                " field mapper target: " + target.size() +
-                " field mapper target keys: " + targetKeys);
+        logger.log(Level.INFO, () -> MessageFormat.format("field mapper source: {0} target: {1} target keys: {2}",
+                source.size(), target.size(), targetKeys));
     }
 
     @SuppressWarnings("unchecked")

@@ -8,6 +8,7 @@ import org.xbib.marc.transformer.value.MarcValueTransformers;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,7 @@ public class ISILTransformer implements MarcValueTransformer {
                 identifierMapper.load(url.openStream(), StandardCharsets.ISO_8859_1);
             }
         } catch (IOException e) {
-            logger.log(Level.WARNING, "unable to load tab_sigel from classpath");
+            logger.log(Level.WARNING, "unable to load tab_sigel from classpath", e);
         }
     }
 
@@ -51,7 +52,7 @@ public class ISILTransformer implements MarcValueTransformer {
         List<String> transform2isil = resource.endsWith(".json") ?
                 new ObjectMapper().readValue(getClass().getClassLoader().getResource(resource).openStream(), List.class) :
                 Arrays.asList(settings.getAsArray("transform2isil"));
-        logger.log(Level.INFO, "transform2isil: " + transform2isil.size());
+        logger.log(Level.INFO, () -> MessageFormat.format("transform2isil: {0}", transform2isil.size()));
         for (String field : transform2isil) {
             marcValueTransformers.setMarcValueTransformer(field, this);
         }

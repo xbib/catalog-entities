@@ -88,6 +88,6 @@ public class GermanNameKey extends TreeSet<String> implements Key<String> {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return toString().hashCode();
     }
 }

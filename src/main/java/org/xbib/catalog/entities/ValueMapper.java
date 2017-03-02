@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -46,7 +47,7 @@ public class ValueMapper {
                     maps.put(key, new ObjectMapper().readValue(in, HashMap.class));
                 }
             } else {
-                logger.log(Level.WARNING, "value map not found at: " + path);
+                logger.log(Level.WARNING, () -> MessageFormat.format("value map not found at: {0}", path));
             }
         }
         return (Map<String, Object>) maps.get(key);

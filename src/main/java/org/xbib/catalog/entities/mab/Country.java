@@ -32,6 +32,7 @@ public class Country extends CatalogEntity {
         return this;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     protected void facetize(CatalogEntityWorker worker, String value) {
         CatalogEntityWorkerState state = worker.getWorkerState();

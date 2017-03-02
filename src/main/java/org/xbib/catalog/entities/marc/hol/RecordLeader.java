@@ -6,7 +6,9 @@ import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -41,7 +43,7 @@ public class RecordLeader extends CatalogEntity {
             if (v.containsKey(code)) {
                 resource.add(v.get("_predicate"), v.get(code));
             } else {
-                logger.warning("key=" + k + " code not configured: '" + code + "'");
+                logger.log(Level.WARNING, () -> MessageFormat.format("key={0} code not configured: {1}", k, code));
             }
         }
         char ch5 = value.charAt(5);
@@ -66,13 +68,13 @@ public class RecordLeader extends CatalogEntity {
             worker.getWorkerState().getResource().add("type", "computerfile");
         }
 
-        boolean isMap = (ch6 == 'e' || ch6 == 'f');
+        boolean isMap = ch6 == 'e' || ch6 == 'f';
         if (isMap) {
             worker.getWorkerState().addResourceType("map");
             worker.getWorkerState().getResource().add("type", "map");
         }
 
-        boolean isMusic = (ch6 == 'c' || ch6 == 'd' || ch6 == 'i' || ch6 == 'j');
+        boolean isMusic = ch6 == 'c' || ch6 == 'd' || ch6 == 'i' || ch6 == 'j';
         if (isMusic) {
             worker.getWorkerState().addResourceType("music");
             worker.getWorkerState().getResource().add("type", "music");
@@ -85,7 +87,7 @@ public class RecordLeader extends CatalogEntity {
             worker.getWorkerState().getResource().add("type", "continuingresource");
         }
 
-        boolean isVisualMaterial = (ch6 == 'g' || ch6 == 'k' || ch6 == 'o' || ch6 == 'r');
+        boolean isVisualMaterial = ch6 == 'g' || ch6 == 'k' || ch6 == 'o' || ch6 == 'r';
         if (isVisualMaterial) {
             worker.getWorkerState().addResourceType("visualmaterial");
             worker.getWorkerState().getResource().add("type", "visualmaterial");

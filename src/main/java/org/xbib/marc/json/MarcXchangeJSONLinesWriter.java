@@ -1,5 +1,7 @@
 package org.xbib.marc.json;
 
+import static org.xbib.content.json.JsonXContent.contentBuilder;
+
 import org.xbib.content.XContentBuilder;
 import org.xbib.marc.Marc;
 import org.xbib.marc.MarcField;
@@ -24,8 +26,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.zip.Deflater;
 import java.util.zip.GZIPOutputStream;
-
-import static org.xbib.content.json.JsonXContent.contentBuilder;
 
 /**
  * Convert a MarcXchange stream to XContent builder.
@@ -200,14 +200,19 @@ public class MarcXchangeJSONLinesWriter implements AutoCloseable, MarcListener, 
 
     @Override
     public void endRecord() {
-        if (format != null) {
-            marcBuilder.setFormat(format);
+        try {
+            if (format != null) {
+                marcBuilder.setFormat(format);
+            }
+            if (type != null) {
+                marcBuilder.setType(type);
+            }
+            record(marcBuilder.buildRecord());
+            marcBuilder = Marc.builder();
+            afterRecord();
+        } catch (IOException e) {
+            handleException(e);
         }
-        if (type != null) {
-            marcBuilder.setType(type);
-        }
-        record(marcBuilder.buildRecord());
-        marcBuilder = Marc.builder();
     }
 
     @Override

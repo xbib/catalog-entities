@@ -68,6 +68,6 @@ public class PublicationType extends LinkedList<BibliographicType>
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return toString().hashCode();
     }
 }

@@ -709,11 +709,11 @@ public class DoubleMetaphoneEncoder implements StringEncoder {
      * Complex condition 1 for 'CH'.
      */
     private boolean conditionCH1(String value, int index) {
-        return ((contains(value, 0, 4, "VAN ", "VON ") || contains(value, 0, 3, "SCH"))
+        return (contains(value, 0, 4, "VAN ", "VON ") || contains(value, 0, 3, "SCH"))
                 || contains(value, index - 2, 6, "ORCHES", "ARCHIT", "ORCHID") ||
                 contains(value, index + 2, 1, "T", "S") ||
                 ((contains(value, index - 1, 1, "A", "O", "U", "E") || index == 0) &&
-                        (contains(value, index + 2, 1, L_R_N_M_B_H_F_V_W_SPACE) || index + 1 == value.length() - 1)));
+                        (contains(value, index + 2, 1, L_R_N_M_B_H_F_V_W_SPACE) || index + 1 == value.length() - 1));
     }
 
     /**

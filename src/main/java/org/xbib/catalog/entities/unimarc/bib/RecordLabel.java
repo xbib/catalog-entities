@@ -59,12 +59,12 @@ public class RecordLabel extends CatalogEntity {
             worker.getWorkerState().getResource().add("type", "computerfile");
         }
 
-        boolean isMap = (ch6 == 'e' || ch6 == 'f');
+        boolean isMap = ch6 == 'e' || ch6 == 'f';
         if (isMap) {
             worker.getWorkerState().getResource().add("type", "map");
         }
 
-        boolean isMusic = (ch6 == 'c' || ch6 == 'd' || ch6 == 'i' || ch6 == 'j');
+        boolean isMusic = ch6 == 'c' || ch6 == 'd' || ch6 == 'i' || ch6 == 'j';
         if (isMusic) {
             worker.getWorkerState().getResource().add("type", "music");
         }
@@ -75,7 +75,7 @@ public class RecordLabel extends CatalogEntity {
             worker.getWorkerState().getResource().add("type", "continuingresource");
         }
 
-        boolean isVisualMaterial = (ch6 == 'g' || ch6 == 'k' || ch6 == 'o' || ch6 == 'r');
+        boolean isVisualMaterial = ch6 == 'g' || ch6 == 'k' || ch6 == 'o' || ch6 == 'r';
         if (isVisualMaterial) {
             worker.getWorkerState().getResource().add("type", "visualmaterial");
         }

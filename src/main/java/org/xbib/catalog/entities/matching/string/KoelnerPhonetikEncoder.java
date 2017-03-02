@@ -111,7 +111,7 @@ public class KoelnerPhonetikEncoder implements StringEncoder {
         parts.add(str.replaceAll("[^\\p{L}\\p{N}]", ""));
         if (!primary) {
             List<String> tmpParts = new ArrayList<>();
-            tmpParts.addAll((Arrays.asList(str.split("[\\p{Z}\\p{C}\\p{P}]"))));
+            tmpParts.addAll(Arrays.asList(str.split("[\\p{Z}\\p{C}\\p{P}]")));
             int numberOfParts = tmpParts.size();
             while (!tmpParts.isEmpty()) {
                 StringBuilder part = new StringBuilder();

@@ -201,9 +201,11 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
 
     @SuppressWarnings("unchecked")
     protected String append(Resource newResource, CatalogEntity entity, MarcField field,
-                          String subfieldId, String value,
+                          String subfieldIdentifier, String value,
                           Map<MarcField, String> fieldNames, Map<String, Object> subfields,
                           String predicate) throws IOException {
+        String pred = predicate;
+        String subfieldId = subfieldIdentifier;
         Map<String, Object> params = entity.getParams();
         Map.Entry<String, Object> me = subfieldDecoderMap(subfields, subfieldId, value);
         if (me.getKey() != null && me.getValue() != null) {
@@ -274,11 +276,11 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
             // transform/split value v
             List<String> transformed = null;
             if (v != null) {
-                transformed = entity.transform(this, predicate, newResource, me.getKey(), v);
+                transformed = entity.transform(this, pred, newResource, me.getKey(), v);
             }
             // is this the predicate field or a value?
-            if (me.getKey().equals(predicate)) {
-                predicate = v;
+            if (me.getKey().equals(pred)) {
+                pred = v;
             } else if (transformed != null) {
                 for (String t : transformed) {
                     newResource.add(me.getKey(), t);
@@ -292,7 +294,7 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
             }
             if (subfields.containsKey(subfieldId)) {
                 String property = (String) subfields.get(subfieldId);
-                List<String> transformed = entity.transform(this, predicate, newResource, property, value);
+                List<String> transformed = entity.transform(this, pred, newResource, property, value);
                 if (transformed != null) {
                     for (String t : transformed) {
                         newResource.add(property, t);
@@ -304,7 +306,7 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
                                 + "' subfields=" + subfields);
             }
         }
-        return predicate;
+        return pred;
     }
 
     @SuppressWarnings("unchecked")

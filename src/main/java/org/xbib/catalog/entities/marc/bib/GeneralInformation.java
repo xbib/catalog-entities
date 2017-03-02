@@ -42,7 +42,8 @@ public class GeneralInformation extends CatalogEntity {
         String value = getValue(field);
         if (value.length() != 40) {
             logger.log(Level.WARNING,
-                    "broken GeneralInformation field, length is not 40, but " + value.length() + " field=" + field);
+                    () -> MessageFormat.format("broken GeneralInformation field, length is not 40, but {0} field={1}",
+                    value.length(), field));
         }
         Resource info = worker.getWorkerState().getResource().newResource("GeneralInformation");
         examine(codes, info, value);
@@ -55,7 +56,8 @@ public class GeneralInformation extends CatalogEntity {
                 } else {
                     if (!undefinedResourceTypes.contains(resourceType)) {
                         undefinedResourceTypes.add(resourceType);
-                        logger.warning("no codes for resource type '" + resourceType + "'");
+                        logger.log(Level.WARNING, () -> MessageFormat.format("no codes for resource type {0}",
+                                resourceType));
                     }
                 }
             }

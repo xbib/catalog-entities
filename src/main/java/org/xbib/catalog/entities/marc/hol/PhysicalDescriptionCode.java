@@ -7,14 +7,11 @@ import org.xbib.marc.MarcField;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  *
  */
 public class PhysicalDescriptionCode extends CatalogEntity {
-
-    private static final Logger logger = Logger.getLogger(PhysicalDescriptionCode.class.getName());
 
     private final Map<String, Object> codes;
 

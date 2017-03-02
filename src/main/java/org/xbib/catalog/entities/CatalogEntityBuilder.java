@@ -346,7 +346,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
                 identifierMapper.load(url.openStream(), StandardCharsets.ISO_8859_1);
             }
         } catch (IOException e) {
-            logger.log(Level.WARNING, "unable to load tab_sigel from classpath");
+            logger.log(Level.WARNING, "unable to load tab_sigel from classpath", e);
         }
         if (settings.containsSetting("tab_sigel_url")) {
             // current sigel

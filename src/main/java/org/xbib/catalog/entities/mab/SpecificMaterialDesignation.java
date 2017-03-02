@@ -23,7 +23,7 @@ public class SpecificMaterialDesignation extends CatalogEntity {
 
     private static final Logger logger = Logger.getLogger(SpecificMaterialDesignation.class.getName());
 
-    private static final  String facet = "dc.format";
+    private static final  String FACET_NAME = "dc.format";
 
     private Map<Pattern, String> patterns;
 
@@ -90,7 +90,7 @@ public class SpecificMaterialDesignation extends CatalogEntity {
 
     @Override
     protected String getFacetName() {
-        return facet;
+        return FACET_NAME;
     }
 
 }

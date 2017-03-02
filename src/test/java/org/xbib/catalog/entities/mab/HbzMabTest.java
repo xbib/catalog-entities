@@ -100,7 +100,7 @@ public class HbzMabTest {
 
         try (MyHbzBuilder myBuilder = new MyHbzBuilder(settings);
               BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                getClass().getResource( "hbz/sysids.txt").openStream(), StandardCharsets.UTF_8))) {
+                getClass().getResource("hbz/sysids.txt").openStream(), StandardCharsets.UTF_8))) {
             // hbz Publishing is not configured correctly, this custom handler adapts to wrong namespace
             MarcContentHandler contentHandler = new MarcContentHandler();
             contentHandler.addNamespace("http://www.ddb.de/professionell/mabxml/mabxml-1.xsd");
@@ -124,7 +124,7 @@ public class HbzMabTest {
             ISILTransformer isilTransformer = new ISILTransformer(settings);
             isilTransformer.createTransformer(settings, marcValueTransformers);
 
-            bufferedReader.lines().forEach( line -> {
+            bufferedReader.lines().forEach(line -> {
                     try (InputStream inputStream = getClass().getResource("hbz/" + line + ".xml").openStream()) {
                         Marc.builder()
                                 .setInputStream(inputStream)
@@ -158,7 +158,7 @@ public class HbzMabTest {
                 .put("facets", "org/xbib/catalog/entities/mab/facets.json")
                 .build();
         try (MyHbzBuilder myBuilder = new MyHbzBuilder(settings);
-             InputStream inputStream = getClass().getResource( "hbz/DE-605-aleph.jsonl").openStream();
+             InputStream inputStream = getClass().getResource("hbz/DE-605-aleph.jsonl").openStream();
              MarcXchangeJSONLinesReader reader = new MarcXchangeJSONLinesReader(inputStream, myBuilder)) {
             reader.parse();
             logger.log(Level.INFO, MessageFormat.format("count fields = {0}",

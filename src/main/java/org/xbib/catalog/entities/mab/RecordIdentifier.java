@@ -10,6 +10,7 @@ import org.xbib.content.rdf.Literal;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,7 +49,7 @@ public class RecordIdentifier extends CatalogEntity {
             state.setRecordIdentifier(v);
             state.getResource().newResource("xbib").add("uid", v);
         } else {
-            logger.log(Level.WARNING, "record identifier already set, skipping " + value);
+            logger.log(Level.WARNING, () -> MessageFormat.format("record identifier already set, skipping {0}", value));
         }
         // check for classifier
         Classifier classifier = worker.getClassifier();

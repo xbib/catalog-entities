@@ -1,5 +1,9 @@
 package org.xbib.catalog.entities.mab;
 
+import static org.junit.Assert.fail;
+import static org.xbib.content.rdf.RdfXContentFactory.rdfXContentBuilder;
+import static org.xbib.helper.StreamMatcher.assertStream;
+
 import org.junit.Test;
 import org.xbib.catalog.entities.CatalogEntityBuilder;
 import org.xbib.catalog.entities.CatalogEntityWorkerState;
@@ -24,10 +28,6 @@ import java.text.MessageFormat;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static org.junit.Assert.fail;
-import static org.xbib.content.rdf.RdfXContentFactory.rdfXContentBuilder;
-import static org.xbib.helper.StreamMatcher.assertStream;
 
 /**
  *
@@ -96,7 +96,7 @@ public class ZdbMabTest {
                 writer.write(content);
             }*/
             InputStream inputStream =
-                    getClass().getResource( "zdb/" + state.getRecordIdentifier() + ".json").openStream();
+                    getClass().getResource("zdb/" + state.getRecordIdentifier() + ".json").openStream();
             assertStream(state.getRecordIdentifier(), inputStream,
                     new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
         }

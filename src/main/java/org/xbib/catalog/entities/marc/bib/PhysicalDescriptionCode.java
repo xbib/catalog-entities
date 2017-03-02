@@ -6,7 +6,9 @@ import org.xbib.content.rdf.Resource;
 import org.xbib.marc.MarcField;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -44,8 +46,8 @@ public class PhysicalDescriptionCode extends CatalogEntity {
                         if (!"|".equals(code)) {
                             String value = (String) q.get(code);
                             if (value == null) {
-                                logger.warning(worker.getWorkerState().getRecordIdentifier() +
-                                        ": unspecified code '" + code + "' for " + predicate);
+                                logger.log(Level.WARNING, () -> MessageFormat.format("{0}: unspecified code {1} for {2}",
+                                        worker.getWorkerState().getRecordIdentifier(), code, predicate));
                             }
                             resource.add(predicate, value);
                         }
