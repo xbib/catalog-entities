@@ -16,54 +16,54 @@ public class TransformFields {
 
     private static final Logger logger = Logger.getLogger(TransformFields.class.getName());
 
-    private final Map<String, Object> transformTags;
+    private final Map<String, Object> transformFields;
 
-    private final Map<String, Object> transformTagSubfields;
+    private final Map<String, Object> transformSubfields;
 
-    private final Map<String, Object> transformTagSubfieldsTail;
+    private final Map<String, Object> transformSubfieldsTail;
 
     @SuppressWarnings("unchecked")
     public TransformFields(Settings settings) throws IOException {
-        String resource = settings.get("transform");
-        this.transformTags = resource.endsWith(".json") ?
+        String resource = settings.get("transform_fields");
+        this.transformFields = resource != null && resource.endsWith(".json") ?
                 new ObjectMapper().readValue(getClass().getClassLoader().getResource(resource).openStream(), Map.class) :
                 settings.getAsSettings("transform").getAsStructuredMap();
-        logger.log(Level.INFO, "transformTags: " + transformTags.size());
-        resource = settings.get("transform_with_subfields");
-        this.transformTagSubfields = resource.endsWith(".json") ?
+        resource = settings.get("transform_subfields");
+        this.transformSubfields = resource != null && resource.endsWith(".json") ?
                 new ObjectMapper().readValue(getClass().getClassLoader().getResource(resource).openStream(), Map.class) :
-                settings.getAsSettings("transform_with_subfields").getAsStructuredMap();
-        logger.log(Level.INFO, "transformTagSubfields: " + transformTagSubfields.size());
-        resource = settings.get("transform_with_subfields_tail");
-        this.transformTagSubfieldsTail = resource.endsWith(".json") ?
+                settings.getAsSettings("transform_subfields").getAsStructuredMap();
+        resource = settings.get("transform_subfields_tail");
+        this.transformSubfieldsTail = resource != null && resource.endsWith(".json") ?
                 new ObjectMapper().readValue(getClass().getClassLoader().getResource(resource).openStream(), Map.class) :
-                settings.getAsSettings("transform_with_subfields_tail").getAsStructuredMap();
-        logger.log(Level.INFO, "transformTagSubfieldsTail: " + transformTagSubfieldsTail.size());
+                settings.getAsSettings("transform_subfields_tail").getAsStructuredMap();
+        logger.log(Level.INFO, "transform fields: " + transformFields.size() +
+                " transform subfields: " + transformSubfields.size() +
+                " transform subfields (tail): " + transformSubfieldsTail.size());
     }
 
-    public void createTagTransformers(MarcFieldTransformers marcFieldTransformers) {
+    public void createTransformerFields(MarcFieldTransformers marcFieldTransformers) {
         MarcFieldTransformer.Builder builder = MarcFieldTransformer.builder()
                 .operator(MarcFieldTransformer.Operator.HEAD)
                 .ignoreSubfieldIds();
-        for (Map.Entry<String, Object> entry : transformTags.entrySet()) {
+        for (Map.Entry<String, Object> entry : transformFields.entrySet()) {
             builder.fromTo(entry.getKey(), (String) entry.getValue());
         }
         marcFieldTransformers.add(builder.build());
     }
 
-    public void createTagSubfieldTransformers(MarcFieldTransformers marcFieldTransformers) {
+    public void createTransformerSubfields(MarcFieldTransformers marcFieldTransformers) {
         MarcFieldTransformer.Builder builder = MarcFieldTransformer.builder()
                 .operator(MarcFieldTransformer.Operator.HEAD);
-        for (Map.Entry<String, Object> entry : transformTagSubfields.entrySet()) {
+        for (Map.Entry<String, Object> entry : transformSubfields.entrySet()) {
             builder.fromTo(entry.getKey(), (String) entry.getValue());
         }
         marcFieldTransformers.add(builder.build());
     }
 
-    public void createTagSubfieldTailTransformers(MarcFieldTransformers marcFieldTransformers) {
+    public void createTransformerSubfieldsTail(MarcFieldTransformers marcFieldTransformers) {
         MarcFieldTransformer.Builder builder = MarcFieldTransformer.builder()
                 .operator(MarcFieldTransformer.Operator.TAIL);
-        for (Map.Entry<String, Object> entry : transformTagSubfieldsTail.entrySet()) {
+        for (Map.Entry<String, Object> entry : transformSubfieldsTail.entrySet()) {
             builder.fromTo(entry.getKey(), (String) entry.getValue());
         }
         marcFieldTransformers.add(builder.build());

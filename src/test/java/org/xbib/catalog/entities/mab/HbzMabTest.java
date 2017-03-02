@@ -87,12 +87,12 @@ public class HbzMabTest {
                 .put("elements", "org/xbib/catalog/entities/mab/titel.json")
                 .put("facets", "org/xbib/catalog/entities/mab/facets.json")
                 .put("transform2isil", "org/xbib/catalog/entities/mab/transform2isil.json")
-                .put("errorfields", "org/xbib/catalog/entities/mab/errorfields.json")
-                .put("skiptags", "org/xbib/catalog/entities/mab/skiptags.json")
-                .put("skipsubfields", "org/xbib/catalog/entities/mab/skipsubfields.json")
-                .put("transform", "org/xbib/catalog/entities/mab/transform.json")
-                .put("transform_with_subfields", "org/xbib/catalog/entities/mab/transform_with_subfields.json")
-                .put("transform_with_subfields_tail", "org/xbib/catalog/entities/mab/transform_with_subfields_tail.json")
+                .put("error_fields", "org/xbib/catalog/entities/mab/error_fields.json")
+                .put("skip_fields", "org/xbib/catalog/entities/mab/skip_fields.json")
+                .put("skip_subfields", "org/xbib/catalog/entities/mab/skip_subfields.json")
+                .put("transform_fields", "org/xbib/catalog/entities/mab/transform_fields.json")
+                .put("transform_subfields", "org/xbib/catalog/entities/mab/transform_subfields.json")
+                .put("transform_subfields_tail", "org/xbib/catalog/entities/mab/transform_subfields_tail.json")
                 .put("field_mapping_source", "org/xbib/catalog/entities/mab/rak2rda.json")
                 .put("field_mapping_target", "org/xbib/catalog/entities/mab/imd.json")
                 .putArray("field_mapping_target_keys", Arrays.asList("rda.carrier", "rda.content", "rda.media"))
@@ -115,9 +115,9 @@ public class HbzMabTest {
             SkipFields skipFields = new SkipFields(settings);
             skipFields.createFieldTransformers(marcFieldTransformers);
             TransformFields transformFields = new TransformFields(settings);
-            transformFields.createTagTransformers(marcFieldTransformers);
-            transformFields.createTagSubfieldTransformers(marcFieldTransformers);
-            transformFields.createTagSubfieldTailTransformers(marcFieldTransformers);
+            transformFields.createTransformerFields(marcFieldTransformers);
+            transformFields.createTransformerSubfields(marcFieldTransformers);
+            transformFields.createTransformerSubfieldsTail(marcFieldTransformers);
 
             // set up field value transformers
             final MarcValueTransformers marcValueTransformers = new MarcValueTransformers();

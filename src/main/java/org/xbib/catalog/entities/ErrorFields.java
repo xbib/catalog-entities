@@ -20,22 +20,35 @@ public class ErrorFields {
 
     private final List<String> errorFields;
 
+    private final List<String> errorSubfields;
+
     @SuppressWarnings("unchecked")
     public ErrorFields(Settings settings) throws IOException {
-        String resource = settings.get("errorfields");
-        this.errorFields = resource.endsWith(".json") ?
+        String resource = settings.get("error_fields");
+        this.errorFields = resource != null && resource.endsWith(".json") ?
              new ObjectMapper().readValue(getClass().getClassLoader().getResource(resource).openStream(), List.class) :
-             Arrays.asList(settings.getAsArray("errorfields"));
-        logger.log(Level.INFO, "errorfields: " + errorFields.size());
+             Arrays.asList(settings.getAsArray("error_fields"));
+        resource = settings.get("error_subfields");
+        this.errorSubfields = resource != null && resource.endsWith(".json") ?
+                new ObjectMapper().readValue(getClass().getClassLoader().getResource(resource).openStream(), List.class) :
+                Arrays.asList(settings.getAsArray("error_subfields"));
+        logger.log(Level.INFO, "error fields: " + errorFields.size() + " error subfields: " + errorSubfields.size());
     }
 
     public void createFieldTransformers(MarcFieldTransformers marcFieldTransformers) {
-        // remove erraneous tags
+        // remove erraneous fields
         MarcFieldTransformer t0 = MarcFieldTransformer.builder()
                 .operator(MarcFieldTransformer.Operator.HEAD)
                 .ignoreIndicator()
                 .drop(errorFields)
                 .build();
         marcFieldTransformers.add(t0);
+        // remove erraneous subfields
+        MarcFieldTransformer t1 = MarcFieldTransformer.builder()
+                .operator(MarcFieldTransformer.Operator.HEAD)
+                .ignoreSubfieldIds()
+                .drop(errorSubfields)
+                .build();
+        marcFieldTransformers.add(t1);
     }
 }
