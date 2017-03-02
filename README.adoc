@@ -12,8 +12,7 @@ image:https://sonarqube.com/api/badges/measure?key=org.xbib:catalog-entities&met
 image:https://sonarqube.com/api/badges/measure?key=org.xbib:catalog-entities&metric=sqale_debt_ratio[title="Technical debt ratio", link="https://sonarqube.com/dashboard/index?id=org.xbib%3Acatalog-entities"]
 
 This is a Java library for transforming bibliographic data into catalog entities.
-Catalog entities are represented as Java classes, which are used to generate RDF graphs from ISO 2709 or
-MARCXML streams.
+Catalog entities are represented as Java classes, which are used to generate RDF graphs from ISO 2709 or MARCXML streams.
 
 In this software, some configurations for MARC, MAB, Pica, UNIMARC are included. To meet certain requirements,
 these configurations have to be adjusted.
