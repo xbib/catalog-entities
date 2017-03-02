@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,14 +28,15 @@ public class IdentifierMapperTest {
                 valueMapper.getMap("org/xbib/catalog/entities/mab/sigel2isil.json", "sigel2isil");
         assertFalse(sigel2isil.isEmpty());
         identifierMapper.add(sigel2isil);
-        // a private hbz resource for Aleph Owner mapping
-        URL url = new URL("http://index.hbz-nrw.de/alephxml/tab_sigel");
-        try (InputStream inputStream = url.openStream()) {
-            identifierMapper.load(inputStream);
-        } catch (Exception e) {
-            logger.log(Level.WARNING, e.getMessage(), e);
-            identifierMapper.add("K0001", "38");
-            identifierMapper.add("38", "DE-38");
+        URL url = getClass().getClassLoader().getResource("org/xbib/catalog/entities/mab/hbz/tab_sigel");
+        if (url != null) {
+            try (InputStream inputStream = url.openStream()) {
+                identifierMapper.load(inputStream, StandardCharsets.ISO_8859_1);
+            } catch (Exception e) {
+                logger.log(Level.WARNING, e.getMessage(), e);
+                identifierMapper.add("K0001", "38");
+                identifierMapper.add("38", "DE-38");
+            }
         }
         assertFalse(identifierMapper.getMap().isEmpty());
         assertEquals("DE-38", identifierMapper.lookup("DE-38"));

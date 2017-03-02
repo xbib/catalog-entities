@@ -14,6 +14,7 @@ import org.xbib.marc.label.RecordLabel;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.HashMap;
@@ -229,11 +230,6 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         return this;
     }
 
-    public CatalogEntityBuilder addIdentifierMapper(String path) throws IOException {
-        identifierMapper.load(getClass().getResource(path).openStream());
-        return this;
-    }
-
     public IdentifierMapper getIdentifierMapper() {
         return identifierMapper;
     }
@@ -336,11 +332,19 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         Map<String, Object> sigel2isil =
                 valueMapper.getMap("org/xbib/catalog/entities/mab/sigel2isil.json", "sigel2isil");
         identifierMapper.add(sigel2isil);
+        URL url = getClass().getClassLoader().getResource(settings.get("tab_sigel",
+                "org/xbib/catalog/entities/mab/hbz/tab_sigel"));
+        try {
+            if (url != null) {
+                identifierMapper.load(url.openStream(), StandardCharsets.ISO_8859_1);
+            }
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "unable to load tab_sigel from classpath");
+        }
         if (params != null && params.containsKey("tab_sigel_url")) {
             // current sigel
-            URL url = new URL((String) params.get("tab_sigel_url"));
-            logger.log(Level.INFO, () -> MessageFormat.format("loading tab_sigel from {0}", url));
-            identifierMapper.load(url.openStream());
+            url = new URL((String) params.get("tab_sigel_url"));
+            identifierMapper.load(url.openStream(), StandardCharsets.ISO_8859_1);
             logger.log(Level.INFO, () -> MessageFormat.format("sigel2isil size = {0}, plus tab_sigel = {1}",
                     sigel2isil.size(), identifierMapper.getMap().size()));
         }

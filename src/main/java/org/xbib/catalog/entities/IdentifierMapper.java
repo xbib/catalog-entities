@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -23,8 +23,8 @@ public class IdentifierMapper {
 
     private final Map<String, String> map = new HashMap<>();
 
-    public Map<String, String> load(InputStream in) {
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in, StandardCharsets.ISO_8859_1))) {
+    public Map<String, String> load(InputStream in, Charset encoding) {
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in, encoding))) {
             bufferedReader.lines().forEach(line -> {
                 if (line.trim().length() > 0 && !line.startsWith("!")) {
                     Matcher m = p.matcher(line);
