@@ -66,6 +66,8 @@ public class CatalogEntityWorkerState {
 
     private List<String> resourceType;
 
+    private FieldConsolidationMapper fieldConsolidationMapper;
+
     public CatalogEntityWorkerState(CatalogEntityBuilder builder) {
         this.builder = builder;
         this.graph = new DefaultRdfGraph();
@@ -76,6 +78,7 @@ public class CatalogEntityWorkerState {
         this.authoredWorkKey = new AuthoredWork();
         this.resourceType = new ArrayList<>();
         this.scratch = new LinkedHashMap<>();
+        this.fieldConsolidationMapper = builder.getFieldConsolidationMapper();
     }
 
     public AuthoredWork getAuthoredWorkKey() {
@@ -304,7 +307,10 @@ public class CatalogEntityWorkerState {
             getResource().newResource("xbib").add("authoredWorkKey", getAuthoredWorkKey().createIdentifier());
         }
 
-        // consolidation
+        // field consolidation
+        if (fieldConsolidationMapper != null) {
+            fieldConsolidationMapper.consolidate(getResource());
+        }
 
         // output
         if (builders != null && graph.getResources() != null) {

@@ -39,6 +39,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
@@ -92,6 +93,9 @@ public class HbzMabTest {
                 .put("transform", "org/xbib/catalog/entities/mab/transform.json")
                 .put("transform_with_subfields", "org/xbib/catalog/entities/mab/transform_with_subfields.json")
                 .put("transform_with_subfields_tail", "org/xbib/catalog/entities/mab/transform_with_subfields_tail.json")
+                .put("field_mapping_source", "org/xbib/catalog/entities/mab/rak2rda.json")
+                .put("field_mapping_target", "org/xbib/catalog/entities/mab/imd.json")
+                .putArray("field_mapping_target_keys", Arrays.asList("rda.carrier", "rda.content", "rda.media"))
                 .build();
 
         try (MyHbzBuilder myBuilder = new MyHbzBuilder(settings);
@@ -186,9 +190,8 @@ public class HbzMabTest {
             /*try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".json"))) {
                 writer.write(string);
             }*/
-            InputStream inputStream =
-                    getClass().getResource("hbz/" + state.getRecordIdentifier() + ".json").openStream();
-            assertStream(state.getRecordIdentifier(), inputStream,
+            assertStream(state.getRecordIdentifier(),
+                    getClass().getResource("hbz/" + state.getRecordIdentifier() + ".json").openStream(),
                     new ByteArrayInputStream(string.getBytes(StandardCharsets.UTF_8)));
             Iterator<Resource> it = state.getResourceIterator();
             while (it.hasNext()) {
@@ -207,8 +210,8 @@ public class HbzMabTest {
                 try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(name + ".hol.json"))) {
                     writer.write(string);
                 }*/
-                InputStream holInputStream = getClass().getResource("hbz/" + name + ".hol.json").openStream();
-                assertStream(state.getRecordIdentifier(), holInputStream,
+                assertStream(state.getRecordIdentifier(),
+                        getClass().getResource("hbz/" + name + ".hol.json").openStream(),
                         new ByteArrayInputStream(string.getBytes(StandardCharsets.UTF_8)));
             }
         }

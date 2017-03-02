@@ -81,6 +81,8 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
 
     private Classifier classifier;
 
+    private FieldConsolidationMapper fieldConsolidationMapper;
+
     private Map<String, Object> facetElements;
 
     private Map<String, Resource> serialsMap;
@@ -113,9 +115,9 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
             if (url == null) {
                 url = new URL(elements);
             }
-            Map<String, Object> params = settings.getAsStructuredMap();
             try (InputStream inputStream = url.openStream()) {
-                this.entitySpecification = new CatalogEntitySpecification(inputStream, new HashMap<>(), params, packageName);
+                this.entitySpecification = new CatalogEntitySpecification(inputStream, new HashMap<>(),
+                        settings.getAsStructuredMap(), packageName);
             }
             if (settings.containsSetting("additional-elements")) {
                 Map<String, Map<String, Object>> map =
@@ -127,23 +129,24 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
             }
             logger.log(Level.INFO, () -> MessageFormat.format("spec: map of {0} field keys with {1} entities",
                     entitySpecification.getMap().size(), entitySpecification.getEntities().size()));
-            this.identifierMapper = setupIdentifierMapper(params);
+            this.identifierMapper = setupIdentifierMapper(settings);
             if (!identifierMapper.getMap().isEmpty()) {
                 logger.log(Level.INFO, () -> MessageFormat.format("identifier mapper: {0} entries",
                         identifierMapper.getMap().size()));
             }
-            this.valueMapper = setupValueMapper(params);
+            this.valueMapper = setupValueMapper();
             if (!valueMapper.getMap("status").isEmpty()) {
                 logger.log(Level.INFO, () -> MessageFormat.format("status mapper: {0} entries",
                         valueMapper.getMap("status").size()));
             }
-            this.facetElements = setupFacets(params);
+            this.facetElements = setupFacets(settings);
             if (facetElements != null && !facetElements.isEmpty()) {
                 logger.log(Level.INFO, () -> MessageFormat.format("facets: {0}",
                         getFacetElements()));
             }
-            this.serialsMap = setupSerialsMap(params);
+            this.serialsMap = setupSerialsMap(settings);
             this.missingSerials = new HashMap<>();
+            this.fieldConsolidationMapper = setupFieldConsolidation(settings);
         }
         open();
     }
@@ -274,6 +277,10 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         return missingSerials;
     }
 
+    public FieldConsolidationMapper getFieldConsolidationMapper() {
+        return fieldConsolidationMapper;
+    }
+
     protected void beforeFinishState(CatalogEntityWorkerState state) throws IOException {
         // can be overriden
     }
@@ -326,7 +333,7 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     }
 
 
-    protected IdentifierMapper setupIdentifierMapper(Map<String, Object> params) throws IOException {
+    protected IdentifierMapper setupIdentifierMapper(Settings settings) throws IOException {
         IdentifierMapper identifierMapper = new IdentifierMapper();
         ValueMapper valueMapper = new ValueMapper();
         Map<String, Object> sigel2isil =
@@ -341,9 +348,9 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         } catch (IOException e) {
             logger.log(Level.WARNING, "unable to load tab_sigel from classpath");
         }
-        if (params != null && params.containsKey("tab_sigel_url")) {
+        if (settings.containsSetting("tab_sigel_url")) {
             // current sigel
-            url = new URL((String) params.get("tab_sigel_url"));
+            url = new URL(settings.get("tab_sigel_url"));
             identifierMapper.load(url.openStream(), StandardCharsets.ISO_8859_1);
             logger.log(Level.INFO, () -> MessageFormat.format("sigel2isil size = {0}, plus tab_sigel = {1}",
                     sigel2isil.size(), identifierMapper.getMap().size()));
@@ -352,17 +359,17 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
     }
 
     @SuppressWarnings("unchecked")
-    protected ValueMapper setupValueMapper(Map<String, Object> params) throws IOException {
+    protected ValueMapper setupValueMapper() throws IOException {
         ValueMapper valueMapper = new ValueMapper();
         valueMapper.getMap("org/xbib/catalog/entities/mab/status.json", "status");
         return valueMapper;
     }
 
     @SuppressWarnings("unchecked")
-    protected Map<String, Object> setupFacets(Map<String, Object> params) throws IOException {
+    protected Map<String, Object> setupFacets(Settings settings) throws IOException {
         ValueMapper valueMapper = new ValueMapper();
         // embedded values?
-        Map<String, Object> map = params;
+        Map<String, Object> map = settings.getAsStructuredMap();
         if (map.containsKey("facets")) {
             Object object = map.get("facets");
             if (object instanceof Map) {
@@ -376,7 +383,12 @@ public class CatalogEntityBuilder extends AbstractWorkerPool<MarcRecord>
         return map;
     }
 
-    protected Map<String, Resource> setupSerialsMap(Map<String, Object> params) {
+    protected FieldConsolidationMapper setupFieldConsolidation(Settings settings) throws IOException {
+        return new FieldConsolidationMapper(settings);
+    }
+
+    protected Map<String, Resource> setupSerialsMap(Settings settings) {
+
         // can be overriden
         return null;
     }

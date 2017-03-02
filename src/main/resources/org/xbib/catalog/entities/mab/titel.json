@@ -3833,7 +3833,7 @@
       "-": null,
       "(": null,
       "a": "identifierISBN",
-      "b": "identifierISBNElectronicMedia",
+      "b": "identifierISBNAddendum",
       "c": "identifierISBNOnline",
       "d": "identifierISBNPrint",
       "e": "identifierISBNOther"
@@ -3841,7 +3841,7 @@
     "IdentifierISBNParallel": {
       " ": "identifierISBN",
       "a": "identifierISBN",
-      "b": "identifierISBNElectronicMedia",
+      "b": "identifierISBNAddendum",
       "c": "identifierISBNOnline",
       "d": "identifierISBNPrint",
       "e": "identifierISBNOther"
