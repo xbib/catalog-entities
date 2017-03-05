@@ -3565,8 +3565,55 @@
     ]
   },
   "RecordFormat": {
+    "subfields": {
+      " ": "format"
+    },
     "tags": [
-      "FMT"
+      "_FORMAT"
+    ]
+  },
+  "RecordLeader": {
+    "codes": {
+      "23": {
+        "_predicate": "recordType",
+        "c": "Commentary record",
+        "h": "Main record",
+        "u": "Sub record",
+        "v": "Link record",
+        "y": "Sub record for divisions",
+        "p": "Person record",
+        "t": "Link record",
+        "k": "Corporate body record",
+        "w": "Link record",
+        "r": "Subject chain record",
+        "s": "Subject record",
+        "x": "Link record",
+        "q": "Notation record",
+        "l": "Main record",
+        "e": "Sub record",
+        "m": "Address record"
+      },
+      "5": {
+        "0": null,
+        "_predicate": "recordStatus",
+        "c": "Corrected or revised",
+        "d": "Deleted",
+        "n": "New",
+        "p": "Provisional",
+        "u": "Link",
+        "v": "Unchanged"
+      }
+    },
+    "tags": [
+      "_LEADER"
+    ]
+  },
+  "RecordType": {
+    "subfields": {
+      " ": "type"
+    },
+    "tags": [
+      "_TYPE"
     ]
   },
   "RecordIdentifier": {
@@ -3661,11 +3708,6 @@
       "010": "RecordIdentifierParent"
     }
   },
-  "RecordLabel": {
-    "tags": [
-      "LDR"
-    ]
-  },
   "RecordLocalOwner": {
     "subfields": {
       "a": "localOwner"
@@ -3680,11 +3722,6 @@
     },
     "tags": [
       "SYS"
-    ]
-  },
-  "RecordType": {
-    "tags": [
-      "_TYPE"
     ]
   },
   "Register": {
