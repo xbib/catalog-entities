@@ -19,7 +19,8 @@ public class RecordFormat extends CatalogEntity {
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
-        worker.getWorkerState().setFormat(value.trim());
+        worker.getWorkerState().setFormat(value);
+        worker.getWorkerState().getResource().newResource("RecordFormat").add("value", value);
         return null; // done, no more analysis
     }
 }

@@ -19,8 +19,8 @@ public class RecordType extends CatalogEntity {
     @Override
     public CatalogEntity transform(CatalogEntityWorker worker, MarcField field) throws IOException {
         String value = getValue(field);
-        worker.getWorkerState().setType(value.trim());
+        worker.getWorkerState().setType(value);
+        worker.getWorkerState().getResource().newResource("RecordType").add("value", value);
         return null; // done, no more analysis
     }
-
 }

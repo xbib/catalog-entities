@@ -1919,6 +1919,7 @@
       "957",
       "987",
       "A30",
+      "FMT",
       "H00",
       "H04",
       "H05",
@@ -1933,6 +1934,7 @@
       "K03",
       "K04",
       "K05",
+      "LDR",
       "P01",
       "P02",
       "P03",
@@ -3566,7 +3568,7 @@
   },
   "RecordFormat": {
     "subfields": {
-      " ": "format"
+      " ": "value"
     },
     "tags": [
       "_FORMAT"
@@ -3575,6 +3577,8 @@
   "RecordLeader": {
     "codes": {
       "23": {
+        "0": null,
+        " ": null,
         "_predicate": "recordType",
         "c": "Commentary record",
         "h": "Main record",
@@ -3595,6 +3599,7 @@
       },
       "5": {
         "0": null,
+        " ": null,
         "_predicate": "recordStatus",
         "c": "Corrected or revised",
         "d": "Deleted",
@@ -3610,7 +3615,7 @@
   },
   "RecordType": {
     "subfields": {
-      " ": "type"
+      " ": "value"
     },
     "tags": [
       "_TYPE"

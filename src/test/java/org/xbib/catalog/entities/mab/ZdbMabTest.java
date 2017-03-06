@@ -50,7 +50,6 @@ public class ZdbMabTest {
                 }
             };
 
-
     @Test
     public void testZDBMAB() throws IOException {
         Settings settings = Settings.settingsBuilder()

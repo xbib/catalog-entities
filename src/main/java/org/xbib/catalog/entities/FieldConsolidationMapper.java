@@ -62,10 +62,13 @@ public class FieldConsolidationMapper {
                 }
             }
         }
+        // push new values
         for (Map.Entry<String, List<String>> entry : result.entrySet()) {
             Resource resource = root;
             // split name e.g. "dc.date" --> "dc", "date"
             String name = entry.getKey();
+            // find the values that already exists to avoid double values
+            List<Node> list = find(root, name);
             String[] path = name.split("\\.");
             if (path.length > 1) {
                 for (int i = 0; i < path.length - 1; i++) {
@@ -76,7 +79,9 @@ public class FieldConsolidationMapper {
             IRI predicate = IRI.builder().path(name).build();
             for (String value : entry.getValue()) {
                 Literal literal = new DefaultLiteral(value).type(Literal.STRING);
-                resource.add(predicate, literal);
+                if (!list.contains(literal)) {
+                    resource.add(predicate, literal);
+                }
             }
         }
     }

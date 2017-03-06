@@ -1,6 +1,8 @@
 package org.xbib.catalog.entities;
 
+import static org.xbib.catalog.entities.CatalogEntitySpecification.FORMAT;
 import static org.xbib.catalog.entities.CatalogEntitySpecification.LEADER;
+import static org.xbib.catalog.entities.CatalogEntitySpecification.TYPE;
 
 import org.xbib.content.rdf.Resource;
 import org.xbib.content.resource.IRI;
@@ -85,6 +87,8 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
         if (entityBuilder.isEnableChecksum()) {
             crc32.reset();
         }
+        buildFormat(marcRecord.getFormat());
+        buildType(marcRecord.getType());
         build(marcRecord.getRecordLabel());
         for (MarcField marcField : marcRecord.getFields()) {
             build(marcField);
@@ -97,13 +101,24 @@ public class CatalogEntityWorker implements Worker<MarcRecord> {
         entityBuilder.getCounter().incrementAndGet();
     }
 
+    public void buildFormat(String format) throws IOException {
+        CatalogEntity entity = entityBuilder.getEntitySpecification().retrieveFormat();
+        if (entity != null) {
+            entity.transform(this, MarcField.builder().tag(FORMAT).value(format).build());
+        }
+    }
+
+    public void buildType(String format) throws IOException {
+        CatalogEntity entity = entityBuilder.getEntitySpecification().retrieveType();
+        if (entity != null) {
+            entity.transform(this, MarcField.builder().tag(TYPE).value(format).build());
+        }
+    }
+
     public void build(RecordLabel recordLabel) throws IOException {
-        CatalogEntity entity = entityBuilder.getEntitySpecification().retrieve(recordLabel);
+        CatalogEntity entity = entityBuilder.getEntitySpecification().retrieveLeader();
         if (entity != null) {
             entity.transform(this, MarcField.builder().tag(LEADER).value(recordLabel.toString()).build());
-        }
-        if (logger.isLoggable(Level.FINE)) {
-            logger.log(Level.FINE, "recordLabel=" + recordLabel + " entity=" + entity);
         }
     }
 

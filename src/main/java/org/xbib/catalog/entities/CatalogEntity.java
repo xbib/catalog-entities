@@ -94,7 +94,7 @@ public class CatalogEntity {
         if (marcField.getValue() != null) {
             return marcField.getValue();
         } else {
-            return marcField.getSubfields().getLast().getValue();
+            return marcField.getSubfields().isEmpty() ? null : marcField.getSubfields().getLast().getValue();
         }
     }
 }

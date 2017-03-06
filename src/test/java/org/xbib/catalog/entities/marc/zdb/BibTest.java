@@ -159,13 +159,11 @@ public class BibTest {
             RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
             builder.receive(state.getResource());
             String content = params.getGenerator().get();
-            /*Path path = Paths.get(state.getRecordIdentifier() + ".json");
-            try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+            /*try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".json"))) {
                 writer.write(content);
             }*/
-            InputStream inputStream = getClass().getResource(state.getRecordIdentifier() + ".json").openStream();
             assertStream("" + state.getRecordIdentifier(),
-                    inputStream,
+                    getClass().getResource(state.getRecordIdentifier() + ".json").openStream(),
                     new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
         }
     }
@@ -180,13 +178,12 @@ public class BibTest {
         protected void afterFinishState(CatalogEntityWorkerState state) throws IOException {
             RouteRdfXContentParams params = new RouteRdfXContentParams();
             params.setHandler((content, i) -> {
-                /*Path path = Paths.get(state.getRecordIdentifier() + ".route.json");
-                try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+                /*
+                try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".route.json"))) {
                     writer.write(content);
                 }*/
-                InputStream inputStream = getClass().getResource(state.getRecordIdentifier() + ".route.json").openStream();
                 assertStream("" + state.getRecordIdentifier(),
-                        inputStream,
+                        getClass().getResource(state.getRecordIdentifier() + ".route.json").openStream(),
                         new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
             });
             RdfContentBuilder<RouteRdfXContentParams> builder = routeRdfXContentBuilder(params);

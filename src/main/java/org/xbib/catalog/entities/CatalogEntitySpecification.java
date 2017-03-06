@@ -23,6 +23,10 @@ public class CatalogEntitySpecification {
 
     private static final Logger logger = Logger.getLogger(CatalogEntitySpecification.class.getName());
 
+    static final String FORMAT = "_FORMAT";
+
+    static final String TYPE = "_TYPE";
+
     static final String LEADER = "_LEADER";
 
     private final Map<String, CatalogEntity> map;
@@ -140,7 +144,15 @@ public class CatalogEntitySpecification {
         return retrieve(marcField.toTagKey());
     }
 
-    public CatalogEntity retrieve(RecordLabel recordLabel) {
+    public CatalogEntity retrieveFormat() {
+        return map.get(FORMAT);
+    }
+
+    public CatalogEntity retrieveType() {
+        return map.get(TYPE);
+    }
+
+    public CatalogEntity retrieveLeader() {
         return map.get(LEADER);
     }
 
