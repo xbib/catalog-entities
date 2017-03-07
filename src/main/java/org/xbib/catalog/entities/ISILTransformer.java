@@ -49,7 +49,7 @@ public class ISILTransformer implements MarcValueTransformer {
     @SuppressWarnings("unchecked")
     public void createTransformer(Settings settings, MarcValueTransformers marcValueTransformers) throws IOException {
         String resource = settings.get("transform2isil");
-        List<String> transform2isil = resource.endsWith(".json") ?
+        List<String> transform2isil = resource != null && resource.endsWith(".json") ?
                 new ObjectMapper().readValue(getClass().getClassLoader().getResource(resource).openStream(), List.class) :
                 Arrays.asList(settings.getAsArray("transform2isil"));
         logger.log(Level.INFO, () -> MessageFormat.format("transform2isil: {0}", transform2isil.size()));

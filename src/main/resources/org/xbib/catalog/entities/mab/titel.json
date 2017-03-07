@@ -3579,12 +3579,15 @@
       "23": {
         "0": null,
         " ": null,
+        "|": null,
         "_predicate": "recordType",
+        "a": null,
         "c": "Commentary record",
         "h": "Main record",
         "u": "Sub record",
         "v": "Link record",
         "y": "Sub record for divisions",
+        "n": null,
         "p": "Person record",
         "t": "Link record",
         "k": "Corporate body record",
@@ -3600,6 +3603,7 @@
       "5": {
         "0": null,
         " ": null,
+        "|": null,
         "_predicate": "recordStatus",
         "c": "Corrected or revised",
         "d": "Deleted",

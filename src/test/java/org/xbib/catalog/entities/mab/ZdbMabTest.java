@@ -94,7 +94,8 @@ public class ZdbMabTest {
             /*try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".json"))) {
                 writer.write(content);
             }*/
-            assertStream(state.getRecordIdentifier(), getClass().getResource("zdb/" + state.getRecordIdentifier() + ".json").openStream(),
+            assertStream(state.getRecordIdentifier(),
+                    getClass().getResource("zdb/" + state.getRecordIdentifier() + ".json").openStream(),
                     new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
         }
     }
