@@ -178,8 +178,7 @@ public class BibTest {
         protected void afterFinishState(CatalogEntityWorkerState state) throws IOException {
             RouteRdfXContentParams params = new RouteRdfXContentParams();
             params.setHandler((content, i) -> {
-                /*
-                try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".route.json"))) {
+                /*try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".route.json"))) {
                     writer.write(content);
                 }*/
                 assertStream("" + state.getRecordIdentifier(),

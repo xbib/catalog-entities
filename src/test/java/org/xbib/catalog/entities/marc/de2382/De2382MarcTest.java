@@ -84,13 +84,11 @@ public class De2382MarcTest {
             builder.receive(state.getResource());
             String content = params.getGenerator().get();
             if (content != null) {
-                /*Path path = Paths.get(state.getRecordIdentifier() + ".json");
-                try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+                /*try (BufferedWriter writer = Files.newBufferedWriter( Paths.get(state.getRecordIdentifier() + ".json"))) {
                     writer.write(content);
                 }*/
-                InputStream inputStream = getClass().getResource(state.getRecordIdentifier() + ".json").openStream();
                 assertStream("" + state.getRecordIdentifier(),
-                        inputStream,
+                        getClass().getResource(state.getRecordIdentifier() + ".json").openStream(),
                         new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
             }
         }

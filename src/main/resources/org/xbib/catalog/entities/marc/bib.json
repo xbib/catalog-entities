@@ -59,10 +59,10 @@
       "z": "tableIdentification"
     },
     "DDC": {
-      "2": "editionNumber",
+      "2": "type",
       "6": null,
       "8": "sequenceNumber",
-      "a": "classificationNumber",
+      "a": "ddc",
       "b": "itemNumber",
       "m": "designation",
       "q": "agency"
@@ -70,14 +70,6 @@
     "LCCN": {
       "a": "classificationNumber",
       "b": "itemNumber"
-    },
-    "NBN": {
-      "2": "type",
-      "6": null,
-      "8": "sequenceNumber",
-      "a": "classificationNumber",
-      "b": "itemNumber",
-      "q": "agency"
     },
     "NLM": {
       "a": "classificationNumber",
@@ -205,7 +197,7 @@
       "080": "UDC",
       "082": "DDC",
       "083": "DDC",
-      "084": "NBN",
+      "084": "DDC",
       "085": "ClassificationNumber",
       "086": "OfficialClassificationNumber"
     },
