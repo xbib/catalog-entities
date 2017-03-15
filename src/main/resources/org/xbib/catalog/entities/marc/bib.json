@@ -829,6 +829,15 @@
       "033"
     ]
   },
+  "FormOfWork": {
+    "subfields": {
+      "9": "number",
+      "a": "formOfWork"
+    },
+    "tags": [
+      "380"
+    ]
+  },
   "FormattedContentsNote": {
     "subfields": {
       "6": null,
@@ -3700,6 +3709,8 @@
       "Azerbaidsch. Übers. von": "hasTranslation",
       "Baschkir. Ausg.": "hasLanguageEdition",
       "Bearb. Ausg.": "hasDerivedEdition",
+      "Beibl.": "hasPart",
+      "Beih.": "isSupplementOf",
       "Beih. zu": "isSupplementOf",
       "Beil zu": "isSupplementOf",
       "Beil. teils.": "isSupplementOf",
@@ -3863,6 +3874,7 @@
       "Druclausg.": "hasPrintEdition",
       "Dt Ausg.": "hasLanguageEdition",
       "Dt, Ausg.": "hasLanguageEdition",
+      "Dt. Ausg.": "hasLanguageEdition",
       "Dt.  Ausg.": "hasLanguageEdition",
       "Dt. Allein-Ausg.": "hasLanguageEdition",
       "Dt. Ausg": "hasLanguageEdition",
@@ -3898,7 +3910,7 @@
       "Dt. Ausg.u.d.T.:": "hasLanguageEdition",
       "Dt. Ausgabe": "hasLanguageEdition",
       "Dt. Ausgabe.": "hasLanguageEdition",
-      "Dt. Ausz.": "hasPart",
+      "Dt. Ausz.": "hasLanguageEdition",
       "Dt. Ausz. aus": "hasLanguageEdition",
       "Dt. Ausz. von": "hasLanguageEdition",
       "Dt. Auszug": "hasLanguageEdition",
@@ -3920,7 +3932,7 @@
       "Dt. Parallelausg.": "hasAdditionalEdition",
       "Dt. Sonderausg.": "isSupplementOf",
       "Dt. Sonderausg. zu": "hasLanguageEdition",
-      "Dt. Teilausg.": "hasPartialEdition",
+      "Dt. Teilausg.": "hasLanguageEdition",
       "Dt. Teilausg. zu": "isLanguageEditionOf",
       "Dt. Teilausgabe": "hasLanguageEdition",
       "Dt. Teilübers.": "hasLanguageEdition",
@@ -4096,7 +4108,7 @@
       "Ersch. auch unselbständig in": "hasAdditionalEdition",
       "Ersch. inhaltl. auch in": "hasAdditionalEdition",
       "Ersch. später in": "succeededBy",
-      "Ersch. teils zus. mit": "hasPartialEdition",
+      "Ersch. teils zus. mit": "hasAdditionalEdition",
       "Ersch. teilw. zugleich als": "hasAdditionalEdition",
       "Ersch. unselbst. in": "hasAdditionalEdition",
       "Ersch. zs mit": "isSupplementOf",
@@ -4393,6 +4405,7 @@
       "Sonderabdr.": "hasSupplement",
       "Sonderabdr. aus": "isSupplementOf",
       "Sonderausg.": "hasSupplement",
+      "Sonderbd.": "hasSupplement",
       "Sonderbeil.": "hasSupplement",
       "Sonderdr.": "hasSupplement",
       "Sonderdr. aus": "isSupplementOf",
@@ -4512,25 +4525,19 @@
     },
     "relationpattern": [
       {
+        "CD\\-ROM.*": "hasCDEdition"
+      },
+      {
         "Vorg..*u. Forts.": "hasTransientEdition"
       },
       {
         "Vorg. u\\..*": "precededBy"
       },
       {
-        ".* u. Forts.": "succeededBy"
+        ".* u\\. Forts\\.": "succeededBy"
       },
       {
-        ".*Beil. zu": "isSupplementOf"
-      },
-      {
-        ".*Beil.*": "hasSupplement"
-      },
-      {
-        ".*Suppl.*": "hasSupplement"
-      },
-      {
-        ".*Anhang.*": "hasSupplement"
+        ".*Anh.*": "hasSupplement"
       },
       {
         ".*Annex.*": "hasSupplement"
@@ -4539,13 +4546,25 @@
         ".*Appendix.*": "hasSupplement"
       },
       {
+        ".*Beil\\. zu": "isSupplementOf"
+      },
+      {
+        ".*Beil.*": "hasSupplement"
+      },
+      {
         ".*Beiheft.*": "hasSupplement"
+      },
+      {
+        ".*Companion vol.*": "hasSupplement"
       },
       {
         ".*Extra.*": "hasSupplement"
       },
       {
         ".*Nachtrag.*": "hasSupplement"
+      },
+      {
+        ".*Reg.*": "hasSupplement"
       },
       {
         ".*Sonderband.*": "hasSupplement"
@@ -4557,19 +4576,25 @@
         ".*Sonderbericht.*": "hasSupplement"
       },
       {
-        ".*Sonderdruck.*": "hasSupplement"
+        ".*Sonderdr.*": "hasSupplement"
       },
       {
         ".*Sonderheft.*": "hasSupplement"
       },
       {
-        ".*Special edition.*": "hasSupplement"
+        ".*Sondernr.*": "hasSupplement"
+      },
+      {
+        ".*Special ed.*": "hasSupplement"
       },
       {
         ".*Spezial zu.*": "isSupplementOf"
       },
       {
         ".*Spezial.*": "hasSupplement"
+      },
+      {
+        ".*Suppl.*": "hasSupplement"
       },
       {
         ".*\\d{4}.*\\s*von$": "isPartOf"
@@ -4725,6 +4750,17 @@
       "583": "ActionNote",
       "591": "LocalNote"
     }
+  },
+  "NumericDesignationOfMusicalWork": {
+    "subfields": {
+      "a": "serialNumber",
+      "b": "opusNumber",
+      "c": "thematicIndexNumber",
+      "e": "publisher"
+    },
+    "tags": [
+      "383"
+    ]
   },
   "PersonalName": {
     "subfields": {
@@ -5746,6 +5782,7 @@
       "Mutmaßl. Forts.": "succeededBy",
       "Nachfolger u. Druckausg.": "succeededBy",
       "Nachtrag in": "succeededBy",
+      "Nachtr.": "succeededBy",
       "Neuaufl.": "succeededBy",
       "Neue Aufl.": "succeededBy",
       "Online-Ausg.": "hasOnlineEdition",
