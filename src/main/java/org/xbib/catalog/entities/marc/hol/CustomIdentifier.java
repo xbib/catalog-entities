@@ -37,10 +37,10 @@ public class CustomIdentifier extends CatalogEntity {
         } else {
             if ("type".equals(property)) {
                 if ("IdentifierZDB".equals(value)) {
-                    String v = worker.getWorkerState().getScratch().get("value");
+                    String v = (String) worker.getWorkerState().getScratch().get("value");
                     resource.add("identifierZDB", v.replaceAll("\\-", "").toLowerCase());
                 } else if ("IdentifierDNB".equals(value)) {
-                    String v = worker.getWorkerState().getScratch().get("value");
+                    String v = (String) worker.getWorkerState().getScratch().get("value");
                     resource.add("identifierDNB", v.replaceAll("\\-", "").toLowerCase());
                 }
                 return null;

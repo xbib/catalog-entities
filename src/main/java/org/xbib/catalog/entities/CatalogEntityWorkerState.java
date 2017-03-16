@@ -42,7 +42,7 @@ public class CatalogEntityWorkerState {
 
     private final Map<String, Sequence<Resource>> sequences;
 
-    private final Map<String, String> scratch;
+    private final Map<String, Object> scratch;
 
     private final String packageName;
 
@@ -205,7 +205,7 @@ public class CatalogEntityWorkerState {
         return sequences;
     }
 
-    public Map<String, String> getScratch() {
+    public Map<String, Object> getScratch() {
         return scratch;
     }
 
