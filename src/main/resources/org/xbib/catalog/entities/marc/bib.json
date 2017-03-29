@@ -81,7 +81,8 @@
     },
     "OtherClassificationNumber": {
       "2": "type",
-      "a": "classificationNumber"
+      "a": "classificationNumber",
+      "q": "agency"
     },
     "UDC": {
       "a": "classificationNumber",
