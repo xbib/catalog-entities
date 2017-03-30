@@ -213,17 +213,11 @@ public class MarcXchangeJSONLinesReader implements Closeable {
     }
 
     private void emitRecord() {
-        if (format != null || type != null) {
-            if (format != null && type != null) {
-                listener.beginRecord(format, type);
-                format = null;
-                type = null;
-            }
-        }
-        if (leader != null) {
-            listener.leader(leader);
-            leader = null;
-        }
+        listener.beginRecord(format, type);
+        format = null;
+        type = null;
+        listener.leader(leader);
+        leader = null;
         List<MarcField> marcFields = marcFieldTransformers != null ?
                 marcFieldTransformers.transform(marcFieldList) : marcFieldList;
         for (MarcField field : marcFields) {

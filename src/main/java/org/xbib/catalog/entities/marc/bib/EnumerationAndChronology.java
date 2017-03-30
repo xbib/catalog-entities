@@ -48,12 +48,12 @@ public class EnumerationAndChronology extends CatalogEntity {
         for (MarcField.Subfield subfield : field.getSubfields()) {
             if ("a".equals(subfield.getId())) {
                 worker.getWorkerState().getResource().add("TextualEnumerationAndChronology", subfield.getValue());
-                Resource r = worker.getWorkerState().getResource().newResource("EnumerationAndChronology");
-                Resource parsedHoldings = eac.parseToResource(subfield.getValue(), r);
-                if (!parsedHoldings.isEmpty()) {
-                    Set<Integer> dates = eac.dates(parsedHoldings);
+                Resource resource = worker.getWorkerState().getResource().newResource("EnumerationAndChronology");
+                Resource enumerationAndChronology = eac.parseToResource(subfield.getValue(), resource);
+                if (!enumerationAndChronology.isEmpty()) {
+                    Set<Integer> dates = eac.dates(enumerationAndChronology);
                     for (Integer date : dates) {
-                        worker.getWorkerState().getResource().add("Dates", date);
+                        resource.add("dates", date);
                     }
                 }
             }

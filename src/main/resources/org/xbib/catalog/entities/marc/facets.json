@@ -1,5 +1,5 @@
 {
-  "dc.type": "type",
+  "dc.type": "RecordLeader.resourceType",
   "dc.format": "RecordLeader.typeOfRecord",
   "dc.date": "GeneralInformation.date1",
   "dc.language": "GeneralInformation.language",
