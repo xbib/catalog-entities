@@ -23,9 +23,13 @@ public class SkipFields {
 
     private static final String SKIP_FIELDS = "skip_fields";
 
+    private static final String SKIP_INDICATORS = "skip_indicators";
+
     private static final String SKIP_SUBFIELDS = "skip_subfields";
 
     private final List<String> skipFields;
+
+    private final List<String> skipIndicators;
 
     private final List<String> skipSubfields;
 
@@ -35,12 +39,19 @@ public class SkipFields {
         this.skipFields = resource != null && resource.endsWith(JSON) ?
                 new ObjectMapper().readValue(getClass().getClassLoader().getResource(resource).openStream(), List.class) :
                 Arrays.asList(settings.getAsArray(SKIP_FIELDS));
+
+        resource = settings.get(SKIP_INDICATORS);
+        this.skipIndicators = resource != null && resource.endsWith(JSON) ?
+                new ObjectMapper().readValue(getClass().getClassLoader().getResource(resource).openStream(), List.class) :
+                Arrays.asList(settings.getAsArray(SKIP_INDICATORS));
+
         resource = settings.get(SKIP_SUBFIELDS);
         this.skipSubfields = resource != null && resource.endsWith(JSON) ?
                 new ObjectMapper().readValue(getClass().getClassLoader().getResource(resource).openStream(), List.class) :
                 Arrays.asList(settings.getAsArray(SKIP_SUBFIELDS));
-        logger.log(Level.INFO, () -> MessageFormat.format("skip fields: {0} skip subfields: {1}",
-                skipFields.size(), skipSubfields.size()));
+
+        logger.log(Level.INFO, () -> MessageFormat.format("skip: fields: {0} indicators: {1} subfields: {2}",
+                skipFields.size(), skipIndicators.size(), skipSubfields.size()));
     }
 
     public void createFieldTransformers(MarcFieldTransformers marcFieldTransformers) {
@@ -51,12 +62,18 @@ public class SkipFields {
                 .drop(skipFields)
                 .build();
         marcFieldTransformers.add(t0);
-        // remove superfluous tags with subfields
+        // remove superfluous tags with indicators
         MarcFieldTransformer t1 = MarcFieldTransformer.builder()
                 .operator(MarcFieldTransformer.Operator.HEAD)
                 .ignoreSubfieldIds()
-                .drop(skipSubfields)
+                .drop(skipIndicators)
                 .build();
         marcFieldTransformers.add(t1);
+        // remove superfluous tags with subfields
+        MarcFieldTransformer t2 = MarcFieldTransformer.builder()
+                .operator(MarcFieldTransformer.Operator.HEAD)
+                .drop(skipSubfields)
+                .build();
+        marcFieldTransformers.add(t2);
     }
 }

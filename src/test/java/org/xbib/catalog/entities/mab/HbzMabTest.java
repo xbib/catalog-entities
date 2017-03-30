@@ -89,7 +89,7 @@ public class HbzMabTest {
                 .put("transform2isil", "org/xbib/catalog/entities/mab/transform2isil.json")
                 .put("error_fields", "org/xbib/catalog/entities/mab/error_fields.json")
                 .put("skip_fields", "org/xbib/catalog/entities/mab/skip_fields.json")
-                .put("skip_subfields", "org/xbib/catalog/entities/mab/skip_subfields.json")
+                .put("skip_indicators", "org/xbib/catalog/entities/mab/skip_indicators.json")
                 .put("transform_fields", "org/xbib/catalog/entities/mab/transform_fields.json")
                 .put("transform_subfields", "org/xbib/catalog/entities/mab/transform_subfields.json")
                 .put("transform_subfields_tail", "org/xbib/catalog/entities/mab/transform_subfields_tail.json")
