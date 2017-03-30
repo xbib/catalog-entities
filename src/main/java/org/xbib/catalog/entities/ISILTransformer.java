@@ -1,6 +1,7 @@
 package org.xbib.catalog.entities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.xbib.catalog.entities.mab.Identifier;
 import org.xbib.content.settings.Settings;
 import org.xbib.marc.transformer.value.MarcValueTransformer;
 import org.xbib.marc.transformer.value.MarcValueTransformers;
@@ -56,5 +57,9 @@ public class ISILTransformer implements MarcValueTransformer {
         for (String field : transform2isil) {
             marcValueTransformers.setMarcValueTransformer(field, this);
         }
+    }
+
+    public IdentifierMapper getIdentifierMapper() {
+        return identifierMapper;
     }
 }

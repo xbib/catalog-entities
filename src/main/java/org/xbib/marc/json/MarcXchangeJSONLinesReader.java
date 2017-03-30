@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import org.xbib.marc.MarcField;
 import org.xbib.marc.MarcListener;
+import org.xbib.marc.transformer.field.MarcFieldTransformers;
 import org.xbib.marc.transformer.value.MarcValueTransformers;
 
 import java.io.BufferedReader;
@@ -21,6 +22,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Read MARC from JSON lines format.
@@ -47,6 +50,10 @@ public class MarcXchangeJSONLinesReader implements Closeable {
 
     private String leader;
 
+    private List<MarcField> marcFieldList;
+
+    private MarcFieldTransformers marcFieldTransformers;
+
     private MarcValueTransformers marcValueTransformers;
 
     public MarcXchangeJSONLinesReader(InputStream in) throws IOException {
@@ -69,11 +76,17 @@ public class MarcXchangeJSONLinesReader implements Closeable {
         this.reader = reader;
         this.listener = listener == null ? new EmptyListener() : listener;
         this.bufferSize = bufferSize;
+        this.marcFieldList = new ArrayList<>();
+    }
+
+    public void setMarcFieldTransformers(MarcFieldTransformers marcFieldTransformers) {
+        this.marcFieldTransformers = marcFieldTransformers;
     }
 
     public void setMarcValueTransformers(MarcValueTransformers marcValueTransformers) {
         this.marcValueTransformers = marcValueTransformers;
     }
+
 
     public void parse() throws IOException {
         try (BufferedReader bufferedReader = new BufferedReader(reader, bufferSize)) {
@@ -89,7 +102,7 @@ public class MarcXchangeJSONLinesReader implements Closeable {
             jsonParser.nextToken();
             marcFieldBuilder = MarcField.builder();
             parseRecord();
-            listener.endRecord();
+            emitRecord();
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
@@ -121,7 +134,7 @@ public class MarcXchangeJSONLinesReader implements Closeable {
                         break;
                 }
                 marcFieldBuilder.value(value);
-                emit();
+                emitField();
             }
             currentToken = jsonParser.nextToken();
         }
@@ -139,7 +152,7 @@ public class MarcXchangeJSONLinesReader implements Closeable {
                 } else if (currentToken.isScalarValue()) {
                     String value = jsonParser.getText();
                     marcFieldBuilder.value(value);
-                    emit();
+                    emitField();
                 }
                 currentToken = jsonParser.nextToken();
             }
@@ -152,7 +165,7 @@ public class MarcXchangeJSONLinesReader implements Closeable {
                 } else if (currentToken.isScalarValue()) {
                     String value = jsonParser.getText();
                     marcFieldBuilder.value(value);
-                    emit();
+                    emitField();
                 }
                 currentToken = jsonParser.nextToken();
             }
@@ -170,7 +183,7 @@ public class MarcXchangeJSONLinesReader implements Closeable {
                 String tag = marcFieldBuilder.tag();
                 String indicator = marcFieldBuilder.indicator();
                 parseSubfields();
-                emit();
+                emitField();
                 marcFieldBuilder = MarcField.builder().tag(tag).indicator(indicator);
             }
             currentToken = jsonParser.nextToken();
@@ -195,20 +208,29 @@ public class MarcXchangeJSONLinesReader implements Closeable {
         }
     }
 
-    private void emit() {
+    private void emitField() {
+        marcFieldList.add(marcFieldBuilder.build());
+    }
+
+    private void emitRecord() {
         if (format != null || type != null) {
             if (format != null && type != null) {
                 listener.beginRecord(format, type);
                 format = null;
                 type = null;
             }
-        } else if (leader != null) {
+        }
+        if (leader != null) {
             listener.leader(leader);
             leader = null;
-        } else {
-            MarcField marcField = marcFieldBuilder.build();
-            listener.field(marcValueTransformers != null ? marcValueTransformers.transformValue(marcField) : marcField);
         }
+        List<MarcField> marcFields = marcFieldTransformers != null ?
+                marcFieldTransformers.transform(marcFieldList) : marcFieldList;
+        for (MarcField field : marcFields) {
+            listener.field(marcValueTransformers != null ? marcValueTransformers.transformValue(field) : field);
+        }
+        marcFieldList = new ArrayList<>();
+        listener.endRecord();
     }
 
     @Override
