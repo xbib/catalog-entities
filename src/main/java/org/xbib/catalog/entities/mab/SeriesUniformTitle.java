@@ -12,11 +12,11 @@ import java.util.Map;
 /**
  *
  */
-public class SeriesAddedEntryUniformTitle extends CatalogEntity {
+public class SeriesUniformTitle extends CatalogEntity {
 
     private String prefix = "";
 
-    public SeriesAddedEntryUniformTitle(Map<String, Object> params) {
+    public SeriesUniformTitle(Map<String, Object> params) {
         super(params);
         if (params.containsKey("_prefix")) {
             this.prefix = params.get("_prefix").toString();

@@ -47,7 +47,8 @@ public class EnumerationAndChronology extends CatalogEntity {
         EnumerationAndChronologyHelper eac = new EnumerationAndChronologyHelper(id, field, getMovingwallPatterns());
         for (MarcField.Subfield subfield : field.getSubfields()) {
             if ("a".equals(subfield.getId())) {
-                worker.getWorkerState().getResource().add("TextualEnumerationAndChronology", subfield.getValue());
+                worker.getWorkerState().getResource().newResource("TextualEnumerationAndChronology")
+                        .add("value", subfield.getValue());
                 Resource resource = worker.getWorkerState().getResource().newResource("EnumerationAndChronology");
                 Resource enumerationAndChronology = eac.parseToResource(subfield.getValue(), resource);
                 if (!enumerationAndChronology.isEmpty()) {

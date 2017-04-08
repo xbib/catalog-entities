@@ -273,7 +273,8 @@
   "Comment": {
     "subfields": {
       " ": "comment",
-      "a": "comment"
+      "a": "comment",
+      "p": "prefix"
     },
     "tags": [
       "537"
@@ -1131,12 +1132,18 @@
       "a": "date",
       "b": "firstDate",
       "c": "lastDate",
+      "d": "date",
+      "f": "date",
+      "h": "date",
+      "i": "date",
       "p": "publicationDate",
       "q": "date",
-      "s": "date"
+      "s": "date",
+      "[": null
     },
     "tags": {
       "425": "Date",
+      "430": "DateOfWork",
       "426": "DateStatement",
       "674": "DateOther",
       "D25": "Date"
@@ -1153,10 +1160,12 @@
   "Description": {
     "DescriptionOfContent": {
       " ": "description",
+      "1": null,
       "6": "script",
       "Z": null,
       "a": "description",
       "b": "prefix",
+      "c": "description",
       "p": "prefix",
       "r": "comment",
       "s": "comment",
@@ -1180,10 +1189,13 @@
       "8": "link",
       "9": "identifier",
       "A": null,
+      "B": null,
       "E": null,
       "M": "description",
       "P": "prefix",
       "S": null,
+      "T": null,
+      "U": null,
       "a": "description",
       "b": "description",
       "c": "description",
@@ -1585,6 +1597,7 @@
   "ElectronicCarrier": {
     "subfields": {
       " ": "format",
+      "2": null,
       "3": null,
       "a": "format",
       "b": "extent",
@@ -1897,6 +1910,7 @@
       "901",
       "903",
       "904",
+      "905",
       "908",
       "909",
       "913",
@@ -1909,6 +1923,7 @@
       "929",
       "933",
       "934",
+      "936",
       "938",
       "939",
       "943",
@@ -1923,18 +1938,30 @@
       "H00",
       "H04",
       "H05",
+      "H06",
       "H10",
       "H11",
       "H12",
+      "H16",
       "H17",
       "H18",
+      "H23",
       "H24",
       "H29",
+      "J01",
       "K02",
       "K03",
       "K04",
       "K05",
+      "K06",
+      "K07",
+      "K08",
+      "K09",
+      "K10",
+      "K11",
+      "K12",
       "LDR",
+      "O01",
       "P01",
       "P02",
       "P03",
@@ -1977,6 +2004,8 @@
       "P40",
       "P41",
       "Q01",
+      "Q11",
+      "T00",
       "T01",
       "T02",
       "T03",
@@ -2608,14 +2637,20 @@
   },
   "LinkingEntry": {
     "subfields": {
+      "4": null,
       "6": null,
+      "8": null,
       "9": "identifier",
       "A": null,
+      "Z": null,
       "a": "author",
       "b": "addendum",
+      "c": "identifyingAddendum",
       "d": "publisherStatement",
+      "g": "part",
       "h": "physicalDescription",
       "i": "relation",
+      "k": "seriesStatement",
       "n": "note",
       "q": "sort",
       "t": "title",
@@ -2638,7 +2673,8 @@
       "780": "PrecedingEntry",
       "785": "SucceedingEntry",
       "786": "DataSourceEntry",
-      "787": "NonspecificRelationshipEntry"
+      "787": "NonspecificRelationshipEntry",
+      "G75": "OtherEditionEntry"
     }
   },
   "MediumOfPerformance": {
@@ -2675,7 +2711,10 @@
       "e": "setOrchestration",
       "f": "incipitText",
       "g": "incipitLatin",
-      "h": "incipitBar"
+      "h": "incipitBar",
+      "j": null,
+      "i": null,
+      "l": null
     },
     "MusicWorkCharacteristics": {
       "a": "opus",
@@ -2719,6 +2758,7 @@
       "8": "link",
       "9": "prefix",
       "A": null,
+      "X": null,
       "Z": "publicnote",
       "a": "hostname",
       "b": "accessnumber",
@@ -2815,7 +2855,8 @@
     },
     "subfields": {
       " ": "extent",
-      "a": "extent"
+      "a": "extent",
+      "S": null
     },
     "tags": [
       "434"
@@ -3206,6 +3247,7 @@
       "n": "numbering",
       "o": null,
       "p": "name",
+      "r": null,
       "s": "name",
       "t": "title",
       "u": "name",
@@ -3318,6 +3360,7 @@
     "subfields": {
       "a": "value",
       "b": "value",
+      "c": "value",
       "d": "value",
       "f": "value",
       "k": "value",
@@ -3343,6 +3386,7 @@
     "PublicationPlace": {
       " ": "printingPlace",
       "F": null,
+      "S": null,
       "0": "printingPlace",
       "6": "script",
       "a": "printingPlace",
@@ -3356,6 +3400,9 @@
       " ": "site",
       "6": "identifier",
       "9": "identifier",
+      "A": null,
+      "H": null,
+      "M": null,
       "a": "publicationPlace",
       "b": "distributionPlace",
       "c": "institutionPlace",
@@ -3444,6 +3491,7 @@
       "1": null,
       "9": "identifier",
       "H": "name",
+      "P": null,
       "U": "script",
       "V": null,
       "a": "name",
@@ -3745,6 +3793,7 @@
   "SecondaryForm": {
     "subfields": {
       " ": "secondaryForm",
+      "9": null,
       "a": "secondaryForm",
       "b": "secondaryForm",
       "p": "secondaryForm",
@@ -3780,10 +3829,11 @@
       "647": "SecondaryFormHoldingInstitutionOfMaster"
     }
   },
-  "SeriesAddedEntryUniformTitle": {
+  "SeriesUniformTitle": {
     "subfields": {
       " ": "title",
       "c": "addendum",
+      "k": null,
       "n": "number",
       "t": "title",
       "v": "volume",
@@ -3807,6 +3857,7 @@
       "b": "mediumOfRecording",
       "c": "playingSpeed",
       "d": "groove",
+      "f": "tapeConfiguration",
       "g": "playbackChannels",
       "h": "playbackCharacteristics"
     },
@@ -3878,11 +3929,15 @@
       " ": "identifierISBN",
       "-": null,
       "(": null,
+      "3": null,
+      "8": null,
       "a": "identifierISBN",
       "b": "identifierISBNAddendum",
       "c": "identifierISBNOnline",
       "d": "identifierISBNPrint",
-      "e": "identifierISBNOther"
+      "e": "identifierISBNOther",
+      "s": null,
+      "z": null
     },
     "IdentifierISBNParallel": {
       " ": "identifierISBN",
@@ -3928,6 +3983,7 @@
       " ": "identifierOther",
       "2": null,
       "a": "identifierOther",
+      "b": "identifierOther",
       "p": "identifierOther",
       "s": "identifierOther"
     },
@@ -3942,6 +3998,7 @@
     "subfields": {
       " ": "identifier",
       "0": null,
+      "A": null,
       "a": "identifier",
       "b": "identifier",
       "d": "identifier",
@@ -3992,6 +4049,7 @@
       "2": "source",
       "6": "script",
       "a": "subject",
+      "d": "subject",
       "x": "subject",
       "z": "subject"
     },
@@ -4005,6 +4063,7 @@
   "SubjectClassification": {
     "SubjectNWBIB": {
       " ": "subject",
+      "2": null,
       "a": "subject",
       "b": "subject",
       "c": "subject",
@@ -4071,7 +4130,9 @@
       "6": "script",
       "9": "identifier",
       "A": null,
+      "C": null,
       "D": null,
+      "O": null,
       "X": "comment",
       "a": "subject",
       "b": "subject",
@@ -4301,7 +4362,10 @@
       " ": "creatorStatement",
       ".": null,
       "A": null,
+      "G": null,
+      "H": null,
       "N": "creatorStatement",
+      "1": null,
       "6": "script",
       "9": null,
       "a": "creatorStatement",
@@ -4344,6 +4408,7 @@
       "9": null,
       "A": null,
       "B": null,
+      "C": null,
       "G": null,
       "H": null,
       "K": null,
@@ -4407,6 +4472,7 @@
       "a": "title",
       "b": null,
       "f": null,
+      "l": null,
       "p": null
     },
     "tags": {
@@ -5634,6 +5700,7 @@
       "t": "title",
       "u": "unit",
       "v": "qualifier",
+      "x": null,
       "z": "qualifier"
     },
     "tags": [

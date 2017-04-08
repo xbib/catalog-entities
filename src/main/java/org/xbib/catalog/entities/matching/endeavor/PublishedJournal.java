@@ -18,6 +18,8 @@ public class PublishedJournal implements Identifiable {
 
     private String publisherName;
 
+    private String publicationType;
+
     public PublishedJournal() {
     }
 
@@ -28,6 +30,11 @@ public class PublishedJournal implements Identifiable {
 
     public PublishedJournal publisherName(String publisherName) {
         this.publisherName = publisherName;
+        return this;
+    }
+
+    public PublishedJournal publicationType(String publicationType) {
+        this.publicationType = publicationType;
         return this;
     }
 
@@ -71,6 +78,9 @@ public class PublishedJournal implements Identifiable {
             }
             shortPublisherName = shortPublisherName.replaceAll("\\s", "");
             sb.append(shortPublisherName);
+        }
+        if (publicationType != null) {
+            sb.append(publicationType);
         }
         return sb.toString();
     }
