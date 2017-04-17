@@ -5,13 +5,13 @@ import org.xbib.catalog.entities.matching.string.EncoderException;
 import java.util.Collection;
 
 /**
- * A key consists of a list of elements which are added to this component.
+ * A composed key consists of a list of elements which are added to this component.
  * After adding, all elements are encoded for being
  * combined with other components into a cluster key.
  *
  * @param <T> type parameter
  */
-public interface Key<T> extends Collection<T> {
+public interface DomainKey<T> extends Collection<T> {
 
     /**
      * The cluster key component domain.

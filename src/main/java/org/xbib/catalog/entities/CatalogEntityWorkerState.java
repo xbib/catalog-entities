@@ -1,6 +1,7 @@
 package org.xbib.catalog.entities;
 
-import org.xbib.catalog.entities.matching.endeavor.AuthoredWork;
+import org.xbib.catalog.entities.matching.endeavor.AuthoredWorkKey;
+import org.xbib.catalog.entities.matching.endeavor.PublishedJournalKey;
 import org.xbib.content.rdf.Literal;
 import org.xbib.content.rdf.RdfContentBuilderProvider;
 import org.xbib.content.rdf.RdfGraph;
@@ -46,7 +47,9 @@ public class CatalogEntityWorkerState {
 
     private final String packageName;
 
-    private final AuthoredWork authoredWorkKey;
+    private final AuthoredWorkKey authoredWorkKey;
+
+    private final PublishedJournalKey journalKey;
 
     private String systemIdentifier;
 
@@ -75,14 +78,19 @@ public class CatalogEntityWorkerState {
         this.packageName = builder.getPackageName();
         this.facets = new HashMap<>();
         this.sequences = new HashMap<>();
-        this.authoredWorkKey = new AuthoredWork();
+        this.authoredWorkKey = new AuthoredWorkKey();
+        this.journalKey = new PublishedJournalKey();
         this.resourceType = new ArrayList<>();
         this.scratch = new LinkedHashMap<>();
         this.fieldConsolidationMapper = builder.getFieldConsolidationMapper();
     }
 
-    public AuthoredWork getAuthoredWorkKey() {
+    public AuthoredWorkKey getAuthoredWorkKey() {
         return authoredWorkKey;
+    }
+
+    public PublishedJournalKey getJournalKey() {
+        return journalKey;
     }
 
     public Map<String, Resource> getSerialsMap() {
@@ -93,27 +101,24 @@ public class CatalogEntityWorkerState {
         return builder.getMissingSerials();
     }
 
-    public CatalogEntityWorkerState setRecordLabel(String recordLabel) {
+    public void setRecordLabel(String recordLabel) {
         this.recordLabel = recordLabel;
-        return this;
     }
 
     public String getRecordLabel() {
         return recordLabel;
     }
 
-    public CatalogEntityWorkerState setRecordIdentifier(String recordIdentifier) {
+    public void setRecordIdentifier(String recordIdentifier) {
         this.recordIdentifier = recordIdentifier;
-        return this;
     }
 
     public String getRecordIdentifier() {
         return recordIdentifier;
     }
 
-    public CatalogEntityWorkerState addResourceType(String resourceType) {
+    public void addResourceType(String resourceType) {
         this.resourceType.add(resourceType);
-        return this;
     }
 
     public List<String> getResourceType() {
@@ -156,45 +161,40 @@ public class CatalogEntityWorkerState {
         return systemIdentifier;
     }
 
-    public CatalogEntityWorkerState setIdentifier(String identifier) {
+    public void setIdentifier(String identifier) {
         this.systemIdentifier = identifier;
-        return this;
     }
 
     public String getFormat() {
         return format;
     }
 
-    public CatalogEntityWorkerState setFormat(String format) {
+    public void setFormat(String format) {
         this.format = format;
-        return this;
     }
 
     public String getType() {
         return type;
     }
 
-    public CatalogEntityWorkerState setType(String type) {
+    public void setType(String type) {
         this.type = type;
-        return this;
     }
 
     public String getISIL() {
         return isil;
     }
 
-    public CatalogEntityWorkerState setISIL(String isil) {
+    public void setISIL(String isil) {
         this.isil = isil;
-        return this;
     }
 
     public IRI getUID() {
         return uid;
     }
 
-    public CatalogEntityWorkerState setUID(IRI uid) {
+    public void setUID(IRI uid) {
         this.uid = uid;
-        return this;
     }
 
     public Map<String, TermFacet> getFacets() {
@@ -302,9 +302,12 @@ public class CatalogEntityWorkerState {
             }
         }
 
-        // keys
-        if (getAuthoredWorkKey().isValidWork()) {
-            getResource().newResource("xbib").add("authoredWorkKey", getAuthoredWorkKey().createIdentifier());
+        // add match keys
+        if (authoredWorkKey.isValidKey()) {
+            getResource().newResource("xbib").add("authoredWorkKey", authoredWorkKey.createKey());
+        }
+        if (journalKey.isValidJournalKey()) {
+            getResource().newResource("xbib").add("journalKey", journalKey.createKey());
         }
 
         // field consolidation

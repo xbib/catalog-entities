@@ -1,7 +1,7 @@
 package org.xbib.catalog.entities.matching.title;
 
 import org.xbib.catalog.entities.matching.Domain;
-import org.xbib.catalog.entities.matching.Key;
+import org.xbib.catalog.entities.matching.DomainKey;
 import org.xbib.catalog.entities.matching.string.EncoderException;
 import org.xbib.catalog.entities.matching.string.SimpleEntropyEncoder;
 
@@ -15,7 +15,7 @@ import java.util.LinkedList;
  *
  */
 public class TitleKey extends AbstractCollection<String>
-        implements Key<String> {
+        implements DomainKey<String> {
 
     private final LinkedList<String> list = new LinkedList<>();
 

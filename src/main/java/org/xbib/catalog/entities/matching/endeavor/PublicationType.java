@@ -1,6 +1,7 @@
-package org.xbib.catalog.entities.matching;
+package org.xbib.catalog.entities.matching.endeavor;
 
-import org.xbib.catalog.entities.matching.endeavor.BibliographicType;
+import org.xbib.catalog.entities.matching.Domain;
+import org.xbib.catalog.entities.matching.DomainKey;
 
 import java.util.LinkedList;
 
@@ -9,7 +10,7 @@ import java.util.LinkedList;
  *
  */
 public class PublicationType extends LinkedList<BibliographicType>
-        implements Key<BibliographicType> {
+        implements DomainKey<BibliographicType> {
 
     private static final long serialVersionUID = 4758698943770255338L;
     private char delimiter = '/';

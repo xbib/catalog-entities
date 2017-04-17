@@ -15,7 +15,7 @@ import java.util.Collection;
  *
  * @param <T> type parameter
  */
-public interface CompositeKey<T> extends Collection<Key<T>> {
+public interface CompositeKey<T> extends Collection<DomainKey<T>> {
 
     /**
      * Encode cluster key as string or null.
@@ -41,14 +41,14 @@ public interface CompositeKey<T> extends Collection<Key<T>> {
      * @param domain the domain
      * @return the cluster key component
      */
-    Key<T> getComponent(Domain domain);
+    DomainKey<T> getComponent(Domain domain);
 
     /**
      * Update component.
      *
      * @param component component
      */
-    void update(Key<T> component);
+    void update(DomainKey<T> component);
 
     /**
      * Set or unset usable flag. This flag can invalidate the key, if the application

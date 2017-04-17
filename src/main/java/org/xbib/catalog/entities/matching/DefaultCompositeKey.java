@@ -15,12 +15,12 @@ import java.util.logging.Logger;
  * A composite key.
  * @param <T> type parameter
  */
-public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
+public class DefaultCompositeKey<T> extends AbstractCollection<DomainKey<T>>
         implements CompositeKey<T> {
 
     private static final Logger logger = Logger.getLogger(DefaultCompositeKey.class.getName());
 
-    private final List<Key<T>> list = new LinkedList<>();
+    private final List<DomainKey<T>> list = new LinkedList<>();
 
     /**
      * A delimiter.
@@ -49,12 +49,12 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
     }
 
     @Override
-    public boolean add(Key<T> component) {
+    public boolean add(DomainKey<T> component) {
         return list.add(component);
     }
 
     @Override
-    public Iterator<Key<T>> iterator() {
+    public Iterator<DomainKey<T>> iterator() {
         return list.iterator();
     }
 
@@ -88,9 +88,9 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
     }
 
     @Override
-    public void update(Key<T> component) {
+    public void update(DomainKey<T> component) {
         for (int i = 0; i < size(); i++) {
-            Key<T> segment = list.get(i);
+            DomainKey<T> segment = list.get(i);
             if (component.getDomain().equals(segment.getDomain())) {
                 list.set(i, component);
             }
@@ -98,8 +98,8 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
     }
 
     @Override
-    public Key<T> getComponent(Domain domain) {
-        for (Key<T> segment : this) {
+    public DomainKey<T> getComponent(Domain domain) {
+        for (DomainKey<T> segment : this) {
             if (domain.equals(segment.getDomain())) {
                 return segment;
             }
@@ -109,7 +109,7 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
 
     public boolean isUsable() {
         boolean anyusable = false;
-        for (Key<T> segment : this) {
+        for (DomainKey<T> segment : this) {
             anyusable = anyusable || segment.isUsable();
         }
         return anyusable;
@@ -153,7 +153,7 @@ public class DefaultCompositeKey<T> extends AbstractCollection<Key<T>>
     }
 
     private String encodeKey(StringBuilder sb) throws EncoderException {
-        for (Key<T> segment : this) {
+        for (DomainKey<T> segment : this) {
             if (segment.isUsable()) {
                 char segmentDelimiter = segment.getDelimiter();
                 segment.setDelimiter(delimiter);

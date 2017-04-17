@@ -20,9 +20,9 @@ import java.util.regex.Pattern;
 /**
  * A work created by an author.
  */
-public class AuthoredWork implements Identifiable {
+public class AuthoredWorkKey implements Key {
 
-    private static final Logger logger = Logger.getLogger(AuthoredWork.class.getName());
+    private static final Logger logger = Logger.getLogger(AuthoredWorkKey.class.getName());
 
     private static final Pattern p1 = Pattern.compile(".*Cover and Back matter.*", Pattern.CASE_INSENSITIVE);
 
@@ -39,17 +39,17 @@ public class AuthoredWork implements Identifiable {
     /* These work titles can not be work titles and are blacklisted */
     private static final Set<String> blacklist = readResource("work-blacklist.txt");
 
-    public AuthoredWork() {
+    public AuthoredWorkKey() {
     }
 
-    public AuthoredWork workName(CharSequence workName) {
+    public AuthoredWorkKey workName(CharSequence workName) {
         if (workName != null) {
             this.workName = new StringBuilder(workName);
         }
         return this;
     }
 
-    public AuthoredWork authorName(Collection<String> authorNames) {
+    public AuthoredWorkKey authorName(Collection<String> authorNames) {
         authorNames.forEach(this::authorName);
         return this;
     }
@@ -60,7 +60,7 @@ public class AuthoredWork implements Identifiable {
      * @param authorName author name
      * @return this
      */
-    public AuthoredWork authorName(String authorName) {
+    public AuthoredWorkKey authorName(String authorName) {
         if (authorName == null) {
             return this;
         }
@@ -102,7 +102,7 @@ public class AuthoredWork implements Identifiable {
         return this;
     }
 
-    public AuthoredWork authorNameWithForeNames(String lastName, String foreName) {
+    public AuthoredWorkKey authorNameWithForeNames(String lastName, String foreName) {
         if (foreName == null) {
             return authorName(lastName);
         }
@@ -135,7 +135,7 @@ public class AuthoredWork implements Identifiable {
      * @param initials initials
      * @return work author key
      */
-    public AuthoredWork authorNameWithInitials(String lastName, String initials) {
+    public AuthoredWorkKey authorNameWithInitials(String lastName, String initials) {
         String s = initials;
         if (s != null) {
             s = s.replaceAll("\\s+", "");
@@ -157,7 +157,7 @@ public class AuthoredWork implements Identifiable {
         return this;
     }
 
-    public AuthoredWork year(String year) {
+    public AuthoredWorkKey year(String year) {
         // searching for gregorian dates, clean all characters except the first four digits
         Matcher matcher = yearPattern.matcher(year);
         if (matcher.find()) {
@@ -166,7 +166,7 @@ public class AuthoredWork implements Identifiable {
         return this;
     }
 
-    public AuthoredWork chronology(String chronology) {
+    public AuthoredWorkKey chronology(String chronology) {
         if (chronology != null) {
             if (this.chronology == null) {
                 this.chronology = new StringBuilder();
@@ -177,11 +177,8 @@ public class AuthoredWork implements Identifiable {
     }
 
     @Override
-    public String createIdentifier() {
+    public String createKey() {
         if (workName == null || workName.length() == 0) {
-            return null;
-        }
-        if (!isValidWork()) {
             return null;
         }
         String wName = BaseformEncoder.normalizedFromUTF8(workName.toString())
@@ -212,7 +209,7 @@ public class AuthoredWork implements Identifiable {
         return sb.toString();
     }
 
-    public boolean isValidWork() {
+    public boolean isValidKey() {
         if (workName == null) {
             return false;
         }
@@ -235,7 +232,7 @@ public class AuthoredWork implements Identifiable {
     }
 
     private static Set<String> readResource(String resource) {
-        URL url = AuthoredWork.class.getResource(resource);
+        URL url = AuthoredWorkKey.class.getResource(resource);
         Set<String> set = new LinkedHashSet<>();
         if (url != null) {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(),

@@ -1,8 +1,7 @@
 package org.xbib.catalog.entities.matching.structure;
 
 import org.xbib.catalog.entities.matching.Domain;
-import org.xbib.catalog.entities.matching.Key;
-import org.xbib.catalog.entities.matching.name.NameKey;
+import org.xbib.catalog.entities.matching.DomainKey;
 
 import java.util.LinkedHashSet;
 
@@ -22,7 +21,7 @@ import java.util.LinkedHashSet;
  *
  */
 public class MemberComponent extends LinkedHashSet<String>
-        implements Key<String> {
+        implements DomainKey<String> {
 
     private static final long serialVersionUID = -7488832334746656547L;
     private char delimiter = '/';

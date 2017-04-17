@@ -2,7 +2,7 @@ package org.xbib.catalog.entities.marc.nlz;
 
 import org.xbib.catalog.entities.CatalogEntity;
 import org.xbib.catalog.entities.CatalogEntityWorker;
-import org.xbib.catalog.entities.matching.endeavor.AuthoredWork;
+import org.xbib.catalog.entities.matching.endeavor.AuthoredWorkKey;
 import org.xbib.content.rdf.Resource;
 import org.xbib.content.resource.IRI;
 
@@ -65,9 +65,9 @@ public class Title extends CatalogEntity {
             String cleanTitle = value.replaceAll("\\p{C}", "")
                     .replaceAll("\\p{Space}", "")
                     .replaceAll("\\p{Punct}", "");
-            AuthoredWork authoredWorkKey = worker.getWorkerState().getAuthoredWorkKey();
-            if (!authoredWorkKey.isBlacklisted(value)) {
-                authoredWorkKey.workName(cleanTitle);
+            AuthoredWorkKey authoredWorkKeyKey = worker.getWorkerState().getAuthoredWorkKey();
+            if (!authoredWorkKeyKey.isBlacklisted(value)) {
+                authoredWorkKeyKey.workName(cleanTitle);
                 r.a(type);
                 r.add(DC_TITLE, s);
             } else {

@@ -10,33 +10,33 @@ public class WorkAuthorTest extends Assert {
 
     @Test
     public void test() throws Exception {
-        assertFalse(new AuthoredWork().blacklist().isEmpty());
+        assertFalse(new AuthoredWorkKey().blacklist().isEmpty());
     }
 
     @Test
     public void testAuthor() throws Exception {
-        String workAuthor = new AuthoredWork().authorName("Jörg Prante")
-                .workName("Hello World").createIdentifier();
+        String workAuthor = new AuthoredWorkKey().authorName("Jörg Prante")
+                .workName("Hello World").createKey();
         assertEquals(workAuthor, "wHeoWrD.aPranteJ");
     }
 
     @Test
     public void testAuthorForeName() throws Exception {
-        String workAuthor = new AuthoredWork().authorNameWithForeNames("Prante", "Jörg")
-                .workName("Hello World").createIdentifier();
+        String workAuthor = new AuthoredWorkKey().authorNameWithForeNames("Prante", "Jörg")
+                .workName("Hello World").createKey();
         assertEquals(workAuthor, "wHeoWrD.aPranteJ");
     }
 
     @Test
     public void testAuthorInitials() throws Exception {
-        String workAuthor = new AuthoredWork().authorNameWithInitials("Prante", "J")
-                .workName("Hello World").createIdentifier();
+        String workAuthor = new AuthoredWorkKey().authorNameWithInitials("Prante", "J")
+                .workName("Hello World").createKey();
         assertEquals(workAuthor, "wHeoWrD.aPranteJ");
     }
 
     @Test
     public void testMedline() throws Exception {
-        String workAuthor = new AuthoredWork()
+        String workAuthor = new AuthoredWorkKey()
                 .workName("Critical involvement of macrophage infiltration in the "
                         + "development of sjögren's syndrome-associated dry eye")
                 .authorNameWithForeNames("Zhou", "Delou")
@@ -49,60 +49,60 @@ public class WorkAuthorTest extends Assert {
                 .authorNameWithForeNames("van Rooijen", "Nico")
                 .authorNameWithForeNames("McNamara", "Nancy A")
                 .chronology("2012")
-                .createIdentifier();
+                .createKey();
         assertEquals(workAuthor, "wCOMphgTDSjdE.aZuDYFgpMvjsTrAfLRN.2012");
     }
 
     @Test
     public void testMedline2() throws Exception {
-        String workAuthor = new AuthoredWork()
+        String workAuthor = new AuthoredWorkKey()
                 .workName("Ethics, Professionalism, and Rheumatology")
                 .authorNameWithForeNames("Romain", "Paul L")
                 .authorNameWithForeNames("Dorff", "Elliot N")
                 .authorNameWithForeNames("Rajbhandary", "Rosy")
                 .authorNameWithForeNames("Panush", "Richard S")
                 .chronology("2013")
-                .createIdentifier();
+                .createKey();
         assertEquals(workAuthor, "wEthcPrfenalmAdRugY.aomiPldfEjbhypusS.2013");
 
-        workAuthor = new AuthoredWork()
+        workAuthor = new AuthoredWorkKey()
                 .workName("Ethics, Professionalism, and Rheumatology")
                 .authorNameWithForeNames("Paul L. Romain", null)
                 .authorNameWithForeNames("Elliot Dorff", null)
                 .authorNameWithForeNames("Rosy Rajbhandary", null)
                 .authorNameWithForeNames("Richard S. Panush", null)
                 .chronology("2013")
-                .createIdentifier();
+                .createKey();
         assertEquals(workAuthor, "wEthcPrfenalmAdRugY.aomiPldfEjbhypusS.2013");
 
-        workAuthor = new AuthoredWork()
+        workAuthor = new AuthoredWorkKey()
                 .workName("Ethics, Professionalism, and Rheumatology")
                 .authorName("Paul L. Romain")
                 .authorName("Elliot Dorff")
                 .authorName("Rosy Rajbhandary")
                 .authorName("Richard S. Panush")
                 .chronology("2013")
-                .createIdentifier();
+                .createKey();
         assertEquals(workAuthor, "wEthcPrfenalmAdRugY.aomiPldfEjbhypusS.2013");
 
-        workAuthor = new AuthoredWork()
+        workAuthor = new AuthoredWorkKey()
                 .workName("Ethics, Professionalism, and Rheumatology")
                 .authorName("Romain, Paul L.")
                 .authorName("Dorff, Elliot")
                 .authorName("Rajbhandary, Rosy")
                 .authorName("Panush, Richard S.")
                 .chronology("2013")
-                .createIdentifier();
+                .createKey();
         assertEquals(workAuthor, "wEthcPrfenalmAdRugY.aomiPldfEjbhypusS.2013");
 
-        workAuthor = new AuthoredWork()
+        workAuthor = new AuthoredWorkKey()
                 .workName("Ethics, Professionalism, and Rheumatology")
                 .authorName("Romain, P L")
                 .authorName("Dorff, E")
                 .authorName("Rajbhandary, R")
                 .authorName("Panush, R S")
                 .chronology("2013")
-                .createIdentifier();
+                .createKey();
         assertEquals(workAuthor, "wEthcPrfenalmAdRugY.aomiPldfEjbhypusS.2013");
     }
 }

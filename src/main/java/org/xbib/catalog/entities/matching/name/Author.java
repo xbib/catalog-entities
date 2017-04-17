@@ -1,6 +1,6 @@
 package org.xbib.catalog.entities.matching.name;
 
-import org.xbib.catalog.entities.matching.endeavor.Identifiable;
+import org.xbib.catalog.entities.matching.endeavor.Key;
 import org.xbib.catalog.entities.matching.string.BaseformEncoder;
 import org.xbib.catalog.entities.matching.string.EncoderException;
 import org.xbib.catalog.entities.matching.string.WordBoundaryEntropyEncoder;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 /**
  * An identifiable endeavor for an author.
  */
-public class Author implements Identifiable {
+public class Author implements Key {
 
     private static final Logger logger = Logger.getLogger(Author.class.getName());
 
@@ -126,7 +126,7 @@ public class Author implements Identifiable {
     }
 
     @Override
-    public String createIdentifier() {
+    public String createKey() {
         StringBuilder sb = new StringBuilder();
         if (authorName != null) {
             String aName = BaseformEncoder.normalizedFromUTF8(authorName.toString())

@@ -84,7 +84,8 @@ public class De2382MarcTest {
             builder.receive(state.getResource());
             String content = params.getGenerator().get();
             if (content != null) {
-                /*try (BufferedWriter writer = Files.newBufferedWriter( Paths.get(state.getRecordIdentifier() + ".json"))) {
+                /*try (BufferedWriter writer = Files.newBufferedWriter(
+                        Paths.get( "src/test/resources/org/xbib/catalog/entities/marc/de2382/" + state.getRecordIdentifier() + ".json"))) {
                     writer.write(content);
                 }*/
                 assertStream("" + state.getRecordIdentifier(),

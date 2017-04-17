@@ -159,7 +159,8 @@ public class BibTest {
             RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
             builder.receive(state.getResource());
             String content = params.getGenerator().get();
-            /*try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".json"))) {
+            /*try (BufferedWriter writer = Files.newBufferedWriter(
+                    Paths.get("src/test/resources/org/xbib/catalog/entities/marc/zdb/"+ state.getRecordIdentifier() + ".json"))) {
                 writer.write(content);
             }*/
             assertStream("" + state.getRecordIdentifier(),
@@ -178,7 +179,8 @@ public class BibTest {
         protected void afterFinishState(CatalogEntityWorkerState state) throws IOException {
             RouteRdfXContentParams params = new RouteRdfXContentParams();
             params.setHandler((content, i) -> {
-                /*try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(state.getRecordIdentifier() + ".route.json"))) {
+                /*try (BufferedWriter writer = Files.newBufferedWriter(
+                        Paths.get("src/test/resources/org/xbib/catalog/entities/marc/zdb/" + state.getRecordIdentifier() + ".route.json"))) {
                     writer.write(content);
                 }*/
                 assertStream("" + state.getRecordIdentifier(),

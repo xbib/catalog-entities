@@ -1,7 +1,7 @@
 package org.xbib.catalog.entities.matching.name;
 
 import org.xbib.catalog.entities.matching.Domain;
-import org.xbib.catalog.entities.matching.Key;
+import org.xbib.catalog.entities.matching.DomainKey;
 import org.xbib.catalog.entities.matching.string.EncoderException;
 import org.xbib.catalog.entities.matching.string.HaasePhonetikEncoder;
 
@@ -12,7 +12,7 @@ import java.util.TreeSet;
  * German name.
  *
  */
-public class GermanNameKey extends TreeSet<String> implements Key<String> {
+public class GermanNameKey extends TreeSet<String> implements DomainKey<String> {
 
     private static final long serialVersionUID = 740094768192592666L;
     private char delimiter = '/';

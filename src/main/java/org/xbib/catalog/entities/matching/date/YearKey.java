@@ -1,7 +1,7 @@
 package org.xbib.catalog.entities.matching.date;
 
 import org.xbib.catalog.entities.matching.Domain;
-import org.xbib.catalog.entities.matching.Key;
+import org.xbib.catalog.entities.matching.DomainKey;
 
 import java.time.Year;
 import java.util.LinkedList;
@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  *
  */
-public class YearKey extends LinkedList<String> implements Key<String> {
+public class YearKey extends LinkedList<String> implements DomainKey<String> {
 
     private static final long serialVersionUID = 4622928393831608899L;
 

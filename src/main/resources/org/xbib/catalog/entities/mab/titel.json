@@ -4389,16 +4389,6 @@
       "a": "title",
       "v": "titleAddendum"
     },
-    "TitleStatement": {
-      " ": "title",
-      "0": null,
-      "1": null,
-      "6": "script",
-      "a": "title",
-      "b": null,
-      "q": null,
-      "s": null
-    },
     "subfields": {
       " ": "title",
       ".": null,

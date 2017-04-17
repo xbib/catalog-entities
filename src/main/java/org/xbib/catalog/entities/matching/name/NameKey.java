@@ -2,7 +2,7 @@ package org.xbib.catalog.entities.matching.name;
 
 
 import org.xbib.catalog.entities.matching.Domain;
-import org.xbib.catalog.entities.matching.Key;
+import org.xbib.catalog.entities.matching.DomainKey;
 import org.xbib.catalog.entities.matching.string.DoubleMetaphoneEncoder;
 import org.xbib.catalog.entities.matching.string.EncoderException;
 
@@ -13,7 +13,7 @@ import java.util.TreeSet;
  * Name key.
  *
  */
-public class NameKey extends TreeSet<String> implements Key<String> {
+public class NameKey extends TreeSet<String> implements DomainKey<String> {
 
     private static final long serialVersionUID = -8452516356385112613L;
     private char delimiter = '/';

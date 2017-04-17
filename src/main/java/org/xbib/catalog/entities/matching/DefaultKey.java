@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * Simple component.
  */
-public class DefaultKey extends LinkedList<String> implements Key<String> {
+public class DefaultKey extends LinkedList<String> implements DomainKey<String> {
 
     private static final long serialVersionUID = 8678339287438796574L;
     private Domain domain;
