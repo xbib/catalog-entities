@@ -7,6 +7,10 @@ import org.xbib.marc.MarcField;
 
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +54,7 @@ public class GeneralInformation extends CatalogEntity {
                 String pred = entry.getValue().toString();
                 String v = value.substring(from, to);
                 if (pred.startsWith("date")) {
-                    info.add(pred, checkDate(v));
+                    info.add(pred, convertFromMarcDate(v));
                 } else {
                     if (!"|".equals(v) && !"||".equals(v) && !"|||".equals(v) && !"|| ".equals(v)) {
                         info.add(pred, v);
@@ -73,24 +77,26 @@ public class GeneralInformation extends CatalogEntity {
         }
     }
 
-    // check for valid date, else return null
-    private Integer checkDate(String date) {
-        if ("    ".equals(date)) {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+
+    // convert from yymmdd to ISO 8601 format
+    private String convertFromMarcDate(String date) {
+        if (date.indexOf('|') >=0 ) {
+            // invalid date / no date
             return null;
         }
         try {
-            int d = Integer.parseInt(date);
-            if (d < 1450) {
-                return null;
+            // yy maps to 2000-2099 which is wrong, cataloging era is somewhere around 1970-2070
+            LocalDate localDatetime = LocalDate.parse(date, formatter);
+            // adjust year. If in the future, subtract 100 to go back to 20th century cataloging.
+            // one year tolerance, maybe "future cataloging"
+            if (localDatetime.getYear() > Year.now().plusYears(1).getValue()) {
+                localDatetime = localDatetime.minusYears(100);
             }
-            if (d == 9999) {
-                return null;
-            }
-            return d;
+            return localDatetime.toString();
         } catch (Exception e) {
-            logger.log(Level.FINEST, e.getMessage(), e);
-            return null;
+            logger.log(Level.WARNING, "unable to convert date: " + date, e);
+            return date;
         }
     }
-
 }
