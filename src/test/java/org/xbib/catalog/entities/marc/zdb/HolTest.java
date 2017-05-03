@@ -112,14 +112,14 @@ public class HolTest {
             RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
             builder.receive(state.getResource());
             String content = params.getGenerator().get();
-            Path path = Paths.get(state.getRecordIdentifier() + ".hol.json");
+            /*Path path = Paths.get(state.getRecordIdentifier() + ".hol.json");
             try (BufferedWriter writer = Files.newBufferedWriter(path)) {
                 writer.write(content);
-            }
-            /*InputStream inputStream = getClass().getResource(state.getRecordIdentifier() + ".hol.json").openStream();
+            }*/
+            InputStream inputStream = getClass().getResource(state.getRecordIdentifier() + ".hol.json").openStream();
             assertStream("" + state.getRecordIdentifier(),
                     inputStream,
-                    new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));*/
+                    new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
         }
     }
 }

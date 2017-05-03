@@ -44,7 +44,7 @@ dependencies {
     testCompile "org.apache.logging.log4j:log4j-jul:${project.property('log4j.version')}"
     testCompile "org.xbib:bibliographic-character-sets:${project.property('bibliographic-character-sets.version')}"
     asciidoclet "org.asciidoctor:asciidoclet:${project.property('asciidoclet.version')}"
-    wagon "org.apache.maven.wagon:wagon-ssh-external:${project.property('wagon-ssh-external.version')}"
+    wagon "org.apache.maven.wagon:wagon-ssh:${project.property('wagon.version')}"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
