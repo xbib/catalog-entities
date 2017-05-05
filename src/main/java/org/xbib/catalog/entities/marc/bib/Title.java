@@ -30,15 +30,15 @@ public class Title extends CatalogEntity {
             AuthoredWorkKey authoredWorkKey = worker.getWorkerState().getAuthoredWorkKey();
             PublishedJournalKey publishedJournalKey = worker.getWorkerState().getJournalKey();
             if ("title".equals(property)) {
-                authoredWorkKey.workName(value);
-                publishedJournalKey.addTitle(value);
+                authoredWorkKey.workName(filter(value));
+                publishedJournalKey.addTitle(filter(value));
             }
             if ("remainder".equals(property)
                     || "medium".equals(property)
                     || "partName".equals(property)
                     || "partNumber".equals(property)
                     ) {
-                publishedJournalKey.addTitle(value);
+                publishedJournalKey.addTitle(filter(value));
             }
         }
         // let's make "sorting" marker characters visible again
@@ -46,5 +46,10 @@ public class Title extends CatalogEntity {
         // --> 00ac = negation sign
         //return Collections.singletonList(value.replace('\u0098', '\u00ac').replace('\u009c', '\u00ac'));
         return Collections.singletonList(value);
+    }
+
+    // filter out forbidden titles
+    private String filter(String s) {
+        return "Elektronische Ressource".equals(s) ? null : s;
     }
 }
