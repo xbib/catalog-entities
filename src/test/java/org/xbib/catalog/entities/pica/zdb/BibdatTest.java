@@ -127,11 +127,11 @@ public class BibdatTest extends Assert {
             RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
             builder.receive(state.getResource());
             String content = params.getGenerator().get();
-            try (BufferedWriter writer = Files.newBufferedWriter(
+            /*try (BufferedWriter writer = Files.newBufferedWriter(
                 Paths.get("src/test/resources/org/xbib/catalog/entities/pica/zdb/"+ state.getRecordIdentifier() + ".bibdat.json"))) {
                 writer.write(content);
-            }
-            /*URL url = getClass().getResource(state.getRecordIdentifier() + ".bibdat.json");
+            }*/
+            URL url = getClass().getResource(state.getRecordIdentifier() + ".bibdat.json");
             if (url != null) {
                 InputStream inputStream = url.openStream();
                 assertStream("" + state.getRecordIdentifier(),
@@ -139,7 +139,7 @@ public class BibdatTest extends Assert {
                         new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
             } else {
                 fail("resource not found: '" + state.getRecordIdentifier() + ".bibdat.json'");
-            }*/
+            }
         }
     }
 }
