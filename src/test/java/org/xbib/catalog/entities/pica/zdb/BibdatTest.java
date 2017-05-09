@@ -17,6 +17,7 @@ import org.xbib.marc.MarcRecord;
 import org.xbib.marc.dialects.pica.PicaXMLContentHandler;
 import org.xbib.marc.transformer.value.MarcValueTransformers;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,6 +27,8 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.text.Normalizer;
 import java.util.Map;
@@ -123,16 +126,20 @@ public class BibdatTest extends Assert {
             RdfXContentParams params = new RdfXContentParams();
             RdfContentBuilder<RdfXContentParams> builder = rdfXContentBuilder(params);
             builder.receive(state.getResource());
-            String result = params.getGenerator().get();
-            URL url = getClass().getResource(state.getRecordIdentifier() + ".bibdat.json");
+            String content = params.getGenerator().get();
+            try (BufferedWriter writer = Files.newBufferedWriter(
+                Paths.get("src/test/resources/org/xbib/catalog/entities/pica/zdb/"+ state.getRecordIdentifier() + ".bibdat.json"))) {
+                writer.write(content);
+            }
+            /*URL url = getClass().getResource(state.getRecordIdentifier() + ".bibdat.json");
             if (url != null) {
                 InputStream inputStream = url.openStream();
                 assertStream("" + state.getRecordIdentifier(),
                         inputStream,
-                        new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8)));
+                        new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
             } else {
                 fail("resource not found: '" + state.getRecordIdentifier() + ".bibdat.json'");
-            }
+            }*/
         }
     }
 }

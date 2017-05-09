@@ -81,7 +81,7 @@ public class GeneralInformation extends CatalogEntity {
 
     // convert from yymmdd to ISO 8601 format
     private String convertFromMarcDate(String date) {
-        if (date.indexOf('|') >=0 ) {
+        if (date.indexOf('|') >= 0) {
             // invalid date / no date
             return null;
         }

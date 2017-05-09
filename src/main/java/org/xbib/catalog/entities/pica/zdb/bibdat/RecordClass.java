@@ -7,9 +7,11 @@ import java.util.Map;
 /**
  *
  */
-public class RecordSpec extends CatalogEntity {
+public class RecordClass extends CatalogEntity {
 
-    public RecordSpec(Map<String, Object> params) {
+    public RecordClass(Map<String, Object> params) {
         super(params);
     }
 }
+
+

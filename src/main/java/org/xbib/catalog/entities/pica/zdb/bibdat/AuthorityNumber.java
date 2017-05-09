@@ -7,9 +7,9 @@ import java.util.Map;
 /**
  *
  */
-public class RecordSpec extends CatalogEntity {
+public class AuthorityNumber extends CatalogEntity {
 
-    public RecordSpec(Map<String, Object> params) {
+    public AuthorityNumber(Map<String, Object> params) {
         super(params);
     }
 }
